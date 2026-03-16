@@ -211,6 +211,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -422,6 +423,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1074,10 +1076,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78b75b1dc931c7408c0d94658469db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_data: {fileID: 0}
-  m_title: {fileID: 4912482402636184599}
-  m_description: {fileID: 3214380194516172996}
-  m_content: {fileID: 6260253250042671787}
-  m_image: {fileID: 0}
-  m_bgDim: {fileID: 408871601048411743}
-  m_buttonGroup: {fileID: 5801889302135010371}
+  Data: {fileID: 0}
+  title: {fileID: 4912482402636184599}
+  description: {fileID: 3214380194516172996}
+  content: {fileID: 6260253250042671787}
+  image: {fileID: 0}
+  bgDimmerGroup: {fileID: 408871601048411743}
+  buttonGroup: {fileID: 5801889302135010371}
