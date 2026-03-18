@@ -179,6 +179,107 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f285ed2d858afc544a81b7460bfdcece, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NotificationTestScript
+--- !u!1001 &221093256
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1158446316}
+    m_Modifications:
+    - target: {fileID: 6075355652379418784, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_Name
+      value: SettingsMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6075355652379418784, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 318.31775
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
 --- !u!1 &1158446310
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +377,7 @@ RectTransform:
   - {fileID: 1567621709}
   - {fileID: 1053787084767391729}
   - {fileID: 3107522292466449314}
+  - {fileID: 1881805772}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -367,6 +469,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1881805772 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8153314783439794632, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+  m_PrefabInstance: {fileID: 221093256}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1881805774 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 297498445302029567, guid: 7e6cdfb343033e84d858a1e70a7efe72, type: 3}
+  m_PrefabInstance: {fileID: 221093256}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f65c3cdc2281d242aedb9f46d9f96c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Menu
 --- !u!1 &2002153279
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +758,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5619356888451306565, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619356888451306565, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 191030639}
+    - target: {fileID: 5619356888451306565, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619356888451306565, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619356888451306565, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1327412970997766073}
+    - target: {fileID: 5619356888451306565, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 6674609442036597970, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
       propertyPath: m_Name
       value: BottomNavBar
@@ -695,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 7991972683001262848, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 1327412970997766073}
+      objectReference: {fileID: 1881805774}
     - target: {fileID: 7991972683001262848, guid: e53ca876d387ab543922ea52e7b28036, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Menu, Assembly-CSharp
