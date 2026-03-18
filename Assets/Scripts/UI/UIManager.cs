@@ -106,13 +106,19 @@ public class UIManager : MonoBehaviour
     public void OpenMenu(Menu menu)
     {
         if (MenuStack.Count > 0)
-            if (menu.m_bDisappearPreviousMenu)
+        {
+            if (menu == MenuStack.Peek())
+                return;
+            else if (menu.m_bDisappearPreviousMenu)
                 DisappearMenu(MenuStack.Peek());
             else
                 MenuStack.Peek().AllowInteraction(false);
+        }
 
         MenuStack.Push(menu);
         AppearMenu(menu);
+
+        Debug.Log(MenuStack.Count + " - Menus total");
     }
 
     void AppearMenu(Menu menu)
@@ -141,6 +147,8 @@ public class UIManager : MonoBehaviour
             AppearMenu(MenuStack.Peek());
         else
             MenuStack.Peek().AllowInteraction(true);
+
+        Debug.Log(MenuStack.Count + " - Menus total");
     }
     #endregion
 }
