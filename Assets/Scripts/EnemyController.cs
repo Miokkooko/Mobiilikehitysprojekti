@@ -17,9 +17,9 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rigidbody.linearVelocity = UnityEngine.Vector2.down;
+        //rigidbody.linearVelocity = UnityEngine.Vector2.down;
 
-        //transform.position = transform.position + new UnityEngine.Vector3(movementSpeed * Time.deltaTime, movementSpeed * Time.deltaTime, 0);
+        transform.position = UnityEngine.Vector3.MoveTowards(transform.position, new UnityEngine.Vector3(0,0,0), movementSpeed * Time.deltaTime);
     }
 
     public void DestroyEnemy()
