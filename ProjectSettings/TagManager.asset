@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -42,22 +43,22 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Ground
-    uniqueID: 3012137175
+    uniqueID: 2095804747
     locked: 0
   - name: WalkInFront
-    uniqueID: 4091512913
+    uniqueID: 669619541
     locked: 0
-  - name: Collide
-    uniqueID: 1712670717
+  - name: Collision
+    uniqueID: 2235443141
     locked: 0
   - name: Player
-    uniqueID: 1506628513
+    uniqueID: 2596025049
     locked: 0
   - name: WalkBehind
-    uniqueID: 884068329
+    uniqueID: 1903519057
     locked: 0
   - name: Decor
-    uniqueID: 2182601039
+    uniqueID: 2656412571
     locked: 0
   m_RenderingLayers:
   - Default

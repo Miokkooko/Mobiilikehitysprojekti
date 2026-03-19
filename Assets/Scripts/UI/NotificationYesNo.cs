@@ -76,7 +76,7 @@ public class NotificationYesNo : NotificationBase
     {
         RaiseNotificationEvent(new NotificationArgs(Data, false));
         buttonGroup.interactable = false;
-
+        
         DisappearAnim();
         CancelAnimation();
     }
