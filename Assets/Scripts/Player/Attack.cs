@@ -12,11 +12,13 @@ public class Attack : MonoBehaviour
     float shootTimer = 0.5f;
 
 
+
     void Start()
     {
         playerStats = GetComponent<PlayerStats>();
         fireRate = playerStats.baseFireRate;
     }
+
     // Update is called once per frame
     void Update()
     {

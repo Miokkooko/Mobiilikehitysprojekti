@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : Projectile
 {
     
     public float fireForce = 10f;
@@ -10,11 +10,9 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject, 2f);
     }
 
-    private void Update()
+    public override void Move()
     {
         transform.position += -transform.up * fireForce * Time.deltaTime;
     }
-
-
 
 }

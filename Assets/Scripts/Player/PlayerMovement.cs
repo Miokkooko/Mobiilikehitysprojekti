@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         //kääntää spriten
         if (moveInput.x != 0)
         {
-            spriteRenderer.flipX = moveInput.x > 0;
+            spriteRenderer.flipX = moveInput.x < 0;
         }
     }
 
