@@ -135,7 +135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rigidbody: {fileID: 3441874391256220987}
   movementSpeed: 1
-  player: {fileID: 4427834152095566903, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
 --- !u!58 &5321475163877365738
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -166,7 +165,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

@@ -25,4 +25,12 @@ public class EnemyController : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    {
+        if (collision.gameObject.name == "Bullet(Clone)")
+        {
+            DestroyEnemy();
+        }
+    }
 }
