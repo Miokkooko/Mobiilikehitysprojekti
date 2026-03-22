@@ -4,14 +4,14 @@ public class StatSystem
 {
     private List<StatModifier> modifiers = new();
 
-    public void AddModifier(StatModifier mod)
+    public void AddModifiers(StatModifier[] mod)
     {
-        modifiers.Add(mod);
+        modifiers.AddRange(mod);
     }
 
-    public void RemoveModifier(StatModifier mod)
+    public void RemoveModifiers(StatusEffect source)
     {
-        modifiers.Remove(mod);
+        modifiers.RemoveAll(m => m.source == source);
     }
 
     public float Calculate(StatType stat, float baseValue)
@@ -29,6 +29,6 @@ public class StatSystem
                 percent += mod.Value;
         }
 
-        return (baseValue + flat) * (1 + percent);
+        return (baseValue + flat) * (1f + percent);
     }
 }
