@@ -11,15 +11,24 @@ public class Enemy : MonoBehaviour
 
     public float hp = 4;
 
+    public bool moveX = false;
+    public bool moveY = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        
     }
 
     void FixedUpdate()
     {
-        Timer();
+        if (moveY)
+        {
+            MoveY();
+        }
+        if (moveX)
+        {
+            MoveX();
+        }
         rb.linearVelocity = moveDirection * 2;
     }
     
@@ -30,7 +39,7 @@ public class Enemy : MonoBehaviour
         
     }
 
-    public void Timer()
+    public void MoveY()
     {
         moveTimer += Time.deltaTime;
         if (moveTimer >= 2)
@@ -42,6 +51,24 @@ public class Enemy : MonoBehaviour
             }
             else { 
                 moveDirection.y = 1; }
+
+        }
+    }
+
+    public void MoveX()
+    {
+        moveTimer += Time.deltaTime;
+        if (moveTimer >= 2)
+        {
+            moveTimer = 0;
+            if (moveDirection.x == 1)
+            {
+                moveDirection.x = -1;
+            }
+            else
+            {
+                moveDirection.x = 1;
+            }
 
         }
     }
