@@ -22,7 +22,7 @@ public class EnemySpawnController : MonoBehaviour
         }
         else
         {
-            Instantiate(enemy, new UnityEngine.Vector3(Random.Range(-10,10), Random.Range(5,20), 0), transform.rotation);
+            Instantiate(enemy, new UnityEngine.Vector3(Random.Range(-27,23), Random.Range(-17,20), 0), transform.rotation);
             timer = 0;
         }   
     }
