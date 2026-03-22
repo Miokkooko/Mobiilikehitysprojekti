@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,9 +19,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform aim;
     bool isWalking = false;
 
+    //Attacking
+    List<Weapon> weapons;
+    float shootTimer = 0.5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        weapons = new List<Weapon>();
+        AddWeapon(new Knife(gameObject));
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerStats = GetComponent<PlayerStats>();
@@ -47,7 +55,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        shootTimer += Time.deltaTime;
+
+        FireWeapons();
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -87,4 +97,32 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("InputY", moveInput.y);
     }
 
+    public Vector3 GetMoveDirection()
+    {
+        if (moveInput != Vector2.zero)
+            lastMoveDirection = moveInput.normalized;
+
+        Vector3 dir = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
+        if (dir == Vector3.zero)
+        {
+            dir = Vector3.right;
+        }
+
+        return dir;
+    }
+
+
+    public virtual void FireWeapons()
+    {
+        foreach (Weapon w in weapons)
+        {
+            w.TryFire();
+        }
+    }
+
+    public void AddWeapon(Weapon w)
+    {
+        weapons.Add(w);
+        w.Initialize(gameObject);
+    }
 }

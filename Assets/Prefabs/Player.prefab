@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1712143069409651538}
   - component: {fileID: 240634015747286591}
   - component: {fileID: 4950957087417525058}
-  - component: {fileID: 7593354496292065123}
   - component: {fileID: 3704269243133326108}
   m_Layer: 0
   m_Name: Player
@@ -146,7 +145,7 @@ MonoBehaviour:
       Touchscreen/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7593354496292065123}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Attack, Assembly-CSharp
         m_MethodName: Atk
         m_Mode: 0
@@ -303,21 +302,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7593354496292065123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4427834152095566903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04fca3db1b597264289cc8321d547669, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Attack
-  aim: {fileID: 4582686154257017146}
-  bullet: {fileID: 7775072252728010430, guid: 6d502916840de1a4f990bf7a4b41b161, type: 3}
-  fireForce: 10
 --- !u!114 &3704269243133326108
 MonoBehaviour:
   m_ObjectHideFlags: 0
