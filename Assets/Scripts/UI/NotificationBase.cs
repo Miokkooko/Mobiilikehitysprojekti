@@ -44,10 +44,15 @@ public class NotificationBase : MonoBehaviour
         StartCoroutine(DestroyAfterDelay(destroyDelay));
     }
 
+    private void OnDestroy()
+    {
+        RaiseNotificationDestroyedEvent(new NotificationArgs(Data));
+        Debug.Log("Notification destroyed");
+
+    }
     public IEnumerator DestroyAfterDelay(float delay)
     {
-        yield return new WaitForSeconds(delay);
-        RaiseNotificationDestroyedEvent(new NotificationArgs(Data));
+        yield return new WaitForSecondsRealtime(delay);
         Destroy(gameObject);
     }
 }

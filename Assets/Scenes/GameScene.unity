@@ -725,6 +725,75 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5625, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1473250853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473250844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d5960d238a60f41b0cf417a5890864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!1001 &1720978290
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 576.45746
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 342.25418
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4386944917827994675, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189795118818118337, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
+      propertyPath: m_Name
+      value: UIManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 56071abaf71a1964bba96ffe9b098f41, type: 3}
 --- !u!1 &2125725340
 GameObject:
   m_ObjectHideFlags: 0
@@ -754,9 +823,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff9e893644b4e34c9b92eded0cf9e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  data: {fileID: 11400000, guid: 6dc5927fc3e6d8043aba97d8b91eeae4, type: 2}
   StatusUpgrades:
   - {fileID: 11400000, guid: a313dbdd508a3d340a30a8b62216d2a0, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: a313dbdd508a3d340a30a8b62216d2a0, type: 2}
+  player: {fileID: 1473250853}
 --- !u!4 &2125725342
 Transform:
   m_ObjectHideFlags: 0
@@ -839,6 +910,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4427834152095566903, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1473250852}
+    - targetCorrespondingSourceObject: {fileID: 4427834152095566903, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1473250853}
   m_SourcePrefab: {fileID: 100100000, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -850,3 +924,4 @@ SceneRoots:
   - {fileID: 484136983}
   - {fileID: 923376716}
   - {fileID: 2125725342}
+  - {fileID: 1720978290}

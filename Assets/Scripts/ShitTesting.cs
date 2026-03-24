@@ -21,6 +21,10 @@ public class ShitTesting : MonoBehaviour
     {
         n.OnNotificationRaised -= N_OnNotificationRaised;
 
-        Debug.Log("Wow");
+        if(e is LevelUpArgs args)
+        {
+            Debug.Log("Wow");
+        }
+        
     }
 }

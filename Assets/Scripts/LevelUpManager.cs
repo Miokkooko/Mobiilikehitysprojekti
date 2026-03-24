@@ -1,29 +1,49 @@
 using System.Collections.Generic;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 
 public class LevelUpManager : MonoBehaviour
 {
     public static LevelUpManager Instance;
-
+    public LevelUpData data;
     public List<StatusEffect> StatusUpgrades;
+    public Player player;
 
-    public event System.Action<List<StatusEffect>> OnUpgradeChoisesReady;
-
+    NotificationBase n;
     //public List<Weapon> WeaponUpgrades; Mahdollista teh‰ vasta sitten kun weapons scriptable objecti tehty.
 
     private void Awake()
     {
         Instance = this;
     }
+    private void Notification_OnNotificationResult(object sender, NotificationBase.NotificationArgs e)
+    {
+        n = (NotificationBase)sender;
+        n.OnNotificationRaised -= Notification_OnNotificationResult;
+
+        if (e is LevelUpArgs args)
+        {
+            //SelectUpgrade(args.);
+        }
+    }
 
     public void TriggerLevelUp()
     {
         List<StatusEffect> choises = GetRandomUpgrades(3);
+        data.upgradeList = choises;
 
-        OnUpgradeChoisesReady?.Invoke(choises);
+        n = UIManager.Instance.CreateNotification(data);
+
+        n.OnNotificationRaised += Notification_OnNotificationResult;
+        n.OnNotificationDestroyed += N_OnNotificationDestroyed;
 
         Time.timeScale = 0f;
+    }
+
+    private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
+    {
+        n = (NotificationBase)sender;
+        n.OnNotificationDestroyed -= N_OnNotificationDestroyed;
+        Time.timeScale = 1f;
     }
 
     private List<StatusEffect> GetRandomUpgrades(int count)
@@ -47,17 +67,12 @@ public class LevelUpManager : MonoBehaviour
 
         return selected;
     }
-    
+
     public void SelectUpgrade(StatusEffect chosenUpgrade)
     {
         if (chosenUpgrade == null) return;
 
         // Lis‰‰ pelaajalle, pelaaja statti systeemi jne
-
-        Time.timeScale = 1f;
-
-        //notification kutsu
-
+       
     }
-
 }

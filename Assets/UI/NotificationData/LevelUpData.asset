@@ -16,4 +16,6 @@ MonoBehaviour:
   Title: Level Up!
   Description: Choose 1 of 3 options!
   Type: 3
-  upgradeList: []
+  upgradeList:
+  - {fileID: 11400000, guid: a313dbdd508a3d340a30a8b62216d2a0, type: 2}
+  - {fileID: 11400000, guid: a313dbdd508a3d340a30a8b62216d2a0, type: 2}

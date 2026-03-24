@@ -7,12 +7,11 @@ using System.Linq;
 
 public class LevelUpArgs : NotificationBase.NotificationArgs
 {
-    public int indexChosen;
+    public StatusEffect statusChosen;
 
-    public LevelUpArgs(int index)
+    public LevelUpArgs(StatusEffect statusChosen)
     {
-        indexChosen = index;
-        
+        this.statusChosen = statusChosen;
     }
 }
 
@@ -48,26 +47,38 @@ public class LevelUpNotification : NotificationBase
         {
             if (content != null && buttonPrefab != null)
             {
-                for (int i = 0; i < lud.upgradeList.Count(); i++)
+                foreach (var status in lud.upgradeList) 
                 {
-                    SpawnButton(content);
+                    SpawnButton(content, status);
                 }
             }
         }   
     }
 
-    void SpawnButton(Transform parent)
+    void SpawnButton(Transform parent, StatusEffect data)
     {
         Transform t = Instantiate(buttonPrefab, parent);
 
         if(t.GetComponent<LevelUpButton>() is LevelUpButton lub)
         {
+            lub.OnButtonPress += Lub_OnButtonPress;
             lub.Initialize(this);
-
+            lub.status = data;
             buttons.Add(lub);
         }
     }
 
+    private void Lub_OnButtonPress(object sender, LevelUpButton.LevelUpButtonArgs e)
+    {
+        foreach (var item in buttons)
+        {
+            item.OnButtonPress -= Lub_OnButtonPress;
+        }
+        RaiseNotificationEvent(new LevelUpArgs(e.effect));
+        DisappearAnim();
+    }
+
+    
     private void OnEnable()
     {
         AppearAnim();
@@ -77,10 +88,10 @@ public class LevelUpNotification : NotificationBase
     {
         // Appear animation: Move Up and remove dim
         bgDimmerGroup.alpha = 0;
-        bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer);
+        bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer).setIgnoreTimeScale(true);
 
         content.localPosition = new Vector2(0, -Screen.height);
-        content.LeanMoveLocalY(0, m_flTransitionTimer).setEaseOutExpo().delay = 0.1f;
+        content.LeanMoveLocalY(0, m_flTransitionTimer).setEaseOutExpo().setIgnoreTimeScale(true).delay = 0.1f;
 
     }
 
@@ -88,7 +99,7 @@ public class LevelUpNotification : NotificationBase
     {
         Disappear(m_flDestroyBaseTime);
         // Disappear animation: Move down and remove dim
-        content.LeanMoveLocalY(-Screen.height, m_flTransitionTimer).setEaseInExpo().delay = 0.05f;
-        bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer);
+        content.LeanMoveLocalY(-Screen.height, m_flTransitionTimer).setEaseInExpo().setIgnoreTimeScale(true).delay = 0.05f;
+        bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer).setIgnoreTimeScale(true);
     }
 }
