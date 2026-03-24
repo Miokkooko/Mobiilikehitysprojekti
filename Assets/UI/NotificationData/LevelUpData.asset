@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6463abdf25706bc409e0f4ac799c1f23, type: 3}
-  m_Name: ExampleNotification 1
-  m_EditorClassIdentifier: 
-  id: 1
-  m_sTitle: Warning!
-  m_sDescription: Are you SURE you want to delete your profile?
-  m_type: 0
+  m_Script: {fileID: 0}
+  m_Name: LevelUpData
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpData
+  id: 0
+  Title: Level Up!
+  Description: Choose 1 of 3 options!
+  Type: 3
+  upgradeList: []

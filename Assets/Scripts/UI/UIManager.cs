@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour
     Canvas canvas;
 
     [SerializeField]
-    Transform NotificationPrefab;
+    Transform NotificationYesNoPrefab;
+    [SerializeField]
+    Transform NotificationLevelUpPrefab;
 
     Stack<Menu> MenuStack = new Stack<Menu>();
 
@@ -45,8 +47,30 @@ public class UIManager : MonoBehaviour
     /// NotificationPopUp</returns>
     public NotificationBase CreateNotification(NotificationData data)
     {
-        Transform t = Instantiate(NotificationPrefab, canvas.transform);
-        if (t.GetComponent<NotificationYesNo>() is NotificationYesNo n)
+        Transform t = null;
+        switch (data.Type)
+        {
+            case NotificationType.Confirm:
+                break;
+            case NotificationType.ConfirmCancel:
+                t = Instantiate(NotificationYesNoPrefab, canvas.transform);
+                break;
+            case NotificationType.PopUp:
+                break;
+            case NotificationType.LevelUp:
+                t = Instantiate(NotificationLevelUpPrefab, canvas.transform);
+                break;
+            default:
+                break;
+        }
+
+        if(t == null)
+        {
+            Debug.Log("No prefab found for notification!");
+            return null;
+        }
+
+        if (t.GetComponent<NotificationBase>() is NotificationBase n)
         {
             n.Initialize(data);
 
@@ -60,7 +84,7 @@ public class UIManager : MonoBehaviour
 
         return null;
     }
-
+  
     /// <summary>
     /// Handles the queueing, allowing only 1 of each type of popup to be active at the same time
     /// </summary>
@@ -93,7 +117,7 @@ public class UIManager : MonoBehaviour
         if (sender is NotificationBase n)
             n.OnNotificationDestroyed -= OnNotificationDestroyed;
 
-        if (e.Data.m_type != NotificationType.PopUp)
+        if (e.Data.Type != NotificationType.PopUp)
             NotificationQueue.Dequeue();
         else
             PopUpNotificationQueue.Dequeue();

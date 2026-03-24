@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public enum NotificationType { Confirm, ConfirmCancel, PopUp }
+public enum NotificationType { Confirm, ConfirmCancel, PopUp, LevelUp }
 public class NotificationBase : MonoBehaviour
 {
     public NotificationData Data;
@@ -14,7 +14,7 @@ public class NotificationBase : MonoBehaviour
         public NotificationData Data;
 
         public bool Confirmed;
-
+        public NotificationArgs() { }
         public NotificationArgs(NotificationData _data)
         {
             Data = _data;
@@ -26,10 +26,8 @@ public class NotificationBase : MonoBehaviour
         }
     }
 
-    public virtual void Initialize(NotificationData data)
-    {
-        Data = data;
-    }
+    public virtual void Initialize(NotificationData data) { Data = data; }
+    public virtual void Initialize() { }
 
     public void RaiseNotificationEvent(NotificationArgs args) 
     {
