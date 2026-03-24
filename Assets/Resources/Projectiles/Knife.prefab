@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6474148549126811038}
   m_Layer: 0
   m_Name: Knife
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  m_Color: {r: 1, g: 0.15291606, b: 0.0047169924, a: 1}
+  m_Sprite: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -134,7 +134,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   projectileSpeed: 9.8
+  projectileHealth: 1
   damage: 1
+  direction: {x: 0, y: 0, z: 0}
+  angle: 0
 --- !u!61 &6474148549126811038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -173,7 +176,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 1.3125, y: 0.375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

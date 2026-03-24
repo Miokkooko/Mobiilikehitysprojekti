@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void Start()
     {
-        //Projectile will destroy itself 2 seconds after spawning
+        //Projectile tuhoaa ittensä kahen sekunnin jälkeen
         Destroy(gameObject, 2f);
     }
 
@@ -38,7 +38,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void Rotate()
     {
-        //rotate projectile to match players latest input
+        //käännä projectile pelaajan viimeisimpään kävelysuuntaan
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
@@ -50,10 +50,16 @@ public class Projectile : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            EnemyController enemy = collision.GetComponent<EnemyController>();
+            Enemy dummy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
+                OnHit();
+            }
+            if (dummy != null)
+            {
+                dummy.TakeDamage(damage);
                 OnHit();
             }
         }

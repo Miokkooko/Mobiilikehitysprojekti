@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
     
     public Rigidbody2D rigidbody;
     public float movementSpeed = 1f;
+    public float hp = 1;
 
     private GameObject playerToFollow;
     
@@ -26,11 +27,22 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /*
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
         if (collision.gameObject.name == "Bullet(Clone)")
         {
             DestroyEnemy();
+        }
+    }
+    */
+
+    public void TakeDamage(float damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 }

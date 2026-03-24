@@ -14,20 +14,22 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lastMoveDirection;
 
+
     private Animator animator;
 
     public Transform aim;
     bool isWalking = false;
 
     //Attacking
-    List<Weapon> weapons;
+    List<WeaponInstance> weapons;
     float shootTimer = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        weapons = new List<Weapon>();
-        AddWeapon(new Knife(gameObject));
+        weapons = new List<WeaponInstance>();
+
+        weapons.Add(new WeaponInstance(gameObject, Resources.Load<WeaponData>("WeaponData/KnifeData")));
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -79,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         //lukee kävelysuunnan
         moveInput = context.ReadValue<Vector2>();
         
+
         //kääntää spriten
         if (moveInput.x != 0)
         {
@@ -100,9 +103,12 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 GetMoveDirection()
     {
         if (moveInput != Vector2.zero)
+        {
             lastMoveDirection = moveInput.normalized;
+        }
 
         Vector3 dir = new Vector3(lastMoveDirection.x, lastMoveDirection.y, 0);
+
         if (dir == Vector3.zero)
         {
             dir = Vector3.right;
@@ -114,15 +120,24 @@ public class PlayerMovement : MonoBehaviour
 
     public virtual void FireWeapons()
     {
-        foreach (Weapon w in weapons)
+        foreach (WeaponInstance w in weapons)
         {
             w.TryFire();
         }
     }
 
-    public void AddWeapon(Weapon w)
+    public void AddWeapon(WeaponInstance w)
     {
         weapons.Add(w);
         w.Initialize(gameObject);
+    }
+
+    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            Destroy(gameObject);
+            Debug.Log("Pelaaja tuhottu. Peli ohi.");
+        }
     }
 }

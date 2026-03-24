@@ -9,6 +9,7 @@ public class Proj_axe : Projectile
     public override void Start()
     {
         base.Start();
+        
         velocity = new Vector3(direction.x * 4, 9f, 0f);
     }
 
@@ -17,12 +18,6 @@ public class Proj_axe : Projectile
     {
         velocity.y += -20f * Time.deltaTime;
         transform.position += velocity * Time.deltaTime;
-    }
-
-    public override void Rotate()
-    {
-        angle += 300 * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
 }

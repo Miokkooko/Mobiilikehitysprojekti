@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5321475163877365738}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,8 +80,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -2059524155
-  m_SortingLayer: 3
+  m_SortingLayerID: -1698942247
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 869671561, guid: d04e8ba993034bc479b284f2a65f6b2d, type: 3}
@@ -135,6 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   rigidbody: {fileID: 3441874391256220987}
   movementSpeed: 1
+  hp: 1
 --- !u!58 &5321475163877365738
 CircleCollider2D:
   m_ObjectHideFlags: 0

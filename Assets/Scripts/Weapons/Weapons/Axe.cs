@@ -4,16 +4,17 @@ using UnityEngine.UIElements;
 
 
 
-public class Axe : Weapon
+public class Axe : WeaponInstance
 {
-    public Axe(GameObject owner)
-        : base(owner) 
+    public Axe(GameObject owner, WeaponData data)
+        : base(owner, data) 
     {
-        projectilePrefab = Resources.Load<GameObject>("Projectiles/Axe");
+        //projectilePrefab = Resources.Load<GameObject>("Projectiles/Axe");
     }
 
     public override void Fire()
     {
         base.Fire();
     }
+    
 }
