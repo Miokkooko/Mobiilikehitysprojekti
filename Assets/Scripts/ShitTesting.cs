@@ -1,4 +1,6 @@
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShitTesting : MonoBehaviour
 {
@@ -26,5 +28,10 @@ public class ShitTesting : MonoBehaviour
             Debug.Log("Wow");
         }
         
+    }
+
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

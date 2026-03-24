@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public Menu MainMenu;
+    Menu CurrentMenu => MenuStack.Peek();
+    Menu previousMenu;
 
     [SerializeField]
     Canvas canvas;
@@ -131,18 +134,20 @@ public class UIManager : MonoBehaviour
     {
         if (MenuStack.Count > 0)
         {
-            if (menu == MenuStack.Peek())
+            if (menu == CurrentMenu)
                 return;
-            else if (menu.m_bDisappearPreviousMenu)
-                DisappearMenu(MenuStack.Peek());
+            else if (menu.m_bDisappearPreviousMenu || menu == previousMenu)
+                CloseMenu();
             else
-                MenuStack.Peek().AllowInteraction(false);
-        }
+                CurrentMenu.AllowInteraction(false);
 
-        MenuStack.Push(menu);
+            previousMenu = CurrentMenu;
+        }
+        if(!MenuStack.Contains(menu))
+            MenuStack.Push(menu);
         AppearMenu(menu);
 
-        Debug.Log(MenuStack.Count + " - Menus total");
+        Debug.Log("Menu opened | " + MenuStack.Count + " - Menus total");
     }
 
     void AppearMenu(Menu menu)
@@ -157,22 +162,21 @@ public class UIManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        Menu menuToClose = MenuStack.Peek();
+        Menu menuToClose = CurrentMenu;
 
         if (MenuStack.Count > 1)
         {
-            menuToClose.Disappear();
+            DisappearMenu(menuToClose);
 
             MenuStack.Pop();
+            Debug.Log("Menu closed | " + MenuStack.Count + " - Menus total");
         }
 
         // If the menu we are closing force disappeared a previous menu, open the previous one again
         if (menuToClose.m_bDisappearPreviousMenu)
-            AppearMenu(MenuStack.Peek());
+            AppearMenu(CurrentMenu);
         else
-            MenuStack.Peek().AllowInteraction(true);
-
-        Debug.Log(MenuStack.Count + " - Menus total");
+            CurrentMenu.AllowInteraction(true);
     }
     #endregion
 }

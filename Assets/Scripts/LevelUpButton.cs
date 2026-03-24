@@ -1,9 +1,7 @@
 using System;
 using TMPro;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
-using static NotificationBase;
 
 public class LevelUpButton : MonoBehaviour
 {

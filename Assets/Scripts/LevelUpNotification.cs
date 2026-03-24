@@ -1,9 +1,6 @@
-using NUnit.Framework;
 using TMPro;
-using UnityEditor.Rendering.Universal;
 using UnityEngine;
 using System.Collections.Generic;
-using System.Linq;
 
 public class LevelUpArgs : NotificationBase.NotificationArgs
 {
