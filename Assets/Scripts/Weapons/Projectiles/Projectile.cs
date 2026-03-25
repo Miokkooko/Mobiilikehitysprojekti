@@ -69,7 +69,7 @@ public class Projectile : MonoBehaviour
             Enemy dummy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                //enemy.TakeDamage(damage);
                 OnHit();
             }
             if (dummy != null)

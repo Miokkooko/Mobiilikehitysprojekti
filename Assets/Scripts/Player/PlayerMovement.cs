@@ -46,7 +46,9 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         //liikuttaa hahmoa
-        rb.linearVelocity = moveInput * moveSpeed;
+        
+        
+
 
         Animate();
 
@@ -62,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         shootTimer += Time.deltaTime;
+        //transform.position += new Vector3(moveInput.x, moveInput.y) * moveSpeed * Time.deltaTime;
+
+        transform.Translate(moveInput * moveSpeed * Time.deltaTime);
 
         FireWeapons();
     }

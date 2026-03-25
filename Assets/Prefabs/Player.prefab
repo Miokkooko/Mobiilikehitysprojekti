@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3704269243133326108}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -252,6 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   spriteRenderer: {fileID: 0}
+  moveSpeed: 0
+  disableWeapon: 0
   aim: {fileID: 4582686154257017146}
 --- !u!50 &240634015747286591
 Rigidbody2D:

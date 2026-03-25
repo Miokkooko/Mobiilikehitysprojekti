@@ -23,7 +23,7 @@ public class AoE : MonoBehaviour
             Enemy dummy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(1);
+                //enemy.TakeDamage(1);
                 
             }
             if (dummy != null)

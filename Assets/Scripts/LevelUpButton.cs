@@ -8,9 +8,9 @@ public class LevelUpButton : MonoBehaviour
     public class LevelUpButtonArgs
     {
         public StatusEffect effect;
-        public Weapon weapon;
+        public WeaponInstance weapon;
 
-        public LevelUpButtonArgs(StatusEffect effect, Weapon weapon)
+        public LevelUpButtonArgs(StatusEffect effect, WeaponInstance weapon)
         {
             this.effect = effect;
             this.weapon = weapon;
@@ -25,7 +25,7 @@ public class LevelUpButton : MonoBehaviour
 
     LevelUpNotification owner;
     public StatusEffect status;
-    public Weapon weapon;
+    public WeaponInstance weapon;
 
     public event EventHandler<LevelUpButtonArgs> OnButtonPress;
 
