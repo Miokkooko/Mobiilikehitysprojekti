@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,12 +13,16 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
     public Menu MainMenu;
+    Menu CurrentMenu => MenuStack.Peek();
+    Menu previousMenu;
 
     [SerializeField]
     Canvas canvas;
 
     [SerializeField]
-    Transform NotificationPrefab;
+    Transform NotificationYesNoPrefab;
+    [SerializeField]
+    Transform NotificationLevelUpPrefab;
 
     Stack<Menu> MenuStack = new Stack<Menu>();
 
@@ -45,8 +50,30 @@ public class UIManager : MonoBehaviour
     /// NotificationPopUp</returns>
     public NotificationBase CreateNotification(NotificationData data)
     {
-        Transform t = Instantiate(NotificationPrefab, canvas.transform);
-        if (t.GetComponent<NotificationYesNo>() is NotificationYesNo n)
+        Transform t = null;
+        switch (data.Type)
+        {
+            case NotificationType.Confirm:
+                break;
+            case NotificationType.ConfirmCancel:
+                t = Instantiate(NotificationYesNoPrefab, canvas.transform);
+                break;
+            case NotificationType.PopUp:
+                break;
+            case NotificationType.LevelUp:
+                t = Instantiate(NotificationLevelUpPrefab, canvas.transform);
+                break;
+            default:
+                break;
+        }
+
+        if(t == null)
+        {
+            Debug.Log("No prefab found for notification!");
+            return null;
+        }
+
+        if (t.GetComponent<NotificationBase>() is NotificationBase n)
         {
             n.Initialize(data);
 
@@ -60,7 +87,7 @@ public class UIManager : MonoBehaviour
 
         return null;
     }
-
+  
     /// <summary>
     /// Handles the queueing, allowing only 1 of each type of popup to be active at the same time
     /// </summary>
@@ -93,7 +120,7 @@ public class UIManager : MonoBehaviour
         if (sender is NotificationBase n)
             n.OnNotificationDestroyed -= OnNotificationDestroyed;
 
-        if (e.Data.m_type != NotificationType.PopUp)
+        if (e.Data.Type != NotificationType.PopUp)
             NotificationQueue.Dequeue();
         else
             PopUpNotificationQueue.Dequeue();
@@ -107,18 +134,20 @@ public class UIManager : MonoBehaviour
     {
         if (MenuStack.Count > 0)
         {
-            if (menu == MenuStack.Peek())
+            if (menu == CurrentMenu)
                 return;
-            else if (menu.m_bDisappearPreviousMenu)
-                DisappearMenu(MenuStack.Peek());
+            else if (menu.m_bDisappearPreviousMenu || menu == previousMenu)
+                CloseMenu();
             else
-                MenuStack.Peek().AllowInteraction(false);
-        }
+                CurrentMenu.AllowInteraction(false);
 
-        MenuStack.Push(menu);
+            previousMenu = CurrentMenu;
+        }
+        if(!MenuStack.Contains(menu))
+            MenuStack.Push(menu);
         AppearMenu(menu);
 
-        Debug.Log(MenuStack.Count + " - Menus total");
+        Debug.Log("Menu opened | " + MenuStack.Count + " - Menus total");
     }
 
     void AppearMenu(Menu menu)
@@ -133,22 +162,21 @@ public class UIManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        Menu menuToClose = MenuStack.Peek();
+        Menu menuToClose = CurrentMenu;
 
         if (MenuStack.Count > 1)
         {
-            menuToClose.Disappear();
+            DisappearMenu(menuToClose);
 
             MenuStack.Pop();
+            Debug.Log("Menu closed | " + MenuStack.Count + " - Menus total");
         }
 
         // If the menu we are closing force disappeared a previous menu, open the previous one again
         if (menuToClose.m_bDisappearPreviousMenu)
-            AppearMenu(MenuStack.Peek());
+            AppearMenu(CurrentMenu);
         else
-            MenuStack.Peek().AllowInteraction(true);
-
-        Debug.Log(MenuStack.Count + " - Menus total");
+            CurrentMenu.AllowInteraction(true);
     }
     #endregion
 }

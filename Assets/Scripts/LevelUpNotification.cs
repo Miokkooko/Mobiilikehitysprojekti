@@ -1,0 +1,102 @@
+using TMPro;
+using UnityEngine;
+using System.Collections.Generic;
+
+public class LevelUpArgs : NotificationBase.NotificationArgs
+{
+    public StatusEffect statusChosen;
+
+    public LevelUpArgs(StatusEffect statusChosen)
+    {
+        this.statusChosen = statusChosen;
+    }
+}
+
+public class LevelUpNotification : NotificationBase
+{
+    [SerializeField]
+    TMP_Text title;
+
+    [SerializeField]
+    TMP_Text description;
+
+    [SerializeField]
+    Transform content;
+
+    [SerializeField]
+    Transform buttonPrefab;
+    List<LevelUpButton> buttons = new List<LevelUpButton>();
+
+    [SerializeField]
+    CanvasGroup bgDimmerGroup;
+
+    [SerializeField]
+    CanvasGroup buttonGroup;
+
+    float m_flTransitionTimer = 0.35f;
+    float m_flDestroyBaseTime = 0.45f;
+
+    public override void Initialize(NotificationData data)
+    {
+        base.Initialize(data);
+
+        if(data is LevelUpData lud)
+        {
+            if (content != null && buttonPrefab != null)
+            {
+                foreach (var status in lud.upgradeList) 
+                {
+                    SpawnButton(content, status);
+                }
+            }
+        }   
+    }
+
+    void SpawnButton(Transform parent, StatusEffect data)
+    {
+        Transform t = Instantiate(buttonPrefab, parent);
+
+        if(t.GetComponent<LevelUpButton>() is LevelUpButton lub)
+        {
+            lub.OnButtonPress += Lub_OnButtonPress;
+            lub.Initialize(this);
+            lub.status = data;
+            buttons.Add(lub);
+        }
+    }
+
+    private void Lub_OnButtonPress(object sender, LevelUpButton.LevelUpButtonArgs e)
+    {
+        foreach (var item in buttons)
+        {
+            item.OnButtonPress -= Lub_OnButtonPress;
+        }
+        RaiseNotificationEvent(new LevelUpArgs(e.effect));
+        DisappearAnim();
+    }
+
+    
+    private void OnEnable()
+    {
+        AppearAnim();
+    }
+
+    void AppearAnim()
+    {
+        // Appear animation: Move Up and remove dim
+        bgDimmerGroup.alpha = 0;
+        bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer).setIgnoreTimeScale(true);
+
+        content.localPosition = new Vector2(0, -Screen.height);
+        content.LeanMoveLocalY(0, m_flTransitionTimer).setEaseOutExpo().setIgnoreTimeScale(true).delay = 0.1f;
+
+    }
+
+    public void DisappearAnim()
+    {
+        Disappear(m_flDestroyBaseTime);
+        // Disappear animation: Move down and remove dim
+        content.LeanMoveLocalY(-Screen.height, m_flTransitionTimer).setEaseInExpo().setIgnoreTimeScale(true).delay = 0.05f;
+        bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer).setIgnoreTimeScale(true);
+    }
+}

@@ -32,10 +32,10 @@ public class NotificationYesNo : NotificationBase
         base.Initialize(data);
 
         if (title != null) 
-            title.text = data.m_sTitle;
+            title.text = data.Title;
 
         if (description != null)
-            description.text = data.m_sDescription;
+            description.text = data.Description;
     }
 
     private void OnEnable()

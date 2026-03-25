@@ -79,6 +79,7 @@ public class Enemy : MonoBehaviour
         if (hp <= 0)
         {
             gameObject.SetActive(false);
+            LevelUpManager.Instance.TriggerLevelUp();
         }
     }
 }

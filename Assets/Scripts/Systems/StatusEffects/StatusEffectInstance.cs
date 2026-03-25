@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using UnityEditor.SceneTemplate;
+﻿using Unity.Mathematics;
 using UnityEngine;
 
 public class StatusEffectInstance
