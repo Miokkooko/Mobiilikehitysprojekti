@@ -6,8 +6,7 @@ using UnityEngine.UIElements;
 
 public class Axe : WeaponInstance
 {
-    public Axe(GameObject owner, WeaponData data)
-        : base(owner, data) 
+    public Axe(Player owner, WeaponData data) : base(owner, data) 
     {
         //projectilePrefab = Resources.Load<GameObject>("Projectiles/Axe");
     }

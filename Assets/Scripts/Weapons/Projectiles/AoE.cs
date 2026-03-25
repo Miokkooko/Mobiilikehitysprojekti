@@ -19,14 +19,7 @@ public class AoE : MonoBehaviour
 
         if (collision.tag == "Enemy")
         {
-            EnemyController enemy = collision.GetComponent<EnemyController>();
             Enemy dummy = collision.GetComponent<Enemy>();
-
-            if (dummy != null)
-            {
-                dummy.TakeDamage(1);
-                
-            }
         }
     }
 }

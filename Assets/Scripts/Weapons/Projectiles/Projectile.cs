@@ -15,7 +15,8 @@ public class Projectile : MonoBehaviour
 
     //Movement
     protected Vector3 direction;
-    protected Transform playerPos;
+    protected Player player;
+    protected Transform playerPos => player.transform;
     protected float angle;
 
 
@@ -46,9 +47,9 @@ public class Projectile : MonoBehaviour
         direction = dir.normalized;
     }
 
-    public virtual void SetPlayerPos(Transform pos)
+    public virtual void SetPlayer(Player p)
     {
-        playerPos = pos;
+        player = p;
     }
 
     public virtual void Rotate()
@@ -63,18 +64,20 @@ public class Projectile : MonoBehaviour
     #region Collision
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "Player")
+            return;
+
+        if(collision.GetComponent<IDamageable>() is IDamageable d)
+        {
+            Unit.DealDamage(new DamageContext(player, d, damage));
+        }
+
         if(collision.tag == "Enemy")
         {
-            EnemyController enemy = collision.GetComponent<EnemyController>();
             Enemy dummy = collision.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                //enemy.TakeDamage(damage);
-                OnHit();
-            }
+
             if (dummy != null)
             {
-                dummy.TakeDamage(damage);
                 OnHit();
             }
         }
@@ -85,7 +88,7 @@ public class Projectile : MonoBehaviour
         
         if (hitParticles != null)
         {
-            Object.Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
+            Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
         }
 
         if (projectileHealth != 1)
@@ -99,8 +102,4 @@ public class Projectile : MonoBehaviour
     }
 
     #endregion
-
-    
-
-
 }

@@ -29,8 +29,8 @@ public class WeaponPickup : MonoBehaviour
     {
         Debug.Log("Picked up: Axe");
 
-        
-        player.GetComponent<PlayerMovement>().AddWeapon(new WeaponInstance(player.gameObject, data));
+        if(player.GetComponent<Player>() is Player p)
+            p.AddWeapon(new WeaponInstance(p, data));
 
         Destroy(gameObject);
     }

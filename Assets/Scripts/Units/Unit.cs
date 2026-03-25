@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static NotificationBase;
 
 public class Unit : MonoBehaviour, IDamageable
 {
@@ -25,6 +26,9 @@ public class Unit : MonoBehaviour, IDamageable
     StatSystem statSystem = new StatSystem();
     #endregion
 
+    public event EventHandler<KillContext> OnKill;
+    public event EventHandler<KillContext> OnDeath;
+
     void Awake()
     {
         statusBuckets = new Dictionary<ModifierType, List<StatusEffectInstance>>
@@ -35,8 +39,6 @@ public class Unit : MonoBehaviour, IDamageable
         };
 
         StatusDict = new Dictionary<StatusEffect, StatusEffectInstance>();
-
-       
     }
 
     public virtual void Update()
@@ -44,8 +46,6 @@ public class Unit : MonoBehaviour, IDamageable
         var snapshot = StatusDict.Values.ToArray();
         foreach (var sei in snapshot)
             sei.HandleDuration();
-
-       
     }
 
     public static void DealDamage(DamageContext context)
@@ -87,7 +87,9 @@ public class Unit : MonoBehaviour, IDamageable
             foreach (var sei in attackerStatuses)
                 sei.Effect.OnKill(killContext);
 
-            // Maybe make an OnDie event and raise it here?
+            // Raise events
+            OnDeath?.Invoke(this, killContext);
+            context.Source.OnKill?.Invoke(this, killContext);
         }
     }
 
