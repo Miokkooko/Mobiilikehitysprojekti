@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Attack : MonoBehaviour
-{
+{/*
     public Transform aim;
     public GameObject bullet;
     private PlayerStats playerStats;
@@ -42,10 +42,10 @@ public class Attack : MonoBehaviour
         
         }
     }
-    */
+    
     public virtual void FireWeapons()
     {
-        foreach (Weapon w in weapons)
+        foreach (WeaponInstance w in weapons)
         {
             w.TryFire();
         }
@@ -56,4 +56,5 @@ public class Attack : MonoBehaviour
         weapons.Add(w);
         w.Initialize(gameObject);
     }
+    */
 }

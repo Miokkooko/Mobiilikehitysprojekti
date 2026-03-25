@@ -7,16 +7,26 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed = 5f;
     public float projectileHealth = 1f;
     public float damage = 1f;
+    public float projectileLifetime = 2f;
 
-    [Header("Movement")]
-    public Vector3 direction;
-    public float angle;
+    [Header("Projectiles")]
+    public bool enableParticles;
+    public GameObject hitParticles;
+
+    //Movement
+    protected Vector3 direction;
+    protected Transform playerPos;
+    protected float angle;
 
 
     public virtual void Start()
     {
-        //Projectile will destroy itself 2 seconds after spawning
-        Destroy(gameObject, 2f);
+        //Projectile tuhoaa ittensä kahen sekunnin jälkeen
+        if(hitParticles == null && enableParticles)
+        {
+            hitParticles = Resources.Load<GameObject>("Particles/HitParticles");
+        }
+        Destroy(gameObject, projectileLifetime);
     }
 
     public virtual void Update()
@@ -36,9 +46,14 @@ public class Projectile : MonoBehaviour
         direction = dir.normalized;
     }
 
+    public virtual void SetPlayerPos(Transform pos)
+    {
+        playerPos = pos;
+    }
+
     public virtual void Rotate()
     {
-        //rotate projectile to match players latest input
+        //käännä projectile pelaajan viimeisimpään kävelysuuntaan
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
@@ -50,10 +65,16 @@ public class Projectile : MonoBehaviour
     {
         if(collision.tag == "Enemy")
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            EnemyController enemy = collision.GetComponent<EnemyController>();
+            Enemy dummy = collision.GetComponent<Enemy>();
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
+                OnHit();
+            }
+            if (dummy != null)
+            {
+                dummy.TakeDamage(damage);
                 OnHit();
             }
         }
@@ -61,6 +82,12 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnHit()
     {
+        
+        if (hitParticles != null)
+        {
+            Object.Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
+        }
+
         if (projectileHealth != 1)
         {
             projectileHealth -= 1;

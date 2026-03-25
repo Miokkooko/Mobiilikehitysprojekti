@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Player : Unit
 {
-    List<Weapon> weapons; // Holds all weapons that the player currently has
+    List<WeaponInstance> weapons; // Holds all weapons that the player currently has
 
     // PlayerData data; // This is where we will get the BaseStats eventually
 
@@ -14,7 +14,7 @@ public class Player : Unit
     }
     public virtual void FireWeapons()
     {
-       foreach(Weapon w in weapons)
+       foreach(WeaponInstance w in weapons)
         {
             /*
             if(w.canFire)
@@ -25,7 +25,7 @@ public class Player : Unit
         }
     }
 
-    public void AddWeapon(Weapon w)
+    public void AddWeapon(WeaponInstance w)
     {
         weapons.Add(w);
     }
