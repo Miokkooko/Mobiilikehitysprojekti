@@ -41,8 +41,12 @@ public class WeaponInstance
 
             //hae viimeisimmän inputin suunta + luo projectile + anna projectilelle viimeisimmän inputin suunta
             Vector3 dir = owner.GetComponent<PlayerMovement>().GetMoveDirection();
+            Transform playerPos = owner.GetComponent<Transform>();
+
             GameObject proj = Object.Instantiate(data.projectilePrefab, owner.transform.position, Quaternion.identity);
-            proj.GetComponent<Projectile>().SetDirection(dir); 
+            proj.GetComponent<Projectile>().SetDirection(dir);
+            proj.GetComponent<Projectile>().SetPlayerPos(playerPos);
+
     }
 
 }

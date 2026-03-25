@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private PlayerStats playerStats;
-    private float moveSpeed;
+    public float moveSpeed;
+    public bool disableWeapon;
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     bool isWalking = false;
 
     //Attacking
-    List<WeaponInstance> weapons;
+    public List<WeaponInstance> weapons;
     float shootTimer = 0.5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,14 +30,17 @@ public class PlayerMovement : MonoBehaviour
     {
         weapons = new List<WeaponInstance>();
 
-        weapons.Add(new WeaponInstance(gameObject, Resources.Load<WeaponData>("WeaponData/KnifeData")));
+        if (!disableWeapon)
+        {
+            weapons.Add(new WeaponInstance(gameObject, Resources.Load<WeaponData>("WeaponData/KnifeData")));
+        }
 
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerStats = GetComponent<PlayerStats>();
         spriteRenderer = GetComponent<SpriteRenderer>();
        
-        moveSpeed = playerStats.baseMoveSpeed;
+        //moveSpeed = playerStats.baseMoveSpeed;
     }
 
     private void FixedUpdate()

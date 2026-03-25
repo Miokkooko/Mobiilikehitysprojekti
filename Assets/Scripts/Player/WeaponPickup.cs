@@ -1,8 +1,21 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Splines.ExtrusionShapes;
 
 public class WeaponPickup : MonoBehaviour
 {
+    public WeaponData data;
+    public Sprite sprite;
+
+
+    void Start()
+    {
+        if (sprite != null)
+        {
+            GetComponent<SpriteRenderer>().sprite = sprite;
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,7 +30,7 @@ public class WeaponPickup : MonoBehaviour
         Debug.Log("Picked up: Axe");
 
         
-        player.GetComponent<PlayerMovement>().AddWeapon(new WeaponInstance(player.gameObject, Resources.Load<WeaponData>("WeaponData/AxeData")));
+        player.GetComponent<PlayerMovement>().AddWeapon(new WeaponInstance(player.gameObject, data));
 
         Destroy(gameObject);
     }

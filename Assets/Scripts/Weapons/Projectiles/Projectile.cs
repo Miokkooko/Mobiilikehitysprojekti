@@ -7,16 +7,26 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed = 5f;
     public float projectileHealth = 1f;
     public float damage = 1f;
+    public float projectileLifetime = 2f;
 
-    [Header("Movement")]
-    public Vector3 direction;
-    public float angle;
+    [Header("Projectiles")]
+    public bool enableParticles;
+    public GameObject hitParticles;
+
+    //Movement
+    protected Vector3 direction;
+    protected Transform playerPos;
+    protected float angle;
 
 
     public virtual void Start()
     {
         //Projectile tuhoaa ittensä kahen sekunnin jälkeen
-        Destroy(gameObject, 2f);
+        if(hitParticles == null && enableParticles)
+        {
+            hitParticles = Resources.Load<GameObject>("Particles/HitParticles");
+        }
+        Destroy(gameObject, projectileLifetime);
     }
 
     public virtual void Update()
@@ -34,6 +44,11 @@ public class Projectile : MonoBehaviour
     public virtual void SetDirection(Vector3 dir)
     {
         direction = dir.normalized;
+    }
+
+    public virtual void SetPlayerPos(Transform pos)
+    {
+        playerPos = pos;
     }
 
     public virtual void Rotate()
@@ -67,6 +82,12 @@ public class Projectile : MonoBehaviour
 
     public virtual void OnHit()
     {
+        
+        if (hitParticles != null)
+        {
+            Object.Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
+        }
+
         if (projectileHealth != 1)
         {
             projectileHealth -= 1;

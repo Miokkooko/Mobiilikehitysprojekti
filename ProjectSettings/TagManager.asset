@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Pickup
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -60,6 +61,9 @@ TagManager:
     locked: 0
   - name: Decor
     uniqueID: 2656412571
+    locked: 0
+  - name: Projectile
+    uniqueID: 2023423201
     locked: 0
   m_RenderingLayers:
   - Default

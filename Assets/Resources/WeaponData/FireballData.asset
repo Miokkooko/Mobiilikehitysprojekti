@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
-  m_Name: KnifeData
+  m_Name: FireballData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  projectilePrefab: {fileID: 7775072252728010430, guid: 6d502916840de1a4f990bf7a4b41b161, type: 3}
-  cooldown: 0.7
+  projectilePrefab: {fileID: 5095381493187369754, guid: 359459e2c12d3cd408c9f015631c4cd7, type: 3}
+  cooldown: 1
   projectileCount: 1
