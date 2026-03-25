@@ -21,11 +21,7 @@ public class AoE : MonoBehaviour
         {
             EnemyController enemy = collision.GetComponent<EnemyController>();
             Enemy dummy = collision.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(1);
-                
-            }
+
             if (dummy != null)
             {
                 dummy.TakeDamage(1);
