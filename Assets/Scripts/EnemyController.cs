@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
     
     public Rigidbody2D rigidbody;
     public float movementSpeed = 1f;
+    public KillCounter counter;
 
     private GameObject playerToFollow;
     
@@ -13,6 +14,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
+        counter = GameObject.FindGameObjectWithTag("KillCounter").GetComponent<KillCounter>();
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.name == "Bullet(Clone)")
         {
             DestroyEnemy();
+            counter.addOneKill();
         }
     }
 }
