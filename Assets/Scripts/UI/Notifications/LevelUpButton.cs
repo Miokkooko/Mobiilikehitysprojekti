@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,14 +8,18 @@ public class LevelUpButton : MonoBehaviour
 {
     public class LevelUpButtonArgs
     {
-        public StatusEffect effect;
+        //uutta
+        public object upgradeData;
+        public LevelUpButtonArgs(object data) { upgradeData = data; }
+        //vanhaa
+        /*public StatusEffect effect;
         public WeaponInstance weapon;
 
         public LevelUpButtonArgs(StatusEffect effect, WeaponInstance weapon)
         {
             this.effect = effect;
             this.weapon = weapon;
-        }
+        }*/
     }
 
     public Image UpgradeIcon;
@@ -29,7 +34,33 @@ public class LevelUpButton : MonoBehaviour
 
     public event EventHandler<LevelUpButtonArgs> OnButtonPress;
 
-    public void Initialize(LevelUpNotification parent)
+    //uutta
+    [SerializeField] private Button button;
+    [SerializeField] private TMP_Text nameText;
+    [SerializeField] private TMP_Text descText;
+    [SerializeField] private Image iconImage;
+
+    private object upgradeData;
+
+    public void Setup(string name, string description, Sprite icon, object data)
+    {
+        nameText.text = name;
+        descText.text = description;
+        if (icon != null) iconImage.sprite = icon;
+        upgradeData = data;
+
+        button.onClick.AddListener(() => OnButtonPress?.Invoke(this, new LevelUpButtonArgs(upgradeData)));
+    }
+
+    private void OnDestroy()
+    {
+        button.onClick.RemoveAllListeners();
+    }
+}
+
+
+/* vanhaa
+public void Initialize(LevelUpNotification parent)
     {
         owner = parent;
 
@@ -40,7 +71,7 @@ public class LevelUpButton : MonoBehaviour
         UpgradeRank.text = $"Rank {data.Rank}";
         UpgradeRankDescription.text = data.rankDecription;
         */
-    }
+    /*}
     
     public void OnSelect()
     {
@@ -48,4 +79,4 @@ public class LevelUpButton : MonoBehaviour
 
         OnButtonPress?.Invoke(this, new LevelUpButtonArgs(status, weapon));
     }
-}
+}*/

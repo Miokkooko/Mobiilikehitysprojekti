@@ -8,6 +8,11 @@ public class Player : Unit
     PlayerMovement movement;
     // PlayerData data; // This is where we will get the BaseStats eventually
 
+    public float damage;
+    public float moveSpeed;
+    public float maxHealth;
+    public float currentHealth;
+
     public override void Update()
     {
         base.Update();
@@ -48,5 +53,12 @@ public class Player : Unit
     {
         WeaponInstance instance = new WeaponInstance(this, w);
         weapons.Add(instance);
+    }
+
+    public void UpgradeWeapon(WeaponData weapon, int level)
+    {
+        // Example:
+        // var wpn = activeWeapons.Find(w => w.data == weapon);
+        // wpn.LevelUp(level);
     }
 }

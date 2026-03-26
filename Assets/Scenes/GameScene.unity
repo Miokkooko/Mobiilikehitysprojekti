@@ -297,9 +297,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc21f997f322914fb9623081d4d721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  hp: 4
-  moveX: 0
-  moveY: 0
 --- !u!212 &621382401
 SpriteRenderer:
   serializedVersion: 2
@@ -936,7 +933,9 @@ MonoBehaviour:
   data: {fileID: 11400000, guid: 6dc5927fc3e6d8043aba97d8b91eeae4, type: 2}
   StatusUpgrades:
   - {fileID: 11400000, guid: a313dbdd508a3d340a30a8b62216d2a0, type: 2}
-  - {fileID: 11400000, guid: a313dbdd508a3d340a30a8b62216d2a0, type: 2}
+  WeaponUpgrades:
+  - {fileID: 0}
+  - {fileID: 0}
   player: {fileID: 1473250853}
 --- !u!4 &2125725342
 Transform:

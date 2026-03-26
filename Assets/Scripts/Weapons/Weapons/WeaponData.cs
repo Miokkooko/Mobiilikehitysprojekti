@@ -10,5 +10,13 @@ public class WeaponData : ScriptableObject
     public float cooldown = 1f;
     public int projectileCount = 1;
 
+    //uusia juttuja
+    public string weaponName;
+    public string description;
+    public Sprite icon;
+    public int maxLevel = 8;
 
+    [Header("Stats")]
+    public float baseDamage;
+    public float damagePerLevel = 10f;
 }

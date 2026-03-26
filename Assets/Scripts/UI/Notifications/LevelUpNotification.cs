@@ -1,14 +1,15 @@
-using TMPro;
-using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class LevelUpArgs : NotificationBase.NotificationArgs
 {
-    public StatusEffect statusChosen;
+    public object upgradeChosen;
 
-    public LevelUpArgs(StatusEffect statusChosen)
+    public LevelUpArgs(object statusChosen)
     {
-        this.statusChosen = statusChosen;
+        this.upgradeChosen = statusChosen;
     }
 }
 
@@ -36,31 +37,57 @@ public class LevelUpNotification : NotificationBase
     float m_flTransitionTimer = 0.35f;
     float m_flDestroyBaseTime = 0.45f;
 
-    public override void Initialize(NotificationData data)
-    {
-        base.Initialize(data);
+    /* public override void Initialize(NotificationData data)
+     {
+         base.Initialize(data);
 
-        if(data is LevelUpData lud)
+         if(data is LevelUpData lud)
+         {
+             if (content != null && buttonPrefab != null)
+             {
+                 foreach (var status in lud.upgradeList) 
+                 {
+                     SpawnButton(content, status);
+                 }
+             }
+         }   
+     }
+    */
+    public void SetUpgradeOptions(List<object> upgrades)
+    {
+        if (content != null && buttonPrefab != null)
         {
-            if (content != null && buttonPrefab != null)
+            foreach (var upgrade in upgrades)
             {
-                foreach (var status in lud.upgradeList) 
-                {
-                    SpawnButton(content, status);
-                }
+                SpawnButton(content, upgrade);
             }
-        }   
+        }
     }
 
-    void SpawnButton(Transform parent, StatusEffect data)
+    void SpawnButton(Transform parent, object data)
     {
         Transform t = Instantiate(buttonPrefab, parent);
 
-        if(t.GetComponent<LevelUpButton>() is LevelUpButton lub)
+        if (t.GetComponent<LevelUpButton>() is LevelUpButton lub)
         {
             lub.OnButtonPress += Lub_OnButtonPress;
-            lub.Initialize(this);
-            lub.status = data;
+
+            // Set display based on type
+            if (data is ModifierStatusEffect status)
+            {
+                lub.Setup(status.Name, status.Description, null, data);
+            }
+            else if (data is WeaponData weapon)
+            {
+                bool isNew = !LevelUpManager.Instance.acquiredWeapons.Contains(weapon);
+                string prefix = isNew ? "[NEW] " : "[LVL UP] ";
+                lub.Setup(prefix + weapon.weaponName, weapon.description, weapon.icon, data);
+            }
+            else if (data is StatusEffect genericStatus)
+            {
+                lub.Setup(genericStatus.Name, genericStatus.Description, null, data);
+            }
+
             buttons.Add(lub);
         }
     }
@@ -71,7 +98,7 @@ public class LevelUpNotification : NotificationBase
         {
             item.OnButtonPress -= Lub_OnButtonPress;
         }
-        RaiseNotificationEvent(new LevelUpArgs(e.effect));
+        RaiseNotificationEvent(new LevelUpArgs(e.upgradeData));
         DisappearAnim();
     }
 
