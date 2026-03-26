@@ -4,9 +4,12 @@ using UnityEngine;
 public class StatusEffectInstance
 {
     public StatusEffect Effect { get; private set; }
-    Unit Owner;
-    int stacks = 1;
-    float duration;
+    public Unit Owner { get; private set; }
+    public int stacks = 1;
+    public float duration;
+
+    float lastTick;
+    float tickRate = 1f;
 
     public StatusEffectInstance(StatusEffect effect, Unit target)
     {
@@ -15,8 +18,19 @@ public class StatusEffectInstance
         Apply();
     }
 
+    void TryTick()
+    {
+        if (Time.time > lastTick + tickRate)
+        {
+            lastTick = Time.time;
+            Effect.OnTick(this);
+        }
+    }
+
     public void HandleDuration()
     {
+        TryTick();   
+
         if (Effect.LifetimeType == StatusLifetime.Permanent)
             return;
 
@@ -63,7 +77,7 @@ public class StatusEffectInstance
         {
             case StatusStackType.Reapply:
                 if(hasStatus)
-                    Effect.OnApplied();
+                    Effect.OnApplied(this);
                 break;
             case StatusStackType.Stack:
                 IncrementStacks();
@@ -77,14 +91,14 @@ public class StatusEffectInstance
 
         if (!hasStatus)
         {
-            Effect.OnApplied();
+            Effect.OnApplied(this);
         }
     }
 
     public void Expire()
     {
        
-        Effect.OnExpired();
+        Effect.OnExpired(this);
 
         Unit.RemoveStatusEffect(Effect, Owner);
     }

@@ -15,26 +15,26 @@ public class StatusEffect : ScriptableObject
     public StatusLifetime LifetimeType;
     public ModifierType ModifierType = ModifierType.None;
     
-    public virtual void OnApplied() { }
+    public virtual void OnApplied(StatusEffectInstance instance) { }
 
-    public virtual void OnExpired() { }
+    public virtual void OnExpired(StatusEffectInstance instance) { }
 
-    public virtual void OnDealDamagePre(DamageContext context) { }
+    public virtual void OnDealDamagePre(StatusEffectInstance instance, DamageContext context) { }
 
-    public virtual void OnDealDamagePost(DamageContext context) { }
+    public virtual void OnDealDamagePost(StatusEffectInstance instance, DamageContext context) { }
 
-    public virtual void OnTakeDamagePre(DamageContext context) { }
+    public virtual void OnTakeDamagePre(StatusEffectInstance instance, DamageContext context) { }
 
-    public virtual void OnTakeDamagePost(DamageContext context) { }
+    public virtual void OnTakeDamagePost(StatusEffectInstance instance, DamageContext context) { }
 
-    public virtual void OnHealPre(HealContext context) { }
+    public virtual void OnHealPre(StatusEffectInstance instance, HealContext context) { }
 
-    public virtual void OnHealPost(HealContext context) { }
+    public virtual void OnHealPost(StatusEffectInstance instance, HealContext context) { }
 
-    public virtual void OnKill(KillContext context) { }
+    public virtual void OnKill(StatusEffectInstance instance, KillContext context) { }
 
-    public virtual void OnDie(KillContext context) { }
+    public virtual void OnDie(StatusEffectInstance instance, KillContext context) { }
 
-    public virtual void OnTick() { }
+    public virtual void OnTick(StatusEffectInstance instance) { }
 
 }

@@ -7,13 +7,21 @@ public class DamageContext
     public IDamageable Target { get; }
     public float Amount { get; set; }
 
-    public DamageContext(Unit source, IDamageable target, float amount)
+    /// <summary>
+    /// Wether or not this damage instance should proc status effects.
+    /// Disable this when statuses deal damage do units.
+    /// </summary>
+    public bool UseStatusHooks { get; set; }
+
+    public DamageContext(Unit source, IDamageable target, float amount, bool useStatusHooks = true)
     {
         Source = source;
         Target = target;
         Amount = amount;
+        UseStatusHooks = useStatusHooks;
     }
 }
+
 public class HealContext
 {
     public Unit Target { get; }

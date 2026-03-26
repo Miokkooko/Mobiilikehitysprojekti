@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static NotificationBase;
 
 public class Unit : MonoBehaviour, IDamageable
 {
@@ -52,26 +51,30 @@ public class Unit : MonoBehaviour, IDamageable
     {
         var statuses = context.Source.GetOrderedStatuses();
 
-        foreach (var sei in statuses)
-            sei.Effect.OnDealDamagePre(context);
+        if (context.UseStatusHooks)
+            foreach (var sei in statuses)
+                sei.Effect.OnDealDamagePre(sei, context);
 
         context.Target.TakeDamage(context);
 
-        foreach (var sei in statuses)
-            sei.Effect.OnDealDamagePost(context);
+        if (context.UseStatusHooks)
+            foreach (var sei in statuses)
+                sei.Effect.OnDealDamagePost(sei, context);
     }
 
     public virtual void TakeDamage(DamageContext context)
     {
         var victimStatuses = GetOrderedStatuses();
 
-        foreach (var sei in victimStatuses)
-            sei.Effect.OnTakeDamagePre(context);
+        if (context.UseStatusHooks)
+            foreach (var sei in victimStatuses)
+                sei.Effect.OnTakeDamagePre(sei, context);
 
         health = Mathf.Clamp(health - context.Amount, 0, MaxHealth);
 
-        foreach (var sei in victimStatuses)
-            sei.Effect.OnTakeDamagePost(context);
+        if (context.UseStatusHooks)
+            foreach (var sei in victimStatuses)
+                sei.Effect.OnTakeDamagePost(sei, context);
 
         // If we died
         if (health <= 0)
@@ -80,12 +83,13 @@ public class Unit : MonoBehaviour, IDamageable
 
             // Victim onDie effects
             foreach (var sei in victimStatuses)
-                sei.Effect.OnDie(killContext);
+                sei.Effect.OnDie(sei, killContext);
 
             // Killer OnKill effects
             var attackerStatuses = context.Source.GetOrderedStatuses();
+
             foreach (var sei in attackerStatuses)
-                sei.Effect.OnKill(killContext);
+                sei.Effect.OnKill(sei, killContext);
 
             // Raise events
             OnDeath?.Invoke(this, killContext);
@@ -98,12 +102,12 @@ public class Unit : MonoBehaviour, IDamageable
         var statuses = GetOrderedStatuses();
 
         foreach (var sei in statuses)
-            sei.Effect.OnHealPre(context);
+            sei.Effect.OnHealPre(sei, context);
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
 
         foreach (var sei in statuses)
-            sei.Effect.OnHealPost(context);
+            sei.Effect.OnHealPost(sei, context);
     }
 
     public static void ApplyStatusEffect(StatusEffect effect, Unit target)
@@ -120,9 +124,9 @@ public class Unit : MonoBehaviour, IDamageable
         target.statusBuckets[effect.ModifierType].Add(instance);
 
         // If we affect unit stats instead of Hooks, Add them to the statsystem
-        if(effect is ModifierStatusEffect mse)
+        if (effect is ModifierStatusEffect mse)
             target.statSystem.AddModifiers(mse.Modifiers);
-        
+
 
         Debug.Log($"Added {effect.Name} status to: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
@@ -157,7 +161,7 @@ public class Unit : MonoBehaviour, IDamageable
             foreach (var sei in bucket)
                 yield return sei;
         }
-            
+
     }
 
     public bool HasStatusEffect(StatusEffect effect)
