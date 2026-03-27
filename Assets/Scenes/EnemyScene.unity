@@ -990,6 +990,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1745972981}
+    - target: {fileID: 8913975080842406056, guid: 4ae539cc98b08b244a3ca243b3ce6289, type: 3}
+      propertyPath: counter
+      value: 
+      objectReference: {fileID: 3335023182639701796}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1052,6 +1056,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: badb647074969e64db7c552a7b70ec60, type: 3}
+--- !u!114 &3335023182639701796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 192475576700526955, guid: badb647074969e64db7c552a7b70ec60, type: 3}
+  m_PrefabInstance: {fileID: 3335023182639701795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d9eff44dba35fd47aa73474bf9a4432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KillCounter
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
