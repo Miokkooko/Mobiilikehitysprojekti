@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 115656d1e91813a4e8532966cd6e6486, type: 3}
-  m_Name: NewUnitData
+  m_Name: TestPlayerData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: 
-  maxHealth: 0
+  unitName: TestPlayer
+  maxHealth: 20
   baseDamage: 0
-  moveSpeed: 0
+  moveSpeed: 3
   xpValue: 0

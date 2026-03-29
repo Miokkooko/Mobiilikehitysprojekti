@@ -315,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d5960d238a60f41b0cf417a5890864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  unitData: {fileID: 11400000, guid: 7c7c3071b3121684d82dff51d895be08, type: 2}
 --- !u!61 &171265880838736192
 BoxCollider2D:
   m_ObjectHideFlags: 0

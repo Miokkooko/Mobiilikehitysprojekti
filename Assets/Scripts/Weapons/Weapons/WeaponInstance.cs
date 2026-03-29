@@ -16,7 +16,7 @@ public class WeaponInstance
 
     #region stats
     float baseDamage = 1;
-    public float Damage => statSystem.Calculate(StatType.Damage, baseDamage);
+    public float Damage => statSystem.Calculate(StatType.Damage, baseDamage + owner.Damage);
 
     float basePiercing = 1;
     public float Piercing => statSystem.Calculate(StatType.Piercing, basePiercing + owner.Piercing);

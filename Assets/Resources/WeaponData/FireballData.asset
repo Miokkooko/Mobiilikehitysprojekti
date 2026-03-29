@@ -16,8 +16,9 @@ MonoBehaviour:
   weaponName: Fireball
   description: 
   icon: {fileID: 21300000, guid: e890f0fc1731a6943b27d0957b3160c0, type: 3}
-  baseDamage: 0
+  baseDamage: 2
   firerate: 1
   projectileCount: 1
   projectileSpeed: 5
+  projectileLifeTime: 2
   upgradeList: []

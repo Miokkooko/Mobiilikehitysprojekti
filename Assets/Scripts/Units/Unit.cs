@@ -95,6 +95,8 @@ public class Unit : MonoBehaviour, IDamageable
 
         health = Mathf.Clamp(health - context.Amount, 0, MaxHealth);
 
+        SpawnDmgPopUp(context);
+
         if (context.UseStatusHooks)
             foreach (var sei in victimStatuses)
                 sei.Effect.OnTakeDamagePost(sei, context);
@@ -128,6 +130,8 @@ public class Unit : MonoBehaviour, IDamageable
             sei.Effect.OnHealPre(sei, context);
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
+
+        SpawnHealthPopUp(context);
 
         foreach (var sei in statuses)
             sei.Effect.OnHealPost(sei, context);
