@@ -1,35 +1,31 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
+using static NotificationBase;
 
 public class Unit : MonoBehaviour, IDamageable
 {
     #region stats
     float baseDamage = 1;
-    public virtual float Damage => statSystem.Calculate(StatType.Damage, baseDamage);
+    public float Damage => statSystem.Calculate(StatType.Damage, baseDamage);
 
     float baseMaxHealth = 1;
-    public virtual float MaxHealth => statSystem.Calculate(StatType.MaxHealth, baseMaxHealth);
+    public float MaxHealth => statSystem.Calculate(StatType.MaxHealth, baseMaxHealth);
 
     float health;
-    public virtual float Health => Mathf.Clamp(health, 0, MaxHealth);
+    public float Health => Mathf.Clamp(health, 0, MaxHealth);
 
     float baseSpeed = 1;
-    public virtual float Speed => statSystem.Calculate(StatType.Speed, baseSpeed);
-
-    float basePiercing = 0;
-    public virtual float Piercing => statSystem.Calculate(StatType.Piercing, basePiercing);
-
-    float baseProjectileCount = 0;
-    public virtual float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount);
-
+    public float Speed => statSystem.Calculate(StatType.Speed, baseSpeed);
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
     Dictionary<ModifierType, List<StatusEffectInstance>> statusBuckets;
     ModifierType[] ExecutionOrder = { ModifierType.Flat, ModifierType.Percent, ModifierType.None };
 
-    public StatSystem statSystem = new StatSystem();
+    StatSystem statSystem = new StatSystem();
     #endregion
 
     public UnitData unitData;
@@ -73,30 +69,28 @@ public class Unit : MonoBehaviour, IDamageable
     {
         var statuses = context.Source.GetOrderedStatuses();
 
-        if (context.UseStatusHooks)
-            foreach (var sei in statuses)
-                sei.Effect.OnDealDamagePre(sei, context);
+        foreach (var sei in statuses)
+            sei.Effect.OnDealDamagePre(context);
 
         context.Target.TakeDamage(context);
 
-        if (context.UseStatusHooks)
-            foreach (var sei in statuses)
-                sei.Effect.OnDealDamagePost(sei, context);
+        foreach (var sei in statuses)
+            sei.Effect.OnDealDamagePost(context);
     }
 
     public virtual void TakeDamage(DamageContext context)
     {
         var victimStatuses = GetOrderedStatuses();
 
-        if (context.UseStatusHooks)
-            foreach (var sei in victimStatuses)
-                sei.Effect.OnTakeDamagePre(sei, context);
+        foreach (var sei in victimStatuses)
+            sei.Effect.OnTakeDamagePre(context);
 
         health = Mathf.Clamp(health - context.Amount, 0, MaxHealth);
 
-        if (context.UseStatusHooks)
-            foreach (var sei in victimStatuses)
-                sei.Effect.OnTakeDamagePost(sei, context);
+        SpawnDmgPopUp(context);
+
+        foreach (var sei in victimStatuses)
+            sei.Effect.OnTakeDamagePost(context);
 
         // If we died
         if (health <= 0)
@@ -105,13 +99,12 @@ public class Unit : MonoBehaviour, IDamageable
 
             // Victim onDie effects
             foreach (var sei in victimStatuses)
-                sei.Effect.OnDie(sei, killContext);
+                sei.Effect.OnDie(killContext);
 
             // Killer OnKill effects
             var attackerStatuses = context.Source.GetOrderedStatuses();
-
             foreach (var sei in attackerStatuses)
-                sei.Effect.OnKill(sei, killContext);
+                sei.Effect.OnKill(killContext);
 
             // Raise events
             OnDeath?.Invoke(this, killContext);
@@ -124,12 +117,14 @@ public class Unit : MonoBehaviour, IDamageable
         var statuses = GetOrderedStatuses();
 
         foreach (var sei in statuses)
-            sei.Effect.OnHealPre(sei, context);
+            sei.Effect.OnHealPre(context);
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
 
+        SpawnHealthPopUp(context);
+
         foreach (var sei in statuses)
-            sei.Effect.OnHealPost(sei, context);
+            sei.Effect.OnHealPost(context);
     }
 
     public static void ApplyStatusEffect(StatusEffect effect, Unit target)
@@ -145,6 +140,11 @@ public class Unit : MonoBehaviour, IDamageable
         target.StatusDict.Add(effect, instance);
         target.statusBuckets[effect.ModifierType].Add(instance);
 
+        // If we affect unit stats instead of Hooks, Add them to the statsystem
+        if(effect is ModifierStatusEffect mse)
+            target.statSystem.AddModifiers(mse.Modifiers);
+        
+
         Debug.Log($"Added {effect.Name} status to: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
     }
@@ -156,6 +156,10 @@ public class Unit : MonoBehaviour, IDamageable
 
         target.StatusDict.Remove(effect);
         target.statusBuckets[effect.ModifierType].Remove(instance);
+
+        // If we affect unit stats instead of Hooks, remove all modifiers from this source
+        if (effect is ModifierStatusEffect mse)
+            target.statSystem.RemoveModifiers(effect);
 
         Debug.Log($"Removed {effect.Name} status from: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
@@ -174,11 +178,34 @@ public class Unit : MonoBehaviour, IDamageable
             foreach (var sei in bucket)
                 yield return sei;
         }
-
+            
     }
 
     public bool HasStatusEffect(StatusEffect effect)
     {
         return StatusDict.ContainsKey(effect);
+    }
+
+    void SpawnDmgPopUp(DamageContext context)
+    {
+        Vector3 spawnPos = transform.position + Vector3.up * 1f;
+        GameObject dmgPop = Instantiate(Resources.Load<GameObject>("Popup/DamagePopUp"), spawnPos, Quaternion.identity);
+        TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
+        tmp.text = context.Amount.ToString();
+
+        if(context.Amount>3)
+        {
+            tmp.color = Color.softRed;
+        }
+    }
+
+    void SpawnHealthPopUp(HealContext context)
+    {
+        Vector3 spawnPos = transform.position + Vector3.up * 1f;
+        GameObject dmgPop = Instantiate(Resources.Load<GameObject>("Popup/DamagePopUp"), spawnPos, Quaternion.identity);
+        TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
+        tmp.text = context.Amount.ToString();
+        tmp.color = Color.softGreen;
+        
     }
 }
