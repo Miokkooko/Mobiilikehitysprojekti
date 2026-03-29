@@ -7,7 +7,6 @@ TagManager:
   - Enemy
   - Pickup
   - Projectile
-  - KillCounter
   layers:
   - Default
   - TransparentFX
@@ -65,9 +64,6 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 2023423201
-    locked: 0
-  - name: UI
-    uniqueID: 4182417915
     locked: 0
   m_RenderingLayers:
   - Default
