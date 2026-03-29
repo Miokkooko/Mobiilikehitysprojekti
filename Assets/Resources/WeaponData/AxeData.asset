@@ -13,5 +13,37 @@ MonoBehaviour:
   m_Name: AxeData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 8125054451507894081, guid: 8208327c9212a5d419d604963b7a6f0d, type: 3}
-  cooldown: 2
+  weaponName: Axe
+  description: 
+  icon: {fileID: 4343594113658449775, guid: 7201685fea70e01419c6d09c37b69dbb, type: 3}
+  baseDamage: 0
+  firerate: 2
   projectileCount: 1
+  projectileSpeed: 5
+  projectileLifeTime: 2
+  upgradeList:
+  - Stat: 3
+    Value: 1
+    Type: 0
+    source: {fileID: 0}
+    upgradeDescription: 
+  - Stat: 4
+    Value: 1
+    Type: 0
+    source: {fileID: 0}
+    upgradeDescription: 
+  - Stat: 0
+    Value: 0.1
+    Type: 1
+    source: {fileID: 0}
+    upgradeDescription: 
+  - Stat: 4
+    Value: 1
+    Type: 0
+    source: {fileID: 0}
+    upgradeDescription: 
+  - Stat: 3
+    Value: 1
+    Type: 0
+    source: {fileID: 0}
+    upgradeDescription: 

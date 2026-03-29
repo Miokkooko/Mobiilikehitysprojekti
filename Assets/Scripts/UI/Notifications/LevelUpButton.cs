@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +8,10 @@ public class LevelUpButton : MonoBehaviour
 {
     public class LevelUpButtonArgs
     {
-        public StatusEffect effect;
-        public WeaponInstance weapon;
-
-        public LevelUpButtonArgs(StatusEffect effect, WeaponInstance weapon)
-        {
-            this.effect = effect;
-            this.weapon = weapon;
+        public object upgradeData;
+        public LevelUpButtonArgs(object data) 
+        { 
+            upgradeData = data; 
         }
     }
 
@@ -23,29 +21,27 @@ public class LevelUpButton : MonoBehaviour
     public TMP_Text UpgradeDescription;
     public TMP_Text UpgradeRankUpDescription;
 
-    LevelUpNotification owner;
     public StatusEffect status;
     public WeaponInstance weapon;
 
     public event EventHandler<LevelUpButtonArgs> OnButtonPress;
 
-    public void Initialize(LevelUpNotification parent)
-    {
-        owner = parent;
+    private object upgradeData;
 
-        /*
-        UpgradeIcon.sprite = data.Icon;
-        UpgradeName.text = data.Name;
-        UpgradeDescription.text = data.Description;
-        UpgradeRank.text = $"Rank {data.Rank}";
-        UpgradeRankDescription.text = data.rankDecription;
-        */
+    public void Initialize(string name, string description, Sprite icon, object data)
+    {
+        UpgradeName.text = name;
+        UpgradeDescription.text = description;
+        UpgradeRankUpDescription.text = "";
+        UpgradeRank.text = "";
+
+        if (icon != null) 
+            UpgradeIcon.sprite = icon;
+        upgradeData = data;
     }
-    
+
     public void OnSelect()
     {
-        Debug.Log("wow");
-
-        OnButtonPress?.Invoke(this, new LevelUpButtonArgs(status, weapon));
+        OnButtonPress?.Invoke(this, new LevelUpButtonArgs(upgradeData));
     }
 }

@@ -7,22 +7,29 @@ public class Unit : MonoBehaviour, IDamageable
 {
     #region stats
     float baseDamage = 1;
-    public float Damage => statSystem.Calculate(StatType.Damage, baseDamage);
+    public virtual float Damage => statSystem.Calculate(StatType.Damage, baseDamage);
 
     float baseMaxHealth = 1;
-    public float MaxHealth => statSystem.Calculate(StatType.MaxHealth, baseMaxHealth);
+    public virtual float MaxHealth => statSystem.Calculate(StatType.MaxHealth, baseMaxHealth);
 
     float health;
-    public float Health => Mathf.Clamp(health, 0, MaxHealth);
+    public virtual float Health => Mathf.Clamp(health, 0, MaxHealth);
 
     float baseSpeed = 1;
-    public float Speed => statSystem.Calculate(StatType.Speed, baseSpeed);
+    public virtual float Speed => statSystem.Calculate(StatType.Speed, baseSpeed);
+
+    float basePiercing = 0;
+    public virtual float Piercing => statSystem.Calculate(StatType.Piercing, basePiercing);
+
+    float baseProjectileCount = 0;
+    public virtual float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount);
+
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
     Dictionary<ModifierType, List<StatusEffectInstance>> statusBuckets;
     ModifierType[] ExecutionOrder = { ModifierType.Flat, ModifierType.Percent, ModifierType.None };
 
-    StatSystem statSystem = new StatSystem();
+    public StatSystem statSystem = new StatSystem();
     #endregion
 
     public event EventHandler<KillContext> OnKill;
@@ -123,11 +130,6 @@ public class Unit : MonoBehaviour, IDamageable
         target.StatusDict.Add(effect, instance);
         target.statusBuckets[effect.ModifierType].Add(instance);
 
-        // If we affect unit stats instead of Hooks, Add them to the statsystem
-        if (effect is ModifierStatusEffect mse)
-            target.statSystem.AddModifiers(mse.Modifiers);
-
-
         Debug.Log($"Added {effect.Name} status to: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
     }
@@ -139,10 +141,6 @@ public class Unit : MonoBehaviour, IDamageable
 
         target.StatusDict.Remove(effect);
         target.statusBuckets[effect.ModifierType].Remove(instance);
-
-        // If we affect unit stats instead of Hooks, remove all modifiers from this source
-        if (effect is ModifierStatusEffect mse)
-            target.statSystem.RemoveModifiers(effect);
 
         Debug.Log($"Removed {effect.Name} status from: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
