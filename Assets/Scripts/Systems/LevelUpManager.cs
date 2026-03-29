@@ -13,13 +13,11 @@ public class LevelUpManager : MonoBehaviour
 
     //public List<Weapon> WeaponUpgrades; Mahdollista tehä vasta sitten kun weapons scriptable objecti tehty.
 
-    //Mitä pelaajalla on jo
-    public List<WeaponData> acquiredWeapons = new List<WeaponData>();
-
     private void Awake()
     {
         Instance = this;
     }
+
     private void Notification_OnNotificationResult(object sender, NotificationBase.NotificationArgs e)
     {
         n = (NotificationBase)sender;
@@ -35,13 +33,10 @@ public class LevelUpManager : MonoBehaviour
     {
         List<object> choices = GetRandomMixedUpgrades(3);
 
+        data.upgradeList = choices;
+
         // Notificationille dataa
         n = UIManager.Instance.CreateNotification(data);
-
-        if (n is LevelUpNotification lvlNotif)
-        {
-            lvlNotif.SetUpgradeOptions(choices);
-        }
 
         n.OnNotificationRaised += Notification_OnNotificationResult;
         n.OnNotificationDestroyed += N_OnNotificationDestroyed;
@@ -90,12 +85,17 @@ public class LevelUpManager : MonoBehaviour
     private bool CanShowWeapon(WeaponData weapon)
     {
         // If player doesn't have it, show as "New Weapon"
-        if (!acquiredWeapons.Contains(weapon))
+        if (player.GetWeapon(weapon) == null)
             return true;
 
         // If player has it, check if it's maxed out (you'll need maxLevel in WeaponData)
-        int currentLevel = GetWeaponLevel(weapon);
-        return currentLevel < weapon.maxLevel;
+        int currentLevel = player.GetWeapon(weapon).upgradeRank;
+
+        return currentLevel < weapon.upgradeList.Length;
+    }
+    public WeaponInstance GetWeapon(WeaponData weapon)
+    {
+        return player.GetWeapon(weapon);
     }
 
     // Lisää upgradet
@@ -105,10 +105,6 @@ public class LevelUpManager : MonoBehaviour
 
         switch (chosenUpgrade)
         {
-            case ModifierStatusEffect modEffect:
-                ApplyPermanentModifiers(modEffect);
-                break;
-
             case StatusEffect statusEffect:
                 ApplyStatusEffect(statusEffect);
                 break;
@@ -121,90 +117,26 @@ public class LevelUpManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    // Pysyviä muuttujia pelaajalle
-    private void ApplyPermanentModifiers(ModifierStatusEffect modEffect)
-    {
-        if (modEffect.Modifiers == null) return;
-
-        foreach (var modifier in modEffect.Modifiers)
-        {
-            float finalValue = modifier.Value;
-            if (modifier.Type == ModifierType.Percent)
-            {
-                finalValue = GetCurrentStatValue(modifier.Stat) * (modifier.Value / 100f);
-            }
-            ApplyStatToPlayer(modifier.Stat, finalValue);
-        }
-        Debug.Log($"Applied: {modEffect.Name}");
-    }
-
     private void ApplyStatusEffect(StatusEffect effect)
     {
-        Debug.Log($"Applied status: {effect.Name}");
+        if (effect == null) return;
+
+        Unit.ApplyStatusEffect(effect, player);
     }
 
     private void ApplyWeaponUpgrade(WeaponData weapon)
     {
-        if (!acquiredWeapons.Contains(weapon))
+        if (player.GetWeapon(weapon) == null)
         {
             // Uus ase
-            acquiredWeapons.Add(weapon);
             player.AddWeapon(weapon); // You need this method in Player.cs
             Debug.Log($"New Weapon: {weapon.weaponName}!");
         }
         else
         {
             // Päivitys vanhalle aseelle
-            int newLevel = GetWeaponLevel(weapon) + 1;
-            player.UpgradeWeapon(weapon, newLevel); // You need this method in Player.cs
-            Debug.Log($"Upgraded {weapon.weaponName} to Level {newLevel}!");
+            player.UpgradeWeapon(weapon); // You need this method in Player.cs
+            Debug.Log($"Upgraded {weapon.weaponName}!");
         }
-    }
-
-
-    // Hankitaan tämänhetkiset statit prosentteja varten
-    private float GetCurrentStatValue(StatType stat)
-    {
-        switch (stat)
-        {
-            case StatType.Damage:
-                return player.damage;
-            case StatType.Speed:
-                return player.moveSpeed;
-            case StatType.MaxHealth:
-                return player.maxHealth;
-            default:
-                return 0f;
-        }
-    }
-
-
-    private void ApplyStatToPlayer(StatType stat, float value)
-    {
-        switch (stat)
-        {
-            case StatType.Damage:
-                player.damage += value;
-                break;
-            case StatType.Speed:
-                player.moveSpeed += value;
-                break;
-            case StatType.MaxHealth:
-                player.maxHealth += value;
-                player.currentHealth += value;
-                break;
-        }
-    }
-
-    private int GetWeaponLevel(WeaponData weapon)
-    {
-        // Simple tracking - you might want a Dictionary<WeaponData, int> for proper leveling
-        return acquiredWeapons.Contains(weapon) ? 1 : 0; // Placeholder
-    }
-
-
-    public void SelectUpgrade(StatusEffect chosenUpgrade)
-    {
-        ApplyUpgrade(chosenUpgrade);
     }
 }

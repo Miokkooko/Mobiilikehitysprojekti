@@ -7,9 +7,9 @@ public class LevelUpArgs : NotificationBase.NotificationArgs
 {
     public object upgradeChosen;
 
-    public LevelUpArgs(object statusChosen)
+    public LevelUpArgs(object upgrade)
     {
-        this.upgradeChosen = statusChosen;
+        upgradeChosen = upgrade;
     }
 }
 
@@ -37,22 +37,16 @@ public class LevelUpNotification : NotificationBase
     float m_flTransitionTimer = 0.35f;
     float m_flDestroyBaseTime = 0.45f;
 
-    /* public override void Initialize(NotificationData data)
+    public override void Initialize(NotificationData data)
      {
          base.Initialize(data);
 
          if(data is LevelUpData lud)
          {
-             if (content != null && buttonPrefab != null)
-             {
-                 foreach (var status in lud.upgradeList) 
-                 {
-                     SpawnButton(content, status);
-                 }
-             }
+            SetUpgradeOptions(lud.upgradeList);
          }   
      }
-    */
+    
     public void SetUpgradeOptions(List<object> upgrades)
     {
         if (content != null && buttonPrefab != null)
@@ -75,17 +69,17 @@ public class LevelUpNotification : NotificationBase
             // Set display based on type
             if (data is ModifierStatusEffect status)
             {
-                lub.Setup(status.Name, status.Description, null, data);
+                lub.Initialize(status.Name, status.Description, null, data);
             }
             else if (data is WeaponData weapon)
             {
-                bool isNew = !LevelUpManager.Instance.acquiredWeapons.Contains(weapon);
-                string prefix = isNew ? "[NEW] " : "[LVL UP] ";
-                lub.Setup(prefix + weapon.weaponName, weapon.description, weapon.icon, data);
+                WeaponInstance instance = LevelUpManager.Instance.GetWeapon(weapon);
+                string prefix = instance == null ? "[NEW] " : "[LVL UP] ";
+                lub.Initialize(weapon.weaponName, weapon.description, weapon.icon, data);
             }
             else if (data is StatusEffect genericStatus)
             {
-                lub.Setup(genericStatus.Name, genericStatus.Description, null, data);
+                lub.Initialize(genericStatus.Name, genericStatus.Description, null, data);
             }
 
             buttons.Add(lub);
@@ -101,7 +95,6 @@ public class LevelUpNotification : NotificationBase
         RaiseNotificationEvent(new LevelUpArgs(e.upgradeData));
         DisappearAnim();
     }
-
     
     private void OnEnable()
     {

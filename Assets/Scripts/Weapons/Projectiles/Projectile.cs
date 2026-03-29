@@ -4,10 +4,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Header("ProjectileStats")]
-    public float projectileSpeed = 5f;
-    public float projectileHealth = 1f;
-    public float damage = 1f;
-    public float projectileLifetime = 2f;
+    float projectileSpeed = 5f;
+    float projectilePiercing = 1f;
+    float damage = 1f;
+    float projectileLifetime = 2f;
 
     [Header("Projectiles")]
     public bool enableParticles;
@@ -42,14 +42,14 @@ public class Projectile : MonoBehaviour
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
-    public virtual void SetDirection(Vector3 dir)
+    public virtual void Initialize(WeaponInstance w, Player p, Vector3 dir)
     {
+        damage = w.Damage;
+        projectilePiercing = w.Piercing;
+        projectileSpeed = w.ProjectileSpeed;
         direction = dir.normalized;
-    }
-
-    public virtual void SetPlayer(Player p)
-    {
         player = p;
+        projectileLifetime = w.data.projectileLifeTime;
     }
 
     public virtual void Rotate()
@@ -91,9 +91,9 @@ public class Projectile : MonoBehaviour
             Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
         }
 
-        if (projectileHealth != 1)
+        if (projectilePiercing != 1)
         {
-            projectileHealth -= 1;
+            projectilePiercing -= 1;
         }
         else
         {

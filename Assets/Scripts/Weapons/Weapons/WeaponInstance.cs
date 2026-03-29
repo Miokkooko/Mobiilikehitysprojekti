@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 
@@ -6,28 +7,61 @@ public class WeaponInstance
 {
 
     protected Player owner;
-    private WeaponData data;
+    public WeaponData data;
 
     //Weapon stats
     public float lastFireTime;
 
+    public int upgradeRank = 0;
+
+    #region stats
+    float baseDamage = 1;
+    public float Damage => statSystem.Calculate(StatType.Damage, baseDamage);
+
+    float basePiercing = 1;
+    public float Piercing => statSystem.Calculate(StatType.Piercing, basePiercing + owner.Piercing);
+
+    float baseProjectileCount = 1;
+    public float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount + owner.ProjectileCount);
+
+    float baseFireRate = 1;
+    public float Firerate => statSystem.Calculate(StatType.Firerate, baseFireRate);
+
+    float baseProjectileSpeed = 1;
+    public float ProjectileSpeed => statSystem.Calculate(StatType.Speed, baseProjectileSpeed);
+    #endregion
+
+    Coroutine fire;
+    public StatSystem statSystem = new StatSystem();
 
     public WeaponInstance(Player owner, WeaponData data)
     {
         this.owner = owner;
         this.data = data;
+
+        baseFireRate = data.firerate;
+        baseProjectileCount = data.projectileCount;
+        baseDamage = data.baseDamage;
+        baseProjectileSpeed = data.projectileSpeed;
     }
 
-    public virtual void Initialize(Player o)
+    public void UpgradeWeapon()
     {
-        owner = o;
+        if (upgradeRank >= data.upgradeList.Length)
+            return;
+
+        upgradeRank++;
+        statSystem.AddModifier(data.upgradeList[upgradeRank - 1]);
     }
 
     public void TryFire()
     {
-        if (Time.time >= lastFireTime + data.cooldown) 
+        if (Time.time >= lastFireTime + Firerate) 
         {
-            Fire();
+            if (fire != null)
+                owner.StopCoroutine(fire);
+
+            fire = owner.StartCoroutine(FireProjectiles());
             lastFireTime = Time.time;
         }
     }
@@ -44,9 +78,17 @@ public class WeaponInstance
 
         if(proj.GetComponent<Projectile>() is Projectile p)
         {
-            p.SetDirection(dir);
-            p.SetPlayer(owner);
+            p.Initialize(this, owner, dir);
         }
     }
 
+
+    IEnumerator FireProjectiles()
+    {
+        for (int i = 0; i < ProjectileCount; i++)
+        {
+            Fire();
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
 }

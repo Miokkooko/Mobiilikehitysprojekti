@@ -134,11 +134,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   projectileSpeed: 9.8
-  projectileHealth: 1
+  projectilePiercing: 1
   damage: 1
   projectileLifetime: 2
   enableParticles: 1
-  hitParticles: {fileID: 0}
+  hitParticles: {fileID: 4017514965822915143, guid: 26285d15365026248aaef20bdbddc1e4, type: 3}
 --- !u!61 &6474148549126811038
 BoxCollider2D:
   m_ObjectHideFlags: 0

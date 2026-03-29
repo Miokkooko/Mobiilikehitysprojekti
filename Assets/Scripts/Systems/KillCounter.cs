@@ -19,13 +19,13 @@ public class KillCounter : MonoBehaviour
 
     private void Player_OnKill(object sender, KillContext e)
     {
-        addOneKill();
-    }
-
-    public void addOneKill(){
         killCount += 1;
         Debug.Log(killCount);
-        //countText.text = killCount.ToString();
+
+        if(killCount % 2 == 0)
+        {
+            LevelUpManager.Instance.TriggerLevelUp();
+        }
     }
 
     public void resetKillCount(){

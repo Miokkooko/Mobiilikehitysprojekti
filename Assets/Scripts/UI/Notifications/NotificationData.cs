@@ -20,7 +20,6 @@ public class NotificationData : ScriptableObject
 
 public class LevelUpData : NotificationData
 {
-    public List<StatusEffect> upgradeList;
+    public List<object> upgradeList;
     //public Weapon[] weaponList;
-
 }

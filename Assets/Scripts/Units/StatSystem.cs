@@ -8,10 +8,18 @@ public class StatSystem
     {
         modifiers.AddRange(mod);
     }
+    public void AddModifier(StatModifier mod)
+    {
+        modifiers.Add(mod);
+    }
 
-    public void RemoveModifiers(StatusEffect source)
+    public void RemoveModifiersFromSource(StatusEffect source)
     {
         modifiers.RemoveAll(m => m.source == source);
+    }
+    public void RemoveAllModifiers()
+    {
+        modifiers.Clear();
     }
 
     public float Calculate(StatType stat, float baseValue)
