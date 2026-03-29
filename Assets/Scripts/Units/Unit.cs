@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using static NotificationBase;
 
@@ -70,6 +72,8 @@ public class Unit : MonoBehaviour, IDamageable
 
         health = Mathf.Clamp(health - context.Amount, 0, MaxHealth);
 
+        SpawnDmgPopUp(context);
+
         foreach (var sei in victimStatuses)
             sei.Effect.OnTakeDamagePost(context);
 
@@ -101,6 +105,8 @@ public class Unit : MonoBehaviour, IDamageable
             sei.Effect.OnHealPre(context);
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
+
+        SpawnHealthPopUp(context);
 
         foreach (var sei in statuses)
             sei.Effect.OnHealPost(context);
@@ -163,5 +169,28 @@ public class Unit : MonoBehaviour, IDamageable
     public bool HasStatusEffect(StatusEffect effect)
     {
         return StatusDict.ContainsKey(effect);
+    }
+
+    void SpawnDmgPopUp(DamageContext context)
+    {
+        Vector3 spawnPos = transform.position + Vector3.up * 1f;
+        GameObject dmgPop = Instantiate(Resources.Load<GameObject>("Popup/DamagePopUp"), spawnPos, Quaternion.identity);
+        TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
+        tmp.text = context.Amount.ToString();
+
+        if(context.Amount>3)
+        {
+            tmp.color = Color.softRed;
+        }
+    }
+
+    void SpawnHealthPopUp(HealContext context)
+    {
+        Vector3 spawnPos = transform.position + Vector3.up * 1f;
+        GameObject dmgPop = Instantiate(Resources.Load<GameObject>("Popup/DamagePopUp"), spawnPos, Quaternion.identity);
+        TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
+        tmp.text = context.Amount.ToString();
+        tmp.color = Color.softGreen;
+        
     }
 }

@@ -90,6 +90,7 @@ public class Projectile : MonoBehaviour
         {
             Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
         }
+        
 
         if (projectileHealth != 1)
         {

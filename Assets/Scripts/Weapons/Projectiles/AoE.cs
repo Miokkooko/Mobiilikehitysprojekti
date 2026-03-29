@@ -16,10 +16,22 @@ public class AoE : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.tag == "Player")
+            return;
+
+        if (collision.GetComponent<IDamageable>() is IDamageable d)
+        {
+            //Unit.DealDamage(new DamageContext(player, d, 1));
+        }
 
         if (collision.tag == "Enemy")
         {
             Enemy dummy = collision.GetComponent<Enemy>();
+
+            if (dummy != null)
+            {
+                
+            }
         }
     }
 }

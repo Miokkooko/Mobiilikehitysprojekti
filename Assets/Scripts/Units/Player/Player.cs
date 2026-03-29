@@ -6,6 +6,7 @@ public class Player : Unit
     List<WeaponInstance> weapons = new List<WeaponInstance>();
 
     PlayerMovement movement;
+    public bool disableWeapon;
     // PlayerData data; // This is where we will get the BaseStats eventually
 
     public override void Update()
@@ -22,7 +23,10 @@ public class Player : Unit
         movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 
-        AddWeapon(Resources.Load<WeaponData>("WeaponData/AxeData"));
+        if (disableWeapon)
+        {
+            AddWeapon(Resources.Load<WeaponData>("WeaponData/AxeData"));
+        }
     }
 
     private void Player_OnDeath(object sender, KillContext e)
@@ -30,6 +34,7 @@ public class Player : Unit
         OnDeath -= Player_OnDeath;
         Destroy(gameObject);
     }
+
 
     public virtual void FireWeapons()
     {
