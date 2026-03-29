@@ -51,7 +51,6 @@ public class LevelUpManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-
     private List<object> GetRandomMixedUpgrades(int count)
     {
         List<object> pool = new List<object>();

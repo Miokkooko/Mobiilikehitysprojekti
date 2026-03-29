@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class Player : Unit
 {
-    List<WeaponInstance> weapons = new List<WeaponInstance>();
+    Dictionary<WeaponData, WeaponInstance> weapons = new Dictionary<WeaponData, WeaponInstance>();
+    Dictionary<StatModifier, WeaponInstance> passives;
 
     PlayerMovement movement;
-    public bool disableWeapon;
     // PlayerData data; // This is where we will get the BaseStats eventually
+
 
     public override void Update()
     {
@@ -23,10 +24,7 @@ public class Player : Unit
         movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 
-        if (disableWeapon)
-        {
-            AddWeapon(Resources.Load<WeaponData>("WeaponData/AxeData"));
-        }
+        AddWeapon(Resources.Load<WeaponData>("WeaponData/KnifeData"));
     }
 
     private void Player_OnDeath(object sender, KillContext e)
@@ -35,23 +33,44 @@ public class Player : Unit
         Destroy(gameObject);
     }
 
-
     public virtual void FireWeapons()
     {
-        foreach (WeaponInstance w in weapons)
+        foreach (KeyValuePair<WeaponData, WeaponInstance> w in weapons)
         {
-            w.TryFire();
+            w.Value.TryFire();
         }
     }
 
     public void AddWeapon(WeaponInstance w)
     {
-        weapons.Add(w);
+        weapons.Add(w.data, w);
     }
 
     public void AddWeapon(WeaponData w)
     {
         WeaponInstance instance = new WeaponInstance(this, w);
-        weapons.Add(instance);
+        weapons.Add(w, instance);
+    }
+
+    public void UpgradeWeapon(WeaponData weapon)
+    {
+        // Example:
+        // var wpn = activeWeapons.Find(w => w.data == weapon);
+        // wpn.LevelUp(level);
+
+        weapons[weapon].UpgradeWeapon();
+    }
+
+    public WeaponInstance GetWeapon(WeaponData data)
+    {
+        try
+        {
+            return weapons[data];
+        }
+        catch (System.Exception)
+        {
+            return null;
+        }
+
     }
 }
