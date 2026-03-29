@@ -25,6 +25,8 @@ public class Unit : MonoBehaviour, IDamageable
     StatSystem statSystem = new StatSystem();
     #endregion
 
+    public UnitData unitData;
+
     public event EventHandler<KillContext> OnKill;
     public event EventHandler<KillContext> OnDeath;
 
@@ -38,7 +40,20 @@ public class Unit : MonoBehaviour, IDamageable
         };
 
         StatusDict = new Dictionary<StatusEffect, StatusEffectInstance>();
+
+        InitializeUnit();
     }
+
+    public void InitializeUnit()
+    {
+        if (unitData != null)
+        {
+            baseMaxHealth = unitData.maxHealth;
+            baseDamage = unitData.baseDamage;
+            baseSpeed = unitData.moveSpeed;
+            health = baseMaxHealth;
+        }
+    } // initializeUnit
 
     public virtual void Update()
     {
