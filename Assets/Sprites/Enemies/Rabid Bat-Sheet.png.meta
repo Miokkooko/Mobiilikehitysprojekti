@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 77781384633922e499513bd3d9173081
+guid: c9c633ae7dcb9414aa8251a359ef8c61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4920520170397818850
-    second: Invincible Sun-Sheet_0
+      213: 5723687508711501353
+    second: Rabid Bat-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +100,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Invincible Sun-Sheet_0
+      name: Rabid Bat-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
+        width: 64
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e102b4d99fcc6bbb0800000000000000
-      internalID: -4920520170397818850
+      spriteID: 92ee61ab67f9e6f40800000000000000
+      internalID: 5723687508711501353
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Invincible Sun-Sheet_0: -4920520170397818850
+      Rabid Bat-Sheet_0: 5723687508711501353
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 80cb4067c3193c84a83737b03e3ea3be
+guid: 0113d92fbfac6e341b261635735786b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -306774908569455393
-    second: Snow Elf Archer_0
+      213: 109961897976094141
+    second: Jolly Skeleton-Sheet_0
+  - first:
+      213: -7170223181918700634
+    second: Jolly Skeleton-Sheet_1
+  - first:
+      213: 9152620149092786008
+    second: Jolly Skeleton-Sheet_2
+  - first:
+      213: 7670872111001116996
+    second: Jolly Skeleton-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +109,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snow Elf Archer_0
+      name: Jolly Skeleton-Sheet_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 5
         y: 0
-        width: 29
+        width: 22
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd4f6b498dd1ebbf0800000000000000
-      internalID: -306774908569455393
+      spriteID: dbd51bb73c9a68100800000000000000
+      internalID: 109961897976094141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jolly Skeleton-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6abf67961004e7c90800000000000000
+      internalID: -7170223181918700634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jolly Skeleton-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 0
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85f12ce6883a40f70800000000000000
+      internalID: 9152620149092786008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Jolly Skeleton-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 0
+        width: 22
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4412cadfa89647a60800000000000000
+      internalID: 7670872111001116996
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Snow Elf Archer_0: -306774908569455393
+      Jolly Skeleton-Sheet_0: 109961897976094141
+      Jolly Skeleton-Sheet_1: -7170223181918700634
+      Jolly Skeleton-Sheet_2: 9152620149092786008
+      Jolly Skeleton-Sheet_3: 7670872111001116996
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
