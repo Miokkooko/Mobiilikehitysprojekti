@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 
+
 public class Unit : MonoBehaviour, IDamageable
 {
     #region stats
@@ -38,6 +39,8 @@ public class Unit : MonoBehaviour, IDamageable
     public event EventHandler<KillContext> OnKill;
     public event EventHandler<KillContext> OnDeath;
 
+    //public Animator animator;
+
     void Awake()
     {
         statusBuckets = new Dictionary<ModifierType, List<StatusEffectInstance>>
@@ -50,6 +53,8 @@ public class Unit : MonoBehaviour, IDamageable
         StatusDict = new Dictionary<StatusEffect, StatusEffectInstance>();
 
         InitializeUnit();
+
+
     }
 
     public void InitializeUnit()
@@ -60,6 +65,12 @@ public class Unit : MonoBehaviour, IDamageable
             baseDamage = unitData.baseDamage;
             baseSpeed = unitData.moveSpeed;
             health = baseMaxHealth;
+
+            if(unitData.animator != null)
+            {
+                Animator anim = GetComponent<Animator>();
+                anim.runtimeAnimatorController = unitData.animator;
+            }
         }
     } // initializeUnit
 
@@ -194,7 +205,7 @@ public class Unit : MonoBehaviour, IDamageable
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();
 
-        if(context.Amount>3)
+        if (context.Amount > 3)
         {
             tmp.color = Color.softRed;
         }
@@ -207,6 +218,6 @@ public class Unit : MonoBehaviour, IDamageable
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();
         tmp.color = Color.softGreen;
-        
+
     }
 }

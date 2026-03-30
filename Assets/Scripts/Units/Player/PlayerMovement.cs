@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
-    public Transform aim;
+
     bool isWalking = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,12 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
         Animate();
 
-        //kääntää tähtäämisen suunnan
-        if (isWalking)
-        {
-            Vector3 vector3 = Vector3.left * moveInput.x + Vector3.down * moveInput.y;
-            aim.rotation = Quaternion.LookRotation(Vector3.forward, vector3);
-        }
+        
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -46,10 +41,6 @@ public class PlayerMovement : MonoBehaviour
         {
             isWalking = false;
             lastMoveDirection = moveInput;
-
-            //Aim pitää viimeisimmän suunnan
-            Vector3 vector3 = Vector3.left * lastMoveDirection.x + Vector3.down * lastMoveDirection.y;
-            aim.rotation = Quaternion.LookRotation(Vector3.forward, vector3);
         }
         else
         {
@@ -69,6 +60,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Animate()
     {
+        if(animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
         animator.SetBool("isWalking", isWalking);
 
         animator.SetFloat("LastInputX", lastMoveDirection.x);

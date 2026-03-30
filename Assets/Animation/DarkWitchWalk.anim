@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IdleDown
+  m_Name: DarkWitchWalk
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,15 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 4723107735738678597, guid: c9a41eabf168f614aa7afc8946581373, type: 3}
+      value: {fileID: 6100149079719930360, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - time: 0.33333334
+      value: {fileID: 7551395997154635119, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - time: 0.6666667
+      value: {fileID: 7492232584265507929, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - time: 1
+      value: {fileID: -5053166120116770904, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - time: 1.3333334
+      value: {fileID: -5053166120116770904, guid: 4426eae892b756b4783663060224b7b4, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -44,13 +52,17 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 4723107735738678597, guid: c9a41eabf168f614aa7afc8946581373, type: 3}
+    - {fileID: 6100149079719930360, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - {fileID: 7551395997154635119, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - {fileID: 7492232584265507929, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - {fileID: -5053166120116770904, guid: 4426eae892b756b4783663060224b7b4, type: 3}
+    - {fileID: -5053166120116770904, guid: 4426eae892b756b4783663060224b7b4, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 1.35
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

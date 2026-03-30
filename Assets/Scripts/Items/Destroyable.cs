@@ -4,9 +4,8 @@ using UnityEngine.Events;
 
 public class Destroyable : Unit
 {
-    public ItemData drop;
     public Sprite sprite;
-    float random;
+    private bool destroyed=false;
 
     [Header("Drops")]
     [SerializeField] private DropEvents[] _dropEvents;
@@ -41,42 +40,34 @@ public class Destroyable : Unit
     
    private void FireDropEvent()
     {
-
-        float totalChance = 0f;
-        foreach(DropEvents dropEvents in _dropEvents)
+        if (!destroyed)
         {
-            totalChance += dropEvents.DropChance;
-        }
-
-        float rand = Random.Range(0f, totalChance);
-        float cumulaticeChance = 0f;
-
-        foreach(DropEvents dropEvents in _dropEvents)
-        {
-            cumulaticeChance += dropEvents.DropChance;
-
-            if(rand <= cumulaticeChance)
+            destroyed = true;
+            float totalChance = 0f;
+            foreach (DropEvents dropEvents in _dropEvents)
             {
-                Debug.Log("Here!");
-                dropEvents.DropEvent.Invoke();
-                return;
+                totalChance += dropEvents.DropChance;
+            }
+
+            float rand = Random.Range(0f, totalChance);
+            float cumulaticeChance = 0f;
+
+            foreach (DropEvents dropEvents in _dropEvents)
+            {
+                cumulaticeChance += dropEvents.DropChance;
+
+                if (rand <= cumulaticeChance)
+                {
+                    Instantiate(dropEvents.dropPrefab, transform.position, Quaternion.identity);
+                    return;
+                }
             }
         }
 
     }
 
 
-    public void SpawnHeart()
-    {
-        Debug.Log("Heart Spawned!");
-        Instantiate(Resources.Load<GameObject>("Drops/healthdrop"), transform.position, Quaternion.identity);
-    }
 
-    public void SpawnEnemy()
-    {
-        Debug.Log("Enemy Spawned!");
-        Instantiate(Resources.Load<GameObject>("Drops/Enemy"), transform.position, Quaternion.identity);
-    }
 }
 
 
@@ -88,5 +79,5 @@ public class DropEvents
     [Space]
     [Space]
     [Range(0f, 1f)] public float DropChance = 0.5f;
-    public UnityEvent DropEvent;
+    public GameObject dropPrefab;
 }

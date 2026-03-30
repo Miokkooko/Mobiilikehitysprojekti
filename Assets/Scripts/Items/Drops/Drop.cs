@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Pickupable : MonoBehaviour
+public class Drop : MonoBehaviour
 {
 
     public float health = 5;
-    public float speed = 2f;
+    public float dropMoveSpeed = 2f;
     Transform target;
     BoxCollider2D box;
     CircleCollider2D circle;
@@ -23,8 +23,8 @@ public class Pickupable : MonoBehaviour
     {
         if (target != null)
         {
-            speed += Time.deltaTime*3;
-            transform.position = Vector3.MoveTowards(transform.position,target.position, speed * Time.deltaTime);
+            dropMoveSpeed += Time.deltaTime * 3;
+            transform.position = Vector3.MoveTowards(transform.position, target.position, dropMoveSpeed * Time.deltaTime);
         }
     }
 
@@ -38,12 +38,17 @@ public class Pickupable : MonoBehaviour
         if (box.IsTouching(other))
         {
             Player player = other.GetComponent<Player>();
-            player.Heal(new HealContext(player, health));
+            OnGrab(player);
             Destroy(gameObject);
         }
         else if (circle.IsTouching(other))
         {
             target = other.transform;
         }
+    }
+
+    public virtual void OnGrab(Player player)
+    {
+
     }
 }
