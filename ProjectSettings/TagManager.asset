@@ -54,6 +54,9 @@ TagManager:
   - name: Collision
     uniqueID: 2235443141
     locked: 0
+  - name: Projectile
+    uniqueID: 2023423201
+    locked: 0
   - name: Player
     uniqueID: 2596025049
     locked: 0
@@ -62,9 +65,6 @@ TagManager:
     locked: 0
   - name: Decor
     uniqueID: 2656412571
-    locked: 0
-  - name: Projectile
-    uniqueID: 2023423201
     locked: 0
   - name: UI
     uniqueID: 4182417915

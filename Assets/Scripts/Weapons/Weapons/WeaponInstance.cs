@@ -43,6 +43,7 @@ public class WeaponInstance
         baseProjectileCount = data.projectileCount;
         baseDamage = data.baseDamage;
         baseProjectileSpeed = data.projectileSpeed;
+        basePiercing = data.piercing;
     }
 
     public void UpgradeWeapon()

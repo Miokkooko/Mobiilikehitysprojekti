@@ -30,4 +30,6 @@ public class Proj_axe : Projectile
         transform.position += velocity * Time.deltaTime;
     }
 
+    
+
 }

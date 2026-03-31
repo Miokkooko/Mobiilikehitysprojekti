@@ -10,30 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
-  m_Name: FireballData
+  m_Name: LightningData
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
-  projectilePrefab: {fileID: 5095381493187369754, guid: 359459e2c12d3cd408c9f015631c4cd7, type: 3}
-  weaponName: Fireball
+  projectilePrefab: {fileID: 5095381493187369754, guid: 02402ece6e9edc5418357c3bec297364, type: 3}
+  weaponName: LightningStrike
   description: 
-  icon: {fileID: 21300000, guid: e890f0fc1731a6943b27d0957b3160c0, type: 3}
-  baseDamage: 2
-  firerate: 1
+  icon: {fileID: 0}
+  baseDamage: 1
+  firerate: 3
+  Piercing: 1
   projectileCount: 1
-  projectileSpeed: 2
-  projectileLifeTime: 2
+  projectileSpeed: 0
+  projectileLifeTime: 0.3
   upgradeList:
   - Stat: 0
-    Value: 0.1
+    Value: 0.5
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: 
+    upgradeDescription: Increase Damage
   - Stat: 4
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
-  - Stat: 5
-    Value: 0.2
-    Type: 1
-    source: {fileID: 0}
-    upgradeDescription: 
+    upgradeDescription: more lightning

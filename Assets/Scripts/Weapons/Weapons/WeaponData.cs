@@ -16,6 +16,7 @@ public class WeaponData : ScriptableObject
     [Header("Stats")]
     public float baseDamage;
     public float firerate = 1f;
+    public float piercing = 1f;
     public int projectileCount = 1;
     public float projectileSpeed = 5;
     public float projectileLifeTime = 2;

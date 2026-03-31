@@ -4805,7 +4805,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2023423201
-  m_SortingLayer: 7
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_RenderMode: 0
@@ -4887,6 +4887,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07a79aae3a04df4d9b61fcff87d7cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  projectileSpeed: 0
+  enableParticles: 0
+  hitParticles: {fileID: 0}
+  _enemies: []
 --- !u!212 &640801556605410606
 SpriteRenderer:
   serializedVersion: 2
@@ -4933,7 +4937,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2023423201
-  m_SortingLayer: 7
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: f2ca1d59914486d4aa3c2c0c02cf874d, type: 3}
