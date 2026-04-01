@@ -20,6 +20,8 @@ public class WeaponData : ScriptableObject
     public int projectileCount = 1;
     public float projectileSpeed = 5;
     public float projectileLifeTime = 2;
+    public float aoeDamage = 1f;
+    public float aoeRadius = 1f;
 
     public WeaponModifier[] upgradeList;
 }

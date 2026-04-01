@@ -12,6 +12,9 @@ public class Projectile : MonoBehaviour
     protected float damage = 1f;
     protected float projectileLifetime = 2f;
 
+    protected float aoeDamage=1f;
+    protected float aoeRadius=1f;
+
     [Header("Projectiles")]
     public bool enableParticles;
     public GameObject hitParticles;
@@ -57,9 +60,18 @@ public class Projectile : MonoBehaviour
         direction = dir.normalized;
         player = p;
         projectileLifetime = w.data.projectileLifeTime;
+        aoeDamage = w.data.aoeDamage;
+        aoeRadius = w.data.aoeRadius;
 
         detRadius = player.GetComponentInChildren<DetectionRadius>();
         _enemies = detRadius._enemies;
+    }
+
+    public virtual void InitializeAoE(Player p, float d, float r)
+    {
+        player = p;
+        aoeDamage = d;
+        aoeRadius = r;
     }
 
     public virtual void Rotate()
@@ -114,6 +126,13 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public virtual void SpawnAoE()
+    {
+        GameObject proj = Object.Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
+        Projectile aoe = proj.GetComponent<AoE>();
+        aoe.InitializeAoE(player, aoeDamage, aoeRadius);
     }
 
     #endregion

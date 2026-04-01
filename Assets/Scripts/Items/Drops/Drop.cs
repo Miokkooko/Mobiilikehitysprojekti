@@ -1,3 +1,4 @@
+using System.Xml.XPath;
 using UnityEngine;
 
 public class Drop : MonoBehaviour
@@ -5,6 +6,7 @@ public class Drop : MonoBehaviour
 
     public float health = 5;
     public float dropMoveSpeed = 2f;
+    protected float expAmount = 1f;
     Transform target;
     BoxCollider2D box;
     CircleCollider2D circle;
@@ -49,6 +51,11 @@ public class Drop : MonoBehaviour
 
     public virtual void OnGrab(Player player)
     {
+        
+    }
 
+    public virtual void Initialize(float xp)
+    {
+        expAmount = xp;
     }
 }

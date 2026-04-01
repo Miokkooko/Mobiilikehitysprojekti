@@ -18,7 +18,10 @@ MonoBehaviour:
   icon: {fileID: 0}
   baseDamage: 2
   firerate: 1
+  piercing: 1
   projectileCount: 1
   projectileSpeed: 0
   projectileLifeTime: 5
+  aoeDamage: 1
+  aoeRadius: 2
   upgradeList: []

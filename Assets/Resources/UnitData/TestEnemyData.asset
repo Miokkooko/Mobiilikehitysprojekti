@@ -16,4 +16,5 @@ MonoBehaviour:
   maxHealth: 3
   baseDamage: 1
   moveSpeed: 2
-  xpValue: 0
+  xpValue: 2
+  animator: {fileID: 0}

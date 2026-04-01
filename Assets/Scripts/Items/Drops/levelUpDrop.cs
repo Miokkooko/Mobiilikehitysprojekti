@@ -1,12 +1,9 @@
 using UnityEngine;
 
-public class ExpDrop : Drop
+public class levelUpDrop : Drop
 {
     public override void OnGrab(Player player)
     {
-        
-        player.IncreaseExp(expAmount);
+        LevelUpManager.Instance.TriggerLevelUp();
     }
-
-
 }

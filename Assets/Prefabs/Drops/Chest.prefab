@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3888806347923551452}
   - component: {fileID: -5171619135568192575}
   m_Layer: 0
-  m_Name: Container
+  m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6f7e79a182fcf9e4f87761f00f8fb94f, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.2082592, g: 0.38283068, b: 0.9811321, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -109,18 +109,9 @@ MonoBehaviour:
   unitData: {fileID: 11400000, guid: 72d121927e2efe34abe4f47efcb9193e, type: 2}
   sprite: {fileID: 0}
   _dropEvents:
-  - EventName: Drop Heart
-    DropChance: 0.598
-    dropPrefab: {fileID: 7671177631582458988, guid: 958905729efee7b449fc10b40bd13911, type: 3}
-  - EventName: Drop Enemy
-    DropChance: 0.126
-    dropPrefab: {fileID: 8834559635428772267, guid: 8cd26eeb25ae15e49a6775b2f5f7ef7e, type: 3}
-  - EventName: Drop Coin
-    DropChance: 0.409
-    dropPrefab: {fileID: 7671177631582458988, guid: 50553a6458208db429ea33444480ecef, type: 3}
-  - EventName: Drop Exp
-    DropChance: 0.465
-    dropPrefab: {fileID: 7671177631582458988, guid: 92c6d291c918cd34eb270d427964c16d, type: 3}
+  - EventName: Drop level up
+    DropChance: 1
+    dropPrefab: {fileID: 7671177631582458988, guid: f2abcd8f315351440a960d6e47b3ab92, type: 3}
 --- !u!50 &-3888806347923551452
 Rigidbody2D:
   serializedVersion: 5

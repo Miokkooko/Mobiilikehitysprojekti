@@ -26,6 +26,8 @@ public class Unit : MonoBehaviour, IDamageable
     float baseProjectileCount = 0;
     public virtual float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount);
 
+    protected float expAmount = 1;
+
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
     Dictionary<ModifierType, List<StatusEffectInstance>> statusBuckets;
@@ -65,6 +67,7 @@ public class Unit : MonoBehaviour, IDamageable
             baseDamage = unitData.baseDamage;
             baseSpeed = unitData.moveSpeed;
             health = baseMaxHealth;
+            expAmount = unitData.xpValue;
 
             if(unitData.animator != null)
             {

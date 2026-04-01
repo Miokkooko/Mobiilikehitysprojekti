@@ -50,6 +50,9 @@ public class Enemy : Unit
     }
     private void Enemy_OnDeath(object sender, KillContext e)
     {
+        GameObject expDrop = Instantiate(Resources.Load<GameObject>("Drops/ExpDrop"), transform.position, Quaternion.identity);
+        ExpDrop expScript = expDrop.GetComponent<ExpDrop>();
+        expScript.Initialize(expAmount);
         Destroy(gameObject);
     }
 }

@@ -24,7 +24,7 @@ public class KillCounter : MonoBehaviour
 
         if(killCount % 2 == 0)
         {
-            LevelUpManager.Instance.TriggerLevelUp();
+            //LevelUpManager.Instance.TriggerLevelUp();
         }
     }
 

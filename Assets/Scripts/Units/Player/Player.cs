@@ -7,6 +7,13 @@ public class Player : Unit
     Dictionary<StatModifier, WeaponInstance> passives;
 
     PlayerMovement movement;
+
+    //leveling
+    protected float totalExp;
+    protected float expMultiplier = 0f;
+    protected float baseExpRequirement = 10f;
+    protected float level = 1;
+
     // PlayerData data; // This is where we will get the BaseStats eventually
 
 
@@ -73,4 +80,22 @@ public class Player : Unit
         }
 
     }
+
+    #region LevelingSystem
+    public void IncreaseExp(float amount)
+    {
+        totalExp += amount;
+        Debug.Log("totalExp: "+ totalExp);
+        
+        if (totalExp >= baseExpRequirement + expMultiplier)
+        {
+            LevelUpManager.Instance.TriggerLevelUp();
+            expMultiplier += 10*level;
+            Debug.Log("Level: "+level+". Next level up requirement: " + (baseExpRequirement + expMultiplier));
+            level += 1;
+        }
+    }
+
+
+    #endregion
 }

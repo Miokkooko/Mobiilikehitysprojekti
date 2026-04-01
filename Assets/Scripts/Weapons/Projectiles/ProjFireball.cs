@@ -40,6 +40,6 @@ public class ProjFireball : Projectile
     public override void OnHit()
     {
         base.OnHit();
-        Object.Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
+        SpawnAoE();
     }
 }
