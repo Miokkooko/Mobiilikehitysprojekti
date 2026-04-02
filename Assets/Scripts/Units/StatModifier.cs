@@ -11,7 +11,7 @@ public enum StatType
     ProjectileCount,
     Firerate,
     aoeRadius,
-    aoeDamage
+    AoEDamage
 }
 
 [System.Serializable]
@@ -22,7 +22,6 @@ public class StatModifier
     public ModifierType Type;
     public StatusEffect source;
 }
-
 public enum ModifierType
 {
     Flat,       // +5 damage

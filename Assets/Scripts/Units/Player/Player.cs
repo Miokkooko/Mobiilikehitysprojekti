@@ -1,48 +1,76 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Unit
 {
-    Dictionary<WeaponData, WeaponInstance> weapons = new Dictionary<WeaponData, WeaponInstance>();
-    Dictionary<StatModifier, WeaponInstance> passives;
+    Dictionary<WeaponData, WeaponInstance> Weapons = new Dictionary<WeaponData, WeaponInstance>();
+    Dictionary<PassiveData, PassiveInstance> Passives = new Dictionary<PassiveData, PassiveInstance>();
 
-    PlayerMovement movement;
+    PlayerMovement Movement;
 
     //leveling
     protected float totalExp;
     protected float expMultiplier = 0f;
     protected float baseExpRequirement = 10f;
-    protected float level = 1;
+    protected int level = 1;
 
-    // PlayerData data; // This is where we will get the BaseStats eventually
+    public float PreviousRequiredExp = 0;
 
+    public float RequiredExp => baseExpRequirement + expMultiplier;
+    public float CurrentExp => totalExp;
+    public int CurrentLevel => level;
+
+    public event Action<float> OnPlayerHealthChanged;
+    public event Action<float> OnPlayerExpChanged;
+    public event Action<int> OnPlayerLevelUp;
 
     public override void Update()
     {
         base.Update();
 
         FireWeapons();
-        movement.MovePlayer(Speed);
+        Movement.MovePlayer(Speed);
     }
 
     void Start()
     {
         //AddWeapon(new Axe());
-        movement = GetComponent<PlayerMovement>();
+        Movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 
         AddWeapon(Resources.Load<WeaponData>("WeaponData/KnifeData"));
     }
+    #region Passives
 
-    private void Player_OnDeath(object sender, KillContext e)
+    public void AddPassive(PassiveData data)
     {
-        OnDeath -= Player_OnDeath;
-        Destroy(gameObject);
+        Passives.Add(data, new PassiveInstance(data));
+        statSystem.AddModifier(Passives[data].GetModifier);
+    }
+    public void UpgradePassive(PassiveData data)
+    {
+        Passives[data].UpgradePassive();
     }
 
+    public PassiveInstance GetPassive(PassiveData data)
+    {
+        try
+        {
+            return Passives[data];
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
+    #endregion
+
+    #region Weapons
     public virtual void FireWeapons()
     {
-        foreach (KeyValuePair<WeaponData, WeaponInstance> w in weapons)
+        foreach (KeyValuePair<WeaponData, WeaponInstance> w in Weapons)
         {
             w.Value.TryFire();
         }
@@ -50,13 +78,13 @@ public class Player : Unit
 
     public void AddWeapon(WeaponInstance w)
     {
-        weapons.Add(w.data, w);
+        Weapons.Add(w.data, w);
     }
 
     public void AddWeapon(WeaponData w)
     {
         WeaponInstance instance = new WeaponInstance(this, w);
-        weapons.Add(w, instance);
+        Weapons.Add(w, instance);
     }
 
     public void UpgradeWeapon(WeaponData weapon)
@@ -65,37 +93,58 @@ public class Player : Unit
         // var wpn = activeWeapons.Find(w => w.data == weapon);
         // wpn.LevelUp(level);
 
-        weapons[weapon].UpgradeWeapon();
+        Weapons[weapon].UpgradeWeapon();
     }
 
     public WeaponInstance GetWeapon(WeaponData data)
     {
         try
         {
-            return weapons[data];
+            return Weapons[data];
         }
         catch (System.Exception)
         {
             return null;
         }
-
     }
+    #endregion
+
+    #region Events
+    private void Player_OnDeath(object sender, KillContext e)
+    {
+        OnDeath -= Player_OnDeath;
+        Destroy(gameObject);
+    }
+
+    public override void TakeDamage(DamageContext context)
+    {
+        base.TakeDamage(context);
+
+        OnPlayerHealthChanged?.Invoke(Health);
+    }
+    public override void Heal(HealContext context)
+    {
+        base.Heal(context);
+
+        OnPlayerHealthChanged?.Invoke(Health);
+    }
+    #endregion
 
     #region LevelingSystem
     public void IncreaseExp(float amount)
     {
         totalExp += amount;
-        Debug.Log("totalExp: "+ totalExp);
-        
-        if (totalExp >= baseExpRequirement + expMultiplier)
+
+        OnPlayerExpChanged?.Invoke(totalExp);
+
+        if (totalExp >= RequiredExp)
         {
             LevelUpManager.Instance.TriggerLevelUp();
+            PreviousRequiredExp = RequiredExp;
             expMultiplier += 10*level;
-            Debug.Log("Level: "+level+". Next level up requirement: " + (baseExpRequirement + expMultiplier));
             level += 1;
+            OnPlayerLevelUp?.Invoke(level);
         }
     }
-
-
     #endregion
 }

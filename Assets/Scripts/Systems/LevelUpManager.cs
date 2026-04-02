@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,8 +6,11 @@ public class LevelUpManager : MonoBehaviour
 {
     public static LevelUpManager Instance;
     public LevelUpData data;
-    public List<StatusEffect> StatusUpgrades;
+    public List<PassiveData> PassiveUpgrades;
     public List<WeaponData> WeaponUpgrades;
+
+    int queuedNotifications = 0;
+
     public Player player;
 
     NotificationBase n;
@@ -40,6 +44,7 @@ public class LevelUpManager : MonoBehaviour
 
         n.OnNotificationRaised += Notification_OnNotificationResult;
         n.OnNotificationDestroyed += N_OnNotificationDestroyed;
+        queuedNotifications++;
 
         Time.timeScale = 0f;
     }
@@ -47,8 +52,11 @@ public class LevelUpManager : MonoBehaviour
     private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
     {
         n = (NotificationBase)sender;
+        queuedNotifications--;
         n.OnNotificationDestroyed -= N_OnNotificationDestroyed;
-        Time.timeScale = 1f;
+
+        if(queuedNotifications == 0)
+            Time.timeScale = 1f;
     }
 
     private List<object> GetRandomMixedUpgrades(int count)
@@ -62,10 +70,10 @@ public class LevelUpManager : MonoBehaviour
                 pool.Add(weapon);
         }
 
-        foreach (var status in StatusUpgrades)
+        foreach (var status in PassiveUpgrades)
         {
-            // katotaan onko maxxed
-            pool.Add(status);
+            if(CanShowPassive(status)) 
+                pool.Add(status);
         }
 
         List<object> selected = new List<object>();
@@ -73,7 +81,7 @@ public class LevelUpManager : MonoBehaviour
         //Valitaan 3 päivitystä randomilla
         for (int i = 0; i < count && pool.Count > 0; i++)
         {
-            int randomIndex = Random.Range(0, pool.Count);
+            int randomIndex = UnityEngine.Random.Range(0, pool.Count);
             selected.Add(pool[randomIndex]);
             pool.RemoveAt(randomIndex);
         }
@@ -83,18 +91,28 @@ public class LevelUpManager : MonoBehaviour
 
     private bool CanShowWeapon(WeaponData weapon)
     {
-        // If player doesn't have it, show as "New Weapon"
-        if (player.GetWeapon(weapon) == null)
+        WeaponInstance instance = player.GetWeapon(weapon);
+        if (instance == null || instance.CanUpgrade)
             return true;
 
-        // If player has it, check if it's maxed out (you'll need maxLevel in WeaponData)
-        int currentLevel = player.GetWeapon(weapon).upgradeRank;
-
-        return currentLevel < weapon.upgradeList.Length;
+        return false;
     }
-    public WeaponInstance GetWeapon(WeaponData weapon)
+    private bool CanShowPassive(PassiveData data)
+    {
+        PassiveInstance instance = player.GetPassive(data);
+        if (instance == null || instance.CanUpgrade)
+            return true;
+
+        return false;
+    }
+    public WeaponInstance GetWeaponFromPlayer(WeaponData weapon)
     {
         return player.GetWeapon(weapon);
+    }
+
+    public PassiveInstance GetPassiveFromPlayer(PassiveData data)
+    {
+        return player.GetPassive(data);
     }
 
     // Lisää upgradet
@@ -104,8 +122,8 @@ public class LevelUpManager : MonoBehaviour
 
         switch (chosenUpgrade)
         {
-            case StatusEffect statusEffect:
-                ApplyStatusEffect(statusEffect);
+            case PassiveData passive:
+                ApplyPassiveUpgrade(passive);
                 break;
 
             case WeaponData weapon:
@@ -116,26 +134,27 @@ public class LevelUpManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void ApplyStatusEffect(StatusEffect effect)
+    private void ApplyPassiveUpgrade(PassiveData data)
     {
-        if (effect == null) return;
-
-        Unit.ApplyStatusEffect(effect, player);
+        if (player.GetPassive(data) == null)
+        {
+            player.AddPassive(data);
+        }
+        else
+        {
+            player.UpgradePassive(data); 
+        }
     }
 
     private void ApplyWeaponUpgrade(WeaponData weapon)
     {
         if (player.GetWeapon(weapon) == null)
         {
-            // Uus ase
-            player.AddWeapon(weapon); // You need this method in Player.cs
-            Debug.Log($"New Weapon: {weapon.weaponName}!");
+            player.AddWeapon(weapon); 
         }
         else
         {
-            // Päivitys vanhalle aseelle
-            player.UpgradeWeapon(weapon); // You need this method in Player.cs
-            Debug.Log($"Upgraded {weapon.weaponName}!");
+            player.UpgradeWeapon(weapon); 
         }
     }
 }
