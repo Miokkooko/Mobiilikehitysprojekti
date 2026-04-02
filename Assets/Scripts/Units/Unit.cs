@@ -75,7 +75,17 @@ public class Unit : MonoBehaviour, IDamageable
                 anim.runtimeAnimatorController = unitData.animator;
             }
         }
+
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+
+        if (unitData.baseSprite != null)
+        {
+            sr.sprite = unitData.baseSprite;
+        }
+
     } // initializeUnit
+
+
 
     public virtual void Update()
     {
