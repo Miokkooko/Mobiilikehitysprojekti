@@ -29,6 +29,12 @@ public class WeaponInstance
 
     float baseProjectileSpeed = 1;
     public float ProjectileSpeed => statSystem.Calculate(StatType.Speed, baseProjectileSpeed);
+
+    float baseAoeDamage = 1f;
+    public float aoeDamage => statSystem.Calculate(StatType.aoeDamage, baseAoeDamage);
+
+    float baseAoeRadius = 1f;
+    public float aoeRadius => statSystem.Calculate(StatType.aoeRadius, baseAoeRadius);
     #endregion
 
     Coroutine fire;
@@ -43,6 +49,9 @@ public class WeaponInstance
         baseProjectileCount = data.projectileCount;
         baseDamage = data.baseDamage;
         baseProjectileSpeed = data.projectileSpeed;
+        basePiercing = data.piercing;
+        baseAoeDamage = data.aoeDamage;
+        baseAoeRadius = data.aoeRadius;
     }
 
     public void UpgradeWeapon()

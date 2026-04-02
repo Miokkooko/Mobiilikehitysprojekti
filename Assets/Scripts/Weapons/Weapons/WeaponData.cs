@@ -16,9 +16,12 @@ public class WeaponData : ScriptableObject
     [Header("Stats")]
     public float baseDamage;
     public float firerate = 1f;
+    public float piercing = 1f;
     public int projectileCount = 1;
     public float projectileSpeed = 5;
     public float projectileLifeTime = 2;
+    public float aoeDamage = 1f;
+    public float aoeRadius = 1f;
 
     public WeaponModifier[] upgradeList;
 }

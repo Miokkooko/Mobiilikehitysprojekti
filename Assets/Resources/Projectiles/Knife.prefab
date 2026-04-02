@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.94607, y: -0.88061, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2023423201
-  m_SortingLayer: 7
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
@@ -133,12 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9d8fc49c90ddc4b880e72c7bcb7bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  projectileSpeed: 9.8
-  projectilePiercing: 1
-  damage: 1
-  projectileLifetime: 2
   enableParticles: 1
   hitParticles: {fileID: 4017514965822915143, guid: 26285d15365026248aaef20bdbddc1e4, type: 3}
+  _enemies: []
 --- !u!61 &6474148549126811038
 BoxCollider2D:
   m_ObjectHideFlags: 0

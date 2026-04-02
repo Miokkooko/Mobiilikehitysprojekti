@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1698942247
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 6f7e79a182fcf9e4f87761f00f8fb94f, type: 3}
@@ -106,43 +106,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2e01eeb84c937469c4f0a10c63c3d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  drop: {fileID: 0}
+  unitData: {fileID: 11400000, guid: 72d121927e2efe34abe4f47efcb9193e, type: 2}
   sprite: {fileID: 0}
   _dropEvents:
   - EventName: Drop Heart
-    DropChance: 0.5
-    DropEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6135490224011775514}
-          m_TargetAssemblyTypeName: Destroyable, Assembly-CSharp
-          m_MethodName: SpawnHeart
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+    DropChance: 0.598
+    dropPrefab: {fileID: 7671177631582458988, guid: 958905729efee7b449fc10b40bd13911, type: 3}
   - EventName: Drop Enemy
-    DropChance: 0.5
-    DropEvent:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 6135490224011775514}
-          m_TargetAssemblyTypeName: Destroyable, Assembly-CSharp
-          m_MethodName: SpawnEnemy
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+    DropChance: 0.126
+    dropPrefab: {fileID: 8834559635428772267, guid: 8cd26eeb25ae15e49a6775b2f5f7ef7e, type: 3}
+  - EventName: Drop Coin
+    DropChance: 0.409
+    dropPrefab: {fileID: 7671177631582458988, guid: 50553a6458208db429ea33444480ecef, type: 3}
+  - EventName: Drop Exp
+    DropChance: 0.465
+    dropPrefab: {fileID: 7671177631582458988, guid: 92c6d291c918cd34eb270d427964c16d, type: 3}
 --- !u!50 &-3888806347923551452
 Rigidbody2D:
   serializedVersion: 5
@@ -151,7 +129,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7365452925363971402}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

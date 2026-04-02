@@ -1,13 +1,19 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
     [Header("ProjectileStats")]
-    float projectileSpeed = 5f;
-    float projectilePiercing = 1f;
-    float damage = 1f;
-    float projectileLifetime = 2f;
+    protected float projectileSpeed = 5f;
+    protected float projectilePiercing = 1f;
+    protected float damage = 1f;
+    protected float projectileLifetime = 2f;
+
+    protected float aoeDamage=1f;
+    protected float aoeRadius=1f;
 
     [Header("Projectiles")]
     public bool enableParticles;
@@ -19,11 +25,14 @@ public class Projectile : MonoBehaviour
     protected Transform playerPos => player.transform;
     protected float angle;
 
+    DetectionRadius detRadius;
+    public List<Enemy> _enemies;
 
     public virtual void Start()
     {
+        
         //Projectile tuhoaa ittensä kahen sekunnin jälkeen
-        if(hitParticles == null && enableParticles)
+        if (hitParticles == null && enableParticles)
         {
             hitParticles = Resources.Load<GameObject>("Particles/HitParticles");
         }
@@ -39,6 +48,7 @@ public class Projectile : MonoBehaviour
     #region Movement and direction
     public virtual void Move()
     {
+        
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
@@ -50,6 +60,18 @@ public class Projectile : MonoBehaviour
         direction = dir.normalized;
         player = p;
         projectileLifetime = w.data.projectileLifeTime;
+        aoeDamage = w.data.aoeDamage;
+        aoeRadius = w.data.aoeRadius;
+
+        detRadius = player.GetComponentInChildren<DetectionRadius>();
+        _enemies = detRadius._enemies;
+    }
+
+    public virtual void InitializeAoE(Player p, float d, float r)
+    {
+        player = p;
+        aoeDamage = d;
+        aoeRadius = r;
     }
 
     public virtual void Rotate()
@@ -62,10 +84,12 @@ public class Projectile : MonoBehaviour
     #endregion
 
     #region Collision
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
             return;
+
+        
 
         if(collision.GetComponent<IDamageable>() is IDamageable d)
         {
@@ -82,6 +106,8 @@ public class Projectile : MonoBehaviour
             }
         }
     }
+
+
 
     public virtual void OnHit()
     {
@@ -102,5 +128,22 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public virtual void SpawnAoE()
+    {
+        GameObject proj = Object.Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
+        Projectile aoe = proj.GetComponent<AoE>();
+        aoe.InitializeAoE(player, aoeDamage, aoeRadius);
+    }
+
     #endregion
+
+    public Enemy GetRandomEnemy()
+    {
+        if(_enemies.Count == 0)
+        {
+            return null;
+        }
+        int random = Random.Range(0, _enemies.Count);
+        return _enemies[random];
+    }
 }

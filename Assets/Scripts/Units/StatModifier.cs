@@ -9,7 +9,9 @@ public enum StatType
     MaxHealth,
     Piercing,
     ProjectileCount,
-    Firerate
+    Firerate,
+    aoeRadius,
+    aoeDamage
 }
 
 [System.Serializable]

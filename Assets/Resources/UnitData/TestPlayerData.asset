@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: TestPlayerData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: TestPlayer
-  maxHealth: 20
+  maxHealth: 10
   baseDamage: 0
-  moveSpeed: 3
+  moveSpeed: 4
   xpValue: 0
+  animator: {fileID: 22100000, guid: cb1a8dfc63e9b3b4b8d1ffd7b200a5e5, type: 2}
