@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 6fc2c5649611c0549a378e578665a90e
+guid: 243775a086341ad4e866c730d13fb1dd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5854668940037771464
-    second: Oni32xWalk-Sheet_0
+      213: 9192801425848098235
+    second: DarkKnight32x-Sheet_0
   - first:
-      213: 6047407797062490879
-    second: Oni32xWalk-Sheet_1
+      213: 2407442578984252670
+    second: DarkKnight32x-Sheet_1
   - first:
-      213: -1792239909125021915
-    second: Oni32xWalk-Sheet_2
+      213: 6112131732467314626
+    second: DarkKnight32x-Sheet_2
   - first:
-      213: -850280486414757475
-    second: Oni32xWalk-Sheet_3
+      213: 4631389050442016360
+    second: DarkKnight32x-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Oni32xWalk-Sheet_0
+      name: DarkKnight32x-Sheet_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 31
-        height: 32
+        width: 32
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,19 +124,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c0d670b166ff3150800000000000000
-      internalID: 5854668940037771464
+      spriteID: bbd5166f034639f70800000000000000
+      internalID: 9192801425848098235
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Oni32xWalk-Sheet_1
+      name: DarkKnight32x-Sheet_1
       rect:
         serializedVersion: 2
-        x: 35
+        x: 31
         y: 0
-        width: 26
+        width: 33
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -146,20 +146,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffa56d3d955bce350800000000000000
-      internalID: 6047407797062490879
+      spriteID: ef4b1893544f86120800000000000000
+      internalID: 2407442578984252670
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Oni32xWalk-Sheet_2
+      name: DarkKnight32x-Sheet_2
       rect:
         serializedVersion: 2
-        x: 65
+        x: 63
         y: 0
-        width: 29
-        height: 32
+        width: 33
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,19 +168,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 52f13506c4fa027e0800000000000000
-      internalID: -1792239909125021915
+      spriteID: 2cf6b1e5d67a2d450800000000000000
+      internalID: 6112131732467314626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Oni32xWalk-Sheet_3
+      name: DarkKnight32x-Sheet_3
       rect:
         serializedVersion: 2
-        x: 98
+        x: 95
         y: 0
-        width: 27
+        width: 33
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d915dcf07623334f0800000000000000
-      internalID: -850280486414757475
+      spriteID: 866ea30adcff54040800000000000000
+      internalID: 4631389050442016360
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Oni32xWalk-Sheet_0: 5854668940037771464
-      Oni32xWalk-Sheet_1: 6047407797062490879
-      Oni32xWalk-Sheet_2: -1792239909125021915
-      Oni32xWalk-Sheet_3: -850280486414757475
+      DarkKnight32x-Sheet_0: 9192801425848098235
+      DarkKnight32x-Sheet_1: 2407442578984252670
+      DarkKnight32x-Sheet_2: 6112131732467314626
+      DarkKnight32x-Sheet_3: 4631389050442016360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

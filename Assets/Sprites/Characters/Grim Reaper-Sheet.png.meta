@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: f28c2ff8e43b340458df0eee545365ee
+guid: 51b12b06e539cf742ac855b4c9fbd339
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3137370699846604518
-    second: Grim Reaper Walk-Sheet_0
+      213: -7480059396660739797
+    second: Grim Reaper-Sheet_0
   - first:
-      213: 7707331221979484650
-    second: Grim Reaper Walk-Sheet_1
+      213: -7941780812099975350
+    second: Grim Reaper-Sheet_1
   - first:
-      213: 7448649330738229648
-    second: Grim Reaper Walk-Sheet_2
+      213: -4930687156352494627
+    second: Grim Reaper-Sheet_2
   - first:
-      213: -431856447314713618
-    second: Grim Reaper Walk-Sheet_3
+      213: 20350098249200116
+    second: Grim Reaper-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Grim Reaper Walk-Sheet_0
+      name: Grim Reaper-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a19ace298f1d574d0800000000000000
-      internalID: -3137370699846604518
+      spriteID: b21c63b1c9d713890800000000000000
+      internalID: -7480059396660739797
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grim Reaper Walk-Sheet_1
+      name: Grim Reaper-Sheet_1
       rect:
         serializedVersion: 2
         x: 32
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae15d5449e0f5fa60800000000000000
-      internalID: 7707331221979484650
+      spriteID: a4784c2cd6029c190800000000000000
+      internalID: -7941780812099975350
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grim Reaper Walk-Sheet_2
+      name: Grim Reaper-Sheet_2
       rect:
         serializedVersion: 2
         x: 64
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0917a170a1bee5760800000000000000
-      internalID: 7448649330738229648
+      spriteID: dd3570bb72ea29bb0800000000000000
+      internalID: -4930687156352494627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Grim Reaper Walk-Sheet_3
+      name: Grim Reaper-Sheet_3
       rect:
         serializedVersion: 2
         x: 96
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ee328d769dcb10af0800000000000000
-      internalID: -431856447314713618
+      spriteID: 4f1b9497e4c484000800000000000000
+      internalID: 20350098249200116
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Grim Reaper Walk-Sheet_0: -3137370699846604518
-      Grim Reaper Walk-Sheet_1: 7707331221979484650
-      Grim Reaper Walk-Sheet_2: 7448649330738229648
-      Grim Reaper Walk-Sheet_3: -431856447314713618
+      Grim Reaper-Sheet_0: -7480059396660739797
+      Grim Reaper-Sheet_1: -7941780812099975350
+      Grim Reaper-Sheet_2: -4930687156352494627
+      Grim Reaper-Sheet_3: 20350098249200116
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

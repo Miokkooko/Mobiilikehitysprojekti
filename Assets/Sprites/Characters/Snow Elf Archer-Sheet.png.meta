@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 596d8f4adbe4dda49acd01990aa4a92f
+guid: dbb5429d4d254354bb3c0e0a2acd6b21
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1380027498624723819
-    second: Snow Elf Archer Walk-Sheet_0
+      213: -4897724470928254586
+    second: Snow Elf Archer-Sheet_0
   - first:
-      213: -7014557547486034580
-    second: Snow Elf Archer Walk-Sheet_1
+      213: -979154517845245504
+    second: Snow Elf Archer-Sheet_1
   - first:
-      213: -1035609980231360545
-    second: Snow Elf Archer Walk-Sheet_2
+      213: -945090706454844480
+    second: Snow Elf Archer-Sheet_2
   - first:
-      213: -1482752668450967745
-    second: Snow Elf Archer Walk-Sheet_3
+      213: -7728476416543425100
+    second: Snow Elf Archer-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,7 +109,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snow Elf Archer Walk-Sheet_0
+      name: Snow Elf Archer-Sheet_0
       rect:
         serializedVersion: 2
         x: 1
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 594d33c3d4829dce0800000000000000
-      internalID: -1380027498624723819
+      spriteID: 689559efa89c70cb0800000000000000
+      internalID: -4897724470928254586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Snow Elf Archer Walk-Sheet_1
+      name: Snow Elf Archer-Sheet_1
       rect:
         serializedVersion: 2
         x: 34
@@ -146,14 +146,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c654f85431947ae90800000000000000
-      internalID: -7014557547486034580
+      spriteID: 0c18d9f57285962f0800000000000000
+      internalID: -979154517845245504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Snow Elf Archer Walk-Sheet_2
+      name: Snow Elf Archer-Sheet_2
       rect:
         serializedVersion: 2
         x: 65
@@ -168,14 +168,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fdfd57ab536c0a1f0800000000000000
-      internalID: -1035609980231360545
+      spriteID: 0cb6c31820d52e2f0800000000000000
+      internalID: -945090706454844480
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Snow Elf Archer Walk-Sheet_3
+      name: Snow Elf Archer-Sheet_3
       rect:
         serializedVersion: 2
         x: 98
@@ -190,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f3fa733dd443c6be0800000000000000
-      internalID: -1482752668450967745
+      spriteID: 4bdf1f875afeeb490800000000000000
+      internalID: -7728476416543425100
       vertices: []
       indices: 
       edges: []
@@ -210,10 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Snow Elf Archer Walk-Sheet_0: -1380027498624723819
-      Snow Elf Archer Walk-Sheet_1: -7014557547486034580
-      Snow Elf Archer Walk-Sheet_2: -1035609980231360545
-      Snow Elf Archer Walk-Sheet_3: -1482752668450967745
+      Snow Elf Archer-Sheet_0: -4897724470928254586
+      Snow Elf Archer-Sheet_1: -979154517845245504
+      Snow Elf Archer-Sheet_2: -945090706454844480
+      Snow Elf Archer-Sheet_3: -7728476416543425100
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
