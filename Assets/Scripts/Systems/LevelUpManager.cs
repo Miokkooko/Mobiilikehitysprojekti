@@ -11,7 +11,11 @@ public class LevelUpManager : MonoBehaviour
 
     NotificationBase n;
 
-    //public List<Weapon> WeaponUpgrades; Mahdollista teh‰ vasta sitten kun weapons scriptable objecti tehty.
+    //Jono jos on monta upgradea tulossa
+
+    private Queue<List<object>> levelUpQueue = new Queue<List<object>>();
+    private bool isLevelUpActive = false;
+
 
     private void Awake()
     {
@@ -27,28 +31,63 @@ public class LevelUpManager : MonoBehaviour
         {
             ApplyUpgrade(args.upgradeChosen);
         }
+
+        // Katotaan onko lis‰‰ leveluppeja tulossa
+        isLevelUpActive = false;
+        ProcessNextLevelUp();
     }
 
     public void TriggerLevelUp()
     {
         List<object> choices = GetRandomMixedUpgrades(3);
 
-        data.upgradeList = choices;
+        // Jos on jo yks leveluppi -> seuraava jonoon
+        if (isLevelUpActive)
+        {
+            levelUpQueue.Enqueue(choices);
+            Debug.Log("Level up queued. Queue count: " + levelUpQueue.Count);
+            return;
+        }
 
-        // Notificationille dataa
+        ShowLevelUp(choices);
+    }
+
+    private void ShowLevelUp(List<object> choices)
+    {
+        isLevelUpActive = true;
+        data.upgradeList = choices;
+        Time.timeScale = 0f;
+
         n = UIManager.Instance.CreateNotification(data);
 
         n.OnNotificationRaised += Notification_OnNotificationResult;
         n.OnNotificationDestroyed += N_OnNotificationDestroyed;
+    }
 
-        Time.timeScale = 0f;
+
+    private void ProcessNextLevelUp()
+    {
+        if (levelUpQueue.Count > 0)
+        {
+            var nextChoices = levelUpQueue.Dequeue();
+            ShowLevelUp(nextChoices);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
     {
         n = (NotificationBase)sender;
         n.OnNotificationDestroyed -= N_OnNotificationDestroyed;
-        Time.timeScale = 1f;
+
+        //jos notificaatio tuhoutuu tuhotaan que
+        if (!isLevelUpActive && levelUpQueue.Count == 0)
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private List<object> GetRandomMixedUpgrades(int count)
@@ -83,11 +122,11 @@ public class LevelUpManager : MonoBehaviour
 
     private bool CanShowWeapon(WeaponData weapon)
     {
-        // If player doesn't have it, show as "New Weapon"
+     
         if (player.GetWeapon(weapon) == null)
             return true;
 
-        // If player has it, check if it's maxed out (you'll need maxLevel in WeaponData)
+       
         int currentLevel = player.GetWeapon(weapon).upgradeRank;
 
         return currentLevel < weapon.upgradeList.Length;
@@ -128,13 +167,13 @@ public class LevelUpManager : MonoBehaviour
         if (player.GetWeapon(weapon) == null)
         {
             // Uus ase
-            player.AddWeapon(weapon); // You need this method in Player.cs
+            player.AddWeapon(weapon);
             Debug.Log($"New Weapon: {weapon.weaponName}!");
         }
         else
         {
             // P‰ivitys vanhalle aseelle
-            player.UpgradeWeapon(weapon); // You need this method in Player.cs
+            player.UpgradeWeapon(weapon);
             Debug.Log($"Upgraded {weapon.weaponName}!");
         }
     }
