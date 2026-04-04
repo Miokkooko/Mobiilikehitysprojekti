@@ -271,6 +271,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d5960d238a60f41b0cf417a5890864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!114 &284986362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2781221104455276695, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+  m_PrefabInstance: {fileID: 5795858186854509144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &322993457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -699,6 +710,17 @@ MonoBehaviour:
   target: {fileID: 70966953}
   smoothTime: 0.1
   maxSpeed: 30
+--- !u!114 &406942239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6838442574586200467, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+  m_PrefabInstance: {fileID: 5795858186854509144}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &431325547
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1854,6 +1876,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4369956599752584331, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4813163958116167353, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1877,6 +1903,26 @@ PrefabInstance:
     - target: {fileID: 4813163958116167353, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4961509721772029327, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5791803002374640910, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6216154695890423673, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: stickBaseImg
+      value: 
+      objectReference: {fileID: 284986362}
+    - target: {fileID: 6216154695890423673, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: stickKnobImg
+      value: 
+      objectReference: {fileID: 406942239}
+    - target: {fileID: 6216154695890423673, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: m_MovementRange
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6480657785258501602, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2030,6 +2076,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7426756615195435556, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: innerStick
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426756615195435556, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: onScreenStick
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7426756615195435556, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: joystickContainer
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7442324387352002370, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2158,7 +2216,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7426756615195435556, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
