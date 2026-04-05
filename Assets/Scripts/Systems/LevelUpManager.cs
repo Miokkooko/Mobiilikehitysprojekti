@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class LevelUpManager : MonoBehaviour
@@ -37,6 +38,9 @@ public class LevelUpManager : MonoBehaviour
     {
         List<object> choices = GetRandomMixedUpgrades(3);
 
+        if (choices.Count == 0)
+            return;
+
         data.upgradeList = choices;
 
         // Notificationille dataa
@@ -66,15 +70,24 @@ public class LevelUpManager : MonoBehaviour
         // Lis‰t‰‰n aseet
         foreach (var weapon in WeaponUpgrades)
         {
+            if (!player.CanGetWeapon)
+                break;
+
             if (CanShowWeapon(weapon))
                 pool.Add(weapon);
         }
 
         foreach (var status in PassiveUpgrades)
         {
-            if(CanShowPassive(status)) 
+            if (!player.CanGetPassive)
+                break;
+
+            if (CanShowPassive(status)) 
                 pool.Add(status);
         }
+
+        if (pool.Count == 0)
+            return pool;
 
         List<object> selected = new List<object>();
 

@@ -55,8 +55,6 @@ public class Unit : MonoBehaviour, IDamageable
         StatusDict = new Dictionary<StatusEffect, StatusEffectInstance>();
 
         InitializeUnit();
-
-
     }
 
     public void InitializeUnit()
@@ -140,15 +138,17 @@ public class Unit : MonoBehaviour, IDamageable
     {
         var statuses = GetOrderedStatuses();
 
-        foreach (var sei in statuses)
-            sei.Effect.OnHealPre(sei, context);
+        if(context.useHooks)
+            foreach (var sei in statuses)
+                sei.Effect.OnHealPre(sei, context);
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
-
+       
         SpawnHealthPopUp(context);
 
-        foreach (var sei in statuses)
-            sei.Effect.OnHealPost(sei, context);
+        if (context.useHooks)
+            foreach (var sei in statuses)
+                sei.Effect.OnHealPost(sei, context);
     }
 
     public static void ApplyStatusEffect(StatusEffect effect, Unit target)
@@ -178,6 +178,41 @@ public class Unit : MonoBehaviour, IDamageable
 
         Debug.Log($"Removed {effect.Name} status from: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
+    }
+
+    public virtual void AddModifiers(StatModifier[] modifiers)
+    {
+        // idk this seems too hardcoded but i dont want to figure out a better way right now
+        // If we gain maxhealth we need to save previous maxhealth incase it was a % buff since we need to heal 
+        // the same amount of HP as we gained maxHP
+        float prevMaxHealth = MaxHealth;
+
+        statSystem.AddModifiers(modifiers);
+
+        HandleMaxHealthChange(prevMaxHealth);
+    }
+
+    public virtual void HandleMaxHealthChange(float previousMaxHealth)
+    {
+        if (previousMaxHealth >= MaxHealth )
+            return;
+
+        float healAmount = MaxHealth - previousMaxHealth;
+
+        Heal(new HealContext(this, healAmount, false));
+    }
+
+    public virtual void RemoveModifiersFromSource(StatusEffect source)
+    {
+        float prevMaxHealth = MaxHealth;
+        statSystem.RemoveModifiersFromSource(source);
+        HandleMaxHealthChange(prevMaxHealth);
+    }
+    public virtual void RemoveAllModifiers()
+    {
+        float prevMaxHealth = MaxHealth;
+        statSystem.RemoveAllModifiers();
+        HandleMaxHealthChange(prevMaxHealth);
     }
 
     // Tähän tarvin GPT apua ja laitoin talteen koska uutta asiaa itelle

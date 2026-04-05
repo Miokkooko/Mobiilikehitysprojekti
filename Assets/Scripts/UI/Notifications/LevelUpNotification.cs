@@ -75,7 +75,7 @@ public class LevelUpNotification : NotificationBase
             {
                 WeaponInstance instance = LevelUpManager.Instance.GetWeaponFromPlayer(weapon);
                 string prefix = instance == null ? "[NEW] " : "[LVL UP] ";
-                lub.Initialize(weapon.weaponName, weapon.description, weapon.icon, data);
+                lub.Initialize(weapon.weaponName, weapon.description, weapon.Icon, data);
             }
             else if (data is StatusEffect genericStatus)
             {

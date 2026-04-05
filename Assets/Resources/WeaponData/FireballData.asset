@@ -15,7 +15,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 5095381493187369754, guid: 359459e2c12d3cd408c9f015631c4cd7, type: 3}
   weaponName: Fireball
   description: 
-  icon: {fileID: 21300000, guid: e890f0fc1731a6943b27d0957b3160c0, type: 3}
+  Icon: {fileID: 5250389579404634882, guid: cbef50553b081fa428525dcec9cb6c9e, type: 3}
   baseDamage: 2
   firerate: 1
   piercing: 1

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : Unit
@@ -21,9 +22,14 @@ public class Player : Unit
     public float CurrentExp => totalExp;
     public int CurrentLevel => level;
 
+    public bool CanGetWeapon => Weapons.Count < unitData.maxWeapons;
+    public bool CanGetPassive => Weapons.Count < unitData.maxPassives;
+
     public event Action<float> OnPlayerHealthChanged;
     public event Action<float> OnPlayerExpChanged;
     public event Action<int> OnPlayerLevelUp;
+    public event Action<PassiveData[]> OnPlayerGetPassive;
+    public event Action<WeaponData[]> OnPlayerGetWeapon;
 
     public override void Update()
     {
@@ -45,12 +51,24 @@ public class Player : Unit
 
     public void AddPassive(PassiveData data)
     {
+        if (Passives.Count >= unitData.maxPassives)
+        {
+            Debug.Log("Player doesn't have any passive slots left!");
+            return;
+        }
         Passives.Add(data, new PassiveInstance(data));
-        statSystem.AddModifier(Passives[data].GetModifier);
+        AddModifiers(new StatModifier[] { Passives[data].GetModifier });
+
+        OnPlayerGetPassive?.Invoke(Passives.Keys.ToArray());
+        Debug.Log("Player got " + data.Name);
     }
     public void UpgradePassive(PassiveData data)
     {
+        float prevMaxHp = MaxHealth;
         Passives[data].UpgradePassive();
+        HandleMaxHealthChange(prevMaxHp);
+        
+        Debug.Log("Player upgraded " + data.Name);
     }
 
     public PassiveInstance GetPassive(PassiveData data)
@@ -78,13 +96,20 @@ public class Player : Unit
 
     public void AddWeapon(WeaponInstance w)
     {
-        Weapons.Add(w.data, w);
+        AddWeapon(w.data);
     }
 
     public void AddWeapon(WeaponData w)
     {
+        if(Weapons.Count >= unitData.maxWeapons)
+        {
+            Debug.Log("Player doesn't have any weapon slots left!");
+            return;
+        }
         WeaponInstance instance = new WeaponInstance(this, w);
         Weapons.Add(w, instance);
+        OnPlayerGetWeapon?.Invoke(Weapons.Keys.ToArray());
+        Debug.Log("Player got " + w.weaponName);
     }
 
     public void UpgradeWeapon(WeaponData weapon)
@@ -94,6 +119,7 @@ public class Player : Unit
         // wpn.LevelUp(level);
 
         Weapons[weapon].UpgradeWeapon();
+        Debug.Log("Player upgraded " + weapon.weaponName);
     }
 
     public WeaponInstance GetWeapon(WeaponData data)
@@ -126,6 +152,16 @@ public class Player : Unit
     {
         base.Heal(context);
 
+        OnPlayerHealthChanged?.Invoke(Health);
+    }
+
+    public override void HandleMaxHealthChange(float previousMaxHealth)
+    {
+        Debug.Log("PreviousHP = " + previousMaxHealth + " | CurrentHP = " + MaxHealth);
+        if (previousMaxHealth >= MaxHealth)
+            return; 
+
+        base.HandleMaxHealthChange(previousMaxHealth);
         OnPlayerHealthChanged?.Invoke(Health);
     }
     #endregion
