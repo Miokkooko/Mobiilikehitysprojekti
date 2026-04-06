@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
+  m_Name: EnemyWeaponData
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectilePrefab: {fileID: 7775072252728010430, guid: be6167b6b2b31404099a89cfda022633, type: 3}
+  weaponName: EnemyWeapon
+  description: 
+  icon: {fileID: 0}
+  baseDamage: 2
+  firerate: 1
+  piercing: 1
+  projectileCount: 1
+  projectileSpeed: 5
+  projectileLifeTime: 2
+  aoeDamage: 1
+  aoeRadius: 1
+  upgradeList: []
