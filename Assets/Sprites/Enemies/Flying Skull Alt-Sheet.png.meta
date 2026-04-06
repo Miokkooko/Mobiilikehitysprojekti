@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c9c633ae7dcb9414aa8251a359ef8c61
+guid: 4701a1c6f3d75794d850dfc4f3383d17
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5723687508711501353
-    second: Rabid Bat-Sheet_0
+      213: -1185401933369553465
+    second: Flying Skull Alt-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rabid Bat-Sheet_0
+      name: Flying Skull Alt-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 16
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,20 +115,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92ee61ab67f9e6f40800000000000000
-      internalID: 5723687508711501353
+      spriteID: 7cd427dd83b9c8fe0800000000000000
+      internalID: -1185401933369553465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabid Bat-Sheet_1
+      name: Flying Skull Alt-Sheet_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 64
         y: 0
-        width: 16
-        height: 16
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f07e8fe894754d246a0828a9b0fa6f70
-      internalID: -1772230433
+      spriteID: fd4f47dfe72f5f546ac4b00df988461b
+      internalID: -819375812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabid Bat-Sheet_2
+      name: Flying Skull Alt-Sheet_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 128
         y: 0
-        width: 16
-        height: 16
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -159,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6599af9f06998b043957aab8109f3903
-      internalID: -412816464
+      spriteID: 2552b94800837274e9d925e7976a6d5b
+      internalID: -1940270603
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Rabid Bat-Sheet_3
+      name: Flying Skull Alt-Sheet_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 192
         y: 0
-        width: 16
-        height: 16
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a5f50aa163769842b783aa07f2bee73
-      internalID: 845024737
+      spriteID: f23bf983ed84da9429cfcaf59c5f4ad8
+      internalID: 221542342
       vertices: []
       indices: 
       edges: []
@@ -191,7 +191,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 69fd387329451454aa4814e36f7a12d1
+    spriteID: 68a231e539ec96b499cf0f55e2b61250
     internalID: 0
     vertices: []
     indices: 
@@ -201,12 +201,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Rabid Bat-Sheet_0: 5723687508711501353
-      Rabid Bat-Sheet_1: -1772230433
-      Rabid Bat-Sheet_2: -412816464
-      Rabid Bat-Sheet_3: 845024737
+      Flying Skull Alt-Sheet_0: -1185401933369553465
+      Flying Skull Alt-Sheet_1: -819375812
+      Flying Skull Alt-Sheet_2: -1940270603
+      Flying Skull Alt-Sheet_3: 221542342
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
