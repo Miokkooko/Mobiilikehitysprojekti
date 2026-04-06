@@ -101,6 +101,7 @@ public class Projectile : MonoBehaviour
         if(collision.GetComponent<IDamageable>() is IDamageable d)
         {
             Unit.DealDamage(new DamageContext(player, d, damage));
+            OnHitParticles(collision);
         }
 
         if(collision.tag == "Enemy")
@@ -115,19 +116,20 @@ public class Projectile : MonoBehaviour
                 }
             }
         }
-
-        OnHitParticles();
+        
     }
 
 
 
     public virtual void OnHitParticles()
     {
+       
+            if (hitParticles != null)
+            {
+                Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
+            }
         
-        if (hitParticles != null)
-        {
-            Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
-        }
+        
         
 
         if (projectilePiercing != 1)
