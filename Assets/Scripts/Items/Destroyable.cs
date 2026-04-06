@@ -1,11 +1,10 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class Destroyable : Unit
+public class Destroyable : MonoBehaviour, IDamageable
 {
     public Sprite sprite;
-    private bool destroyed=false;
+
+    public float Health;
 
     [Header("Drops")]
     [SerializeField] private DropEvents[] _dropEvents;
@@ -21,53 +20,45 @@ public class Destroyable : Unit
     }
 
 
-    public override void TakeDamage(DamageContext context)
+    public void TakeDamage(DamageContext context)
     {
-        base.TakeDamage(context);
+        Health -= context.Amount;
 
-        if(Health<=0)
+        if (Health <= 0)
         {
-            OnDestroy();
+            FireDropEvent();
+            Destroy(gameObject);
         }
     }
 
-    public void OnDestroy()
+    private void FireDropEvent()
     {
-        FireDropEvent();
-        
-        Destroy(gameObject);
-    }
-    
-   private void FireDropEvent()
-    {
-        if (!destroyed)
+
+        float totalChance = 0f;
+        foreach (DropEvents dropEvents in _dropEvents)
         {
-            destroyed = true;
-            float totalChance = 0f;
-            foreach (DropEvents dropEvents in _dropEvents)
-            {
-                totalChance += dropEvents.DropChance;
-            }
-
-            float rand = Random.Range(0f, totalChance);
-            float cumulaticeChance = 0f;
-
-            foreach (DropEvents dropEvents in _dropEvents)
-            {
-                cumulaticeChance += dropEvents.DropChance;
-
-                if (rand <= cumulaticeChance)
-                {
-                    Instantiate(dropEvents.dropPrefab, transform.position, Quaternion.identity);
-                    return;
-                }
-            }
+            totalChance += dropEvents.DropChance;
         }
 
+        float rand = Random.Range(0f, totalChance);
+        float cumulaticeChance = 0f;
+
+        foreach (DropEvents dropEvents in _dropEvents)
+        {
+            cumulaticeChance += dropEvents.DropChance;
+
+            if (rand <= cumulaticeChance)
+            {
+                Instantiate(dropEvents.dropPrefab, transform.position, Quaternion.identity);
+                return;
+            }
+        }
     }
 
-
-
+    public void Heal(HealContext context)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 

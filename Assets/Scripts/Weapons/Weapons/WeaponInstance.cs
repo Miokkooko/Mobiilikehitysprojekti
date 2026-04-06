@@ -13,7 +13,7 @@ public class WeaponInstance
     public float lastFireTime;
 
     public int upgradeRank = 0;
-
+    public bool CanUpgrade => upgradeRank < data.upgradeList.Length;
     #region stats
     float baseDamage = 1;
     public float Damage => statSystem.Calculate(StatType.Damage, baseDamage + owner.Damage);
@@ -31,10 +31,10 @@ public class WeaponInstance
     public float ProjectileSpeed => statSystem.Calculate(StatType.Speed, baseProjectileSpeed);
 
     float baseAoeDamage = 1f;
-    public float aoeDamage => statSystem.Calculate(StatType.aoeDamage, baseAoeDamage);
+    public float AoEDamage => statSystem.Calculate(StatType.AoEDamage, baseAoeDamage);
 
     float baseAoeRadius = 1f;
-    public float aoeRadius => statSystem.Calculate(StatType.aoeRadius, baseAoeRadius);
+    public float AoERadius => statSystem.Calculate(StatType.aoeRadius, baseAoeRadius);
     #endregion
 
     Coroutine fire;
@@ -56,11 +56,11 @@ public class WeaponInstance
 
     public void UpgradeWeapon()
     {
-        if (upgradeRank >= data.upgradeList.Length)
+        if (!CanUpgrade)
             return;
 
+        statSystem.AddModifier(data.upgradeList[upgradeRank]); 
         upgradeRank++;
-        statSystem.AddModifier(data.upgradeList[upgradeRank - 1]);
     }
 
     public void TryFire()

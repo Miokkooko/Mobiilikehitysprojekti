@@ -48,6 +48,18 @@ public class Enemy : Unit
             }
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player>() is Player p)
+        {
+            if (Time.time >= lastAttackTime + attackRate)
+            {
+                Attack(p);
+            }
+        }
+    }
+
     private void Enemy_OnDeath(object sender, KillContext e)
     {
         GameObject expDrop = Instantiate(Resources.Load<GameObject>("Drops/ExpDrop"), transform.position, Quaternion.identity);

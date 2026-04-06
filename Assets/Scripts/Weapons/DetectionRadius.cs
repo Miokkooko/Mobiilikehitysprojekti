@@ -11,11 +11,7 @@ public class DetectionRadius : MonoBehaviour
         circle = GetComponent<CircleCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Enemy"))
@@ -25,7 +21,6 @@ public class DetectionRadius : MonoBehaviour
             if (enemy != null && !_enemies.Contains(enemy))
             {
                 _enemies.Add(enemy);
-                Debug.Log("Added enemy:"+_enemies);
             }
         }
     }
@@ -39,7 +34,6 @@ public class DetectionRadius : MonoBehaviour
             if (enemy != null)
             {
                 _enemies.Remove(enemy);
-                Debug.Log("Removed enemy:"+_enemies);
             }
         }
     }

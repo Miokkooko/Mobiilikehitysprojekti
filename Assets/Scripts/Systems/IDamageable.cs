@@ -26,11 +26,12 @@ public class HealContext
 {
     public Unit Target { get; }
     public float Amount { get; set; }
-
-    public HealContext(Unit target, float amount)
+    public bool useHooks = true;
+    public HealContext(Unit target, float amount, bool useHooks = true)
     {
         Target = target;
         Amount = amount;
+        this.useHooks = useHooks;
     }
 }
 public class KillContext

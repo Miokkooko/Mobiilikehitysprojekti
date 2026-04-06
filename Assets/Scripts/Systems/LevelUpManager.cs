@@ -1,17 +1,26 @@
+using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class LevelUpManager : MonoBehaviour
 {
     public static LevelUpManager Instance;
     public LevelUpData data;
-    public List<StatusEffect> StatusUpgrades;
+    public List<PassiveData> PassiveUpgrades;
     public List<WeaponData> WeaponUpgrades;
+
+    int queuedNotifications = 0;
+
     public Player player;
 
     NotificationBase n;
 
-    //public List<Weapon> WeaponUpgrades; Mahdollista teh‰ vasta sitten kun weapons scriptable objecti tehty.
+    //Jono jos on monta upgradea tulossa
+
+    private Queue<List<object>> levelUpQueue = new Queue<List<object>>();
+    private bool isLevelUpActive = false;
+
 
     private void Awake()
     {
@@ -27,53 +36,84 @@ public class LevelUpManager : MonoBehaviour
         {
             ApplyUpgrade(args.upgradeChosen);
         }
+
+        // Katotaan onko lis√§√§ leveluppeja tulossa
+        isLevelUpActive = false;
+        ProcessNextLevelUp();
     }
 
     public void TriggerLevelUp()
     {
         List<object> choices = GetRandomMixedUpgrades(3);
 
-        data.upgradeList = choices;
+        if (choices.Count == 0)
+            return;
 
-        // Notificationille dataa
+        data.upgradeList = choices;
+        Time.timeScale = 0f;
+
         n = UIManager.Instance.CreateNotification(data);
 
         n.OnNotificationRaised += Notification_OnNotificationResult;
         n.OnNotificationDestroyed += N_OnNotificationDestroyed;
+        queuedNotifications++;
 
-        Time.timeScale = 0f;
+
+    private void ProcessNextLevelUp()
+    {
+        if (levelUpQueue.Count > 0)
+        {
+            var nextChoices = levelUpQueue.Dequeue();
+            ShowLevelUp(nextChoices);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
     {
         n = (NotificationBase)sender;
+        queuedNotifications--;
         n.OnNotificationDestroyed -= N_OnNotificationDestroyed;
-        Time.timeScale = 1f;
+
+        if(queuedNotifications == 0)
+            Time.timeScale = 1f;
     }
 
     private List<object> GetRandomMixedUpgrades(int count)
     {
         List<object> pool = new List<object>();
 
-        // Lis‰t‰‰n aseet
+        // Lis√§t√§√§n aseet
         foreach (var weapon in WeaponUpgrades)
         {
+            if (!player.CanGetWeapon)
+                break;
+
             if (CanShowWeapon(weapon))
                 pool.Add(weapon);
         }
 
-        foreach (var status in StatusUpgrades)
+        foreach (var status in PassiveUpgrades)
         {
-            // katotaan onko maxxed
-            pool.Add(status);
+            if (!player.CanGetPassive)
+                break;
+
+            if (CanShowPassive(status)) 
+                pool.Add(status);
         }
+
+        if (pool.Count == 0)
+            return pool;
 
         List<object> selected = new List<object>();
 
-        //Valitaan 3 p‰ivityst‰ randomilla
+        //Valitaan 3 p√§ivityst√§ randomilla
         for (int i = 0; i < count && pool.Count > 0; i++)
         {
-            int randomIndex = Random.Range(0, pool.Count);
+            int randomIndex = UnityEngine.Random.Range(0, pool.Count);
             selected.Add(pool[randomIndex]);
             pool.RemoveAt(randomIndex);
         }
@@ -83,29 +123,39 @@ public class LevelUpManager : MonoBehaviour
 
     private bool CanShowWeapon(WeaponData weapon)
     {
-        // If player doesn't have it, show as "New Weapon"
-        if (player.GetWeapon(weapon) == null)
+        WeaponInstance instance = player.GetWeapon(weapon);
+        if (instance == null || instance.CanUpgrade)
             return true;
 
-        // If player has it, check if it's maxed out (you'll need maxLevel in WeaponData)
-        int currentLevel = player.GetWeapon(weapon).upgradeRank;
-
-        return currentLevel < weapon.upgradeList.Length;
+        return false;
     }
-    public WeaponInstance GetWeapon(WeaponData weapon)
+    private bool CanShowPassive(PassiveData data)
+    {
+        PassiveInstance instance = player.GetPassive(data);
+        if (instance == null || instance.CanUpgrade)
+            return true;
+
+        return false;
+    }
+    public WeaponInstance GetWeaponFromPlayer(WeaponData weapon)
     {
         return player.GetWeapon(weapon);
     }
 
-    // Lis‰‰ upgradet
+    public PassiveInstance GetPassiveFromPlayer(PassiveData data)
+    {
+        return player.GetPassive(data);
+    }
+
+    // Lis√§√§ upgradet
     public void ApplyUpgrade(object chosenUpgrade)
     {
         if (chosenUpgrade == null) return;
 
         switch (chosenUpgrade)
         {
-            case StatusEffect statusEffect:
-                ApplyStatusEffect(statusEffect);
+            case PassiveData passive:
+                ApplyPassiveUpgrade(passive);
                 break;
 
             case WeaponData weapon:
@@ -116,26 +166,27 @@ public class LevelUpManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    private void ApplyStatusEffect(StatusEffect effect)
+    private void ApplyPassiveUpgrade(PassiveData data)
     {
-        if (effect == null) return;
-
-        Unit.ApplyStatusEffect(effect, player);
+        if (player.GetPassive(data) == null)
+        {
+            player.AddPassive(data);
+        }
+        else
+        {
+            player.UpgradePassive(data); 
+        }
     }
 
     private void ApplyWeaponUpgrade(WeaponData weapon)
     {
         if (player.GetWeapon(weapon) == null)
         {
-            // Uus ase
-            player.AddWeapon(weapon); // You need this method in Player.cs
-            Debug.Log($"New Weapon: {weapon.weaponName}!");
+            player.AddWeapon(weapon); 
         }
         else
         {
-            // P‰ivitys vanhalle aseelle
-            player.UpgradeWeapon(weapon); // You need this method in Player.cs
-            Debug.Log($"Upgraded {weapon.weaponName}!");
+            player.UpgradeWeapon(weapon); 
         }
     }
 }

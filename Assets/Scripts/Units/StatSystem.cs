@@ -13,10 +13,11 @@ public class StatSystem
         modifiers.Add(mod);
     }
 
-    public void RemoveModifiersFromSource(StatusEffect source)
+    public void RemoveModifiersFromSource(object source)
     {
         modifiers.RemoveAll(m => m.source == source);
     }
+
     public void RemoveAllModifiers()
     {
         modifiers.Clear();

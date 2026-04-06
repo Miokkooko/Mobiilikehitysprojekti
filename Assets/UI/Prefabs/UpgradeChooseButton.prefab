@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Epic Axe
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
-  m_sharedMaterial: {fileID: 995142810613603373, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
+  m_sharedMaterial: {fileID: 8047203573540749088, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -252,6 +252,7 @@ MonoBehaviour:
   UpgradeRank: {fileID: 3969210722396858927}
   UpgradeDescription: {fileID: 2814905413836594305}
   UpgradeRankUpDescription: {fileID: 897764720581779080}
+  status: {fileID: 0}
 --- !u!114 &5807446653314497424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,8 +376,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Rank \n1 > 2"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
-  m_sharedMaterial: {fileID: 995142810613603373, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
+  m_sharedMaterial: {fileID: 8047203573540749088, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -512,8 +513,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Throws axes that fall downwards.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
-  m_sharedMaterial: {fileID: 995142810613603373, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
+  m_sharedMaterial: {fileID: 8047203573540749088, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -649,8 +650,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: +1 axes thrown
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
-  m_sharedMaterial: {fileID: 995142810613603373, guid: d1d8c1a9645d8cd448807132c84ff2da, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
+  m_sharedMaterial: {fileID: 8047203573540749088, guid: 75106a2ba652fee49b5327f08bcb866b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

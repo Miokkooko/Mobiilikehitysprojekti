@@ -20,7 +20,6 @@ public class KillCounter : MonoBehaviour
     private void Player_OnKill(object sender, KillContext e)
     {
         killCount += 1;
-        Debug.Log(killCount);
 
         if(killCount % 2 == 0)
         {

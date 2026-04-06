@@ -66,6 +66,53 @@ public class LevelUpNotification : NotificationBase
         {
             lub.OnButtonPress += Lub_OnButtonPress;
 
+            if (data is ModifierStatusEffect status)
+            {
+                bool hasStatus = LevelUpManager.Instance.player.HasStatusEffect(status);
+                string rankText = hasStatus ? "Lvl Up" : "NEW";
+
+                lub.Initialize(status.Name, status.Description, null, data, rankText, "");
+            }
+            else if (data is WeaponData weapon)
+            {
+                WeaponInstance instance = LevelUpManager.Instance.GetWeapon(weapon);
+                bool isNew = instance == null;
+                string prefix = isNew ? "[NEW]" : "[LVL UP]";
+                string currentRank = isNew ? "0" : instance.upgradeRank.ToString();
+                string maxRank = weapon.upgradeList.Length.ToString();
+                string rankText = $"{prefix} {currentRank}/{maxRank}";
+
+                string nextLevelDesc = "";
+                if (!isNew && instance.upgradeRank < weapon.upgradeList.Length)
+                {
+                    var nextMod = weapon.upgradeList[instance.upgradeRank];
+                    nextLevelDesc = nextMod.upgradeDescription;
+                }
+                else if (isNew)
+                {
+                    nextLevelDesc = weapon.description; // käytetään base descriptionia
+                }
+
+                lub.Initialize(weapon.weaponName, weapon.description, weapon.icon, data, rankText, nextLevelDesc);
+            }
+            else if (data is StatusEffect genericStatus)
+            {
+                lub.Initialize(genericStatus.Name, genericStatus.Description, null, data, "", "");
+            }
+
+            buttons.Add(lub);
+        }
+    }
+
+    /*
+    void SpawnButton(Transform parent, object data)
+    {
+        Transform t = Instantiate(buttonPrefab, parent);
+
+        if (t.GetComponent<LevelUpButton>() is LevelUpButton lub)
+        {
+            lub.OnButtonPress += Lub_OnButtonPress;
+
             // Set display based on type
             if (data is ModifierStatusEffect status)
             {
@@ -73,9 +120,9 @@ public class LevelUpNotification : NotificationBase
             }
             else if (data is WeaponData weapon)
             {
-                WeaponInstance instance = LevelUpManager.Instance.GetWeapon(weapon);
+                WeaponInstance instance = LevelUpManager.Instance.GetWeaponFromPlayer(weapon);
                 string prefix = instance == null ? "[NEW] " : "[LVL UP] ";
-                lub.Initialize(weapon.weaponName, weapon.description, weapon.icon, data);
+                lub.Initialize(weapon.weaponName, weapon.description, weapon.Icon, data);
             }
             else if (data is StatusEffect genericStatus)
             {
@@ -85,6 +132,7 @@ public class LevelUpNotification : NotificationBase
             buttons.Add(lub);
         }
     }
+    */
 
     private void Lub_OnButtonPress(object sender, LevelUpButton.LevelUpButtonArgs e)
     {
