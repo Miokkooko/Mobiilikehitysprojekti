@@ -81,10 +81,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1698942247
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 869671561, guid: d04e8ba993034bc479b284f2a65f6b2d, type: 3}
+  m_Sprite: {fileID: -1772230433, guid: c9c633ae7dcb9414aa8251a359ef8c61, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -170,3 +170,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   unitData: {fileID: 11400000, guid: 0497cb22249daed42b1b64e44d426993, type: 2}
+  effects: []
