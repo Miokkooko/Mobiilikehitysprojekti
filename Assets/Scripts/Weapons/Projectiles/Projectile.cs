@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
+    public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
+
     [Header("ProjectileStats")]
     protected float projectileSpeed = 5f;
     protected float projectilePiercing = 1f;
@@ -64,6 +66,8 @@ public class Projectile : MonoBehaviour
         aoeDamage = w.data.aoeDamage;
         aoeRadius = w.data.aoeRadius;
 
+        OnHitEffects = w.OnHitEffects;
+
         detRadius = player.GetComponentInChildren<DetectionRadius>();
         _enemies = detRadius._enemies;
     }
@@ -101,18 +105,23 @@ public class Projectile : MonoBehaviour
 
         if(collision.tag == "Enemy")
         {
-            Enemy dummy = collision.GetComponent<Enemy>();
+            Enemy enemy = collision.GetComponent<Enemy>();
 
-            if (dummy != null)
+            if (OnHitEffects != null)
             {
-                OnHit();
+                foreach (var effect in OnHitEffects)
+                {
+                    Unit.ApplyStatusEffect(effect, enemy);
+                }
             }
         }
+
+        OnHitParticles();
     }
 
 
 
-    public virtual void OnHit()
+    public virtual void OnHitParticles()
     {
         
         if (hitParticles != null)

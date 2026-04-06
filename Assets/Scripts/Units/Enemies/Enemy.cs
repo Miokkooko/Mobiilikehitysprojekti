@@ -9,6 +9,8 @@ public class Enemy : Unit
     protected float lastAttackTime = 0f;
     protected float attackRate = 1f;
 
+    public StatusEffect[] effects;
+
     public virtual void Start()
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
@@ -38,6 +40,14 @@ public class Enemy : Unit
     {
         lastAttackTime = Time.time;
         DealDamage(new DamageContext(this, target, Damage));
+
+        if(effects != null && target is Player p)
+        {
+            foreach(var effect in effects)
+            {
+                ApplyStatusEffect(effect, p);
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

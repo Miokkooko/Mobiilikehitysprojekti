@@ -8,6 +8,8 @@ public class Player : Unit
     Dictionary<WeaponData, WeaponInstance> Weapons = new Dictionary<WeaponData, WeaponInstance>();
     Dictionary<PassiveData, PassiveInstance> Passives = new Dictionary<PassiveData, PassiveInstance>();
 
+    public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
+
     PlayerMovement Movement;
 
     //leveling

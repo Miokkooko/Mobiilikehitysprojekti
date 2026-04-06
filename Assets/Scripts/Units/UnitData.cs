@@ -3,7 +3,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewUnitData", menuName = "Units/Unit Data")]
 public class UnitData : ScriptableObject
 {
-    
     public string unitName;
 
     public int maxWeapons = 6;

@@ -10,6 +10,7 @@ public class StatusEffect : ScriptableObject
     public string Description;
     public float Duration;
     public int MaxStacks;
+    public float TickRate = 1f;
 
     public StatusStackType StackType;
     public StatusLifetime LifetimeType;

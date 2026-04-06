@@ -30,7 +30,7 @@ public class AoE : Projectile
 
             if (dummy != null)
             {
-                OnHit();
+                OnHitParticles();
             }
         }
     }

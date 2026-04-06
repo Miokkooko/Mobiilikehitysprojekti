@@ -24,4 +24,5 @@ public class WeaponData : ScriptableObject
     public float aoeRadius = 1f;
 
     public WeaponModifier[] upgradeList;
+    public StatusEffect[] effectList;
 }

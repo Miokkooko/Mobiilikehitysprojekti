@@ -12,9 +12,9 @@ public class ProjMine : Projectile
 
     }
 
-    public override void OnHit()
+    public override void OnHitParticles()
     {
-        base.OnHit();
+        base.OnHitParticles();
         SpawnAoE();
     }
 }

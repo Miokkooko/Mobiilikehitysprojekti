@@ -1,10 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 
 public class WeaponInstance
 {
+    public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
 
     protected Player owner;
     public WeaponData data;
@@ -52,6 +54,8 @@ public class WeaponInstance
         basePiercing = data.piercing;
         baseAoeDamage = data.aoeDamage;
         baseAoeRadius = data.aoeRadius;
+
+        OnHitEffects = owner.OnHitEffects;
     }
 
     public void UpgradeWeapon()

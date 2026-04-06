@@ -15,6 +15,7 @@ public class StatusEffectInstance
     {
         Effect = effect;
         Owner = target;
+        tickRate = effect.TickRate;
         Apply();
     }
 

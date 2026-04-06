@@ -37,9 +37,9 @@ public class ProjFireball : Projectile
         particles.transform.rotation = Quaternion.Euler(0, 0, angle-180); 
     }
 
-    public override void OnHit()
+    public override void OnHitParticles()
     {
-        base.OnHit();
+        base.OnHitParticles();
         SpawnAoE();
     }
 }
