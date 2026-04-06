@@ -101,7 +101,7 @@ public class Projectile : MonoBehaviour
         if(collision.GetComponent<IDamageable>() is IDamageable d)
         {
             Unit.DealDamage(new DamageContext(player, d, damage));
-            OnHitParticles(collision);
+            OnHitParticles();
         }
 
         if(collision.tag == "Enemy")
