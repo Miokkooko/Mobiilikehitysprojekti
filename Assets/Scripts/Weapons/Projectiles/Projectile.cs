@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviour
     //Movement
     protected Vector3 direction;
     protected Player player;
+    protected Enemy enemy;
     protected Transform playerPos => player.transform;
     protected float angle;
 
@@ -66,6 +67,8 @@ public class Projectile : MonoBehaviour
         detRadius = player.GetComponentInChildren<DetectionRadius>();
         _enemies = detRadius._enemies;
     }
+
+    
 
     public virtual void InitializeAoE(Player p, float d, float r)
     {

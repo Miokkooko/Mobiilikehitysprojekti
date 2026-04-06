@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class Enemy : Unit
 {
-    private GameObject playerToFollow;
+    protected GameObject playerToFollow;
+    protected Player player;
 
-    float lastAttackTime = 0f;
-    float attackRate = 1f;
+    protected float lastAttackTime = 0f;
+    protected float attackRate = 1f;
 
-    private void Start()
+    public virtual void Start()
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
+        player = playerToFollow.GetComponent<Player>();
         OnDeath += Enemy_OnDeath;
     }
 
