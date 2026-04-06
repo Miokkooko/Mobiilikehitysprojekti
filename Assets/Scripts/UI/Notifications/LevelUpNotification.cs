@@ -71,32 +71,42 @@ public class LevelUpNotification : NotificationBase
             {
                 PassiveInstance instance = LevelUpManager.Instance.GetPassiveFromPlayer(passive);
                 string prefix = instance != null ? "[LVL UP]" : "[NEW]";
+                string rankText = "";
 
-                string currentRank = instance.upgradeRank.ToString();
-                string maxRank = instance.data.Upgrades.Length.ToString();
+                if(instance != null)
+                {
+                    string currentRank = instance.upgradeRank.ToString();
+                    string maxRank = instance.data.Upgrades.Length.ToString();
 
-                string rankText = $"{prefix} {currentRank}/{maxRank}";
-
+                    rankText = $"{prefix} {currentRank}/{maxRank}";
+                }
+                
                 lub.Initialize(passive.Name, passive.Description, null, data, rankText, "");
             }
             else if (data is WeaponData weapon)
             {
                 WeaponInstance instance = LevelUpManager.Instance.GetWeaponFromPlayer(weapon);
                 bool isNew = instance == null;
-                string prefix = isNew ? "[NEW]" : "[LVL UP]";
-                string currentRank = isNew ? "0" : instance.upgradeRank.ToString();
-                string maxRank = weapon.upgradeList.Length.ToString();
-                string rankText = $"{prefix} {currentRank}/{maxRank}";
 
+                string prefix = isNew ? "[NEW]" : "[LVL UP]";
+                string rankText = "";
                 string nextLevelDesc = "";
-                if (!isNew && instance.upgradeRank < weapon.upgradeList.Length)
+
+                if (instance != null)
                 {
-                    var nextMod = weapon.upgradeList[instance.upgradeRank];
-                    nextLevelDesc = nextMod.upgradeDescription;
-                }
-                else if (isNew)
-                {
-                    nextLevelDesc = weapon.description; // käytetään base descriptionia
+                    string currentRank = isNew ? "0" : instance.upgradeRank.ToString();
+                    string maxRank = weapon.upgradeList.Length.ToString();
+                    rankText = $"{prefix} {currentRank}/{maxRank}";
+                    
+                    if (!isNew && instance.upgradeRank < weapon.upgradeList.Length)
+                    {
+                        var nextMod = weapon.upgradeList[instance.upgradeRank];
+                        nextLevelDesc = nextMod.upgradeDescription;
+                    }
+                    else if (isNew)
+                    {
+                        nextLevelDesc = weapon.description; // käytetään base descriptionia
+                    }
                 }
 
                 lub.Initialize(weapon.weaponName, weapon.description, weapon.Icon, data, rankText, nextLevelDesc);
