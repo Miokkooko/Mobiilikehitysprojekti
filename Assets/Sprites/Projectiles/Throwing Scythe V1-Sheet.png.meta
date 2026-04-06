@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 77781384633922e499513bd3d9173081
+guid: 35e6fcbe6fa11c44ead00b1649d6aa92
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4920520170397818850
-    second: Invincible Sun-Sheet_0
+      213: -2394155888481090368
+    second: Throwing Scythe V1-Sheet_0
+  - first:
+      213: 6953052965472001917
+    second: Throwing Scythe V1-Sheet_1
+  - first:
+      213: -4886397277096733705
+    second: Throwing Scythe V1-Sheet_2
+  - first:
+      213: 4069413058389325009
+    second: Throwing Scythe V1-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,12 +109,78 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Invincible Sun-Sheet_0
+      name: Throwing Scythe V1-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c4cc2a77ef36ced0800000000000000
+      internalID: -2394155888481090368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throwing Scythe V1-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 14
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7f5f6f45d43e7060800000000000000
+      internalID: 6953052965472001917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throwing Scythe V1-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 2
+        width: 16
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f39633d097003cb0800000000000000
+      internalID: -4886397277096733705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Throwing Scythe V1-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 0
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -115,8 +190,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e102b4d99fcc6bbb0800000000000000
-      internalID: -4920520170397818850
+      spriteID: 1d4b1adad95797830800000000000000
+      internalID: 4069413058389325009
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Invincible Sun-Sheet_0: -4920520170397818850
+      Throwing Scythe V1-Sheet_0: -2394155888481090368
+      Throwing Scythe V1-Sheet_1: 6953052965472001917
+      Throwing Scythe V1-Sheet_2: -4886397277096733705
+      Throwing Scythe V1-Sheet_3: 4069413058389325009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

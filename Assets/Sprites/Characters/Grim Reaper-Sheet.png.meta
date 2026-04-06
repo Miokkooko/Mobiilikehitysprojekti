@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 77781384633922e499513bd3d9173081
+guid: 51b12b06e539cf742ac855b4c9fbd339
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4920520170397818850
-    second: Invincible Sun-Sheet_0
+      213: -7480059396660739797
+    second: Grim Reaper-Sheet_0
+  - first:
+      213: -7941780812099975350
+    second: Grim Reaper-Sheet_1
+  - first:
+      213: -4930687156352494627
+    second: Grim Reaper-Sheet_2
+  - first:
+      213: 20350098249200116
+    second: Grim Reaper-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Invincible Sun-Sheet_0
+      name: Grim Reaper-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 128
-        height: 16
+        width: 33
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e102b4d99fcc6bbb0800000000000000
-      internalID: -4920520170397818850
+      spriteID: b21c63b1c9d713890800000000000000
+      internalID: -7480059396660739797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grim Reaper-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4784c2cd6029c190800000000000000
+      internalID: -7941780812099975350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grim Reaper-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 33
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd3570bb72ea29bb0800000000000000
+      internalID: -4930687156352494627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Grim Reaper-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f1b9497e4c484000800000000000000
+      internalID: 20350098249200116
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Invincible Sun-Sheet_0: -4920520170397818850
+      Grim Reaper-Sheet_0: -7480059396660739797
+      Grim Reaper-Sheet_1: -7941780812099975350
+      Grim Reaper-Sheet_2: -4930687156352494627
+      Grim Reaper-Sheet_3: 20350098249200116
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 77781384633922e499513bd3d9173081
+guid: c86e3ff6d06b6974faa074d7b8bd0794
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4920520170397818850
-    second: Invincible Sun-Sheet_0
+      213: 8871515407958690352
+    second: Noble32xWalk-Sheet_0
+  - first:
+      213: -871238978302895123
+    second: Noble32xWalk-Sheet_1
+  - first:
+      213: -2721603313617978658
+    second: Noble32xWalk-Sheet_2
+  - first:
+      213: -5716729483426696330
+    second: Noble32xWalk-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Invincible Sun-Sheet_0
+      name: Noble32xWalk-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 2
         y: 0
-        width: 128
-        height: 16
+        width: 31
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e102b4d99fcc6bbb0800000000000000
-      internalID: -4920520170397818850
+      spriteID: 03a48ce9244fd1b70800000000000000
+      internalID: 8871515407958690352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Noble32xWalk-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 31
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb18c7e3ccb8e3f0800000000000000
+      internalID: -871238978302895123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Noble32xWalk-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 0
+        width: 31
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eda3648b43cea3ad0800000000000000
+      internalID: -2721603313617978658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Noble32xWalk-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 0
+        width: 30
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6737957c2d81aa0b0800000000000000
+      internalID: -5716729483426696330
       vertices: []
       indices: 
       edges: []
@@ -135,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Invincible Sun-Sheet_0: -4920520170397818850
+      Noble32xWalk-Sheet_0: 8871515407958690352
+      Noble32xWalk-Sheet_1: -871238978302895123
+      Noble32xWalk-Sheet_2: -2721603313617978658
+      Noble32xWalk-Sheet_3: -5716729483426696330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 77781384633922e499513bd3d9173081
+guid: 83e60ebeeacd8b843ba94b518582b63c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4920520170397818850
-    second: Invincible Sun-Sheet_0
+      213: 3713222984732332541
+    second: Gravestone-Sheet_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Invincible Sun-Sheet_0
+      name: Gravestone-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e102b4d99fcc6bbb0800000000000000
-      internalID: -4920520170397818850
+      spriteID: df159c091a4088330800000000000000
+      internalID: 3713222984732332541
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Invincible Sun-Sheet_0: -4920520170397818850
+      Gravestone-Sheet_0: 3713222984732332541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
