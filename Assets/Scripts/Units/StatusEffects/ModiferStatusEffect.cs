@@ -8,11 +8,11 @@ public class ModifierStatusEffect : StatusEffect
 
     public override void OnApplied(StatusEffectInstance instance)
     {
-        instance.Owner.statSystem.AddModifiers(Modifiers);
+        instance.Owner.AddModifiers(Modifiers);
     }
 
     public override void OnExpired(StatusEffectInstance instance)
     {
-        instance.Owner.statSystem.RemoveModifiersFromSource(this);
+        instance.Owner.RemoveModifiersFromSource(this);
     }
 }

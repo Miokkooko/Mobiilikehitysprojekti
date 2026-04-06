@@ -11,7 +11,7 @@ public class WeaponData : ScriptableObject
     //uusia juttuja
     public string weaponName;
     public string description;
-    public Sprite icon;
+    public Sprite Icon;
 
     [Header("Stats")]
     public float baseDamage;

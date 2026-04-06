@@ -15,12 +15,15 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8125054451507894081, guid: 8208327c9212a5d419d604963b7a6f0d, type: 3}
   weaponName: Axe
   description: 
-  icon: {fileID: 4343594113658449775, guid: 7201685fea70e01419c6d09c37b69dbb, type: 3}
+  Icon: {fileID: 245248123180487230, guid: 4a99aa1ec78be754dafd88dd174576e7, type: 3}
   baseDamage: 2
   firerate: 2
+  piercing: 1
   projectileCount: 1
   projectileSpeed: 5
   projectileLifeTime: 2
+  aoeDamage: 1
+  aoeRadius: 1
   upgradeList:
   - Stat: 3
     Value: 1
