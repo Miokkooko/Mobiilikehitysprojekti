@@ -556,7 +556,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -1690,7 +1690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
   data: {fileID: 11400000, guid: 6dc5927fc3e6d8043aba97d8b91eeae4, type: 2}
-  StatusUpgrades: []
+  PassiveUpgrades: []
   WeaponUpgrades:
   - {fileID: 11400000, guid: 41a37d1ec3eb7f5439e283fa0755571e, type: 2}
   - {fileID: 11400000, guid: 5f87a1e7cfbcab541bc3d27eceb591b7, type: 2}
@@ -2021,6 +2021,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2754587213578604663, guid: d8ae13fe4915eda4abd0c7eebc4c3513, type: 3}
+      propertyPath: data
+      value: 
+      objectReference: {fileID: 11400000, guid: 30c9a767206f4734099948f2d298e269, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
