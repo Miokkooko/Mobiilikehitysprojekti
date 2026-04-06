@@ -13,7 +13,6 @@ public class PlayerHUD : MonoBehaviour
     public TMP_Text HealthText;
 
     public TMP_Text KillsText;
-    int kills = 0;
     public TMP_Text TimerText;
 
     float timer = 0f;
@@ -67,7 +66,7 @@ public class PlayerHUD : MonoBehaviour
 
     void Update()
     {
-        timer += Time.deltaTime; 
+        timer = GameManager.instance.GameTime;
 
         int minutes = Mathf.FloorToInt(timer / 60f);
         int seconds = Mathf.FloorToInt(timer % 60f);
@@ -78,9 +77,8 @@ public class PlayerHUD : MonoBehaviour
     }
 
     private void OnEnemyKilled(object sender, KillContext e)
-    { 
-        kills++;
-        KillsText.text = kills.ToString();
+    {
+        KillsText.text = GameManager.instance.Kills.ToString();
     }
 
     private void OnPlayerLevelUp(int obj)

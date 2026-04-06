@@ -23,7 +23,7 @@ public class Player : Unit
     public int CurrentLevel => level;
 
     public bool CanGetWeapon => Weapons.Count < unitData.maxWeapons;
-    public bool CanGetPassive => Weapons.Count < unitData.maxPassives;
+    public bool CanGetPassive => Passives.Count < unitData.maxPassives;
 
     public event Action<float> OnPlayerHealthChanged;
     public event Action<float> OnPlayerExpChanged;

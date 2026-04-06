@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.iOS;
 
 public class LevelUpManager : MonoBehaviour
 {
@@ -75,20 +76,15 @@ public class LevelUpManager : MonoBehaviour
         // Lisätään aseet
         foreach (var weapon in WeaponUpgrades)
         {
-            if (!player.CanGetWeapon)
-                break;
-
+            
             if (CanShowWeapon(weapon))
                 pool.Add(weapon);
         }
 
-        foreach (var status in PassiveUpgrades)
+        foreach (var passive in PassiveUpgrades)
         {
-            if (!player.CanGetPassive)
-                break;
-
-            if (CanShowPassive(status)) 
-                pool.Add(status);
+            if (CanShowPassive(passive)) 
+                pool.Add(passive);
         }
 
         if (pool.Count == 0)
@@ -110,18 +106,19 @@ public class LevelUpManager : MonoBehaviour
     private bool CanShowWeapon(WeaponData weapon)
     {
         WeaponInstance instance = player.GetWeapon(weapon);
-        if (instance == null || instance.CanUpgrade)
-            return true;
 
-        return false;
+        if (instance != null)
+            return instance.CanUpgrade;
+        else
+            return player.CanGetWeapon;
     }
     private bool CanShowPassive(PassiveData data)
     {
         PassiveInstance instance = player.GetPassive(data);
-        if (instance == null || instance.CanUpgrade)
-            return true;
-
-        return false;
+        if (instance != null)
+            return instance.CanUpgrade;
+        else
+            return player.CanGetPassive;
     }
     public WeaponInstance GetWeaponFromPlayer(WeaponData weapon)
     {
