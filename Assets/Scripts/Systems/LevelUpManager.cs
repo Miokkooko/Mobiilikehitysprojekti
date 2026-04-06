@@ -16,7 +16,11 @@ public class LevelUpManager : MonoBehaviour
 
     NotificationBase n;
 
-    //public List<Weapon> WeaponUpgrades; Mahdollista teh‰ vasta sitten kun weapons scriptable objecti tehty.
+    //Jono jos on monta upgradea tulossa
+
+    private Queue<List<object>> levelUpQueue = new Queue<List<object>>();
+    private bool isLevelUpActive = false;
+
 
     private void Awake()
     {
@@ -32,6 +36,10 @@ public class LevelUpManager : MonoBehaviour
         {
             ApplyUpgrade(args.upgradeChosen);
         }
+
+        // Katotaan onko lis√§√§ leveluppeja tulossa
+        isLevelUpActive = false;
+        ProcessNextLevelUp();
     }
 
     public void TriggerLevelUp()
@@ -42,15 +50,26 @@ public class LevelUpManager : MonoBehaviour
             return;
 
         data.upgradeList = choices;
+        Time.timeScale = 0f;
 
-        // Notificationille dataa
         n = UIManager.Instance.CreateNotification(data);
 
         n.OnNotificationRaised += Notification_OnNotificationResult;
         n.OnNotificationDestroyed += N_OnNotificationDestroyed;
         queuedNotifications++;
 
-        Time.timeScale = 0f;
+
+    private void ProcessNextLevelUp()
+    {
+        if (levelUpQueue.Count > 0)
+        {
+            var nextChoices = levelUpQueue.Dequeue();
+            ShowLevelUp(nextChoices);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
     }
 
     private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
@@ -67,7 +86,7 @@ public class LevelUpManager : MonoBehaviour
     {
         List<object> pool = new List<object>();
 
-        // Lis‰t‰‰n aseet
+        // Lis√§t√§√§n aseet
         foreach (var weapon in WeaponUpgrades)
         {
             if (!player.CanGetWeapon)
@@ -91,7 +110,7 @@ public class LevelUpManager : MonoBehaviour
 
         List<object> selected = new List<object>();
 
-        //Valitaan 3 p‰ivityst‰ randomilla
+        //Valitaan 3 p√§ivityst√§ randomilla
         for (int i = 0; i < count && pool.Count > 0; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, pool.Count);
@@ -128,7 +147,7 @@ public class LevelUpManager : MonoBehaviour
         return player.GetPassive(data);
     }
 
-    // Lis‰‰ upgradet
+    // Lis√§√§ upgradet
     public void ApplyUpgrade(object chosenUpgrade)
     {
         if (chosenUpgrade == null) return;
