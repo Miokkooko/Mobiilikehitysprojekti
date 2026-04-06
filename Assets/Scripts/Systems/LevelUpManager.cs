@@ -39,7 +39,6 @@ public class LevelUpManager : MonoBehaviour
 
         // Katotaan onko lisää leveluppeja tulossa
         isLevelUpActive = false;
-        ProcessNextLevelUp();
     }
 
     public void TriggerLevelUp()
@@ -57,19 +56,6 @@ public class LevelUpManager : MonoBehaviour
         n.OnNotificationRaised += Notification_OnNotificationResult;
         n.OnNotificationDestroyed += N_OnNotificationDestroyed;
         queuedNotifications++;
-
-
-    private void ProcessNextLevelUp()
-    {
-        if (levelUpQueue.Count > 0)
-        {
-            var nextChoices = levelUpQueue.Dequeue();
-            ShowLevelUp(nextChoices);
-        }
-        else
-        {
-            Time.timeScale = 1f;
-        }
     }
 
     private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
