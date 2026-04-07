@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +13,19 @@ public class GameManager : MonoBehaviour
     public float GameTime => gameTimer;
 
     float lastEnemySpawnTime;
+    float lastMiniBossSpawnTime;
 
+    [Header("Prefabs")]
     public GameObject enemy;
-    public Player player;
+    public GameObject miniBoss;
 
+    private Player player;
+
+    [Header("Spawn intervals")]
     public float interval = 2;
+    public float miniBossInterval = 60;
+
+    [Header("Spawn distances")]
     public float enemySpawnDistance = 5;
 
     public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
@@ -31,8 +40,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.OnKill += Player_OnKill; 
+        player.OnKill += Player_OnKill;
+
+        player.OnDeath += Player_OnDeath;
         instance = this;    
+    }
+
+    private void Player_OnDeath(object sender, KillContext e)
+    {
+        SceneManager.LoadScene(0);
     }
 
     // Update is called once per frame
@@ -43,6 +59,12 @@ public class GameManager : MonoBehaviour
         if (gameTimer > lastEnemySpawnTime + interval)
         {
             SpawnEnemy(enemy);
+        }
+
+        if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
+        {
+            SpawnMiniBoss(miniBoss);
+            
         }
     }
 
@@ -64,6 +86,26 @@ public class GameManager : MonoBehaviour
         Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
 
         lastEnemySpawnTime = gameTimer;
+    }
+
+    void SpawnMiniBoss(GameObject prefab)
+    {
+        float xCordinate = 0;
+        float yCordinate = 0;
+        while (xCordinate == 0 && yCordinate == 0)
+        {
+            xCordinate = UnityEngine.Random.Range(-27, 23);
+            yCordinate = UnityEngine.Random.Range(-17, 20);
+            if (Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance && Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance)
+            {
+                xCordinate = 0;
+                yCordinate = 0;
+            }
+        }
+
+        Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+
+        lastMiniBossSpawnTime = gameTimer;
     }
 
 
@@ -93,4 +135,6 @@ public class GameManager : MonoBehaviour
     {
         kills = 0;
     }
+
+    
 }

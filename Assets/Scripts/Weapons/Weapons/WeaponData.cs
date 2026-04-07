@@ -22,6 +22,7 @@ public class WeaponData : ScriptableObject
     public float projectileLifeTime = 2;
     public float aoeDamage = 1f;
     public float aoeRadius = 1f;
+    public bool usesProjectileCount = true;
 
     public WeaponModifier[] upgradeList;
     public StatusEffect[] effectList;

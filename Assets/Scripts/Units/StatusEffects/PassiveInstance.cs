@@ -1,7 +1,9 @@
 ﻿using NUnit.Framework;
-using Unity.Mathematics;
-using UnityEngine;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class PassiveInstance
 {
@@ -28,5 +30,19 @@ public class PassiveInstance
 
         modifier.Value += data.Upgrades[upgradeRank];
         upgradeRank++;
+    }
+
+    public string GetRankUpDescription()
+    {
+        bool isPercent = modifier.Type == ModifierType.Percent;
+        string currentValue = isPercent ? $"{modifier.Value * 100}%" : modifier.Value.ToString();
+        string nextValue = isPercent ? $"{(modifier.Value + data.Upgrades[upgradeRank]) * 100}%" : (modifier.Value + data.Upgrades[upgradeRank]).ToString();
+
+        return $"{modifier.Stat} {currentValue} -> {modifier.Value + data.Upgrades[upgradeRank]}" + (modifier.Type == ModifierType.Percent ? "%" : "");
+    }
+
+    public string GetRankUpText()
+    {
+        return $"{upgradeRank+1} > {upgradeRank+2}";
     }
 }

@@ -16,12 +16,13 @@ MonoBehaviour:
   weaponName: Sword
   description: 
   Icon: {fileID: 21300000, guid: 46d10b77713d5c2469a068362e04156a, type: 3}
-  baseDamage: 0
+  baseDamage: 5
   firerate: 2
-  piercing: 1
+  piercing: 1000
   projectileCount: 1
   projectileSpeed: 5
   projectileLifeTime: 0.75
   aoeDamage: 1
   aoeRadius: 1
   upgradeList: []
+  effectList: []

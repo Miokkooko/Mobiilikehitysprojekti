@@ -10,7 +10,7 @@ public enum StatType
     Piercing,
     ProjectileCount,
     Firerate,
-    aoeRadius,
+    AoERadius,
     AoEDamage
 }
 
@@ -21,6 +21,8 @@ public class StatModifier
     public float Value;
     public ModifierType Type;
     public StatusEffect source;
+
+ 
 }
 public enum ModifierType
 {

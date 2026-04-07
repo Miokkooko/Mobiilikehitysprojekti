@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4046575971098526948}
   - component: {fileID: 6477014570465129872}
   - component: {fileID: 1440230842123996373}
+  - component: {fileID: -189162977310592540}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Projectile
@@ -81,10 +82,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2023423201
-  m_SortingLayer: 7
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -6849507270066945240, guid: 19c26a5e4bc2f9948be5189fa596ebc6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -179,7 +180,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d0dcfe4416219e498f481d28e721b36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  projectileSpeed: 5
-  projectileHealth: 5
-  damage: 5
-  projectileLifetime: 0.3
+  OnHitEffects: []
+  enableParticles: 0
+  hitParticles: {fileID: 0}
+  _enemies: []
+--- !u!95 &-189162977310592540
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4900790239310842979}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 27ba5ce9635a2a447abefc2c5054591e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

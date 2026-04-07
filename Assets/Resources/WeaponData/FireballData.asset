@@ -40,3 +40,5 @@ MonoBehaviour:
     Type: 1
     source: {fileID: 0}
     upgradeDescription: 
+  effectList:
+  - {fileID: 11400000, guid: 8485e8e14981a434c97abf9dd627e7de, type: 2}

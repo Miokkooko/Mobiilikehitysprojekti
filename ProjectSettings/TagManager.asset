@@ -48,6 +48,9 @@ TagManager:
   - name: Ground
     uniqueID: 2095804747
     locked: 0
+  - name: Ground2
+    uniqueID: 668814603
+    locked: 0
   - name: WalkInFront
     uniqueID: 669619541
     locked: 0
@@ -56,6 +59,12 @@ TagManager:
     locked: 0
   - name: Projectile
     uniqueID: 2023423201
+    locked: 0
+  - name: Enemy
+    uniqueID: 2899446113
+    locked: 0
+  - name: MiniBoss
+    uniqueID: 1156789041
     locked: 0
   - name: Player
     uniqueID: 2596025049

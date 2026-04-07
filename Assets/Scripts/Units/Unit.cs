@@ -88,8 +88,9 @@ public class Unit : MonoBehaviour, IDamageable
     public virtual void Update()
     {
         var snapshot = StatusDict.Values.ToArray();
-        foreach (var sei in snapshot)
+        foreach (var sei in snapshot) {
             sei.HandleDuration();
+        }
     }
 
     public static void DealDamage(DamageContext context)

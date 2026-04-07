@@ -252,7 +252,6 @@ MonoBehaviour:
   UpgradeRank: {fileID: 3969210722396858927}
   UpgradeDescription: {fileID: 2814905413836594305}
   UpgradeRankUpDescription: {fileID: 897764720581779080}
-  status: {fileID: 0}
 --- !u!114 &5807446653314497424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -787,7 +786,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 48397125c92d2b543b88439a9ff0071b, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
