@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Cinemachine.CinemachineFreeLookModifier;
 
 
 
@@ -36,7 +37,7 @@ public class WeaponInstance
     public float AoEDamage => statSystem.Calculate(StatType.AoEDamage, baseAoeDamage);
 
     float baseAoeRadius = 1f;
-    public float AoERadius => statSystem.Calculate(StatType.aoeRadius, baseAoeRadius);
+    public float AoERadius => statSystem.Calculate(StatType.AoERadius, baseAoeRadius);
     #endregion
 
     Coroutine fire;
@@ -74,10 +75,16 @@ public class WeaponInstance
     {
         if (Time.time >= lastFireTime + Firerate) 
         {
-            if (fire != null)
-                owner.StopCoroutine(fire);
+            if (data.usesProjectileCount)
+            {
+                if (fire != null)
+                    owner.StopCoroutine(fire);
 
-            fire = owner.StartCoroutine(FireProjectiles());
+                fire = owner.StartCoroutine(FireProjectiles());
+            }
+            else
+                Fire();
+
             lastFireTime = Time.time;
         }
     }
@@ -106,5 +113,49 @@ public class WeaponInstance
             Fire();
             yield return new WaitForSeconds(0.1f);
         }
+    }
+
+    public string GetRankUpDescription()
+    {
+        if ((upgradeRank) >= data.upgradeList.Length)
+            return "";
+
+        StatModifier nextUpgrade = data.upgradeList[upgradeRank];
+        string statName = nextUpgrade.Stat.ToString();
+        
+        float currentValue = 0;
+
+        switch (nextUpgrade.Stat)
+        {
+            case StatType.Damage:
+                currentValue = Damage;
+                break;
+            case StatType.Piercing:
+                currentValue = Piercing;
+                break;
+            case StatType.ProjectileCount:
+                currentValue = ProjectileCount;
+                break;
+            case StatType.Firerate:
+                currentValue = Firerate;
+                break;
+            case StatType.AoERadius:
+                currentValue = AoERadius;
+                break;
+            case StatType.AoEDamage:
+                currentValue = AoEDamage;
+                break;
+            default:
+                break;
+        }
+
+        float nextValue = nextUpgrade.Type == ModifierType.Percent ? currentValue + (currentValue * nextUpgrade.Value) : currentValue + nextUpgrade.Value;
+
+        return $"{statName} {currentValue} -> {nextValue}";
+    }
+
+    public string GetRankUpText()
+    {
+        return $"{upgradeRank + 1} > {upgradeRank + 2}";
     }
 }

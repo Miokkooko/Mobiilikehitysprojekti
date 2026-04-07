@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,8 +40,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.OnKill += Player_OnKill; 
+        player.OnKill += Player_OnKill;
+
+        player.OnDeath += Player_OnDeath;
         instance = this;    
+    }
+
+    private void Player_OnDeath(object sender, KillContext e)
+    {
+        SceneManager.LoadScene(0);
     }
 
     // Update is called once per frame
@@ -127,4 +135,6 @@ public class GameManager : MonoBehaviour
     {
         kills = 0;
     }
+
+    
 }

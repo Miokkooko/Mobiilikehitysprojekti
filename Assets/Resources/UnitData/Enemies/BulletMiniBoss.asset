@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: BulletMiniBoss
   maxWeapons: 6
   maxPassives: 6
-  maxHealth: 10
+  maxHealth: 150
   baseDamage: 2
   moveSpeed: 1.5
   xpValue: 30

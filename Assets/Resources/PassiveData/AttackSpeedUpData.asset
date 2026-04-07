@@ -22,10 +22,10 @@ MonoBehaviour:
   ModifierType: 2
   Icon: {fileID: 21300000, guid: 1b9504d5cf7aeef48a3de52222d4dbf6, type: 3}
   BaseModifier:
-    Stat: 0
-    Value: 10
+    Stat: 5
+    Value: 0.1
     Type: 1
     source: {fileID: 11400000}
   Upgrades:
-  - 10
-  - 10
+  - 0.1
+  - 0.1

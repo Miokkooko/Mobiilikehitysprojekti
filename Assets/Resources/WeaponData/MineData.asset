@@ -24,4 +24,6 @@ MonoBehaviour:
   projectileLifeTime: 5
   aoeDamage: 1
   aoeRadius: 2
+  usesProjectileCount: 0
   upgradeList: []
+  effectList: []
