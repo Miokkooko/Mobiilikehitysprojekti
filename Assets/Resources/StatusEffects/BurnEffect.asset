@@ -9,15 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b72604ffa9029ef4a8d48cff8bd2f79f, type: 3}
-  m_Name: BleedEffect
-  m_EditorClassIdentifier: Assembly-CSharp::BleedEffect
-  Name: Bleed Effect
+  m_Script: {fileID: 11500000, guid: 54ef7a6a13661764aabe6efaee214b12, type: 3}
+  m_Name: BurnEffect
+  m_EditorClassIdentifier: Assembly-CSharp::BurnEffect
+  Name: Burn Effect
   Description: 
-  Duration: 5
-  MaxStacks: 3
-  TickRate: 1
-  StackType: 2
+  Duration: 3
+  MaxStacks: 1
+  TickRate: 0.2
+  StackType: 0
   LifetimeType: 0
   ModifierType: 2
-  tickDamage: 1
+  tickDamage: 2

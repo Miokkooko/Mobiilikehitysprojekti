@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: MiniBossData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: TestEnemy
-  maxHealth: 15
-  baseDamage: 3
+  maxWeapons: 6
+  maxPassives: 6
+  maxHealth: 150
+  baseDamage: 10
   moveSpeed: 2
   xpValue: 30
+  baseSprite: {fileID: 0}
   animator: {fileID: 0}

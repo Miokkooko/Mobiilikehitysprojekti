@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: DarkWitchData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: TestPlayer
-  maxHealth: 10
-  baseDamage: 0
+  maxWeapons: 6
+  maxPassives: 6
+  maxHealth: 60
+  baseDamage: 1
   moveSpeed: 4
   xpValue: 0
+  baseSprite: {fileID: 21300000, guid: 03958f4414c20974c8b3eb26d28cd282, type: 3}
   animator: {fileID: 22100000, guid: cb1a8dfc63e9b3b4b8d1ffd7b200a5e5, type: 2}

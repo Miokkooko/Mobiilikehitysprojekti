@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Scriptable Objects/BurnEffect")]
+[CreateAssetMenu(menuName = "Status Effects/Burn")]
 public class BurnEffect : StatusEffect
 {
     public float tickDamage = 3f;
