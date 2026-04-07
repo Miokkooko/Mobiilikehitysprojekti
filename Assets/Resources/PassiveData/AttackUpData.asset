@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85f8af0e4a1038b4e860cb564b12c10a, type: 3}
+  m_Name: AttackUpData
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveData
+  Name: Attack Up
+  Description: Increases Attack by a flat amount
+  Duration: 0
+  MaxStacks: 0
+  TickRate: 1
+  StackType: 0
+  LifetimeType: 0
+  ModifierType: 2
+  Icon: {fileID: 8235732835111945792, guid: 5a04e9a69e5f7a64693edc086222f941, type: 3}
+  BaseModifier:
+    Stat: 0
+    Value: 2
+    Type: 0
+    source: {fileID: 11400000}
+  Upgrades:
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2

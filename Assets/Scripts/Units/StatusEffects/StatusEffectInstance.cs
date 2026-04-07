@@ -23,6 +23,7 @@ public class StatusEffectInstance
     {
         if (Time.time > lastTick + tickRate)
         {
+            Debug.Log("Status Tick");
             lastTick = Time.time;
             Effect.OnTick(this);
         }

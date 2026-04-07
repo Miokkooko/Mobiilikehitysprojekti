@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 public class Axe : WeaponInstance
 {
+    public StatusEffect bleedEffect;
     public Axe(Player owner, WeaponData data) : base(owner, data) 
     {
         //projectilePrefab = Resources.Load<GameObject>("Projectiles/Axe");

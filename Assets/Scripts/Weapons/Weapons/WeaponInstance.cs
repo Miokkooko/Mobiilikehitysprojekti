@@ -55,7 +55,10 @@ public class WeaponInstance
         baseAoeDamage = data.aoeDamage;
         baseAoeRadius = data.aoeRadius;
 
-        OnHitEffects = owner.OnHitEffects;
+        OnHitEffects = new List<StatusEffect>();
+
+        OnHitEffects.AddRange(owner.OnHitEffects);
+        OnHitEffects.AddRange(data.effectList);
     }
 
     public void UpgradeWeapon()
