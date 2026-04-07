@@ -34,6 +34,8 @@ public class MiniBoss : Enemy
 
     public override void Update()
     {
+        UpdateHealthBar();
+
         switch (_currentState)
         {
             case EnemyState.Recover:

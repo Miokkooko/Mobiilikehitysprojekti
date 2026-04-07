@@ -7,31 +7,24 @@ using UnityEngine.Rendering;
 public class BulletMiniBoss : Enemy
 {
     [Header("Recover")]
-    float recoverTimer = 0f;
-    float recoverDuration = 1f;
+    public float recoverTimer = 0f;
+    public float recoverDuration = 1f;
 
     [Header("Charge")]
-    float chargeTimer = 0f;
-    float chargeDuration = 0.5f;
+    public float chargeTimer = 0f;
+    public float chargeDuration = 0.5f;
 
     [Header("Firing")]
     public float fireDistance = 3f;
 
     
     public WeaponData data;
+    
 
-    public override void Start()
-    {
-        base.Start();
-        
-    }
-
-    Vector3 lungeDir;
     public enum EnemyState
     {
         Recover,
         Chase,
-        ChargeLunge,
         Attack
     }
 
@@ -40,6 +33,9 @@ public class BulletMiniBoss : Enemy
 
     public override void Update()
     {
+        animator.SetBool("isWalking", isWalking);
+        UpdateHealthBar();
+
         switch (_currentState)
         {
             case EnemyState.Recover:
@@ -47,9 +43,6 @@ public class BulletMiniBoss : Enemy
                 break;
             case EnemyState.Chase:
                 Chase();
-                break;
-            case EnemyState.ChargeLunge:
-                ChargeLunge();
                 break;
             case EnemyState.Attack:
                 Attack();
@@ -60,6 +53,8 @@ public class BulletMiniBoss : Enemy
 
     public void Recover()
     {
+        isWalking = false;
+
         recoverTimer += Time.deltaTime;
 
         if (recoverTimer >= recoverDuration)
@@ -73,16 +68,8 @@ public class BulletMiniBoss : Enemy
     {
         Move();
 
-        float distance = Vector3.Distance(transform.position, playerToFollow.transform.position);
+        isWalking = true;
 
-        if (distance < fireDistance)
-        {
-            _currentState = EnemyState.Attack;
-        }
-    }
-
-    public void ChargeLunge()
-    {
         chargeTimer += Time.deltaTime;
 
         if (chargeTimer >= chargeDuration)
@@ -90,11 +77,13 @@ public class BulletMiniBoss : Enemy
             chargeTimer = 0f;
             _currentState = EnemyState.Attack;
         }
+
     }
 
     public void Attack()
     {
-        
+        isWalking = false;
+
         Vector3[] directions = new Vector3[]
         {
             Vector3.right,

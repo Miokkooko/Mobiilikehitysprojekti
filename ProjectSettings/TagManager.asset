@@ -60,6 +60,12 @@ TagManager:
   - name: Projectile
     uniqueID: 2023423201
     locked: 0
+  - name: Enemy
+    uniqueID: 2899446113
+    locked: 0
+  - name: MiniBoss
+    uniqueID: 1156789041
+    locked: 0
   - name: Player
     uniqueID: 2596025049
     locked: 0

@@ -1,10 +1,17 @@
 using System.Threading;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : Unit
 {
     protected GameObject playerToFollow;
     protected Player player;
+    protected Image healthBar;
+
+    protected Animator animator;
+    public bool isWalking = false;
+    private Vector2 lastMoveDirection;
+
 
     protected float lastAttackTime = 0f;
     protected float attackRate = 1f;
@@ -16,11 +23,17 @@ public class Enemy : Unit
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
         player = playerToFollow.GetComponent<Player>();
         OnDeath += Enemy_OnDeath;
+
+        
+        animator = GetComponent<Animator>();
+        healthBar = transform.Find("HealthBar/Health")?.GetComponent<Image>();
     }
 
     public override void Update()
     {
         base.Update();
+
+        
 
         Move();
     }
@@ -35,6 +48,8 @@ public class Enemy : Unit
     {
         if(playerToFollow != null)
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerToFollow.transform.position.x, playerToFollow.transform.position.y, 0), Speed * Time.deltaTime);
+
+        
     }
     void Attack(IDamageable target)
     {
@@ -78,5 +93,10 @@ public class Enemy : Unit
         ExpDrop expScript = expDrop.GetComponent<ExpDrop>();
         expScript.Initialize(expAmount);
         Destroy(gameObject);
+    }
+
+    public void UpdateHealthBar()
+    {
+        healthBar.fillAmount = Health / MaxHealth;    
     }
 }

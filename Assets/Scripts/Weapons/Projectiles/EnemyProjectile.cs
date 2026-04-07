@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EnemyProjectile : Projectile
 {
+    ParticleSystem particles;
     public virtual void EnemyInitialize(WeaponData w, Enemy e, Vector3 dir)
     {
         damage = w.baseDamage;
@@ -13,6 +14,7 @@ public class EnemyProjectile : Projectile
         aoeDamage = w.aoeDamage;
         aoeRadius =w.aoeRadius;
 
+        particles = gameObject.GetComponent<ParticleSystem>();
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -37,5 +39,11 @@ public class EnemyProjectile : Projectile
                 OnHitParticles();
             }
         }
+    }
+
+    public override void Rotate()
+    {
+        base.Rotate();
+        particles.transform.rotation = Quaternion.Euler(0, 0, angle - 180);
     }
 }

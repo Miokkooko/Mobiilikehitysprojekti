@@ -17,7 +17,7 @@ MonoBehaviour:
   description: 
   Icon: {fileID: 5250389579404634882, guid: cbef50553b081fa428525dcec9cb6c9e, type: 3}
   baseDamage: 2
-  firerate: 1
+  firerate: 4
   piercing: 1
   projectileCount: 1
   projectileSpeed: 2
@@ -40,3 +40,4 @@ MonoBehaviour:
     Type: 1
     source: {fileID: 0}
     upgradeDescription: 
+  effectList: []

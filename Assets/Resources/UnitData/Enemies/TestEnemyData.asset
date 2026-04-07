@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: TestEnemyData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: TestEnemy
+  maxWeapons: 6
+  maxPassives: 6
   maxHealth: 3
   baseDamage: 1
   moveSpeed: 2
   xpValue: 2
+  baseSprite: {fileID: 0}
   animator: {fileID: 0}
