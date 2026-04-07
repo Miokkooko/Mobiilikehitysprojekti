@@ -12,9 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 115656d1e91813a4e8532966cd6e6486, type: 3}
   m_Name: NobleData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
+<<<<<<< Updated upstream
   unitName: Dark Witch
   maxHealth: 10
   baseDamage: 16
   moveSpeed: 4
   xpValue: 0
   animator: {fileID: 0}
+=======
+  unitName: Noble
+  maxWeapons: 6
+  maxPassives: 6
+  maxHealth: 80
+  baseDamage: 8
+  moveSpeed: 3
+  xpValue: 0
+  baseSprite: {fileID: -3862247730972854534, guid: 27b4924f89aa2744e9a13d201f697d04, type: 3}
+  animator: {fileID: 22100000, guid: 3148efd6579e87442af534cdf9550176, type: 2}
+>>>>>>> Stashed changes

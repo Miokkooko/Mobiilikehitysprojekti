@@ -10,18 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 115656d1e91813a4e8532966cd6e6486, type: 3}
-  m_Name: TestEnemyData
+  m_Name: SnowElfArcherData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: TestEnemy
-<<<<<<< Updated upstream
-  maxHealth: 3
-  baseDamage: 1
-=======
+  unitName: Snow Elf Archer
   maxWeapons: 6
   maxPassives: 6
-  maxHealth: 15
-  baseDamage: 5
->>>>>>> Stashed changes
-  moveSpeed: 2
-  xpValue: 2
-  animator: {fileID: 0}
+  maxHealth: 60
+  baseDamage: 8
+  moveSpeed: 4
+  xpValue: 0
+  baseSprite: {fileID: -932235265741748483, guid: 4ad5b5a141ba3ca4bb3b9356daba6904, type: 3}
+  animator: {fileID: 22100000, guid: fde1ac13ca999e7499f2dcd3d60ef08d, type: 2}

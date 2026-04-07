@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: Oni
   maxHealth: 120
+<<<<<<< Updated upstream
   baseDamage: 99
+=======
+  baseDamage: 12
+>>>>>>> Stashed changes
   moveSpeed: 2
   xpValue: 0
   animator: {fileID: 22100000, guid: bcad1df6300d2dd4e90ea95b1ea2740a, type: 2}

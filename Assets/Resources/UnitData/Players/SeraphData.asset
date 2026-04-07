@@ -10,18 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 115656d1e91813a4e8532966cd6e6486, type: 3}
-  m_Name: TestEnemyData
+  m_Name: SeraphData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: TestEnemy
-<<<<<<< Updated upstream
-  maxHealth: 3
-  baseDamage: 1
-=======
+  unitName: Seraph
   maxWeapons: 6
   maxPassives: 6
-  maxHealth: 15
+  maxHealth: 100
   baseDamage: 5
->>>>>>> Stashed changes
-  moveSpeed: 2
-  xpValue: 2
-  animator: {fileID: 0}
+  moveSpeed: 3
+  xpValue: 0
+  baseSprite: {fileID: 2919660906985105573, guid: 89963ff1d579c4c4a831e9bbc7f55c4a, type: 3}
+  animator: {fileID: 22100000, guid: 5df6a0cd668c5ea48899728ec6505268, type: 2}
