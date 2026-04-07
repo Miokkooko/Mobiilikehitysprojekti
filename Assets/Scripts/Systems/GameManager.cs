@@ -12,11 +12,19 @@ public class GameManager : MonoBehaviour
     public float GameTime => gameTimer;
 
     float lastEnemySpawnTime;
+    float lastMiniBossSpawnTime;
 
+    [Header("Prefabs")]
     public GameObject enemy;
-    public Player player;
+    public GameObject miniBoss;
 
+    private Player player;
+
+    [Header("Spawn intervals")]
     public float interval = 2;
+    public float miniBossInterval = 60;
+
+    [Header("Spawn distances")]
     public float enemySpawnDistance = 5;
 
     public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
@@ -44,6 +52,12 @@ public class GameManager : MonoBehaviour
         {
             SpawnEnemy(enemy);
         }
+
+        if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
+        {
+            SpawnMiniBoss(miniBoss);
+            
+        }
     }
 
     void SpawnEnemy(GameObject prefab)
@@ -64,6 +78,26 @@ public class GameManager : MonoBehaviour
         Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
 
         lastEnemySpawnTime = gameTimer;
+    }
+
+    void SpawnMiniBoss(GameObject prefab)
+    {
+        float xCordinate = 0;
+        float yCordinate = 0;
+        while (xCordinate == 0 && yCordinate == 0)
+        {
+            xCordinate = UnityEngine.Random.Range(-27, 23);
+            yCordinate = UnityEngine.Random.Range(-17, 20);
+            if (Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance && Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance)
+            {
+                xCordinate = 0;
+                yCordinate = 0;
+            }
+        }
+
+        Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+
+        lastMiniBossSpawnTime = gameTimer;
     }
 
 
