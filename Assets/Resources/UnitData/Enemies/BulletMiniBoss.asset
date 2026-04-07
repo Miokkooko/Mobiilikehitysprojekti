@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: BulletMiniBoss
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: BulletMiniBoss
-  maxHealth: 10
-  baseDamage: 2
+  maxWeapons: 6
+  maxPassives: 6
+  maxHealth: 100
+  baseDamage: 8
   moveSpeed: 1.5
   xpValue: 30
+  baseSprite: {fileID: 0}
   animator: {fileID: 0}
