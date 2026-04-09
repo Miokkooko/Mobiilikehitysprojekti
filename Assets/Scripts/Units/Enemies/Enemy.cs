@@ -1,4 +1,3 @@
-using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,16 +9,28 @@ public class Enemy : Unit
 
     protected Animator animator;
     public bool isWalking = false;
+    public EnemyData enemyData;
 
     protected float lastAttackTime = 0f;
     protected float attackRate = 1f;
 
     public StatusEffect[] effects;
 
+    float XpValue => enemyData.xpValue;
+
+    public override void InitializeUnit(UnitData data)
+    {
+        base.InitializeUnit(data);
+        enemyData = (EnemyData)data;
+    }
+    private void Start()
+    {
+        if(enemyData != null)
+            InitializeUnit(enemyData);
+    }
     public virtual void OnEnable()
     {
         RemoveAllStatusEffects(this);
-        InitializeUnit(unitData);
 
         if (playerToFollow == null || player == null)
         {
@@ -97,9 +108,9 @@ public class Enemy : Unit
     {
         PoolManager manager = PoolManager.Instance;
 
-        GameObject drop = manager.SpawnDrop(DropType.Exp, transform.position, expAmount);
+        GameObject drop = manager.SpawnDrop(DropType.Exp, transform.position, XpValue);
 
-        manager.DisableObject(PoolType.Enemy, gameObject);
+        manager.DisableEnemy(enemyData.poolType, gameObject);
     }
 
     public void UpdateHealthBar()

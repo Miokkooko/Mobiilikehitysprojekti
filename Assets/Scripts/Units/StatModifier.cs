@@ -11,7 +11,7 @@ public enum StatType
     MaxHealth,
     Piercing,
     ProjectileCount,
-    Firerate,
+    FirerateBonus,
     AoERadius,
     AoEDamage
 }
@@ -36,7 +36,6 @@ public enum ModifierType
 [Serializable]
 public class WeaponModifier : StatModifier
 {
-    public string upgradeDescription;
 }
 
 #if UNITY_EDITOR

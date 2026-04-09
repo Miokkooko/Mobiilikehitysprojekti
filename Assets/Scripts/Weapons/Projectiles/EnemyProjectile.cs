@@ -3,17 +3,8 @@ using UnityEngine;
 public class EnemyProjectile : Projectile
 {
     ParticleSystem particles;
-    public virtual void EnemyInitialize(WeaponData w, Enemy e, Vector3 dir)
+    private void Start()
     {
-        damage = w.baseDamage;
-        projectilePiercing = w.piercing;
-        projectileSpeed = w.projectileSpeed;
-        direction = dir.normalized;
-        enemy = e;
-        projectileLifetime = w.projectileLifeTime;
-        aoeDamage = w.aoeDamage;
-        aoeRadius =w.aoeRadius;
-
         particles = gameObject.GetComponent<ParticleSystem>();
     }
 
@@ -22,12 +13,10 @@ public class EnemyProjectile : Projectile
         if (collision.tag == "Enemy")
             return;
 
-
-
         if (collision.GetComponent<IDamageable>() is IDamageable d && collision.CompareTag("Player"))
         {
             Player player = collision.GetComponent<Player>();
-            Unit.DealDamage(new DamageContext(enemy, player, damage));
+            Unit.DealDamage(new DamageContext(owner, player, damage));
         }
 
         if (collision.tag == "Player")

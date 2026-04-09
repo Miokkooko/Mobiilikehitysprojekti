@@ -14,7 +14,7 @@ public class ProjFireball : Projectile
 
         if (target == null)
         {
-            Disable(PoolType.Projectile_Fireball);
+            Disable();
             //Destroy(gameObject);
             return;
         }

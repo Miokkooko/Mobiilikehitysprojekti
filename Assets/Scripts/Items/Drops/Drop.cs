@@ -52,7 +52,7 @@ public class Drop : MonoBehaviour
             {
                 OnGrab(p);
                 PoolManager manager = PoolManager.Instance;
-                manager.DisableObject(PoolType.Drop, gameObject);
+                manager.DisableOther(OtherPoolType.Drop, gameObject);
             }
         }
         else if (circle.IsTouching(other))

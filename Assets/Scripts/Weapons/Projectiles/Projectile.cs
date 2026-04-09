@@ -22,10 +22,11 @@ public class Projectile : MonoBehaviour
 
     //Movement
     protected Vector3 direction;
-    protected Player player;
-    protected Enemy enemy;
-    protected WeaponInstance ownerWeapon;
-    protected Transform playerPos => player.transform;
+    protected Unit owner;
+    protected WeaponData weaponData;
+    public ProjectilePoolType PoolType => weaponData.poolType;
+
+    protected Transform ownerPos => owner.transform;
     protected float angle;
 
     DetectionRadius detRadius;
@@ -52,35 +53,62 @@ public class Projectile : MonoBehaviour
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
-    public virtual void Disable(PoolType type)
+    public virtual void OnEnable()
     {
-        PoolManager.Instance.DisableObject(type, gameObject);
+        StopAllCoroutines();
+        StartCoroutine(DestroyAfterdelay(projectileLifetime));
+    }
+    public virtual void Disable()
+    {
+        PoolManager.Instance.DisableProjectile(PoolType, gameObject);
     }
 
-    public virtual void Initialize(WeaponInstance w, Player p, Vector3 dir)
+    public virtual void Initialize(WeaponInstance w, Unit p, Vector3 dir)
     {
-        ownerWeapon = w;
+        weaponData = w.data;
         damage = w.Damage;
         projectilePiercing = w.Piercing;
         projectileSpeed = w.ProjectileSpeed;
         direction = dir.normalized;
-        player = p;
+        owner = p;
         projectileLifetime = w.data.projectileLifeTime;
         aoeDamage = w.data.aoeDamage;
         aoeRadius = w.data.aoeRadius;
 
         OnHitEffects = w.OnHitEffects;
 
-        detRadius = player.GetComponentInChildren<DetectionRadius>();
-        _enemies = detRadius._enemies;
+        if(owner is Player player)
+        {
+            detRadius = player.GetComponentInChildren<DetectionRadius>();
+            _enemies = detRadius._enemies;
+        }
+            
+        gameObject.SetActive(true);
+    }
+    public virtual void Initialize(WeaponData w, Unit p, Vector3 dir)
+    {
+        weaponData = w;
+        damage = w.baseDamage;
+        projectilePiercing = w.piercing;
+        projectileSpeed = w.projectileSpeed;
+        direction = dir.normalized;
+        owner = p;
+        projectileLifetime = w.projectileLifeTime;
+        aoeDamage = w.aoeDamage;
+        aoeRadius = w.aoeRadius;
 
-        if(gameObject.activeInHierarchy)
-            StartCoroutine(DestroyAfterdelay(projectileLifetime));
+        if(owner is Player player)
+        {
+            detRadius = player.GetComponentInChildren<DetectionRadius>();
+            _enemies = detRadius._enemies;
+        }
+        gameObject.SetActive(true);
+
     }
 
-    public virtual void InitializeAoE(Player p, float d, float r)
+    public virtual void InitializeAoE(Unit p, float d, float r)
     {
-        player = p;
+        owner = p;
         aoeDamage = d;
         aoeRadius = r;
     }
@@ -102,7 +130,7 @@ public class Projectile : MonoBehaviour
 
         if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
-            Unit.DealDamage(new DamageContext(player, d, damage));
+            Unit.DealDamage(new DamageContext(owner, d, damage));
             OnHitParticles();
         }
 
@@ -138,7 +166,7 @@ public class Projectile : MonoBehaviour
         else
         {
             StopAllCoroutines();
-            Disable(ownerWeapon.data.poolType);
+            Disable();
         }
     }
 
@@ -146,7 +174,7 @@ public class Projectile : MonoBehaviour
     {
         GameObject proj = Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
         Projectile aoe = proj.GetComponent<AoE>();
-        aoe.InitializeAoE(player, aoeDamage, aoeRadius);
+        aoe.InitializeAoE(owner, aoeDamage, aoeRadius);
     }
 
     #endregion
@@ -161,9 +189,9 @@ public class Projectile : MonoBehaviour
         return _enemies[random];
     }
 
-    IEnumerator DestroyAfterdelay(float delay)
+    public IEnumerator DestroyAfterdelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Disable(ownerWeapon.data.poolType);
+        Disable();
     }
 }

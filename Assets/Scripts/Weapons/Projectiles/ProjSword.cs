@@ -4,7 +4,7 @@ public class ProjSword : Projectile
 {
     public override void Move()
     {
-        transform.position = playerPos.position + direction * 1.5f;
+        transform.position = ownerPos.position + direction * 1.5f;
     }
 
 }

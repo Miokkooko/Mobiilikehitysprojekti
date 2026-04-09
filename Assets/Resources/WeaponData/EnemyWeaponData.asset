@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: EnemyWeapon
   description: 
   Icon: {fileID: 0}
-  poolType: 9
+  poolType: 8
   baseDamage: 2
   firerate: 1
   piercing: 1

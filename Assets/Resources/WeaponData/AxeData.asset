@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: Axe
   description: 
   Icon: {fileID: 245248123180487230, guid: 4a99aa1ec78be754dafd88dd174576e7, type: 3}
-  poolType: 2
+  poolType: 1
   baseDamage: 2
   firerate: 2
   piercing: 1
@@ -31,25 +31,20 @@ MonoBehaviour:
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 4
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 0
     Value: 0.1
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 4
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 3
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   effectList: []

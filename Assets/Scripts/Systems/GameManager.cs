@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,8 +21,8 @@ public class GameManager : MonoBehaviour
     public Player player;
 
     [Header("Prefabs")]
-    public UnitData enemy;
-    public GameObject miniBoss;
+    public EnemyData enemy;
+    public EnemyData miniBoss;
    
     [Header("Spawn intervals")]
     public float interval = 2;
@@ -81,17 +82,18 @@ public class GameManager : MonoBehaviour
 
         if (gameTimer > lastEnemySpawnTime + interval)
         {
-            SpawnEnemy();
+            SpawnEnemy(enemy);
+            lastEnemySpawnTime = gameTimer;
         }
 
         if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
         {
-            SpawnMiniBoss(miniBoss);
-            
+            SpawnEnemy(miniBoss);
+            lastMiniBossSpawnTime = gameTimer;
         }
     }
 
-    void SpawnEnemy()
+    Vector2 GetSpawnCoordinates()
     {
         float xCordinate = 0;
         float yCordinate = 0;
@@ -105,34 +107,15 @@ public class GameManager : MonoBehaviour
                 yCordinate = 0;
             }
         }
-        Debug.Log("Spawning Enemy!");
+
+        return new Vector2(xCordinate, yCordinate);
+    }
+
+    void SpawnEnemy(EnemyData data)
+    {
         PoolManager manager = PoolManager.Instance;
-
-        manager.SpawnGenericEnemy(enemy, new Vector2(xCordinate, yCordinate));
-
-        lastEnemySpawnTime = gameTimer;
+        manager.SpawnEnemy(data, GetSpawnCoordinates());
     }
-
-    void SpawnMiniBoss(GameObject prefab)
-    {
-        float xCordinate = 0;
-        float yCordinate = 0;
-        while (xCordinate == 0 && yCordinate == 0)
-        {
-            xCordinate = UnityEngine.Random.Range(-27, 23);
-            yCordinate = UnityEngine.Random.Range(-17, 20);
-            if (Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance && Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance)
-            {
-                xCordinate = 0;
-                yCordinate = 0;
-            }
-        }
-
-        Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
-
-        lastMiniBossSpawnTime = gameTimer;
-    }
-
 
     private void OnPlayerKill(object sender, KillContext e)
     {

@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Cinemachine;
 using UnityEngine;
-using UnityEngine.Rendering;
+
 
 public class BulletMiniBoss : Enemy
 {
@@ -18,7 +15,7 @@ public class BulletMiniBoss : Enemy
     public float fireDistance = 3f;
 
     
-    public WeaponData data;
+    public WeaponData weaponData;
     
 
     public enum EnemyState
@@ -101,11 +98,11 @@ public class BulletMiniBoss : Enemy
         foreach (Vector3 dir in directions)
         {
             PoolManager manager = PoolManager.Instance;
-            GameObject proj = manager.SpawnProjectile(data.poolType, transform.position);
+            GameObject proj = manager.SpawnProjectile(weaponData.poolType, transform.position);
 
             if(proj.GetComponent<EnemyProjectile>() is EnemyProjectile ep)
             {
-                ep.EnemyInitialize(data, this, dir);
+                ep.Initialize(weaponData, this, dir);
             }
         }
         _currentState = EnemyState.Recover;

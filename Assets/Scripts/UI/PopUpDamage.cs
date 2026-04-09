@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 public class PopUpDamage : MonoBehaviour
 {
@@ -13,8 +14,15 @@ public class PopUpDamage : MonoBehaviour
         transform.position += Vector3.up * floatSpeed * Time.deltaTime;
     }
 
-    void Start()
+    void OnEnable()
     {
-        Destroy(gameObject, duration);
+        StopAllCoroutines();
+        StartCoroutine(DestroyAfterDelay(duration));
+    }
+
+    IEnumerator DestroyAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PoolManager.Instance.DisableOther(OtherPoolType.DmgPopUp, gameObject);
     }
 }

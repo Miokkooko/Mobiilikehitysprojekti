@@ -26,8 +26,8 @@ public class Unit : MonoBehaviour, IDamageable
     float baseProjectileCount = 0;
     public virtual float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount);
 
-    protected float expAmount = 1;
-
+    float baseFireratePercent = 1;
+    public virtual float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, baseFireratePercent);
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
     Dictionary<ModifierType, List<StatusEffectInstance>> statusBuckets;
@@ -35,8 +35,6 @@ public class Unit : MonoBehaviour, IDamageable
 
     public StatSystem statSystem = new StatSystem();
     #endregion
-
-    public UnitData unitData;
 
     public event EventHandler<KillContext> OnKill;
     public event EventHandler<KillContext> OnDeath;
@@ -53,46 +51,38 @@ public class Unit : MonoBehaviour, IDamageable
         };
 
         StatusDict = new Dictionary<StatusEffect, StatusEffectInstance>();
-
-        
-    }
-    private void OnEnable()
-    {
-        InitializeUnit(unitData);
     }
 
-    public void InitializeUnit(UnitData data)
-    {
-        unitData = data;
-        Debug.Log("wow" + data.unitName);
 
-        if (unitData != null)
+    public virtual void InitializeUnit(UnitData data)
+    {
+        if (data != null)
         {
-            baseMaxHealth = unitData.maxHealth;
-            baseDamage = unitData.baseDamage;
-            baseSpeed = unitData.moveSpeed;
+            baseMaxHealth = data.maxHealth;
+            baseDamage = data.baseDamage;
+            baseSpeed = data.moveSpeed;
             health = baseMaxHealth;
-            expAmount = unitData.xpValue;
 
-            if(unitData.animator != null)
+            if(data.animator != null)
             {
                 Animator anim = GetComponent<Animator>();
-                anim.runtimeAnimatorController = unitData.animator;
+                anim.runtimeAnimatorController = data.animator;
             }
 
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
-            if (unitData.baseSprite != null)
+            if (data.baseSprite != null)
             {
-                sr.sprite = unitData.baseSprite;
+                sr.sprite = data.baseSprite;
             }
         }
+
     } // initializeUnit
-
-
 
     public virtual void Update()
     {
-        if(Health <= 0 ) return;
+        if(Health <= 0 ) 
+            return;
+
         var snapshot = StatusDict.Values.ToArray();
         foreach (var sei in snapshot) {
             sei.HandleDuration();
@@ -182,7 +172,6 @@ public class Unit : MonoBehaviour, IDamageable
         target.statusBuckets[effect.ModifierType].Add(instance);
 
         Debug.Log($"Added {effect.Name} status to: {target.name}");
-        Debug.Log("Speed -> " + target.Speed);
     }
 
     public static void RemoveStatusEffect(StatusEffect effect, Unit target)
@@ -194,7 +183,6 @@ public class Unit : MonoBehaviour, IDamageable
         target.statusBuckets[effect.ModifierType].Remove(instance);
 
         Debug.Log($"Removed {effect.Name} status from: {target.name}");
-        Debug.Log("Speed -> " + target.Speed);
     }
 
     public static void RemoveAllStatusEffects(Unit target)
@@ -265,7 +253,7 @@ public class Unit : MonoBehaviour, IDamageable
     void SpawnDmgPopUp(DamageContext context)
     {
         Vector3 spawnPos = transform.position + Vector3.up * 1f;
-        GameObject dmgPop = Instantiate(Resources.Load<GameObject>("Popup/DamagePopUp"), spawnPos, Quaternion.identity);
+        GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos); 
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();
 
@@ -278,7 +266,9 @@ public class Unit : MonoBehaviour, IDamageable
     void SpawnHealthPopUp(HealContext context)
     {
         Vector3 spawnPos = transform.position + Vector3.up * 1f;
-        GameObject dmgPop = Instantiate(Resources.Load<GameObject>("Popup/DamagePopUp"), spawnPos, Quaternion.identity);
+        GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos);
+ 
+
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();
         tmp.color = Color.softGreen;

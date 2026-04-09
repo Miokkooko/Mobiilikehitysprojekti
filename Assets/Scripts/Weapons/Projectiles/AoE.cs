@@ -19,7 +19,7 @@ public class AoE : Projectile
 
         if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
-            Unit.DealDamage(new DamageContext(player, d, aoeDamage));
+            Unit.DealDamage(new DamageContext(owner, d, aoeDamage));
         }
 
         if (collision.tag == "Enemy")

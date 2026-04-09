@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: Scythe
   description: 
   Icon: {fileID: 21300000, guid: cfe36c91fec2bcb4ca15e549a06135da, type: 3}
-  poolType: 7
+  poolType: 6
   baseDamage: 1
   firerate: 1
   piercing: 10
@@ -31,15 +31,12 @@ MonoBehaviour:
     Value: 0.2
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 5
-    Value: 0.3
-    Type: 1
+    Value: 0.1
+    Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 4
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   effectList: []

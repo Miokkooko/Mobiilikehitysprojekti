@@ -38,7 +38,7 @@ public class PlayerHUD : MonoBehaviour
 
         if(inventoryHandler != null)
         {
-            inventoryHandler.Initialize(Player.unitData.maxWeapons, Player.unitData.maxPassives);
+            inventoryHandler.Initialize(Player.playerData.maxWeapons, Player.playerData.maxPassives);
             Player.OnPlayerGetPassive += OnPlayerGetPassive;
             Player.OnPlayerGetWeapon += OnPlayerGetWeapon;
         }

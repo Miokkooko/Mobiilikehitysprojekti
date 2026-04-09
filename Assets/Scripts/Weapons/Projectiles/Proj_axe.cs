@@ -20,7 +20,7 @@ public class Proj_axe : Projectile
         {
             velocity = new Vector3(-1 * 4, 9f, 0f);
         }
-        
+
     }
 
 
@@ -30,6 +30,6 @@ public class Proj_axe : Projectile
         transform.position += velocity * Time.deltaTime;
     }
 
-    
+
 
 }

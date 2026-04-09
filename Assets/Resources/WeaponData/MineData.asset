@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: Mine
   description: 
   Icon: {fileID: 21300000, guid: d3eaac23bd74c724cb676b171a714f02, type: 3}
-  poolType: 4
+  poolType: 3
   baseDamage: 2
   firerate: 1
   piercing: 1

@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: LightningStrike
   description: 
   Icon: {fileID: 2002275445, guid: be4d3cdcfbc275145bffba8ea0222955, type: 3}
-  poolType: 8
+  poolType: 7
   baseDamage: 1
   firerate: 3
   piercing: 1
@@ -31,10 +31,8 @@ MonoBehaviour:
     Value: 0.5
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: Increase Damage
   - Stat: 4
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: more lightning
   effectList: []
