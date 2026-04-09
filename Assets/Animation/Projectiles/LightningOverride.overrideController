@@ -6,8 +6,8 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ScytheController
+  m_Name: LightningOverride
   m_Controller: {fileID: 9100000, guid: 34b1616ad6b5b57468f644531b5d2363, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: d2f758a1d0c088846bbe4cbea468ab85, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 8ad69122b33741f40a48de268f5c2512, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c84313b65a2460a4fa411a9b7645c048, type: 2}

@@ -5764,7 +5764,7 @@ PrefabInstance:
     - target: {fileID: 200428638717900182, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: unitData
       value: 
-      objectReference: {fileID: 11400000, guid: 9c7d8a55464b411488de34282b780089, type: 2}
+      objectReference: {fileID: 11400000, guid: 7c7c3071b3121684d82dff51d895be08, type: 2}
     - target: {fileID: 240634015747286591, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_BodyType
       value: 0
