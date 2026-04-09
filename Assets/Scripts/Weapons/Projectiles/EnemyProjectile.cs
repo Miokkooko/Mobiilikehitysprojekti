@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyProjectile : Projectile
 {
     ParticleSystem particles;
-    private void Start()
+    public override void Start()
     {
         particles = gameObject.GetComponent<ParticleSystem>();
     }

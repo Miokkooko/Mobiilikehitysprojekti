@@ -7,8 +7,9 @@ public class ProjFireball : Projectile
     Enemy target;
     Vector3 dir;
 
-    public void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GetRandomEnemy();
 

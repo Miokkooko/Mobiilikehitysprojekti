@@ -8,8 +8,9 @@ public class ProjScythe : Projectile
     
     bool returnBack = false;
 
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         timer = 0f;
         duration = 1f;
 
