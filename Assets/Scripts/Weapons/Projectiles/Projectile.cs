@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -22,6 +24,7 @@ public class Projectile : MonoBehaviour
     protected Vector3 direction;
     protected Player player;
     protected Enemy enemy;
+    protected WeaponInstance ownerWeapon;
     protected Transform playerPos => player.transform;
     protected float angle;
 
@@ -30,13 +33,10 @@ public class Projectile : MonoBehaviour
 
     public virtual void Start()
     {
-
-        //Projectile tuhoaa ittensä kahen sekunnin jälkeen
         if (hitParticles == null && enableParticles)
         {
             hitParticles = Resources.Load<GameObject>("Particles/HitParticles");
         }
-        Destroy(gameObject, projectileLifetime);
     }
 
     public virtual void Update()
@@ -52,8 +52,14 @@ public class Projectile : MonoBehaviour
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
+    public virtual void Disable(PoolType type)
+    {
+        PoolManager.Instance.DisableObject(type, gameObject);
+    }
+
     public virtual void Initialize(WeaponInstance w, Player p, Vector3 dir)
     {
+        ownerWeapon = w;
         damage = w.Damage;
         projectilePiercing = w.Piercing;
         projectileSpeed = w.ProjectileSpeed;
@@ -67,9 +73,10 @@ public class Projectile : MonoBehaviour
 
         detRadius = player.GetComponentInChildren<DetectionRadius>();
         _enemies = detRadius._enemies;
+
+        if(gameObject.activeInHierarchy)
+            StartCoroutine(DestroyAfterdelay(projectileLifetime));
     }
-
-
 
     public virtual void InitializeAoE(Player p, float d, float r)
     {
@@ -123,13 +130,15 @@ public class Projectile : MonoBehaviour
             Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
         }
 
+        
         if (projectilePiercing != 1)
         {
             projectilePiercing -= 1;
         }
         else
         {
-            Destroy(gameObject);
+            StopAllCoroutines();
+            Disable(ownerWeapon.data.poolType);
         }
     }
 
@@ -150,5 +159,11 @@ public class Projectile : MonoBehaviour
         }
         int random = Random.Range(0, _enemies.Count);
         return _enemies[random];
+    }
+
+    IEnumerator DestroyAfterdelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Disable(ownerWeapon.data.poolType);
     }
 }

@@ -10,22 +10,29 @@ public class Enemy : Unit
 
     protected Animator animator;
     public bool isWalking = false;
-    private Vector2 lastMoveDirection;
-
 
     protected float lastAttackTime = 0f;
     protected float attackRate = 1f;
 
     public StatusEffect[] effects;
 
-    public virtual void Start()
+    public virtual void OnEnable()
     {
-        playerToFollow = GameObject.FindGameObjectWithTag("Player");
-        player = playerToFollow.GetComponent<Player>();
+        RemoveAllStatusEffects(this);
+        InitializeUnit(unitData);
+
+        if (playerToFollow == null || player == null)
+        {
+            playerToFollow = GameObject.FindGameObjectWithTag("Player");
+            player = playerToFollow.GetComponent<Player>();
+        }
+            
         OnDeath += Enemy_OnDeath;
 
-        
-        animator = GetComponent<Animator>();
+        if(animator == null)
+            animator = GetComponent<Animator>();
+
+       
         healthBar = transform.Find("HealthBar/Health")?.GetComponent<Image>();
     }
 
@@ -38,7 +45,7 @@ public class Enemy : Unit
         Move();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         OnDeath -= Enemy_OnDeath;
     }
@@ -48,9 +55,8 @@ public class Enemy : Unit
     {
         if(playerToFollow != null)
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerToFollow.transform.position.x, playerToFollow.transform.position.y, 0), Speed * Time.deltaTime);
-
-        
     }
+
     void Attack(IDamageable target)
     {
         lastAttackTime = Time.time;
@@ -89,10 +95,11 @@ public class Enemy : Unit
 
     private void Enemy_OnDeath(object sender, KillContext e)
     {
-        GameObject expDrop = Instantiate(Resources.Load<GameObject>("Drops/ExpDrop"), transform.position, Quaternion.identity);
-        ExpDrop expScript = expDrop.GetComponent<ExpDrop>();
-        expScript.Initialize(expAmount);
-        Destroy(gameObject);
+        PoolManager manager = PoolManager.Instance;
+
+        GameObject drop = manager.SpawnDrop(DropType.Exp, transform.position, expAmount);
+
+        manager.DisableObject(PoolType.Enemy, gameObject);
     }
 
     public void UpdateHealthBar()

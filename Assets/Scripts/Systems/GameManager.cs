@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     public Player player;
 
     [Header("Prefabs")]
-    public GameObject enemy;
+    public UnitData enemy;
     public GameObject miniBoss;
    
     [Header("Spawn intervals")]
@@ -80,7 +81,7 @@ public class GameManager : MonoBehaviour
 
         if (gameTimer > lastEnemySpawnTime + interval)
         {
-            SpawnEnemy(enemy);
+            SpawnEnemy();
         }
 
         if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
@@ -90,7 +91,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SpawnEnemy(GameObject prefab)
+    void SpawnEnemy()
     {
         float xCordinate = 0;
         float yCordinate = 0;
@@ -104,8 +105,10 @@ public class GameManager : MonoBehaviour
                 yCordinate = 0;
             }
         }
+        Debug.Log("Spawning Enemy!");
+        PoolManager manager = PoolManager.Instance;
 
-        Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+        manager.SpawnGenericEnemy(enemy, new Vector2(xCordinate, yCordinate));
 
         lastEnemySpawnTime = gameTimer;
     }

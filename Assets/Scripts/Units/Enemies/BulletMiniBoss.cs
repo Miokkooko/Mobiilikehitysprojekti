@@ -100,10 +100,13 @@ public class BulletMiniBoss : Enemy
 
         foreach (Vector3 dir in directions)
         {
-            GameObject proj = Instantiate(data.projectilePrefab, transform.position, Quaternion.identity);
-            EnemyProjectile eProj = proj.GetComponent<EnemyProjectile>();
+            PoolManager manager = PoolManager.Instance;
+            GameObject proj = manager.SpawnProjectile(data.poolType, transform.position);
 
-            eProj.EnemyInitialize(data,this, dir);
+            if(proj.GetComponent<EnemyProjectile>() is EnemyProjectile ep)
+            {
+                ep.EnemyInitialize(data, this, dir);
+            }
         }
         _currentState = EnemyState.Recover;
     }

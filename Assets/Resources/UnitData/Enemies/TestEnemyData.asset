@@ -19,5 +19,5 @@ MonoBehaviour:
   baseDamage: 4
   moveSpeed: 2
   xpValue: 2
-  baseSprite: {fileID: 0}
-  animator: {fileID: 0}
+  baseSprite: {fileID: 5723687508711501353, guid: c9c633ae7dcb9414aa8251a359ef8c61, type: 3}
+  animator: {fileID: 22100000, guid: 38932944103397e4d8e6937138b99099, type: 2}

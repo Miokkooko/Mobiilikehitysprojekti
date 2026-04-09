@@ -15,7 +15,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7775072252728010430, guid: be6167b6b2b31404099a89cfda022633, type: 3}
   weaponName: EnemyWeapon
   description: 
-  icon: {fileID: 0}
+  Icon: {fileID: 0}
+  poolType: 9
   baseDamage: 2
   firerate: 1
   piercing: 1
@@ -24,4 +25,6 @@ MonoBehaviour:
   projectileLifeTime: 2
   aoeDamage: 1
   aoeRadius: 1
+  usesProjectileCount: 1
   upgradeList: []
+  effectList: []

@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: Fireball
   description: 
   Icon: {fileID: 5250389579404634882, guid: cbef50553b081fa428525dcec9cb6c9e, type: 3}
+  poolType: 3
   baseDamage: 2
   firerate: 1
   piercing: 1
@@ -24,6 +25,7 @@ MonoBehaviour:
   projectileLifeTime: 2
   aoeDamage: 2
   aoeRadius: 1
+  usesProjectileCount: 1
   upgradeList:
   - Stat: 7
     Value: 0.1

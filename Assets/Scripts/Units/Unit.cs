@@ -54,11 +54,18 @@ public class Unit : MonoBehaviour, IDamageable
 
         StatusDict = new Dictionary<StatusEffect, StatusEffectInstance>();
 
-        InitializeUnit();
+        
+    }
+    private void OnEnable()
+    {
+        InitializeUnit(unitData);
     }
 
-    public void InitializeUnit()
+    public void InitializeUnit(UnitData data)
     {
+        unitData = data;
+        Debug.Log("wow" + data.unitName);
+
         if (unitData != null)
         {
             baseMaxHealth = unitData.maxHealth;
@@ -72,21 +79,20 @@ public class Unit : MonoBehaviour, IDamageable
                 Animator anim = GetComponent<Animator>();
                 anim.runtimeAnimatorController = unitData.animator;
             }
+
+            SpriteRenderer sr = GetComponent<SpriteRenderer>();
+            if (unitData.baseSprite != null)
+            {
+                sr.sprite = unitData.baseSprite;
+            }
         }
-
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-
-        if (unitData.baseSprite != null)
-        {
-            sr.sprite = unitData.baseSprite;
-        }
-
     } // initializeUnit
 
 
 
     public virtual void Update()
     {
+        if(Health <= 0 ) return;
         var snapshot = StatusDict.Values.ToArray();
         foreach (var sei in snapshot) {
             sei.HandleDuration();
@@ -189,6 +195,15 @@ public class Unit : MonoBehaviour, IDamageable
 
         Debug.Log($"Removed {effect.Name} status from: {target.name}");
         Debug.Log("Speed -> " + target.Speed);
+    }
+
+    public static void RemoveAllStatusEffects(Unit target)
+    {
+        target.StatusDict.Clear(); ;
+        foreach (var effect in target.statusBuckets)
+        {
+            effect.Value.Clear();
+        }
     }
 
     public virtual void AddModifiers(StatModifier[] modifiers)

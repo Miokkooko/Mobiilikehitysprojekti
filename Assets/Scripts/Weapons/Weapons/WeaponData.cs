@@ -11,6 +11,7 @@ public class WeaponData : ScriptableObject
     public string weaponName;
     public string description;
     public Sprite Icon;
+    public PoolType poolType;
 
     [Header("Stats")]
     public float baseDamage;

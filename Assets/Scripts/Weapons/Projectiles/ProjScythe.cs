@@ -30,7 +30,8 @@ public class ProjScythe : Projectile
         base.OnTriggerEnter2D(collision);
         if(collision.tag == "Player" && retrn)
         {
-            Destroy(gameObject);
+            Disable(PoolType.Projectile_Scythe);
+            //Destroy(gameObject);
         }
     }
 }

@@ -5,7 +5,7 @@ public class Proj_axe : Projectile
     Vector3 velocity;
     float dir;
 
-    public override void Start()
+    public void OnEnable()
     {
 
         base.Start();

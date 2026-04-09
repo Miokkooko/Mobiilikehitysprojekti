@@ -5,13 +5,14 @@ public class ProjLightning : Projectile
 {
     Enemy target;
     
-    public override void Start()
+    public void OnEnable()
     {
         base.Start();
         target = GetRandomEnemy();
         if(target == null)
         {
-            Destroy(gameObject);
+            Disable(PoolType.Projectile_Lightning); 
+            //Destroy(gameObject);
             return;
         }
 

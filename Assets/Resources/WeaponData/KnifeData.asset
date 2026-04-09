@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: Knife
   description: 
   Icon: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
+  poolType: 5
   baseDamage: 1
   firerate: 0.5
   piercing: 1
@@ -24,6 +25,7 @@ MonoBehaviour:
   projectileLifeTime: 1
   aoeDamage: 1
   aoeRadius: 1
+  usesProjectileCount: 1
   upgradeList:
   - Stat: 3
     Value: 1

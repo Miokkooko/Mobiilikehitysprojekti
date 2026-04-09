@@ -93,8 +93,8 @@ public class WeaponInstance
         Vector3 dir = owner.GetComponent<PlayerMovement>().GetMoveDirection();
         Transform playerPos = owner.GetComponent<Transform>();
 
-        GameObject proj = Object.Instantiate(data.projectilePrefab, owner.transform.position, Quaternion.identity);
-
+        PoolManager manager = PoolManager.Instance;
+        GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
         if(proj.GetComponent<Projectile>() is Projectile p)
         {
             p.Initialize(this, owner, dir);

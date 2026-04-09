@@ -1,6 +1,4 @@
 using UnityEngine;
-using static Unity.Burst.Intrinsics.X86.Avx;
-
 public class PopUpDamage : MonoBehaviour
 {
     public float floatSpeed = 2f;

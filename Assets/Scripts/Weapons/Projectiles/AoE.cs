@@ -17,8 +17,6 @@ public class AoE : Projectile
         if (collision.tag == "Player")
             return;
 
-
-
         if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
             Unit.DealDamage(new DamageContext(player, d, aoeDamage));
