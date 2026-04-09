@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
     Queue<NotificationBase> NotificationQueue = new Queue<NotificationBase>();
     Queue<NotificationBase> PopUpNotificationQueue = new Queue<NotificationBase>();
 
-    private void Awake()
+    private void Start()
     {
         Instance = this;
 

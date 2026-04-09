@@ -1,8 +1,5 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
@@ -14,8 +11,8 @@ public class Projectile : MonoBehaviour
     protected float damage = 1f;
     protected float projectileLifetime = 2f;
 
-    protected float aoeDamage=1f;
-    protected float aoeRadius=1f;
+    protected float aoeDamage = 1f;
+    protected float aoeRadius = 1f;
 
     [Header("Projectiles")]
     public bool enableParticles;
@@ -33,7 +30,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void Start()
     {
-        
+
         //Projectile tuhoaa ittensä kahen sekunnin jälkeen
         if (hitParticles == null && enableParticles)
         {
@@ -51,7 +48,7 @@ public class Projectile : MonoBehaviour
     #region Movement and direction
     public virtual void Move()
     {
-        
+
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
@@ -72,7 +69,7 @@ public class Projectile : MonoBehaviour
         _enemies = detRadius._enemies;
     }
 
-    
+
 
     public virtual void InitializeAoE(Player p, float d, float r)
     {
@@ -93,20 +90,16 @@ public class Projectile : MonoBehaviour
     #region Collision
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Effects count: " + OnHitEffects.Count);
-
         if (collision.tag == "Player")
             return;
 
-        
-
-        if(collision.GetComponent<IDamageable>() is IDamageable d)
+        if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
             Unit.DealDamage(new DamageContext(player, d, damage));
             OnHitParticles();
         }
 
-        if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             Enemy enemy = collision.GetComponent<Enemy>();
 
@@ -114,26 +107,21 @@ public class Projectile : MonoBehaviour
             {
                 foreach (var effect in OnHitEffects)
                 {
-                    Debug.Log("Applying Bleed");
                     Unit.ApplyStatusEffect(effect, enemy);
                 }
             }
         }
-        
+
     }
 
 
 
     public virtual void OnHitParticles()
     {
-       
-            if (hitParticles != null)
-            {
-                Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
-            }
-        
-        
-        
+        if (hitParticles != null)
+        {
+            Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
+        }
 
         if (projectilePiercing != 1)
         {
@@ -147,7 +135,7 @@ public class Projectile : MonoBehaviour
 
     public virtual void SpawnAoE()
     {
-        GameObject proj = Object.Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
+        GameObject proj = Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
         Projectile aoe = proj.GetComponent<AoE>();
         aoe.InitializeAoE(player, aoeDamage, aoeRadius);
     }
@@ -156,7 +144,7 @@ public class Projectile : MonoBehaviour
 
     public Enemy GetRandomEnemy()
     {
-        if(_enemies.Count == 0)
+        if (_enemies.Count == 0)
         {
             return null;
         }

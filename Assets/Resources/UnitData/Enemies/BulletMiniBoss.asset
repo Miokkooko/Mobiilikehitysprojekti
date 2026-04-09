@@ -16,7 +16,7 @@ MonoBehaviour:
   maxWeapons: 6
   maxPassives: 6
   maxHealth: 150
-  baseDamage: 2
+  baseDamage: 7
   moveSpeed: 1.5
   xpValue: 30
   baseSprite: {fileID: -1185401933369553465, guid: 4701a1c6f3d75794d850dfc4f3383d17, type: 3}

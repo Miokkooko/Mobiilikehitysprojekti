@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
     int kills;
     public int Kills => kills;
@@ -15,12 +15,13 @@ public class GameManager : MonoBehaviour
     float lastEnemySpawnTime;
     float lastMiniBossSpawnTime;
 
+    public LevelUpManager levelUpManager;
+    public Player player;
+
     [Header("Prefabs")]
     public GameObject enemy;
     public GameObject miniBoss;
-
-    private Player player;
-
+   
     [Header("Spawn intervals")]
     public float interval = 2;
     public float miniBossInterval = 60;
@@ -33,20 +34,41 @@ public class GameManager : MonoBehaviour
 
     void OnDestroy()
     {
-        player.OnKill -= Player_OnKill;
+        player.OnKill -= OnPlayerKill;
+
+        player.OnDeath -= OnPlayerDeath;
+        player.OnPlayerLevelUp -= OnPlayerLevelUp;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.OnKill += Player_OnKill;
+        Instance = this;
+        if (player == null)
+        {
+            Debug.Log("Player not found");
+            return;
+        }
 
-        player.OnDeath += Player_OnDeath;
-        instance = this;    
+        player.OnKill += OnPlayerKill;
+        player.OnDeath += OnPlayerDeath;
+        player.OnPlayerLevelUp += OnPlayerLevelUp;
+        levelUpManager.player = player;
     }
 
-    private void Player_OnDeath(object sender, KillContext e)
+    
+    void OnPlayerLevelUp(int obj)
+    {
+        TriggerReward();
+    }
+
+    public void TriggerReward()
+    {
+        levelUpManager.TriggerReward();
+        
+    }
+
+    private void OnPlayerDeath(object sender, KillContext e)
     {
         SceneManager.LoadScene(0);
     }
@@ -109,7 +131,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void Player_OnKill(object sender, KillContext e)
+    private void OnPlayerKill(object sender, KillContext e)
     {
         kills += 1;
 
@@ -136,5 +158,13 @@ public class GameManager : MonoBehaviour
         kills = 0;
     }
 
-    
+    public WeaponInstance GetWeaponFromPlayer(WeaponData weapon)
+    {
+        return player.GetWeapon(weapon);
+    }
+
+    public PassiveInstance GetPassiveFromPlayer(PassiveData data)
+    {
+        return player.GetPassive(data);
+    }
 }

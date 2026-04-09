@@ -1,7 +1,8 @@
-using UnityEditor;
-using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
+using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [CreateAssetMenu(fileName = "PassiveData", menuName = "Passives/PassiveData", order = 1)]
 public class PassiveData : StatusEffect
@@ -11,6 +12,9 @@ public class PassiveData : StatusEffect
     public float[] Upgrades;
 
 }
+
+#if UNITY_EDITOR
+
 
 [CustomEditor(typeof(PassiveData)), CanEditMultipleObjects]
 public class PassiveDataEditor : Editor
@@ -25,3 +29,4 @@ public class PassiveDataEditor : Editor
         serializedObject.ApplyModifiedProperties();
     }
 }
+#endif

@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Unity.Cinemachine.CinemachineFreeLookModifier;
-
-
-
 public class WeaponInstance
 {
     public List<StatusEffect> OnHitEffects = new List<StatusEffect>();

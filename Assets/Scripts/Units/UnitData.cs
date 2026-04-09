@@ -14,8 +14,7 @@ public class UnitData : ScriptableObject
 
     public int xpValue; // Vihuille 
                         // Kenties muitaki muuttujia niinku attack cooldown, resistances, jne
-
     public Sprite baseSprite;
     public AnimatorOverrideController animator;
 
-} // Class
+} 

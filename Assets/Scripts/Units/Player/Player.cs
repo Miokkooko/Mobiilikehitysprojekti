@@ -177,7 +177,6 @@ public class Player : Unit
 
         if (totalExp >= RequiredExp)
         {
-            LevelUpManager.Instance.TriggerLevelUp();
             PreviousRequiredExp = RequiredExp;
             expMultiplier += 10*level;
             level += 1;

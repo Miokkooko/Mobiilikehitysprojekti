@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 583bc9dc130f92042893dbeafd5c5612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpNotification
-  Data: {fileID: 0}
+  Data: {fileID: 11400000, guid: 6dc5927fc3e6d8043aba97d8b91eeae4, type: 2}
   title: {fileID: 0}
   description: {fileID: 0}
   content: {fileID: 2823642366567445797}

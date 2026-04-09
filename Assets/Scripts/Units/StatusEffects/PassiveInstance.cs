@@ -1,10 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
-
+﻿
 public class PassiveInstance
 {
     public int upgradeRank = 0;

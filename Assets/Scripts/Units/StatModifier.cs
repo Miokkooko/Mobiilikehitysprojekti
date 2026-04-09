@@ -1,5 +1,7 @@
 ﻿using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public enum StatType
@@ -37,6 +39,7 @@ public class WeaponModifier : StatModifier
     public string upgradeDescription;
 }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(WeaponModifier))]
 public class WeaponModifierDrawer : PropertyDrawer
 {
@@ -83,3 +86,4 @@ public class WeaponModifierDrawer : PropertyDrawer
         return total;
     }
 }
+#endif

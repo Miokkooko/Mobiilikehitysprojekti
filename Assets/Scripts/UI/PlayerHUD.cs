@@ -66,7 +66,7 @@ public class PlayerHUD : MonoBehaviour
 
     void Update()
     {
-        timer = GameManager.instance.GameTime;
+        timer = GameManager.Instance.GameTime;
 
         int minutes = Mathf.FloorToInt(timer / 60f);
         int seconds = Mathf.FloorToInt(timer % 60f);
@@ -78,7 +78,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void OnEnemyKilled(object sender, KillContext e)
     {
-        KillsText.text = GameManager.instance.Kills.ToString();
+        KillsText.text = GameManager.Instance.Kills.ToString();
     }
 
     private void OnPlayerLevelUp(int obj)
