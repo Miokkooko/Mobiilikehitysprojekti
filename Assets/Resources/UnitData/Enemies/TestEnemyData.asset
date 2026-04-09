@@ -13,15 +13,10 @@ MonoBehaviour:
   m_Name: TestEnemyData
   m_EditorClassIdentifier: Assembly-CSharp::UnitData
   unitName: TestEnemy
-<<<<<<< Updated upstream
-  maxHealth: 3
-  baseDamage: 1
-=======
   maxWeapons: 6
   maxPassives: 6
   maxHealth: 15
   baseDamage: 5
->>>>>>> Stashed changes
   moveSpeed: 2
   xpValue: 2
   animator: {fileID: 0}
