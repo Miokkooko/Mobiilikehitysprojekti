@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: d7ac0e0ae849fb5478347ca250188230
+guid: 7b4a3236a7ce105468b3ee879b295657
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3380038356508672061
-    second: Oni32x_0
+      213: -582548278662217299
+    second: Skeleton King-Sheet_0
+  - first:
+      213: -5020910613220700589
+    second: Skeleton King-Sheet_1
+  - first:
+      213: 6953864695494313608
+    second: Skeleton King-Sheet_2
+  - first:
+      213: 3582194664496428759
+    second: Skeleton King-Sheet_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +55,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +122,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Oni32x_0
+      name: Skeleton King-Sheet_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 0
         y: 0
-        width: 24
-        height: 32
+        width: 65
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +137,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d3005ee1afe48ee20800000000000000
-      internalID: 3380038356508672061
+      spriteID: da1c2d15d6f5ae7f0800000000000000
+      internalID: -582548278662217299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton King-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 0
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35ecdf13664225ab0800000000000000
+      internalID: -5020910613220700589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton King-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 0
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886811fe817118060800000000000000
+      internalID: 6953864695494313608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton King-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 0
+        width: 65
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6fb9d611386b130800000000000000
+      internalID: 3582194664496428759
       vertices: []
       indices: 
       edges: []
@@ -138,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Oni32x_0: 3380038356508672061
+      Skeleton King-Sheet_0: -582548278662217299
+      Skeleton King-Sheet_1: -5020910613220700589
+      Skeleton King-Sheet_2: 6953864695494313608
+      Skeleton King-Sheet_3: 3582194664496428759
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

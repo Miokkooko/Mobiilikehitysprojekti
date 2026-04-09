@@ -6,10 +6,8 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RabidBatAnimatorOverride
+  m_Name: SkeletonKingOverride
   m_Controller: {fileID: 9100000, guid: 9adda34c18146184682fd1e4ed4727bb, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 88e846d4ad9b7d14d84abdfc84d65740, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: bdc6d330fb4de5848a1249aea61e9b0d, type: 2}
-  - m_OriginalClip: {fileID: 7400000, guid: 6613eb03eef1a79448fb97f7d3236403, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: bdc6d330fb4de5848a1249aea61e9b0d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4b111fec0aa361e4c848d22b49b541ed, type: 2}

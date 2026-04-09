@@ -21,4 +21,4 @@ MonoBehaviour:
   xpValue: 0
   baseSprite: {fileID: -3862247730972854534, guid: 27b4924f89aa2744e9a13d201f697d04, type: 3}
   animator: {fileID: 22100000, guid: 3148efd6579e87442af534cdf9550176, type: 2}
-
+  startingWeapon: {fileID: 11400000, guid: edee366ce4eb8db4cb876373fb55832a, type: 2}

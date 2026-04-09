@@ -67,7 +67,15 @@ public class Unit : MonoBehaviour, IDamageable
             health = baseMaxHealth;
             expAmount = unitData.xpValue;
 
-            if(unitData.animator != null)
+            if (this is Player player)
+            {
+                if(unitData.startingWeapon != null)
+                {
+                    player.AddWeapon(unitData.startingWeapon);
+                }
+            }
+
+            if (unitData.animator != null)
             {
                 Animator anim = GetComponent<Animator>();
                 anim.runtimeAnimatorController = unitData.animator;

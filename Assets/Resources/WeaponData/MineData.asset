@@ -15,7 +15,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7775072252728010430, guid: 8874ffa405d0b8c4cb8fb7674f4ce22f, type: 3}
   weaponName: Mine
   description: 
-  Icon: {fileID: 21300000, guid: d3eaac23bd74c724cb676b171a714f02, type: 3}
+  Icon: {fileID: 21300000, guid: 84cd6b1b0fa320d4ebebb1ecf4b2409c, type: 3}
   baseDamage: 2
   firerate: 1
   piercing: 1
@@ -26,4 +26,5 @@ MonoBehaviour:
   aoeRadius: 2
   usesProjectileCount: 0
   upgradeList: []
-  effectList: []
+  effectList:
+  - {fileID: 11400000, guid: 75a5f1531c760fe48910e854db02b768, type: 2}

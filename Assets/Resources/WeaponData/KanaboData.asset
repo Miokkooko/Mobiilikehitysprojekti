@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
+  m_Name: KanaboData
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectilePrefab: {fileID: 5697604641964101251, guid: 3cf7fba35531de2409076de5971cffbc, type: 3}
+  weaponName: "Kanab\u014D"
+  description: A blunt, spiked club that causes knockback and severe concussions
+  Icon: {fileID: -5295550415798936366, guid: 65aa5bbdc3175ee468c3bca072dfd1c8, type: 3}
+  baseDamage: 2
+  firerate: 1.5
+  piercing: 1000
+  projectileCount: 1
+  projectileSpeed: 5
+  projectileLifeTime: 0.75
+  aoeDamage: 1
+  aoeRadius: 1
+  usesProjectileCount: 1
+  upgradeList:
+  - Stat: 0
+    Value: 5
+    Type: 0
+    source: {fileID: 0}
+    upgradeDescription: Increases (Brain) Damage
+  effectList:
+  - {fileID: 11400000, guid: 6726dbd0572b83b43b32fb61889c646f, type: 2}

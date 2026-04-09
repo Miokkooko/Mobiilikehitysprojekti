@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5095381493187369754, guid: 359459e2c12d3cd408c9f015631c4cd7, type: 3}
   weaponName: Fireball
-  description: 
+  description: Hurls a fireball, causing rapid burning and area damage
   Icon: {fileID: 5250389579404634882, guid: cbef50553b081fa428525dcec9cb6c9e, type: 3}
   baseDamage: 2
   firerate: 1
@@ -24,6 +24,7 @@ MonoBehaviour:
   projectileLifeTime: 2
   aoeDamage: 2
   aoeRadius: 1
+  usesProjectileCount: 1
   upgradeList:
   - Stat: 7
     Value: 0.1

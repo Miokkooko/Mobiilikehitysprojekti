@@ -113,10 +113,19 @@ public class Projectile : MonoBehaviour
             if (OnHitEffects != null)
             {
                 foreach (var effect in OnHitEffects)
-                {
-                    Debug.Log("Applying Bleed");
-                    Unit.ApplyStatusEffect(effect, enemy);
-                }
+
+                    if (effect is KnockBack kb)
+                    {
+                        Vector2 knockDir = (enemy.transform.position - player.transform.position).normalized;
+                        Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
+                        rb.linearVelocity = knockDir * kb.force + Vector2.up * kb.upwardsForce;
+                    }
+                    else
+                    {
+                        Debug.Log("Applying Status Effect");
+                        Unit.ApplyStatusEffect(effect, enemy);          
+                    }
+
             }
         }
         

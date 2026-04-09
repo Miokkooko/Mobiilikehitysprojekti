@@ -5764,7 +5764,7 @@ PrefabInstance:
     - target: {fileID: 200428638717900182, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: unitData
       value: 
-      objectReference: {fileID: 11400000, guid: 7c7c3071b3121684d82dff51d895be08, type: 2}
+      objectReference: {fileID: 11400000, guid: 9c7d8a55464b411488de34282b780089, type: 2}
     - target: {fileID: 240634015747286591, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -5823,7 +5823,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: c784ddc623c6bd3458221568a09a173f, type: 2}
     - target: {fileID: 7750771398560166580, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7750771398560166580, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_SortingLayerID
@@ -5910,9 +5910,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 70966954}
     - target: {fileID: 2270883016259907195, guid: 58d4f6dbb033dc34ab92dfed41a8cfa2, type: 3}
+      propertyPath: WeaponUpgrades.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2270883016259907195, guid: 58d4f6dbb033dc34ab92dfed41a8cfa2, type: 3}
       propertyPath: PassiveUpgrades.Array.size
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2270883016259907195, guid: 58d4f6dbb033dc34ab92dfed41a8cfa2, type: 3}
+      propertyPath: 'WeaponUpgrades.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a05f59896274241418292e29cdc64711, type: 2}
     - target: {fileID: 2270883016259907195, guid: 58d4f6dbb033dc34ab92dfed41a8cfa2, type: 3}
       propertyPath: 'PassiveUpgrades.Array.data[2]'
       value: 
