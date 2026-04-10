@@ -26,6 +26,9 @@ public class Unit : MonoBehaviour, IDamageable
     float baseProjectileCount = 0;
     public virtual float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount);
 
+    float baseProjectileBurst = 0;
+    public virtual float ProjectileBurst => statSystem.Calculate(StatType.ProjectileBurst, baseProjectileBurst);
+
     float baseFireratePercent = 1;
     public virtual float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, baseFireratePercent);
 

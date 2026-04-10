@@ -154,12 +154,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.0007213354, y: 0.02866914}
-  m_Radius: 0.2231831
+  m_Radius: 0.55
 --- !u!114 &2754587213578604663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,9 +175,7 @@ MonoBehaviour:
   isWalking: 0
   enemyData: {fileID: 11400000, guid: 2d6ad95f0d66b564a95be5e65e84daa5, type: 2}
   effects: []
-  recoverTimer: 0
-  recoverDuration: 1
-  chargeTimer: 0
+  recoverDuration: 1.5
   chargeDuration: 3
   fireDistance: 3
   weaponData: {fileID: 11400000, guid: 30c9a767206f4734099948f2d298e269, type: 2}
@@ -238,7 +236,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.12}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -248,7 +246,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.08, y: 1.37}
   m_EdgeRadius: 0
 --- !u!1001 &4981929815491705197
 PrefabInstance:

@@ -9,6 +9,7 @@ public enum EnemyPoolType
     None,
     GenericEnemy,
     BulletMiniBoss,
+    SkeletonMiniBoss
 }
 public enum ProjectilePoolType
 {
@@ -21,6 +22,7 @@ public enum ProjectilePoolType
     Projectile_Scythe,
     Projectile_Lightning,
     Projectile_Enemy,
+    Projectile_Sun
 }
 public enum OtherPoolType
 {

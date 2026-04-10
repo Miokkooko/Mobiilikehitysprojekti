@@ -603,8 +603,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec78ac83d34a55479ea8c28cbee5941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 5
-  dropMoveSpeed: 2
 --- !u!212 &339661108
 SpriteRenderer:
   serializedVersion: 2
@@ -6395,7 +6393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 195258904440770667, guid: d8ae13fe4915eda4abd0c7eebc4c3513, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 249056189447358480, guid: d8ae13fe4915eda4abd0c7eebc4c3513, type: 3}
       propertyPath: m_LocalPosition.x

@@ -20,6 +20,7 @@ public class WeaponData : ScriptableObject
     public int projectileCount = 1;
     public float projectileSpread = 22.5f;
     public float projectileSpeed = 5;
+    public float projectileBurst = 1;
     public float projectileLifeTime = 2;
     public float aoeDamage = 1f;
     public float aoeRadius = 1f;

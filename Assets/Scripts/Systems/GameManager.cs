@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
     //[SerializeField] private EnemySpawn[] enemyList;
 
     [SerializeField] private EnemyGroup[] enemyGroups;
+    [SerializeField] private EnemyGroup[] miniBossGroups;
 
-    private EnemySpawn[] currentList; 
-
-    public GameObject miniBoss;
+    private EnemySpawn[] currentEnemyList;
+    private EnemySpawn[] currentMiniBossList;
 
     public LevelUpManager levelUpManager;
     public Player player;
@@ -65,7 +65,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        currentList = enemyGroups[0].enemies;
+        currentEnemyList = enemyGroups[0].enemies;
+        currentMiniBossList = miniBossGroups[0].enemies;
 
         player.OnKill += OnPlayerKill;
         player.OnDeath += OnPlayerDeath;
@@ -97,13 +98,13 @@ public class GameManager : MonoBehaviour
 
         if (gameTimer > lastEnemySpawnTime + interval)
         {
-            CalculateEnemy();
+            CalculateEnemy(currentEnemyList);
             lastEnemySpawnTime = gameTimer;
         }
 
         if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
         {
-            CalculateEnemy();
+            CalculateEnemy(currentMiniBossList);
             lastMiniBossSpawnTime = gameTimer;
         }
 
@@ -135,10 +136,10 @@ public class GameManager : MonoBehaviour
         manager.SpawnEnemy(data, GetSpawnCoordinates());
     }
 
-    public void CalculateEnemy()
+    public void CalculateEnemy(EnemySpawn[] enemyList)
     {
         float totalChance = 0f;
-        foreach (EnemySpawn spawnEvents in currentList)
+        foreach (EnemySpawn spawnEvents in enemyList)
         {
             totalChance += spawnEvents.SpawnChance;
         }
@@ -146,7 +147,7 @@ public class GameManager : MonoBehaviour
         float rand = UnityEngine.Random.Range(0f, totalChance);
         float cumulaticeChance = 0f;
 
-        foreach (EnemySpawn spawnEvents in currentList)
+        foreach (EnemySpawn spawnEvents in enemyList)
         {
             cumulaticeChance += spawnEvents.SpawnChance;
 
@@ -192,14 +193,14 @@ public class GameManager : MonoBehaviour
     {
         if(gameTimer > 60)
         {
-            currentList = enemyGroups[2].enemies;
+            currentEnemyList = enemyGroups[2].enemies;
         }else if(gameTimer > 30)
         {
-            currentList = enemyGroups[1].enemies;
+            currentEnemyList = enemyGroups[1].enemies;
         }
         else
         {
-            currentList = enemyGroups[0].enemies;
+            currentEnemyList = enemyGroups[0].enemies;
         }
     }
 

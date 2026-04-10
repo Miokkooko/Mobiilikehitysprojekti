@@ -4,12 +4,12 @@ using UnityEngine;
 public class BulletMiniBoss : Enemy
 {
     [Header("Recover")]
-    public float recoverTimer = 0f;
     public float recoverDuration = 1f;
+    private float recoverTimer = 0f;
 
     [Header("Charge")]
-    public float chargeTimer = 0f;
     public float chargeDuration = 0.5f;
+    private float chargeTimer = 0f;
 
     [Header("Firing")]
     public float fireDistance = 3f;
@@ -30,7 +30,7 @@ public class BulletMiniBoss : Enemy
 
     public override void Update()
     {
-        base.Update();
+        
 
         animator.SetBool("isWalking", isWalking);
         UpdateHealthBar();

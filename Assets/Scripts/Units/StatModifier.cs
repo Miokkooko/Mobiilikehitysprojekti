@@ -5,6 +5,7 @@
     MaxHealth,
     Piercing,
     ProjectileCount,
+    ProjectileBurst,
     FirerateBonus,
     AoERadius,
     AoEDamage
