@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using static Unity.Cinemachine.CinemachineFreeLookModifier;
 
 
@@ -11,9 +12,11 @@ public class WeaponInstance
 
     protected Player owner;
     public WeaponData data;
+    
 
     //Weapon stats
     public float lastFireTime;
+    private int timesFired;
 
     public int upgradeRank = 0;
     public bool CanUpgrade => upgradeRank < data.upgradeList.Length;
@@ -26,6 +29,8 @@ public class WeaponInstance
 
     float baseProjectileCount = 1;
     public float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount + owner.ProjectileCount);
+
+    float baseProjectileSpread = 1f;
 
     float baseFireRate = 1;
     public float Firerate => statSystem.Calculate(StatType.Firerate, baseFireRate);
@@ -50,6 +55,7 @@ public class WeaponInstance
 
         baseFireRate = data.firerate;
         baseProjectileCount = data.projectileCount;
+        baseProjectileSpread = data.projectileSpread;
         baseDamage = data.baseDamage;
         baseProjectileSpeed = data.projectileSpeed;
         basePiercing = data.piercing;
@@ -92,27 +98,61 @@ public class WeaponInstance
     //------ Jos jätän tähän tämmöisen käyttäytymisen defaultiksi kun aika moni ase saattais käyttää tätä? ----------
     public virtual void Fire()
     {
-
+        
         //hae viimeisimmän inputin suunta + luo projectile + anna projectilelle viimeisimmän inputin suunta
         Vector3 dir = owner.GetComponent<PlayerMovement>().GetMoveDirection();
         Transform playerPos = owner.GetComponent<Transform>();
 
-        GameObject proj = Object.Instantiate(data.projectilePrefab, owner.transform.position, Quaternion.identity);
+        //spread händlays spagetti
+        float spreadAngle = baseProjectileSpread; 
 
-        if(proj.GetComponent<Projectile>() is Projectile p)
+        for (int i = 0; i < ProjectileCount; i++)
         {
-            p.Initialize(this, owner, dir);
+            float angle = 0;
+
+            if (ProjectileCount > 1)
+            {
+                float even = i % 2;
+
+                if (i == 0)
+                {
+                    angle = 0; 
+                }
+                else
+                {
+                    int side;
+                    if (i % 2 == 0)
+                    {
+                        side = 1;
+                    }
+                    else side = -1;
+
+                    int step = (i + 1) / 2;
+
+                    angle = side * step * spreadAngle;
+                }
+            }
+
+            Vector3 rotatedDir = Quaternion.Euler(0, 0, angle) * dir;
+
+            
+                GameObject proj = Object.Instantiate(data.projectilePrefab, owner.transform.position, Quaternion.identity);
+
+                if (proj.GetComponent<Projectile>() is Projectile p)
+                {
+                    p.Initialize(this, owner, rotatedDir);
+                }
+
+            
         }
+        
     }
 
 
     IEnumerator FireProjectiles()
     {
-        for (int i = 0; i < ProjectileCount; i++)
-        {
-            Fire();
-            yield return new WaitForSeconds(0.1f);
-        }
+        Fire();
+        yield return new WaitForSeconds(0.1f);
     }
 
     public string GetRankUpDescription()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using TMPro.EditorUtilities;
 
 
 public class Unit : MonoBehaviour, IDamageable
@@ -27,6 +28,10 @@ public class Unit : MonoBehaviour, IDamageable
     public virtual float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount);
 
     protected float expAmount = 1;
+
+    protected int coinValue = 1;
+
+    protected int coinDropChance = 10;
 
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
@@ -66,6 +71,8 @@ public class Unit : MonoBehaviour, IDamageable
             baseSpeed = unitData.moveSpeed;
             health = baseMaxHealth;
             expAmount = unitData.xpValue;
+            coinValue = unitData.coinValue;
+            coinDropChance = unitData.coinDropChance;
 
             if (this is Player player)
             {

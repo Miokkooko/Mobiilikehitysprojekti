@@ -93,7 +93,7 @@ public class Projectile : MonoBehaviour
     #region Collision
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Effects count: " + OnHitEffects.Count);
+        //Debug.Log("Effects count: " + OnHitEffects.Count);
 
         if (collision.tag == "Player")
             return;

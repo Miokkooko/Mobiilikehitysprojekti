@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class Enemy : Unit
 {
@@ -23,6 +24,9 @@ public class Enemy : Unit
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
         player = playerToFollow.GetComponent<Player>();
+
+        Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), player.GetComponent<Collider2D>());
+
         OnDeath += Enemy_OnDeath;
 
         
@@ -41,6 +45,8 @@ public class Enemy : Unit
 
     private void OnDestroy()
     {
+        DropCoin();
+
         OnDeath -= Enemy_OnDeath;
     }
 
@@ -66,7 +72,7 @@ public class Enemy : Unit
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() is Player p)
         {
@@ -77,7 +83,7 @@ public class Enemy : Unit
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() is Player p)
         {
@@ -99,5 +105,16 @@ public class Enemy : Unit
     public void UpdateHealthBar()
     {
         healthBar.fillAmount = Health / MaxHealth;    
+    }
+
+    public virtual void DropCoin()
+    {
+        float rand = Random.Range(1, coinDropChance);
+        if (rand == 1)
+        {
+            GameObject coinDrop = Instantiate(Resources.Load<GameObject>("Drops/coinDrop"), transform.position, Quaternion.identity);
+            CoinDrop coinScript = coinDrop.GetComponent<CoinDrop>();
+            coinScript.InitializeCoins(coinValue);
+        }
     }
 }

@@ -30,6 +30,7 @@ public class Player : Unit
     public event Action<float> OnPlayerHealthChanged;
     public event Action<float> OnPlayerExpChanged;
     public event Action<int> OnPlayerLevelUp;
+
     public event Action<PassiveData[]> OnPlayerGetPassive;
     public event Action<WeaponData[]> OnPlayerGetWeapon;
 
@@ -44,6 +45,8 @@ public class Player : Unit
     void Start()
     {
         //AddWeapon(new Axe());
+        
+
         Movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 

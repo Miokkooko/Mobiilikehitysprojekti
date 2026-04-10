@@ -14,6 +14,7 @@ public class PlayerHUD : MonoBehaviour
 
     public TMP_Text KillsText;
     public TMP_Text TimerText;
+    public TMP_Text CoinText;
 
     float timer = 0f;
 
@@ -33,6 +34,7 @@ public class PlayerHUD : MonoBehaviour
         Player.OnPlayerExpChanged += OnPlayerExpChanged;
         Player.OnPlayerLevelUp += OnPlayerLevelUp;
         Player.OnKill += OnEnemyKilled;
+        GameManager.instance.OnCoinChanged += OnCoinChanged;
 
         OnPlayerHealthChanged(Player.Health);
 
@@ -52,6 +54,7 @@ public class PlayerHUD : MonoBehaviour
         Player.OnPlayerExpChanged -= OnPlayerExpChanged;
         Player.OnPlayerLevelUp -= OnPlayerLevelUp;
         Player.OnKill -= OnEnemyKilled;
+        GameManager.instance.OnCoinChanged -= OnCoinChanged;
     }
 
     private void OnPlayerGetWeapon(WeaponData[] obj)
@@ -79,6 +82,11 @@ public class PlayerHUD : MonoBehaviour
     private void OnEnemyKilled(object sender, KillContext e)
     {
         KillsText.text = GameManager.instance.Kills.ToString();
+    }
+
+    private void OnCoinChanged(int obj)
+    {
+        CoinText.text = GameManager.instance.Coins.ToString();
     }
 
     private void OnPlayerLevelUp(int obj)

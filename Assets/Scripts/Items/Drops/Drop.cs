@@ -7,6 +7,8 @@ public class Drop : MonoBehaviour
     public float health = 5;
     public float dropMoveSpeed = 2f;
     protected float expAmount = 1f;
+    protected int coinAmount = 1;
+
     Transform target;
     BoxCollider2D box;
     CircleCollider2D circle;

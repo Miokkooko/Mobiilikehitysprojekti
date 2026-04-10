@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 263870618791266848}
   - component: {fileID: 6689754063975724626}
   - component: {fileID: 208637699656794569}
-  - component: {fileID: -6557363341509167393}
   - component: {fileID: 6474148549126811038}
+  - component: {fileID: -2098237710299578112}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Projectile
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2023423201
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
@@ -121,21 +121,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-6557363341509167393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7775072252728010430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f9d8fc49c90ddc4b880e72c7bcb7bc7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  enableParticles: 1
-  hitParticles: {fileID: 4017514965822915143, guid: 26285d15365026248aaef20bdbddc1e4, type: 3}
-  _enemies: []
 --- !u!61 &6474148549126811038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -182,3 +167,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &-2098237710299578112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7775072252728010430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cd682a4c418f441b5fb90769fe9600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  OnHitEffects: []
+  enableParticles: 1
+  hitParticles: {fileID: 4017514965822915143, guid: 26285d15365026248aaef20bdbddc1e4, type: 3}
+  _enemies: []

@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
+  m_Name: BibleData
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectilePrefab: {fileID: 5095381493187369754, guid: 3b4da201cd25c9f48afbda8050ad5df1, type: 3}
+  weaponName: Bible
+  description: 
+  Icon: {fileID: 21300000, guid: cfe36c91fec2bcb4ca15e549a06135da, type: 3}
+  baseDamage: 6
+  firerate: 10
+  piercing: 1000
+  projectileCount: 1
+  projectileSpread: 0
+  projectileSpeed: 3
+  projectileLifeTime: 6
+  aoeDamage: 0
+  aoeRadius: 0
+  usesProjectileCount: 1
+  upgradeList:
+  - Stat: 0
+    Value: 0.3
+    Type: 1
+    source: {fileID: 0}
+    upgradeDescription: 
+  - Stat: 1
+    Value: 0.5
+    Type: 1
+    source: {fileID: 0}
+    upgradeDescription: 
+  - Stat: 5
+    Value: 0.4
+    Type: 1
+    source: {fileID: 0}
+    upgradeDescription: 
+  effectList:
+  - {fileID: 11400000, guid: 8485e8e14981a434c97abf9dd627e7de, type: 2}
