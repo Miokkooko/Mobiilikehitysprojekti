@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 public class WeaponInstance
 {
@@ -7,7 +8,7 @@ public class WeaponInstance
 
     protected Player owner;
     public WeaponData data;
-    
+
 
     //Weapon stats
     public float lastFireTime;
@@ -66,13 +67,13 @@ public class WeaponInstance
         if (!CanUpgrade)
             return;
 
-        statSystem.AddModifier(data.upgradeList[upgradeRank]); 
+        statSystem.AddModifier(data.upgradeList[upgradeRank]);
         upgradeRank++;
     }
 
     public void TryFire()
     {
-        if (Time.time >= lastFireTime + Firerate) 
+        if (Time.time >= lastFireTime + Firerate)
         {
             if (data.usesProjectileCount)
             {
@@ -86,67 +87,72 @@ public class WeaponInstance
                 lastFireTime = Time.time;
                 Fire();
             }
-               
 
-            
+
+
         }
     }
 
     //------ Jos jätän tähän tämmöisen käyttäytymisen defaultiksi kun aika moni ase saattais käyttää tätä? ----------
     public virtual void Fire()
     {
-        
+
         //hae viimeisimmän inputin suunta + luo projectile + anna projectilelle viimeisimmän inputin suunta
         Vector3 dir = owner.GetComponent<PlayerMovement>().GetMoveDirection();
         Transform playerPos = owner.GetComponent<Transform>();
 
         //spread händlays spagetti
-        float spreadAngle = baseProjectileSpread; 
+        float spreadAngle = baseProjectileSpread;
 
         for (int i = 0; i < ProjectileCount; i++)
-        PoolManager manager = PoolManager.Instance;
-        GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
-
-        if (proj.GetComponent<Projectile>() is Projectile p)
         {
-            float angle = 0;
 
-            if (ProjectileCount > 1)
+
+            PoolManager manager = PoolManager.Instance;
+            GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
+
+            if (proj.GetComponent<Projectile>() is Projectile p)
             {
-                float even = i % 2;
+                float angle = 0;
 
-                if (i == 0)
+                if (ProjectileCount > 1)
                 {
-                    angle = 0; 
-                }
-                else
-                {
-                    int side;
-                    if (i % 2 == 0)
+                    float even = i % 2;
+
+                    if (i == 0)
                     {
-                        side = 1;
+                        angle = 0;
                     }
-                    else side = -1;
+                    else
+                    {
+                        int side;
+                        if (i % 2 == 0)
+                        {
+                            side = 1;
+                        }
+                        else side = -1;
 
-                    int step = (i + 1) / 2;
+                        int step = (i + 1) / 2;
 
-                    angle = side * step * spreadAngle;
+                        angle = side * step * spreadAngle;
+                    }
                 }
+
+                Vector3 rotatedDir = Quaternion.Euler(0, 0, angle) * dir;
+                
+                if (proj.GetComponent<Projectile>() is Projectile projectile)
+                {
+                    projectile.Initialize(this, owner, rotatedDir);
+                }
+                   
+                
+
+
             }
 
-            Vector3 rotatedDir = Quaternion.Euler(0, 0, angle) * dir;
-
-                if (proj.GetComponent<Projectile>() is Projectile p)
-                {
-                    p.Initialize(this, owner, rotatedDir);
-                }
-
-            
+            proj.SetActive(true);
         }
-        
-        proj.SetActive(true);
     }
-
 
     IEnumerator FireProjectiles()
     {
@@ -156,7 +162,7 @@ public class WeaponInstance
             lastFireTime = Time.time;
             yield return new WaitForSeconds(0.1f);
         }
-       
+
     }
 
     public string GetRankUpDescription()
@@ -166,7 +172,7 @@ public class WeaponInstance
 
         StatModifier nextUpgrade = data.upgradeList[upgradeRank];
         string statName = nextUpgrade.Stat.ToString();
-        
+
         float currentValue = 0;
         bool percentStuff = false;
         switch (nextUpgrade.Stat)

@@ -66,7 +66,7 @@ public class Drop : MonoBehaviour
         switch (type)
         {
             case DropType.Coin:
-                Debug.Log("Coin got!");
+                GameManager.Instance.AddCoins((int)dropValue);
                 break;
             case DropType.Exp:
                 player.IncreaseExp(dropValue);

@@ -30,6 +30,8 @@ public class BulletMiniBoss : Enemy
 
     public override void Update()
     {
+        base.Update();
+
         animator.SetBool("isWalking", isWalking);
         UpdateHealthBar();
 

@@ -5,4 +5,6 @@ public class EnemyData : UnitData
 {
     public int xpValue;
     public EnemyPoolType poolType = EnemyPoolType.GenericEnemy;
+    public int coinValue;
+    public int coinDropChance;
 } 

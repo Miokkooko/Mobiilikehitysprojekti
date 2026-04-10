@@ -8,8 +8,8 @@ public class ProjBible : Projectile
 
     public override void Move()
     {
-        float x = player.transform.position.x + Mathf.Cos(_angle) * radius;
-        float y = player.transform.position.y + Mathf.Sin(_angle) * radius;
+        float x = owner.transform.position.x + Mathf.Cos(_angle) * radius;
+        float y = owner.transform.position.y + Mathf.Sin(_angle) * radius;
 
         transform.position = new Vector3(x,y);
 

@@ -24,4 +24,4 @@ MonoBehaviour:
   - Stat: 1
     Value: -0.5
     Type: 1
-    source: {fileID: 0}
+    source: {fileID: 11400000}

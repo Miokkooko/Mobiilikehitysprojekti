@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638dc3cbd47526a43ac694376cb7311a, type: 3}
   m_Name: RabidBatData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  unitName: BulletMiniBoss
+  unitName: RabidBat
   maxHealth: 15
   baseDamage: 4
   moveSpeed: 2
@@ -20,3 +20,5 @@ MonoBehaviour:
   animator: {fileID: 22100000, guid: 38932944103397e4d8e6937138b99099, type: 2}
   xpValue: 3
   poolType: 1
+  coinValue: 0
+  coinDropChance: 0

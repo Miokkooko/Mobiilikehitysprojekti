@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     }
     void Awake()
     {
-        instance = this;
+        Instance = this;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -97,14 +97,13 @@ public class GameManager : MonoBehaviour
 
         if (gameTimer > lastEnemySpawnTime + interval)
         {
-
-            SpawnEnemy(enemy);
+            CalculateEnemy();
             lastEnemySpawnTime = gameTimer;
         }
 
         if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
         {
-            SpawnEnemy(miniBoss);
+            CalculateEnemy();
             lastMiniBossSpawnTime = gameTimer;
         }
 

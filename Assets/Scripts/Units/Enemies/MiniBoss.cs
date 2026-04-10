@@ -32,6 +32,7 @@ public class MiniBoss : Enemy
 
     public override void Update()
     {
+        base.Update();
         UpdateHealthBar();
 
         switch (_currentState)

@@ -64,7 +64,7 @@ public class Enemy : Unit
 
     private void OnDisable()
     {
-        DropCoin();
+        //DropCoin();
 
         OnDeath -= Enemy_OnDeath;
     }
@@ -126,6 +126,7 @@ public class Enemy : Unit
         healthBar.fillAmount = Health / MaxHealth;    
     }
 
+    /*
     public virtual void DropCoin()
     {
         float rand = Random.Range(1, coinDropChance);
@@ -136,4 +137,5 @@ public class Enemy : Unit
             coinScript.InitializeCoins(coinValue);
         }
     }
+    */
 }
