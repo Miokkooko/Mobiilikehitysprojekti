@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308431a827a75c249b0ee028f6bcfd14, type: 3}
+  m_Name: NewKnockBack
+  m_EditorClassIdentifier: Assembly-CSharp::KnockBack
+  Name: 
+  Description: 
+  Duration: 0.1
+  MaxStacks: 0
+  TickRate: 1
+  StackType: 0
+  LifetimeType: 0
+  ModifierType: 2
+  force: 8
+  upwardsForce: 0
+  affectMultipleTargets: 0
+  duration: 0.1

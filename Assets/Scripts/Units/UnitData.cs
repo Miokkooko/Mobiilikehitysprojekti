@@ -18,4 +18,6 @@ public class UnitData : ScriptableObject
     public Sprite baseSprite;
     public AnimatorOverrideController animator;
 
+    public WeaponData startingWeapon;
+
 } // Class
