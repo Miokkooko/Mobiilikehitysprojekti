@@ -31,37 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1783359909810153109}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3485674694741851804
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5669872460174941624}
-  m_Layer: 0
-  m_Name: DmgPopUps
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5669872460174941624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3485674694741851804}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1783359909810153109}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4456440839864620488
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +64,6 @@ Transform:
   - {fileID: 7755152427682216160}
   - {fileID: 1962869535193824846}
   - {fileID: 4847693723030239849}
-  - {fileID: 5669872460174941624}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6117185995095167425
@@ -112,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoolManager
   ProjectileParent: {fileID: 4847693723030239849}
   EnemyParent: {fileID: 7755152427682216160}
-  OtherParent: {fileID: 0}
+  OtherParent: {fileID: 1962869535193824846}
   otherPoolData:
   - prefab: {fileID: 2413233913195433517, guid: 3ef9db122109c694a93f4e8342cd07ae, type: 3}
     poolAmount: 50
@@ -162,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1962869535193824846}
   m_Layer: 0
-  m_Name: Drops
+  m_Name: Other
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
