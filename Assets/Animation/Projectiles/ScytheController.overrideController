@@ -7,5 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ScytheController
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: c91897eee5a1d5d40b0ff6db2faaa686, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 191e303c5a4c0074584c84e692430cd4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1e3f25a27ed9228408bd5d1d1377c500, type: 2}

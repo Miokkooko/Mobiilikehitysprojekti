@@ -20,11 +20,18 @@ MonoBehaviour:
   firerate: 1
   piercing: 10
   projectileCount: 1
+  projectileSpread: 180
   projectileSpeed: 7
   projectileLifeTime: 4
   aoeDamage: 1
   aoeRadius: 1
+  usesProjectileCount: 1
   upgradeList:
+  - Stat: 4
+    Value: 1
+    Type: 0
+    source: {fileID: 0}
+    upgradeDescription: 
   - Stat: 0
     Value: 0.2
     Type: 1
@@ -35,8 +42,4 @@ MonoBehaviour:
     Type: 1
     source: {fileID: 0}
     upgradeDescription: 
-  - Stat: 4
-    Value: 1
-    Type: 0
-    source: {fileID: 0}
-    upgradeDescription: 
+  effectList: []

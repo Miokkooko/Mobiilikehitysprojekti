@@ -12,11 +12,21 @@ public class GameManager : MonoBehaviour
     float gameTimer;
     public float GameTime => gameTimer;
 
+    int coins;
+    public float Coins => coins;
+    public event Action<int> OnCoinChanged;
+
     float lastEnemySpawnTime;
     float lastMiniBossSpawnTime;
 
-    [Header("Prefabs")]
-    public GameObject enemy;
+    [Header("Enemies")]
+    
+    //[SerializeField] private EnemySpawn[] enemyList;
+
+    [SerializeField] private EnemyGroup[] enemyGroups;
+
+    private EnemySpawn[] currentList; 
+
     public GameObject miniBoss;
 
     private Player player;
@@ -35,7 +45,10 @@ public class GameManager : MonoBehaviour
     {
         player.OnKill -= Player_OnKill;
     }
-
+    void Awake()
+    {
+        instance = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -43,7 +56,9 @@ public class GameManager : MonoBehaviour
         player.OnKill += Player_OnKill;
 
         player.OnDeath += Player_OnDeath;
-        instance = this;    
+        //instance = this;
+
+        currentList = enemyGroups[0].enemies;
     }
 
     private void Player_OnDeath(object sender, KillContext e)
@@ -58,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         if (gameTimer > lastEnemySpawnTime + interval)
         {
-            SpawnEnemy(enemy);
+            SpawnEnemy();
         }
 
         if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
@@ -66,9 +81,11 @@ public class GameManager : MonoBehaviour
             SpawnMiniBoss(miniBoss);
             
         }
+
+        ChangeLists();
     }
 
-    void SpawnEnemy(GameObject prefab)
+    void SpawnEnemy()
     {
         float xCordinate = 0;
         float yCordinate = 0;
@@ -83,7 +100,11 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+
+        CalculateEnemy(xCordinate, yCordinate);
+
+
+        
 
         lastEnemySpawnTime = gameTimer;
     }
@@ -108,6 +129,28 @@ public class GameManager : MonoBehaviour
         lastMiniBossSpawnTime = gameTimer;
     }
 
+    public void CalculateEnemy(float xCordinate, float yCordinate)
+    {
+        float totalChance = 0f;
+        foreach (EnemySpawn spawnEvents in currentList)
+        {
+            totalChance += spawnEvents.SpawnChance;
+        }
+
+        float rand = UnityEngine.Random.Range(0f, totalChance);
+        float cumulaticeChance = 0f;
+
+        foreach (EnemySpawn spawnEvents in currentList)
+        {
+            cumulaticeChance += spawnEvents.SpawnChance;
+
+            if (rand <= cumulaticeChance)
+            {
+                Instantiate(spawnEvents.enemyPrefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+                return;
+            }
+        }
+    }
 
     private void Player_OnKill(object sender, KillContext e)
     {
@@ -136,5 +179,43 @@ public class GameManager : MonoBehaviour
         kills = 0;
     }
 
+    private void ChangeLists()
+    {
+        if(gameTimer > 60)
+        {
+            currentList = enemyGroups[2].enemies;
+        }else if(gameTimer > 30)
+        {
+            currentList = enemyGroups[1].enemies;
+        }
+        else
+        {
+            currentList = enemyGroups[0].enemies;
+        }
+    }
+
+    public void AddCoins(int amount)
+    {
+        coins += amount;
+        OnCoinChanged?.Invoke(coins);
+    }
     
+}
+
+
+[System.Serializable]
+public class EnemySpawn
+{
+    public string EventName;
+    [Space]
+    public GameObject enemyPrefab;
+    [Range(0f, 1f)] public float SpawnChance = 0.5f;
+
+}
+
+[System.Serializable]
+public class EnemyGroup
+{
+    public string groupName;         
+    public EnemySpawn[] enemies;    
 }

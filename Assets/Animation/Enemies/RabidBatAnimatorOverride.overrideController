@@ -7,5 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: RabidBatAnimatorOverride
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 15b01a36aa97cb2488fd0617fdc47d0e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: df31ef6219c1c53459a0deb90b01da5f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 94393c935f7e2cb498a81643213ae011, type: 2}

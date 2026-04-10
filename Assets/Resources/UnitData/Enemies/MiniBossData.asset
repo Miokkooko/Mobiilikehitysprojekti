@@ -17,7 +17,9 @@ MonoBehaviour:
   maxPassives: 6
   maxHealth: 150
   baseDamage: 10
-  moveSpeed: 2
+  moveSpeed: 5
   xpValue: 30
+  coinValue: 5
+  coinDropChance: 1
   baseSprite: {fileID: 0}
   animator: {fileID: 0}
