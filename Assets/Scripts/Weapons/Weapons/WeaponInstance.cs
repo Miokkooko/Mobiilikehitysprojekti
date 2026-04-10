@@ -1,11 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
-using static Unity.Cinemachine.CinemachineFreeLookModifier;
-
-
-
 public class WeaponInstance
 {
     public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
@@ -32,8 +27,8 @@ public class WeaponInstance
 
     float baseProjectileSpread = 1f;
 
-    float baseFireRate = 1;
-    public float Firerate => statSystem.Calculate(StatType.Firerate, baseFireRate);
+    public float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, owner.FireratePercent);
+    public float Firerate => (1 - (FireratePercent - 1)) * data.firerate;
 
     float baseProjectileSpeed = 1;
     public float ProjectileSpeed => statSystem.Calculate(StatType.Speed, baseProjectileSpeed);
@@ -53,7 +48,6 @@ public class WeaponInstance
         this.owner = owner;
         this.data = data;
 
-        baseFireRate = data.firerate;
         baseProjectileCount = data.projectileCount;
         baseProjectileSpread = data.projectileSpread;
         baseDamage = data.baseDamage;
@@ -63,7 +57,6 @@ public class WeaponInstance
         baseAoeRadius = data.aoeRadius;
 
         OnHitEffects = new List<StatusEffect>();
-
         OnHitEffects.AddRange(owner.OnHitEffects);
         OnHitEffects.AddRange(data.effectList);
     }
@@ -89,9 +82,13 @@ public class WeaponInstance
                 fire = owner.StartCoroutine(FireProjectiles());
             }
             else
+            {
+                lastFireTime = Time.time;
                 Fire();
+            }
+               
 
-            lastFireTime = Time.time;
+            
         }
     }
 
@@ -107,6 +104,10 @@ public class WeaponInstance
         float spreadAngle = baseProjectileSpread; 
 
         for (int i = 0; i < ProjectileCount; i++)
+        PoolManager manager = PoolManager.Instance;
+        GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
+
+        if (proj.GetComponent<Projectile>() is Projectile p)
         {
             float angle = 0;
 
@@ -135,9 +136,6 @@ public class WeaponInstance
 
             Vector3 rotatedDir = Quaternion.Euler(0, 0, angle) * dir;
 
-            
-                GameObject proj = Object.Instantiate(data.projectilePrefab, owner.transform.position, Quaternion.identity);
-
                 if (proj.GetComponent<Projectile>() is Projectile p)
                 {
                     p.Initialize(this, owner, rotatedDir);
@@ -146,13 +144,19 @@ public class WeaponInstance
             
         }
         
+        proj.SetActive(true);
     }
 
 
     IEnumerator FireProjectiles()
     {
-        Fire();
-        yield return new WaitForSeconds(0.1f);
+        for (int i = 0; i < ProjectileCount; i++)
+        {
+            Fire();
+            lastFireTime = Time.time;
+            yield return new WaitForSeconds(0.1f);
+        }
+       
     }
 
     public string GetRankUpDescription()
@@ -164,7 +168,7 @@ public class WeaponInstance
         string statName = nextUpgrade.Stat.ToString();
         
         float currentValue = 0;
-
+        bool percentStuff = false;
         switch (nextUpgrade.Stat)
         {
             case StatType.Damage:
@@ -176,8 +180,9 @@ public class WeaponInstance
             case StatType.ProjectileCount:
                 currentValue = ProjectileCount;
                 break;
-            case StatType.Firerate:
-                currentValue = Firerate;
+            case StatType.FirerateBonus:
+                currentValue = (FireratePercent - 1) * 100;
+                percentStuff = true;
                 break;
             case StatType.AoERadius:
                 currentValue = AoERadius;
@@ -189,7 +194,7 @@ public class WeaponInstance
                 break;
         }
 
-        float nextValue = nextUpgrade.Type == ModifierType.Percent ? currentValue + (currentValue * nextUpgrade.Value) : currentValue + nextUpgrade.Value;
+        float nextValue = nextUpgrade.Type == ModifierType.Percent ? currentValue + (currentValue * nextUpgrade.Value) : currentValue + (percentStuff ? nextUpgrade.Value * 100 : nextUpgrade.Value);
 
         return $"{statName} {currentValue} -> {nextValue}";
     }

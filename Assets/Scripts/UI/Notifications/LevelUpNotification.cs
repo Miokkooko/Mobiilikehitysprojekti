@@ -1,8 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class LevelUpArgs : NotificationBase.NotificationArgs
 {
@@ -69,14 +67,14 @@ public class LevelUpNotification : NotificationBase
 
             if (data is PassiveData passive)
             {
-                PassiveInstance instance = LevelUpManager.Instance.GetPassiveFromPlayer(passive);
+                PassiveInstance instance = GameManager.Instance.GetPassiveFromPlayer(passive);
                 string prefix = instance != null ? "[LVL UP]" : "[NEW]";
                 string rankText = "";
                 string rankUpDesc = "";
                 
                 if(instance != null)
                 {
-                    rankText = prefix + "\n"+ instance.GetRankUpText();
+                    rankText = prefix + "\n" + instance.GetRankUpText();
                     rankUpDesc = instance.GetRankUpDescription();
                 }
                 
@@ -84,7 +82,7 @@ public class LevelUpNotification : NotificationBase
             }
             else if (data is WeaponData weapon)
             {
-                WeaponInstance instance = LevelUpManager.Instance.GetWeaponFromPlayer(weapon);
+                WeaponInstance instance = GameManager.Instance.GetWeaponFromPlayer(weapon);
                 bool isNew = instance == null;
 
                 string prefix = instance != null ? "[LVL UP]" : "[NEW]";

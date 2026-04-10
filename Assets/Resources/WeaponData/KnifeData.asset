@@ -16,11 +16,11 @@ MonoBehaviour:
   weaponName: Knife
   description: 
   Icon: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
-  baseDamage: 0.5
-  firerate: 1
+  poolType: 4
+  baseDamage: 1
+  firerate: 0.5
   piercing: 1
-  projectileCount: 3
-  projectileSpread: 10
+  projectileCount: 1
   projectileSpeed: 10
   projectileLifeTime: 1
   aoeDamage: 1
@@ -31,21 +31,17 @@ MonoBehaviour:
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
-  - Stat: 0
-    Value: 0.4
-    Type: 1
-    source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 4
-    Value: 3
-    Type: 0
-    source: {fileID: 0}
-    upgradeDescription: 
-  - Stat: 3
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
+  - Stat: 0
+    Value: 0.1
+    Type: 1
+    source: {fileID: 0}
+  - Stat: 4
+    Value: 1
+    Type: 0
+    source: {fileID: 0}
   effectList:
   - {fileID: 11400000, guid: 4950195e35408864987ecfb3c8a03677, type: 2}

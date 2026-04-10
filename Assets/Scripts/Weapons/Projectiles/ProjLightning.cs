@@ -1,17 +1,15 @@
-using UnityEngine;
-using static UnityEngine.ParticleSystem;
-
 public class ProjLightning : Projectile
 {
     Enemy target;
     
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         target = GetRandomEnemy();
         if(target == null)
         {
-            Destroy(gameObject);
+            Disable(); 
+            //Destroy(gameObject);
             return;
         }
 

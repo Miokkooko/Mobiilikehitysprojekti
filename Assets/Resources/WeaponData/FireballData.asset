@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: Fireball
   description: Hurls a fireball, causing rapid burning and area damage
   Icon: {fileID: 5250389579404634882, guid: cbef50553b081fa428525dcec9cb6c9e, type: 3}
+  poolType: 2
   baseDamage: 2
   firerate: 1
   piercing: 1
@@ -30,16 +31,13 @@ MonoBehaviour:
     Value: 0.1
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: Increase AoE damage by 10%
   - Stat: 6
     Value: 0.8
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: Increase Radius by 80%
   - Stat: 5
     Value: 0.2
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: 
   effectList:
   - {fileID: 11400000, guid: 8485e8e14981a434c97abf9dd627e7de, type: 2}

@@ -1,5 +1,7 @@
 ﻿using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine;
 
 public enum StatType
@@ -9,7 +11,7 @@ public enum StatType
     MaxHealth,
     Piercing,
     ProjectileCount,
-    Firerate,
+    FirerateBonus,
     AoERadius,
     AoEDamage
 }
@@ -34,9 +36,9 @@ public enum ModifierType
 [Serializable]
 public class WeaponModifier : StatModifier
 {
-    public string upgradeDescription;
 }
 
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(WeaponModifier))]
 public class WeaponModifierDrawer : PropertyDrawer
 {
@@ -83,3 +85,4 @@ public class WeaponModifierDrawer : PropertyDrawer
         return total;
     }
 }
+#endif

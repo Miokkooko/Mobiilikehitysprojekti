@@ -1,10 +1,12 @@
 using System;
+using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static GameManager Instance;
 
     int kills;
     public int Kills => kills;
@@ -29,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject miniBoss;
 
-    private Player player;
+    public LevelUpManager levelUpManager;
+    public Player player;
 
     [Header("Spawn intervals")]
     public float interval = 2;
@@ -43,7 +46,10 @@ public class GameManager : MonoBehaviour
 
     void OnDestroy()
     {
-        player.OnKill -= Player_OnKill;
+        player.OnKill -= OnPlayerKill;
+
+        player.OnDeath -= OnPlayerDeath;
+        player.OnPlayerLevelUp -= OnPlayerLevelUp;
     }
     void Awake()
     {
@@ -52,16 +58,34 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        player.OnKill += Player_OnKill;
-
-        player.OnDeath += Player_OnDeath;
-        //instance = this;
+        Instance = this;
+        if (player == null)
+        {
+            Debug.Log("Player not found");
+            return;
+        }
 
         currentList = enemyGroups[0].enemies;
+
+        player.OnKill += OnPlayerKill;
+        player.OnDeath += OnPlayerDeath;
+        player.OnPlayerLevelUp += OnPlayerLevelUp;
+        levelUpManager.player = player;
     }
 
-    private void Player_OnDeath(object sender, KillContext e)
+    
+    void OnPlayerLevelUp(int obj)
+    {
+        TriggerReward();
+    }
+
+    public void TriggerReward()
+    {
+        levelUpManager.TriggerReward();
+        
+    }
+
+    private void OnPlayerDeath(object sender, KillContext e)
     {
         SceneManager.LoadScene(0);
     }
@@ -73,19 +97,22 @@ public class GameManager : MonoBehaviour
 
         if (gameTimer > lastEnemySpawnTime + interval)
         {
-            SpawnEnemy();
+
+            SpawnEnemy(enemy);
+            lastEnemySpawnTime = gameTimer;
         }
 
         if(gameTimer > lastMiniBossSpawnTime + miniBossInterval)
         {
-            SpawnMiniBoss(miniBoss);
-            
+            SpawnEnemy(miniBoss);
+            lastMiniBossSpawnTime = gameTimer;
         }
 
         ChangeLists();
     }
 
-    void SpawnEnemy()
+
+    Vector2 GetSpawnCoordinates()
     {
         float xCordinate = 0;
         float yCordinate = 0;
@@ -100,36 +127,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-
-        CalculateEnemy(xCordinate, yCordinate);
-
-
-        
-
-        lastEnemySpawnTime = gameTimer;
+        return new Vector2(xCordinate, yCordinate);
     }
 
-    void SpawnMiniBoss(GameObject prefab)
+    void SpawnEnemy(EnemyData data)
     {
-        float xCordinate = 0;
-        float yCordinate = 0;
-        while (xCordinate == 0 && yCordinate == 0)
-        {
-            xCordinate = UnityEngine.Random.Range(-27, 23);
-            yCordinate = UnityEngine.Random.Range(-17, 20);
-            if (Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance && Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance)
-            {
-                xCordinate = 0;
-                yCordinate = 0;
-            }
-        }
-
-        Instantiate(prefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
-
-        lastMiniBossSpawnTime = gameTimer;
+        PoolManager manager = PoolManager.Instance;
+        manager.SpawnEnemy(data, GetSpawnCoordinates());
     }
 
-    public void CalculateEnemy(float xCordinate, float yCordinate)
+    public void CalculateEnemy()
     {
         float totalChance = 0f;
         foreach (EnemySpawn spawnEvents in currentList)
@@ -146,13 +153,16 @@ public class GameManager : MonoBehaviour
 
             if (rand <= cumulaticeChance)
             {
-                Instantiate(spawnEvents.enemyPrefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+                //Instantiate(spawnEvents.enemyPrefab, new Vector3(xCordinate, yCordinate, 0), transform.rotation);
+
+                SpawnEnemy(spawnEvents.data);
                 return;
             }
         }
     }
 
-    private void Player_OnKill(object sender, KillContext e)
+
+    private void OnPlayerKill(object sender, KillContext e)
     {
         kills += 1;
 
@@ -199,7 +209,17 @@ public class GameManager : MonoBehaviour
         coins += amount;
         OnCoinChanged?.Invoke(coins);
     }
-    
+
+    public WeaponInstance GetWeaponFromPlayer(WeaponData weapon)
+    {
+        return player.GetWeapon(weapon);
+    }
+
+    public PassiveInstance GetPassiveFromPlayer(PassiveData data)
+    {
+        return player.GetPassive(data);
+    }
+
 }
 
 
@@ -208,7 +228,7 @@ public class EnemySpawn
 {
     public string EventName;
     [Space]
-    public GameObject enemyPrefab;
+    public EnemyData data;
     [Range(0f, 1f)] public float SpawnChance = 0.5f;
 
 }

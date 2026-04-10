@@ -1,8 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Projectile : MonoBehaviour
 {
@@ -14,8 +12,8 @@ public class Projectile : MonoBehaviour
     protected float damage = 1f;
     protected float projectileLifetime = 2f;
 
-    protected float aoeDamage=1f;
-    protected float aoeRadius=1f;
+    protected float aoeDamage = 1f;
+    protected float aoeRadius = 1f;
 
     [Header("Projectiles")]
     public bool enableParticles;
@@ -23,9 +21,11 @@ public class Projectile : MonoBehaviour
 
     //Movement
     protected Vector3 direction;
-    protected Player player;
-    protected Enemy enemy;
-    protected Transform playerPos => player.transform;
+    protected Unit owner;
+    protected WeaponData weaponData;
+    public ProjectilePoolType PoolType => weaponData.poolType;
+
+    protected Transform ownerPos => owner.transform;
     protected float angle;
 
     DetectionRadius detRadius;
@@ -33,13 +33,10 @@ public class Projectile : MonoBehaviour
 
     public virtual void Start()
     {
-        
-        //Projectile tuhoaa ittensä kahen sekunnin jälkeen
         if (hitParticles == null && enableParticles)
         {
             hitParticles = Resources.Load<GameObject>("Particles/HitParticles");
         }
-        Destroy(gameObject, projectileLifetime);
     }
 
     public virtual void Update()
@@ -51,32 +48,66 @@ public class Projectile : MonoBehaviour
     #region Movement and direction
     public virtual void Move()
     {
-        
+
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
-    public virtual void Initialize(WeaponInstance w, Player p, Vector3 dir)
+    public virtual void OnEnable()
     {
+        StopAllCoroutines();
+        StartCoroutine(DestroyAfterdelay(projectileLifetime));
+    }
+    public virtual void Disable()
+    {
+        PoolManager.Instance.DisableProjectile(PoolType, gameObject);
+    }
+
+    public virtual void Initialize(WeaponInstance w, Unit p, Vector3 dir)
+    {
+        weaponData = w.data;
         damage = w.Damage;
         projectilePiercing = w.Piercing;
         projectileSpeed = w.ProjectileSpeed;
         direction = dir.normalized;
-        player = p;
+        owner = p;
         projectileLifetime = w.data.projectileLifeTime;
         aoeDamage = w.data.aoeDamage;
         aoeRadius = w.data.aoeRadius;
 
         OnHitEffects = w.OnHitEffects;
 
-        detRadius = player.GetComponentInChildren<DetectionRadius>();
-        _enemies = detRadius._enemies;
+        if(owner is Player player)
+        {
+            detRadius = player.GetComponentInChildren<DetectionRadius>();
+            _enemies = detRadius._enemies;
+        }
+            
+        gameObject.SetActive(true);
+    }
+    public virtual void Initialize(WeaponData w, Unit p, Vector3 dir)
+    {
+        weaponData = w;
+        damage = w.baseDamage;
+        projectilePiercing = w.piercing;
+        projectileSpeed = w.projectileSpeed;
+        direction = dir.normalized;
+        owner = p;
+        projectileLifetime = w.projectileLifeTime;
+        aoeDamage = w.aoeDamage;
+        aoeRadius = w.aoeRadius;
+
+        if(owner is Player player)
+        {
+            detRadius = player.GetComponentInChildren<DetectionRadius>();
+            _enemies = detRadius._enemies;
+        }
+        gameObject.SetActive(true);
+
     }
 
-    
-
-    public virtual void InitializeAoE(Player p, float d, float r)
+    public virtual void InitializeAoE(Unit p, float d, float r)
     {
-        player = p;
+        owner = p;
         aoeDamage = d;
         aoeRadius = r;
     }
@@ -93,20 +124,16 @@ public class Projectile : MonoBehaviour
     #region Collision
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log("Effects count: " + OnHitEffects.Count);
-
         if (collision.tag == "Player")
             return;
 
-        
-
-        if(collision.GetComponent<IDamageable>() is IDamageable d)
+        if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
-            Unit.DealDamage(new DamageContext(player, d, damage));
+            Unit.DealDamage(new DamageContext(owner, d, damage));
             OnHitParticles();
         }
 
-        if(collision.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
             Enemy enemy = collision.GetComponent<Enemy>();
 
@@ -122,54 +149,57 @@ public class Projectile : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Applying Status Effect");
                         Unit.ApplyStatusEffect(effect, enemy);          
                     }
 
             }
         }
-        
+
     }
 
 
 
     public virtual void OnHitParticles()
     {
-       
-            if (hitParticles != null)
-            {
-                Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
-            }
-        
-        
-        
+        if (hitParticles != null)
+        {
+            Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
+        }
 
+        
         if (projectilePiercing != 1)
         {
             projectilePiercing -= 1;
         }
         else
         {
-            Destroy(gameObject);
+            StopAllCoroutines();
+            Disable();
         }
     }
 
     public virtual void SpawnAoE()
     {
-        GameObject proj = Object.Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
+        GameObject proj = Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
         Projectile aoe = proj.GetComponent<AoE>();
-        aoe.InitializeAoE(player, aoeDamage, aoeRadius);
+        aoe.InitializeAoE(owner, aoeDamage, aoeRadius);
     }
 
     #endregion
 
     public Enemy GetRandomEnemy()
     {
-        if(_enemies.Count == 0)
+        if (_enemies.Count == 0)
         {
             return null;
         }
         int random = Random.Range(0, _enemies.Count);
         return _enemies[random];
+    }
+
+    public IEnumerator DestroyAfterdelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Disable();
     }
 }

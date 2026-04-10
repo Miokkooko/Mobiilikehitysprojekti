@@ -15,7 +15,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7775072252728010430, guid: 12ae9ba9dacc8514b98b80e0f48be961, type: 3}
   weaponName: Scythe
   description: 
-  Icon: {fileID: 5647804461174064145, guid: d2678215061c28c49b99e0cec5f4b9e6, type: 3}
+  Icon: {fileID: 21300000, guid: cfe36c91fec2bcb4ca15e549a06135da, type: 3}
+  poolType: 6
   baseDamage: 1
   firerate: 1
   piercing: 10
@@ -30,15 +31,12 @@ MonoBehaviour:
     Value: 0.2
     Type: 1
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 5
-    Value: 0.3
-    Type: 1
+    Value: 0.1
+    Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   - Stat: 4
     Value: 1
     Type: 0
     source: {fileID: 0}
-    upgradeDescription: 
   effectList: []

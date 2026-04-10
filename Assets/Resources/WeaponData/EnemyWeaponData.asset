@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: EnemyWeapon
   description: 
   Icon: {fileID: 0}
+  poolType: 8
   baseDamage: 2
   firerate: 1
   piercing: 1
@@ -26,5 +27,4 @@ MonoBehaviour:
   aoeRadius: 1
   usesProjectileCount: 1
   upgradeList: []
-  effectList:
-  - {fileID: 11400000, guid: 4950195e35408864987ecfb3c8a03677, type: 2}
+  effectList: []

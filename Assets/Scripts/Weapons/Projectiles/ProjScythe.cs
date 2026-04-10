@@ -6,7 +6,17 @@ public class ProjScythe : Projectile
     public float timer = 0f;
     public float duration = 1f;
     
-    bool retrn = false;
+    bool returnBack = false;
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        timer = 0f;
+        duration = 1f;
+
+        returnBack = false;
+    }
+
     public override void Move()
     {
         if (timer < duration)
@@ -16,21 +26,22 @@ public class ProjScythe : Projectile
         }
         else
         {
-            retrn = true;
+            returnBack = true;
         }
 
-        if(retrn == true)
+        if(returnBack == true)
         {
-            transform.position += (player.transform.position - transform.position).normalized * projectileSpeed * Time.deltaTime;
+            transform.position += (owner.transform.position - transform.position).normalized * projectileSpeed * Time.deltaTime;
         }
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         base.OnTriggerEnter2D(collision);
-        if(collision.tag == "Player" && retrn)
+        if(collision.tag == "Player" && returnBack)
         {
-            Destroy(gameObject);
+            Disable();
+            //Destroy(gameObject);
         }
     }
 }

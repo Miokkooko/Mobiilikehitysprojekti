@@ -11,7 +11,7 @@ public class Player : Unit
     public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
 
     PlayerMovement Movement;
-
+    public PlayerData playerData;
     //leveling
     protected float totalExp;
     protected float expMultiplier = 0f;
@@ -24,8 +24,8 @@ public class Player : Unit
     public float CurrentExp => totalExp;
     public int CurrentLevel => level;
 
-    public bool CanGetWeapon => Weapons.Count < unitData.maxWeapons;
-    public bool CanGetPassive => Passives.Count < unitData.maxPassives;
+    public bool CanGetWeapon => Weapons.Count < playerData.maxWeapons;
+    public bool CanGetPassive => Passives.Count < playerData.maxPassives;
 
     public event Action<float> OnPlayerHealthChanged;
     public event Action<float> OnPlayerExpChanged;
@@ -41,6 +41,11 @@ public class Player : Unit
         FireWeapons();
         Movement.MovePlayer(Speed);
     }
+    public override void InitializeUnit(UnitData data)
+    {
+        base.InitializeUnit(data);
+        playerData = (PlayerData)data;
+    }
 
     void Start()
     {
@@ -50,13 +55,14 @@ public class Player : Unit
         Movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 
+        InitializeUnit(playerData);
         AddWeapon(Resources.Load<WeaponData>("WeaponData/KnifeData"));
     }
     #region Passives
 
     public void AddPassive(PassiveData data)
     {
-        if (Passives.Count >= unitData.maxPassives)
+        if (Passives.Count >= playerData.maxPassives)
         {
             Debug.Log("Player doesn't have any passive slots left!");
             return;
@@ -106,7 +112,7 @@ public class Player : Unit
 
     public void AddWeapon(WeaponData w)
     {
-        if(Weapons.Count >= unitData.maxWeapons)
+        if(Weapons.Count >= playerData.maxWeapons)
         {
             Debug.Log("Player doesn't have any weapon slots left!");
             return;
@@ -180,7 +186,6 @@ public class Player : Unit
 
         if (totalExp >= RequiredExp)
         {
-            LevelUpManager.Instance.TriggerLevelUp();
             PreviousRequiredExp = RequiredExp;
             expMultiplier += 10*level;
             level += 1;

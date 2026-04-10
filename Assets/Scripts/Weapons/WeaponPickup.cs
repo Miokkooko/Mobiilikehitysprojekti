@@ -27,8 +27,6 @@ public class WeaponPickup : MonoBehaviour
 
     void Pickup(Collider2D player)
     {
-        Debug.Log("Picked up: Axe");
-
         if(player.GetComponent<Player>() is Player p)
             p.AddWeapon(new WeaponInstance(p, data));
 

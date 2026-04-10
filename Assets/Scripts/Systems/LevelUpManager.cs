@@ -1,12 +1,10 @@
-using System;
+
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.iOS;
+
 
 public class LevelUpManager : MonoBehaviour
 {
-    public static LevelUpManager Instance;
     public LevelUpData data;
     public List<PassiveData> PassiveUpgrades;
     public List<WeaponData> WeaponUpgrades;
@@ -17,17 +15,6 @@ public class LevelUpManager : MonoBehaviour
 
     NotificationBase n;
 
-    //Jono jos on monta upgradea tulossa
-
-    private Queue<List<object>> levelUpQueue = new Queue<List<object>>();
-    private bool isLevelUpActive = false;
-
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     private void Notification_OnNotificationResult(object sender, NotificationBase.NotificationArgs e)
     {
         n = (NotificationBase)sender;
@@ -37,12 +24,9 @@ public class LevelUpManager : MonoBehaviour
         {
             ApplyUpgrade(args.upgradeChosen);
         }
-
-        // Katotaan onko lisää leveluppeja tulossa
-        isLevelUpActive = false;
     }
 
-    public void TriggerLevelUp()
+    public void TriggerReward()
     {
         List<object> choices = GetRandomMixedUpgrades(3);
 
@@ -76,7 +60,6 @@ public class LevelUpManager : MonoBehaviour
         // Lisätään aseet
         foreach (var weapon in WeaponUpgrades)
         {
-            
             if (CanShowWeapon(weapon))
                 pool.Add(weapon);
         }
@@ -95,7 +78,7 @@ public class LevelUpManager : MonoBehaviour
         //Valitaan 3 päivitystä randomilla
         for (int i = 0; i < count && pool.Count > 0; i++)
         {
-            int randomIndex = UnityEngine.Random.Range(0, pool.Count);
+            int randomIndex = Random.Range(0, pool.Count);
             selected.Add(pool[randomIndex]);
             pool.RemoveAt(randomIndex);
         }
@@ -120,15 +103,6 @@ public class LevelUpManager : MonoBehaviour
         else
             return player.CanGetPassive;
     }
-    public WeaponInstance GetWeaponFromPlayer(WeaponData weapon)
-    {
-        return player.GetWeapon(weapon);
-    }
-
-    public PassiveInstance GetPassiveFromPlayer(PassiveData data)
-    {
-        return player.GetPassive(data);
-    }
 
     // Lisää upgradet
     public void ApplyUpgrade(object chosenUpgrade)
@@ -145,8 +119,6 @@ public class LevelUpManager : MonoBehaviour
                 ApplyWeaponUpgrade(weapon);
                 break;
         }
-
-        Time.timeScale = 1f;
     }
 
     private void ApplyPassiveUpgrade(PassiveData data)

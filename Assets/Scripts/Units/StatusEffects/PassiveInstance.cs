@@ -1,10 +1,4 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
-
+﻿
 public class PassiveInstance
 {
     public int upgradeRank = 0;
@@ -38,7 +32,7 @@ public class PassiveInstance
         string currentValue = isPercent ? $"{modifier.Value * 100}%" : modifier.Value.ToString();
         string nextValue = isPercent ? $"{(modifier.Value + data.Upgrades[upgradeRank]) * 100}%" : (modifier.Value + data.Upgrades[upgradeRank]).ToString();
 
-        return $"{modifier.Stat} {currentValue} -> {modifier.Value + data.Upgrades[upgradeRank]}" + (modifier.Type == ModifierType.Percent ? "%" : "");
+        return $"{modifier.Stat} {currentValue} -> {nextValue}";
     }
 
     public string GetRankUpText()

@@ -172,16 +172,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3785a3b87b2a8408583ec5322d3405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  unitData: {fileID: 11400000, guid: eaa2a66c25be9e446a14437d7e7761ba, type: 2}
   isWalking: 0
+  enemyData: {fileID: 11400000, guid: 2d6ad95f0d66b564a95be5e65e84daa5, type: 2}
   effects: []
   recoverTimer: 0
   recoverDuration: 1
   chargeTimer: 0
   chargeDuration: 3
   fireDistance: 3
-  data: {fileID: 11400000, guid: 30c9a767206f4734099948f2d298e269, type: 2}
-  _currentState: 0
+  weaponData: {fileID: 11400000, guid: 30c9a767206f4734099948f2d298e269, type: 2}
+  _currentState: 1
 --- !u!95 &2079575076507210080
 Animator:
   serializedVersion: 7

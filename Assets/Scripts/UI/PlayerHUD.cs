@@ -40,7 +40,7 @@ public class PlayerHUD : MonoBehaviour
 
         if(inventoryHandler != null)
         {
-            inventoryHandler.Initialize(Player.unitData.maxWeapons, Player.unitData.maxPassives);
+            inventoryHandler.Initialize(Player.playerData.maxWeapons, Player.playerData.maxPassives);
             Player.OnPlayerGetPassive += OnPlayerGetPassive;
             Player.OnPlayerGetWeapon += OnPlayerGetWeapon;
         }
@@ -69,7 +69,7 @@ public class PlayerHUD : MonoBehaviour
 
     void Update()
     {
-        timer = GameManager.instance.GameTime;
+        timer = GameManager.Instance.GameTime;
 
         int minutes = Mathf.FloorToInt(timer / 60f);
         int seconds = Mathf.FloorToInt(timer % 60f);
@@ -81,7 +81,7 @@ public class PlayerHUD : MonoBehaviour
 
     private void OnEnemyKilled(object sender, KillContext e)
     {
-        KillsText.text = GameManager.instance.Kills.ToString();
+        KillsText.text = GameManager.Instance.Kills.ToString();
     }
 
     private void OnCoinChanged(int obj)

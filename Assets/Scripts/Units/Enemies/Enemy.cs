@@ -1,8 +1,6 @@
-using System.Runtime.CompilerServices;
-using System.Threading;
+
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class Enemy : Unit
 {
@@ -12,25 +10,46 @@ public class Enemy : Unit
 
     protected Animator animator;
     public bool isWalking = false;
-    private Vector2 lastMoveDirection;
-
+    public EnemyData enemyData;
 
     protected float lastAttackTime = 0f;
     protected float attackRate = 1f;
 
     public StatusEffect[] effects;
 
-    public virtual void Start()
+    float XpValue => enemyData.xpValue;
+
+    public override void InitializeUnit(UnitData data)
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
         player = playerToFollow.GetComponent<Player>();
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), player.GetComponent<Collider2D>());
 
+        base.InitializeUnit(data);
+        enemyData = (EnemyData)data;
+    }
+    private void Start()
+    {
+        if(enemyData != null)
+            InitializeUnit(enemyData);
+    }
+    public virtual void OnEnable()
+    {
+        RemoveAllStatusEffects(this);
+
+        if (playerToFollow == null || player == null)
+        {
+            playerToFollow = GameObject.FindGameObjectWithTag("Player");
+            player = playerToFollow.GetComponent<Player>();
+        }
+            
         OnDeath += Enemy_OnDeath;
 
-        
-        animator = GetComponent<Animator>();
+        if(animator == null)
+            animator = GetComponent<Animator>();
+
+       
         healthBar = transform.Find("HealthBar/Health")?.GetComponent<Image>();
     }
 
@@ -43,7 +62,7 @@ public class Enemy : Unit
         Move();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         DropCoin();
 
@@ -55,9 +74,8 @@ public class Enemy : Unit
     {
         if(playerToFollow != null)
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerToFollow.transform.position.x, playerToFollow.transform.position.y, 0), Speed * Time.deltaTime);
-
-        
     }
+
     void Attack(IDamageable target)
     {
         lastAttackTime = Time.time;
@@ -96,10 +114,11 @@ public class Enemy : Unit
 
     private void Enemy_OnDeath(object sender, KillContext e)
     {
-        GameObject expDrop = Instantiate(Resources.Load<GameObject>("Drops/ExpDrop"), transform.position, Quaternion.identity);
-        ExpDrop expScript = expDrop.GetComponent<ExpDrop>();
-        expScript.Initialize(expAmount);
-        Destroy(gameObject);
+        PoolManager manager = PoolManager.Instance;
+
+        GameObject drop = manager.SpawnDrop(DropType.Exp, transform.position, XpValue);
+
+        manager.DisableEnemy(enemyData.poolType, gameObject);
     }
 
     public void UpdateHealthBar()

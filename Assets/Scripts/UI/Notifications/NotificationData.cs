@@ -16,10 +16,3 @@ public class NotificationData : ScriptableObject
 
     //public string[] m_sAdditionalText;
 }
-
-
-public class LevelUpData : NotificationData
-{
-    public List<object> upgradeList;
-    //public Weapon[] weaponList;
-}

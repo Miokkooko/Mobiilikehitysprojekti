@@ -4,19 +4,19 @@ public class ProjFireball : Projectile
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     ParticleSystem particles;
-    CircleCollider2D circle;
     Enemy target;
     Vector3 dir;
 
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GetRandomEnemy();
 
         if (target == null)
         {
-            Destroy(gameObject);
+            Disable();
+            //Destroy(gameObject);
             return;
         }
 

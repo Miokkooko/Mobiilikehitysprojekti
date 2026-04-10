@@ -49,7 +49,8 @@ public class Destroyable : MonoBehaviour, IDamageable
 
             if (rand <= cumulaticeChance)
             {
-                Instantiate(dropEvents.dropPrefab, transform.position, Quaternion.identity);
+                PoolManager manager = PoolManager.Instance;
+                manager.SpawnDrop(dropEvents.dropType, transform.position);
                 return;
             }
         }
@@ -70,5 +71,5 @@ public class DropEvents
     [Space]
     [Space]
     [Range(0f, 1f)] public float DropChance = 0.5f;
-    public GameObject dropPrefab;
+    public DropType dropType;
 }

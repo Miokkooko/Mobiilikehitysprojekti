@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1129628785890231932}
   - component: {fileID: 6381353482164660208}
+  - component: {fileID: 8906414872920602259}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,9 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7846e8fb90817c438c00c09ef4995bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  levelUpManager: {fileID: 8906414872920602259}
   enemy: {fileID: 8834559635428772267, guid: 8cd26eeb25ae15e49a6775b2f5f7ef7e, type: 3}
-  player: {fileID: 0}
+  miniBoss: {fileID: 195258904440770667, guid: c64ad8b0fa008cf4ab5ef415d8129ec6, type: 3}
   interval: 2
+  miniBossInterval: 60
   enemySpawnDistance: 5
   intervalChangeKillCounts: 140000003200000064000000c8000000
   intervalChangeTimes:
@@ -54,3 +57,30 @@ MonoBehaviour:
   - 1
   - 0.5
   - 0.2
+--- !u!114 &8906414872920602259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5154936231622536809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff9e893644b4e34c9b92eded0cf9e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
+  data: {fileID: 11400000, guid: 6dc5927fc3e6d8043aba97d8b91eeae4, type: 2}
+  PassiveUpgrades:
+  - {fileID: 11400000, guid: bf99335b00c2ee54fa6dbddf803e9fd0, type: 2}
+  - {fileID: 11400000, guid: 17da11df1bc1df44c864d8c9e7b6e18f, type: 2}
+  - {fileID: 11400000, guid: d2a6b45a00d6aaa47aa3443f96eeb26d, type: 2}
+  - {fileID: 11400000, guid: e440d92097af2a3438ca3ca6ba191b56, type: 2}
+  WeaponUpgrades:
+  - {fileID: 11400000, guid: 41a37d1ec3eb7f5439e283fa0755571e, type: 2}
+  - {fileID: 11400000, guid: 5f87a1e7cfbcab541bc3d27eceb591b7, type: 2}
+  - {fileID: 11400000, guid: edee366ce4eb8db4cb876373fb55832a, type: 2}
+  - {fileID: 11400000, guid: e114691d2a1dfcd468bb9be109ce7cc3, type: 2}
+  - {fileID: 11400000, guid: 930bf999a9aaec04486107fe6692e277, type: 2}
+  - {fileID: 11400000, guid: f35647ba8e1b38940bad66777fbc91c2, type: 2}
+  - {fileID: 11400000, guid: 81922a80660cc0141aa234f01dda8fd5, type: 2}
+  player: {fileID: 0}

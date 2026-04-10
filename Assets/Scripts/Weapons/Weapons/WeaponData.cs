@@ -1,5 +1,4 @@
-using System;
-using UnityEditor;
+
 using UnityEngine;
 
 
@@ -12,6 +11,7 @@ public class WeaponData : ScriptableObject
     public string weaponName;
     public string description;
     public Sprite Icon;
+    public ProjectilePoolType poolType;
 
     [Header("Stats")]
     public float baseDamage;

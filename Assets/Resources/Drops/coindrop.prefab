@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 332202628491323061}
   - component: {fileID: 3175354057007988409}
   - component: {fileID: 7314904509474017688}
-  - component: {fileID: 3391491937474597402}
+  - component: {fileID: 885054638634583204}
   m_Layer: 0
   m_Name: coindrop
   m_TagString: Pickup
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1638554725
-  m_SortingLayer: 6
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 54baac894c3a1484db6b6a876e65cfb4, type: 3}
@@ -160,7 +160,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.5, y: 0.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -204,7 +204,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.0043575764}
   m_Radius: 2.3432353
---- !u!114 &3391491937474597402
+--- !u!114 &885054638634583204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7671177631582458988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a226523c1a989745a4a1b96b1d22d38, type: 3}
+  m_Script: {fileID: 11500000, guid: ae8190bbc753d264cb94d61fc01145be, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CoinDrop
-  health: 5
+  m_EditorClassIdentifier: Assembly-CSharp::Drop
   dropMoveSpeed: 2
+  type: 0

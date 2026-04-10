@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class ProjMine : Projectile
 {
-    public override void Start()
+    public override void OnEnable()
     {
-        base.Start();
-        transform.position = player.transform.position;
+        base.OnEnable();
+        if(owner != null)
+            transform.position = owner.transform.position;
     }
     public override void Move()
     {
