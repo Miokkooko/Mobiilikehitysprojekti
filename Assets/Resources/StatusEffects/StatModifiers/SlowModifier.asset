@@ -22,6 +22,6 @@ MonoBehaviour:
   ModifierType: 2
   Modifiers:
   - Stat: 1
-    Value: -0.5
+    Value: -0.1
     Type: 1
     source: {fileID: 11400000}

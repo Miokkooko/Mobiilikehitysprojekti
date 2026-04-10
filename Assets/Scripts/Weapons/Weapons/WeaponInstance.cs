@@ -26,6 +26,9 @@ public class WeaponInstance
     float baseProjectileCount = 1;
     public float ProjectileCount => statSystem.Calculate(StatType.ProjectileCount, baseProjectileCount + owner.ProjectileCount);
 
+    float baseProjectileBurst = 1;
+    public float ProjectileBurst => statSystem.Calculate(StatType.ProjectileBurst, baseProjectileBurst + owner.ProjectileBurst);
+
     float baseProjectileSpread = 1f;
 
     public float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, owner.FireratePercent);
@@ -51,6 +54,7 @@ public class WeaponInstance
 
         baseProjectileCount = data.projectileCount;
         baseProjectileSpread = data.projectileSpread;
+        baseProjectileBurst = data.projectileBurst;
         baseDamage = data.baseDamage;
         baseProjectileSpeed = data.projectileSpeed;
         basePiercing = data.piercing;
@@ -156,7 +160,7 @@ public class WeaponInstance
 
     IEnumerator FireProjectiles()
     {
-        for (int i = 0; i < ProjectileCount; i++)
+        for (int i = 0; i < ProjectileBurst; i++)
         {
             Fire();
             lastFireTime = Time.time;

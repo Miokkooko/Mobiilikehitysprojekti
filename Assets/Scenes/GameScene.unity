@@ -6153,6 +6153,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7538458029778199994, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: ItemPrefab
+      value: 
+      objectReference: {fileID: 2984609633749264233, guid: 858619855bbd86045a28f3afcb22db23, type: 3}
     - target: {fileID: 7744364776404576792, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6264,22 +6268,110 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: miniBossInterval
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: enemyGroups.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[0].groupName
+      value: Group 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[1].groupName
+      value: Group 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[2].groupName
+      value: Group 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.data[0].groupName
+      value: MiniBosses 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: enemyGroups.Array.data[0].enemies.Array.size
-      value: 1
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[1].enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[2].enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.data[0].enemies.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: enemyGroups.Array.data[0].enemies.Array.data[0].data
       value: 
       objectReference: {fileID: 11400000, guid: 5b884b80bd3406f40b8ba05025dc25b0, type: 2}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[0].enemies.Array.data[1].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f379164229fda847a58b99ab8cacc17, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[1].enemies.Array.data[0].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b884b80bd3406f40b8ba05025dc25b0, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[1].enemies.Array.data[1].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 7f379164229fda847a58b99ab8cacc17, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[2].enemies.Array.data[0].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 4d0f9b0f15b9b1a42aa479b90a499dd4, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[2].enemies.Array.data[1].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 3bd7e317e5f73b54485c46b3c6db2ee8, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.data[0].enemies.Array.data[0].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 2d6ad95f0d66b564a95be5e65e84daa5, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.data[0].enemies.Array.data[1].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 35ece9e48e340f44c95e6207a7c48f53, type: 2}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: enemyGroups.Array.data[0].enemies.Array.data[0].SpawnChance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[0].enemies.Array.data[1].SpawnChance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[1].enemies.Array.data[0].SpawnChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[1].enemies.Array.data[1].SpawnChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[2].enemies.Array.data[0].SpawnChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: enemyGroups.Array.data[2].enemies.Array.data[1].SpawnChance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.data[0].enemies.Array.data[0].SpawnChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: miniBossGroups.Array.data[0].enemies.Array.data[1].SpawnChance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8906414872920602259, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
@@ -6342,6 +6434,22 @@ PrefabInstance:
     - target: {fileID: 4456440839864620488, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: m_Name
       value: ObjectPoolManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.data[8].type
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 5095381493187369754, guid: 3b4da201cd25c9f48afbda8050ad5df1, type: 3}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.data[8].poolAmount
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

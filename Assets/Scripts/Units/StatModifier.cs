@@ -11,6 +11,7 @@ public enum StatType
     MaxHealth,
     Piercing,
     ProjectileCount,
+    ProjectileBurst,
     FirerateBonus,
     AoERadius,
     AoEDamage

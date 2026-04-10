@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 638dc3cbd47526a43ac694376cb7311a, type: 3}
-  m_Name: RedBatData
+  m_Name: BossSkeletonData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  unitName: RabidBat
-  maxHealth: 22
-  baseDamage: 6
+  unitName: SkeletonMiniBoss
+  maxHealth: 180
+  baseDamage: 7
   moveSpeed: 2
-  baseSprite: {fileID: 5723687508711501353, guid: c9c633ae7dcb9414aa8251a359ef8c61, type: 3}
-  animator: {fileID: 22100000, guid: 38932944103397e4d8e6937138b99099, type: 2}
-  xpValue: 3
-  poolType: 1
+  baseSprite: {fileID: -582548278662217299, guid: 7b4a3236a7ce105468b3ee879b295657, type: 3}
+  animator: {fileID: 22100000, guid: ce88ab0c106ce44449d6c93515221e59, type: 2}
+  xpValue: 30
+  poolType: 3
   coinValue: 0
   coinDropChance: 0

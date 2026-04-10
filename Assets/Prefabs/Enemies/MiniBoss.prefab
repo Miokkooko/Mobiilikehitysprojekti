@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3034713500376478704}
   - component: {fileID: 6093045091680506693}
   - component: {fileID: 6080665535916515208}
+  - component: {fileID: -5868972229865244216}
   m_Layer: 7
   m_Name: MiniBoss
   m_TagString: Enemy
@@ -82,8 +83,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -1698942247
-  m_SortingLayer: 8
+  m_SortingLayerID: 1156789041
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -582548278662217299, guid: 7b4a3236a7ce105468b3ee879b295657, type: 3}
@@ -153,12 +154,12 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0007213354, y: 0.02866914}
-  m_Radius: 0.2231831
+  m_Offset: {x: 0.0007213354, y: 0.028669119}
+  m_Radius: 0.46
 --- !u!114 &6093045091680506693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,12 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a50a5dae91faf4e82eb68416c84f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  unitData: {fileID: 11400000, guid: 6890a3df9c4c21f44b6293f9c9c0a789, type: 2}
   isWalking: 0
+  enemyData: {fileID: 11400000, guid: 35ece9e48e340f44c95e6207a7c48f53, type: 2}
   effects: []
-  recoverTimer: 0
-  recoverDuration: 1
-  chargeTimer: 0
+  recoverTimer: 0.5
+  recoverDuration: 0.5
+  chargeTimer: 0.5
   chargeDuration: 0.5
   lungeSpeed: 5
   lungeDuration: 1
@@ -220,14 +221,36 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
+    oldSize: {x: 1.015625, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &-5868972229865244216
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195258904440770667}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1724931380895743334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -247,6 +270,14 @@ PrefabInstance:
     - target: {fileID: 3184005429026655365, guid: 19745f0988a01a7419336ea833554073, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5490146151963054568, guid: 19745f0988a01a7419336ea833554073, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.9599991
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643780572654655936, guid: 19745f0988a01a7419336ea833554073, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.9599991
       objectReference: {fileID: 0}
     - target: {fileID: 8122022667741657398, guid: 19745f0988a01a7419336ea833554073, type: 3}
       propertyPath: m_PresetInfoIsWorld
@@ -318,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8477642547370842663, guid: 19745f0988a01a7419336ea833554073, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.15
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8477642547370842663, guid: 19745f0988a01a7419336ea833554073, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

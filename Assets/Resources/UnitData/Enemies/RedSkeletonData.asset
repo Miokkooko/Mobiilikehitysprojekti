@@ -9,17 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115656d1e91813a4e8532966cd6e6486, type: 3}
-  m_Name: RedJollySkeletonData
-  m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: RedJollySkeleton
-  maxWeapons: 6
-  maxPassives: 6
+  m_Script: {fileID: 11500000, guid: 638dc3cbd47526a43ac694376cb7311a, type: 3}
+  m_Name: RedSkeletonData
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  unitName: Skeleton
   maxHealth: 18
   baseDamage: 6
-  moveSpeed: 3.2
-  xpValue: 2
-  coinValue: 1
-  coinDropChance: 5
-  baseSprite: {fileID: 0}
+  moveSpeed: 4
+  baseSprite: {fileID: 6551992787387985758, guid: d5bb3013b94f19546a224dde572545e4, type: 3}
   animator: {fileID: 22100000, guid: b045eb50c6ea65d4689e56d20d594d2b, type: 2}
+  xpValue: 3
+  poolType: 1
+  coinValue: 0
+  coinDropChance: 0
