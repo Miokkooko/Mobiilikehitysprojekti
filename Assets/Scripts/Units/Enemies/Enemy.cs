@@ -116,7 +116,7 @@ public class Enemy : Unit
     {
         PoolManager manager = PoolManager.Instance;
 
-        GameObject drop = manager.SpawnDrop(DropType.Exp, transform.position, XpValue);
+        manager.SpawnDrop(DropType.Exp, transform.position, XpValue);
 
         manager.DisableEnemy(enemyData.poolType, gameObject);
     }

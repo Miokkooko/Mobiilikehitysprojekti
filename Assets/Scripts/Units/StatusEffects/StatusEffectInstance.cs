@@ -32,7 +32,7 @@ public class StatusEffectInstance
     {
         TryTick();   
 
-        if (Effect.LifetimeType == StatusLifetime.Permanent)
+        if (Effect.Permanent)
             return;
 
         duration -= Time.deltaTime;
@@ -40,9 +40,12 @@ public class StatusEffectInstance
         if (duration > 0)
             return;
 
-        switch (Effect.StackType)
+        switch (Effect.StatusHandling)
         {
-            case StatusStackType.StackDecrease:
+            case StatusHandling.MaxStackDecrement:
+                DecrementStacks();
+                break;
+            case StatusHandling.StackIncrementDecrement:
                 DecrementStacks();
                 break;
             default:
@@ -54,53 +57,58 @@ public class StatusEffectInstance
 
     void IncrementStacks()
     {
-        stacks = math.clamp(stacks + 1, 0, Effect.MaxStacks);
+        stacks++;
+        stacks = math.clamp(stacks, 0, Effect.MaxStacks);
+        duration = Effect.Duration;
+
+        Effect.OnStackIncrement(this);
     }
 
     void DecrementStacks()
     {
-        stacks = math.clamp(stacks - 1, 0, Effect.MaxStacks);
+        stacks--;
+        stacks = math.clamp(stacks, 0, Effect.MaxStacks);
         duration = Effect.Duration;
 
-        Debug.Log("Decrement stacks " + stacks);
         if (stacks == 0)
             Expire();
+        else
+            Effect.OnStackDecrement(this);
     }
 
     public void Apply()
     {
         bool hasStatus = Owner.HasStatusEffect(Effect);
 
-        if(Effect.LifetimeType != StatusLifetime.Permanent)
+        if(!Effect.Permanent)
             duration = Effect.Duration;
 
-        switch (Effect.StackType)
+        if (!hasStatus)
         {
-            case StatusStackType.Reapply:
+            Effect.OnApplied(this);
+            return;
+        }
+
+        switch (Effect.StatusHandling)
+        {
+            case StatusHandling.Reapply:
                 if(hasStatus)
                     Effect.OnApplied(this);
                 break;
-            case StatusStackType.Stack:
+            case StatusHandling.StackIncrementDecrement:
                 IncrementStacks();
                 break;
-            case StatusStackType.StackDecrease:
+            case StatusHandling.MaxStackDecrement:
                 stacks = Effect.MaxStacks;
                 break;
             default:
                 break;
         }
-
-        if (!hasStatus)
-        {
-            Effect.OnApplied(this);
-        }
     }
 
     public void Expire()
     {
-       
         Effect.OnExpired(this);
-
         Unit.RemoveStatusEffect(Effect, Owner);
     }
 }

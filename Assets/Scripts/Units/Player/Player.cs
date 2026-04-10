@@ -18,9 +18,10 @@ public class Player : Unit
     protected float baseExpRequirement = 10f;
     protected int level = 1;
 
-    public float PreviousRequiredExp = 0;
+    float previousXPReq = 0;
 
     public float RequiredExp => baseExpRequirement + expMultiplier;
+    public float PreviousRequiredExp => previousXPReq;
     public float CurrentExp => totalExp;
     public int CurrentLevel => level;
 
@@ -37,7 +38,6 @@ public class Player : Unit
     public override void Update()
     {
         base.Update();
-
         FireWeapons();
         Movement.MovePlayer(Speed);
     }
@@ -45,6 +45,7 @@ public class Player : Unit
     {
         base.InitializeUnit(data);
         playerData = (PlayerData)data;
+        OnPlayerHealthChanged?.Invoke(Health);
     }
 
     void Start()
@@ -56,7 +57,7 @@ public class Player : Unit
         OnDeath += Player_OnDeath;
 
         InitializeUnit(playerData);
-        AddWeapon(Resources.Load<WeaponData>("WeaponData/KnifeData"));
+        AddWeapon(playerData.startingWeapon);
     }
     #region Passives
 
@@ -68,7 +69,7 @@ public class Player : Unit
             return;
         }
         Passives.Add(data, new PassiveInstance(data));
-        AddModifiers(new StatModifier[] { Passives[data].GetModifier });
+        AddModifier(new StatModifierInstance(Passives[data].GetModifier));
 
         OnPlayerGetPassive?.Invoke(Passives.Keys.ToArray());
         Debug.Log("Player got " + data.Name);
@@ -168,7 +169,6 @@ public class Player : Unit
 
     public override void HandleMaxHealthChange(float previousMaxHealth)
     {
-        Debug.Log("PreviousHP = " + previousMaxHealth + " | CurrentHP = " + MaxHealth);
         if (previousMaxHealth >= MaxHealth)
             return; 
 
@@ -186,7 +186,7 @@ public class Player : Unit
 
         if (totalExp >= RequiredExp)
         {
-            PreviousRequiredExp = RequiredExp;
+            previousXPReq = RequiredExp;
             expMultiplier += 10*level;
             level += 1;
             OnPlayerLevelUp?.Invoke(level);

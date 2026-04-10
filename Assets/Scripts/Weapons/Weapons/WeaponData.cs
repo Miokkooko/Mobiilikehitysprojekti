@@ -25,6 +25,6 @@ public class WeaponData : ScriptableObject
     public float aoeRadius = 1f;
     public bool usesProjectileCount = true;
 
-    public WeaponModifier[] upgradeList;
+    public StatModifier[] upgradeList;
     public StatusEffect[] effectList;
 }

@@ -67,7 +67,7 @@ public class WeaponInstance
         if (!CanUpgrade)
             return;
 
-        statSystem.AddModifier(data.upgradeList[upgradeRank]);
+        statSystem.AddModifier(new StatModifierInstance(data.upgradeList[upgradeRank]));
         upgradeRank++;
     }
 
@@ -87,9 +87,6 @@ public class WeaponInstance
                 lastFireTime = Time.time;
                 Fire();
             }
-
-
-
         }
     }
 
@@ -106,8 +103,6 @@ public class WeaponInstance
 
         for (int i = 0; i < ProjectileCount; i++)
         {
-
-
             PoolManager manager = PoolManager.Instance;
             GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
 

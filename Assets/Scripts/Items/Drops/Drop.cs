@@ -14,6 +14,12 @@ public class Drop : MonoBehaviour
     Transform target;
     BoxCollider2D box;
     CircleCollider2D circle;
+    public SpriteRenderer sr;
+
+    public Sprite coinSprite;
+    public Sprite rewardSprite;
+    public Sprite xpSprite;
+    public Sprite heartSprite;
 
     public DropType type;
 
@@ -87,5 +93,25 @@ public class Drop : MonoBehaviour
         type = t;
 
         dropValue = value;
+        if (sr == null)
+            Debug.LogError("wtf");
+        switch (type)
+        {
+            case DropType.Coin:
+                sr.sprite = coinSprite;
+                break;
+            case DropType.Exp:
+                sr.sprite = xpSprite;
+                break;
+            case DropType.Heart:
+                sr.sprite = heartSprite;
+                break;
+            case DropType.Reward:
+                sr.sprite = rewardSprite;
+                break;
+            default:
+                sr.sprite = heartSprite;
+                break;
+        }
     }
 }

@@ -1,21 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class StatSystem
 {
-    private List<StatModifier> modifiers = new();
+    private List<StatModifierInstance> modifiers = new();
 
-    public void AddModifiers(StatModifier[] mod)
+    public void AddModifiers(StatModifierInstance[] mod)
     {
-        modifiers.AddRange(mod);
+        foreach (StatModifierInstance modifier in mod)
+        {
+            AddModifier(modifier);
+        }
     }
-    public void AddModifier(StatModifier mod)
+    public void AddModifier(StatModifierInstance mod)
     {
+        if (modifiers.Contains(mod))
+        {
+            Debug.Log("ModiferStacked!");
+            mod.IncrementStack();
+            return;
+        }
+        Debug.Log("ModifierApplied!");
         modifiers.Add(mod);
     }
 
-    public void RemoveModifiersFromSource(object source)
+    public void RemoveModifiers(StatModifierInstance[] mod)
     {
-        modifiers.RemoveAll(m => m.source == source);
+        var set = new HashSet<StatModifierInstance>(mod);
+        modifiers.RemoveAll(m => set.Contains(m));
+    }
+
+    public void RemoveModifier(StatModifierInstance mod)
+    {
+        modifiers.Remove(mod);
     }
 
     public void RemoveAllModifiers()
@@ -30,12 +48,12 @@ public class StatSystem
 
         foreach (var mod in modifiers)
         {
-            if (mod.Stat != stat) continue;
+            if (mod.GetModifier.Stat != stat) continue;
 
-            if (mod.Type == ModifierType.Flat)
-                flat += mod.Value;
-            else if (mod.Type == ModifierType.Percent)
-                percent += mod.Value;
+            if (mod.GetModifier.Type == ModifierType.Flat)
+                flat += mod.GetModifier.Value;
+            else if (mod.GetModifier.Type == ModifierType.Percent)
+                percent += mod.GetModifier.Value;
         }
 
         return (baseValue + flat) * (1f + percent);

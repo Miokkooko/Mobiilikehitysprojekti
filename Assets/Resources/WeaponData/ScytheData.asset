@@ -18,9 +18,10 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: cfe36c91fec2bcb4ca15e549a06135da, type: 3}
   poolType: 6
   baseDamage: 1
-  firerate: 1
-  piercing: 10
+  firerate: 1.5
+  piercing: 5
   projectileCount: 1
+  projectileSpread: 22.5
   projectileSpeed: 7
   projectileLifeTime: 4
   aoeDamage: 1
@@ -28,15 +29,18 @@ MonoBehaviour:
   usesProjectileCount: 1
   upgradeList:
   - Stat: 0
-    Value: 0.2
+    Value: 0.25
     Type: 1
-    source: {fileID: 0}
   - Stat: 5
     Value: 0.1
     Type: 0
-    source: {fileID: 0}
   - Stat: 4
     Value: 1
     Type: 0
-    source: {fileID: 0}
+  - Stat: 0
+    Value: 0.25
+    Type: 1
+  - Stat: 5
+    Value: 0.1
+    Type: 0
   effectList: []

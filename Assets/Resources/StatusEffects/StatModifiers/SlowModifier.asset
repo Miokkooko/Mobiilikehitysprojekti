@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModifierStatusEffect
   Name: Slowness Modifier
   Description: 
-  Duration: 3
-  MaxStacks: 1
+  Duration: 0.75
+  MaxStacks: 5
   TickRate: 1
-  StackType: 0
-  LifetimeType: 0
+  StatusHandling: 2
+  Permanent: 0
   ModifierType: 2
   Modifiers:
   - Stat: 1
-    Value: -0.5
+    Value: -0.15
     Type: 1
-    source: {fileID: 11400000}

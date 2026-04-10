@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 using TMPro;
-using TMPro.EditorUtilities;
+using UnityEngine;
 
 
 public class Unit : MonoBehaviour, IDamageable
@@ -19,7 +18,7 @@ public class Unit : MonoBehaviour, IDamageable
     public virtual float Health => Mathf.Clamp(health, 0, MaxHealth);
 
     float baseSpeed = 1;
-    public virtual float Speed => statSystem.Calculate(StatType.Speed, baseSpeed);
+    public virtual float Speed => Mathf.Clamp(statSystem.Calculate(StatType.Speed, baseSpeed), 0.25f, 100);
 
     float basePiercing = 0;
     public virtual float Piercing => statSystem.Calculate(StatType.Piercing, basePiercing);
@@ -64,7 +63,7 @@ public class Unit : MonoBehaviour, IDamageable
             baseSpeed = data.moveSpeed;
             health = baseMaxHealth;
 
-            if(data.animator != null)
+            if (data.animator != null)
             {
                 Animator anim = GetComponent<Animator>();
                 anim.runtimeAnimatorController = data.animator;
@@ -81,11 +80,12 @@ public class Unit : MonoBehaviour, IDamageable
 
     public virtual void Update()
     {
-        if(Health <= 0 ) 
+        if (Health <= 0)
             return;
 
         var snapshot = StatusDict.Values.ToArray();
-        foreach (var sei in snapshot) {
+        foreach (var sei in snapshot)
+        {
             sei.HandleDuration();
         }
     }
@@ -146,12 +146,12 @@ public class Unit : MonoBehaviour, IDamageable
     {
         var statuses = GetOrderedStatuses();
 
-        if(context.useHooks)
+        if (context.useHooks)
             foreach (var sei in statuses)
                 sei.Effect.OnHealPre(sei, context);
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
-       
+
         SpawnHealthPopUp(context);
 
         if (context.useHooks)
@@ -195,21 +195,9 @@ public class Unit : MonoBehaviour, IDamageable
         }
     }
 
-    public virtual void AddModifiers(StatModifier[] modifiers)
-    {
-        // idk this seems too hardcoded but i dont want to figure out a better way right now
-        // If we gain maxhealth we need to save previous maxhealth incase it was a % buff since we need to heal 
-        // the same amount of HP as we gained maxHP
-        float prevMaxHealth = MaxHealth;
-
-        statSystem.AddModifiers(modifiers);
-
-        HandleMaxHealthChange(prevMaxHealth);
-    }
-
     public virtual void HandleMaxHealthChange(float previousMaxHealth)
     {
-        if (previousMaxHealth >= MaxHealth )
+        if (previousMaxHealth >= MaxHealth)
             return;
 
         float healAmount = MaxHealth - previousMaxHealth;
@@ -217,12 +205,33 @@ public class Unit : MonoBehaviour, IDamageable
         Heal(new HealContext(this, healAmount, false));
     }
 
-    public virtual void RemoveModifiersFromSource(StatusEffect source)
+    public virtual void AddModifiers(StatModifierInstance[] modifiers)
     {
+        Debug.Log("wtf");
         float prevMaxHealth = MaxHealth;
-        statSystem.RemoveModifiersFromSource(source);
+        statSystem.AddModifiers(modifiers);
         HandleMaxHealthChange(prevMaxHealth);
     }
+    public virtual void AddModifier(StatModifierInstance modifier)
+    {
+        float prevMaxHealth = MaxHealth;
+        statSystem.AddModifier(modifier);
+        HandleMaxHealthChange(prevMaxHealth);
+    }
+
+    public virtual void RemoveModifiers(StatModifierInstance[] modifiers)
+    {
+        float prevMaxHealth = MaxHealth;
+        statSystem.RemoveModifiers(modifiers);
+        HandleMaxHealthChange(prevMaxHealth);
+    }
+    public virtual void RemoveModifier(StatModifierInstance modifier)
+    {
+        float prevMaxHealth = MaxHealth;
+        statSystem.RemoveModifier(modifier);
+        HandleMaxHealthChange(prevMaxHealth);
+    }
+
     public virtual void RemoveAllModifiers()
     {
         float prevMaxHealth = MaxHealth;
@@ -254,7 +263,7 @@ public class Unit : MonoBehaviour, IDamageable
     void SpawnDmgPopUp(DamageContext context)
     {
         Vector3 spawnPos = transform.position + Vector3.up * 1f;
-        GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos); 
+        GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos);
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();
 
@@ -268,7 +277,7 @@ public class Unit : MonoBehaviour, IDamageable
     {
         Vector3 spawnPos = transform.position + Vector3.up * 1f;
         GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos);
- 
+
 
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();

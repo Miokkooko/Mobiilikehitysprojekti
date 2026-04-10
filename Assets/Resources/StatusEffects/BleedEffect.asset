@@ -17,7 +17,7 @@ MonoBehaviour:
   Duration: 5
   MaxStacks: 3
   TickRate: 1
-  StackType: 2
-  LifetimeType: 0
+  StatusHandling: 2
+  Permanent: 0
   ModifierType: 2
   tickDamage: 1

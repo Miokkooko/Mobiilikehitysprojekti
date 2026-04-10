@@ -8,11 +8,11 @@ public class BleedEffect : StatusEffect
 
     public override void OnTick(StatusEffectInstance instance)
     {
-        Debug.Log("Bleed Tick");
-
+       
         Unit target = instance.Owner;
 
         float totalDamage = tickDamage * instance.stacks;
+        Debug.Log("Bleed Tick: " + tickDamage + " * " + instance.stacks + " = " + totalDamage);
 
         DamageContext context = new DamageContext(
             target,      

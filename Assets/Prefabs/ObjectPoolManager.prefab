@@ -117,7 +117,7 @@ MonoBehaviour:
   - prefab: {fileID: 2413233913195433517, guid: 3ef9db122109c694a93f4e8342cd07ae, type: 3}
     poolAmount: 50
     type: 2
-  - prefab: {fileID: 7671177631582458988, guid: 958905729efee7b449fc10b40bd13911, type: 3}
+  - prefab: {fileID: 7671177631582458988, guid: 50553a6458208db429ea33444480ecef, type: 3}
     poolAmount: 50
     type: 1
   projectilePoolData:

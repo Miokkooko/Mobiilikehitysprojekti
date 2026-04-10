@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public enum PoolType { Enemy, Projectile, Other }
@@ -241,6 +242,7 @@ public class PoolManager : MonoBehaviour
         {
             d.Initialize(type, amount);
         }
+
         g.SetActive(true);
 
         return g;

@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 332202628491323061}
   - component: {fileID: 3175354057007988409}
   - component: {fileID: 7314904509474017688}
-  - component: {fileID: -6520185668774045723}
+  - component: {fileID: 885054638634583204}
   m_Layer: 0
-  m_Name: levelUpDrop
+  m_Name: Drop
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 54baac894c3a1484db6b6a876e65cfb4, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.9614372, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -204,7 +204,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.0043575764}
   m_Radius: 2.3432353
---- !u!114 &-6520185668774045723
+--- !u!114 &885054638634583204
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,5 +216,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8190bbc753d264cb94d61fc01145be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Drop
-  dropMoveSpeed: 2
-  type: 3
+  dropMoveSpeed: 2.5
+  sr: {fileID: 9057670965363143278}
+  coinSprite: {fileID: 21300000, guid: 1138f23a6edc2e5449e758cc562720bc, type: 3}
+  rewardSprite: {fileID: 21300000, guid: 1138f23a6edc2e5449e758cc562720bc, type: 3}
+  xpSprite: {fileID: -7657372864669792561, guid: 643fb54c7bb6db545b5440f82da7f6d4, type: 3}
+  heartSprite: {fileID: 21300000, guid: 54baac894c3a1484db6b6a876e65cfb4, type: 3}
+  type: 0

@@ -50,7 +50,7 @@ public class Destroyable : MonoBehaviour, IDamageable
             if (rand <= cumulaticeChance)
             {
                 PoolManager manager = PoolManager.Instance;
-                manager.SpawnDrop(dropEvents.dropType, transform.position);
+                manager.SpawnDrop(dropEvents.dropType, transform.position, dropEvents.dropValue);
                 return;
             }
         }
@@ -67,9 +67,7 @@ public class Destroyable : MonoBehaviour, IDamageable
 
 public class DropEvents
 {
-    public string EventName;
-    [Space]
-    [Space]
-    [Range(0f, 1f)] public float DropChance = 0.5f;
     public DropType dropType;
+    public float dropValue;
+    [Range(0f, 1f)] public float DropChance = 0.5f;
 }

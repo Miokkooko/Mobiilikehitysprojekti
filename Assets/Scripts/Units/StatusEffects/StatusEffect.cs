@@ -1,7 +1,13 @@
 using UnityEngine;
 
-public enum StatusStackType { Reapply, Refresh, Stack, StackDecrease }
-public enum StatusLifetime { Duration, Stacks, Permanent }
+public enum StatusHandling 
+{ 
+    Reapply,                    // Reapplies this buff (OnApplied triggers)
+    Refresh,                    // Refreshes the duration of this buff (OnApplied does NOT trigger)
+    StackIncrementDecrement,    // Increments Stacks | Decreases stacks by 1 when duration = 0 | Expires when stacks = 0
+    StackIncrementExpire,       // Increments Stacks | Expires when duration = 0
+    MaxStackDecrement,          // Instantly Max Stacks when applied / reapplied | Decreases stacks by 1 when duration = 0 | Expires when stacks = 0
+}
 
 public class StatusEffect : ScriptableObject
 {
@@ -12,13 +18,17 @@ public class StatusEffect : ScriptableObject
     public int MaxStacks;
     public float TickRate = 1f;
 
-    public StatusStackType StackType;
-    public StatusLifetime LifetimeType;
+    public StatusHandling StatusHandling;
+    public bool Permanent;
     public ModifierType ModifierType = ModifierType.None;
     
     public virtual void OnApplied(StatusEffectInstance instance) { }
 
     public virtual void OnExpired(StatusEffectInstance instance) { }
+
+    public virtual void OnStackIncrement(StatusEffectInstance instance) { }
+
+    public virtual void OnStackDecrement(StatusEffectInstance instance) { }
 
     public virtual void OnDealDamagePre(StatusEffectInstance instance, DamageContext context) { }
 
