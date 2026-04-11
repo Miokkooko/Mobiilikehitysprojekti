@@ -74,6 +74,8 @@ public class Enemy : Unit
     {
         if(playerToFollow != null)
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerToFollow.transform.position.x, playerToFollow.transform.position.y, 0), Speed * Time.deltaTime);
+
+        if (isKnockedBack) return;
     }
 
     void Attack(IDamageable target)

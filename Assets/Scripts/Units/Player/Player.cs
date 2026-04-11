@@ -57,6 +57,7 @@ public class Player : Unit
         OnDeath += Player_OnDeath;
 
         InitializeUnit(playerData);
+        Debug.Log("Starting weapon: " + playerData.startingWeapon);
         AddWeapon(playerData.startingWeapon);
     }
     #region Passives
@@ -113,6 +114,11 @@ public class Player : Unit
 
     public void AddWeapon(WeaponData w)
     {
+        if (w == null)
+        {
+            Debug.LogError("Where weapon bro");
+            return;
+        }
         if(Weapons.Count >= playerData.maxWeapons)
         {
             Debug.Log("Player doesn't have any weapon slots left!");

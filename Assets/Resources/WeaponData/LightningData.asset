@@ -14,14 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5095381493187369754, guid: 02402ece6e9edc5418357c3bec297364, type: 3}
   weaponName: LightningStrike
-  description: 
-  Icon: {fileID: 2002275445, guid: be4d3cdcfbc275145bffba8ea0222955, type: 3}
+  description: A stake of lightning that strikes down on enemies randomly, dealing
+    immense damage
+  Icon: {fileID: -8688379684893322842, guid: 978cf91f74b4fbb449c2d680ee5e7f63, type: 3}
   poolType: 7
   baseDamage: 1
   firerate: 3
   piercing: 1
   projectileCount: 1
+  projectileSpread: 22.5
   projectileSpeed: 0
+  projectileBurst: 1
   projectileLifeTime: 0.3
   aoeDamage: 1
   aoeRadius: 1
@@ -30,9 +33,7 @@ MonoBehaviour:
   - Stat: 0
     Value: 0.5
     Type: 1
-    source: {fileID: 0}
   - Stat: 4
     Value: 1
     Type: 0
-    source: {fileID: 0}
   effectList: []

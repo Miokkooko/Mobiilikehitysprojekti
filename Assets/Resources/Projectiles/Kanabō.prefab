@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -5616055982824946880}
   m_Layer: 0
   m_Name: "Kanab\u014D"
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,8 +81,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2023423201
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5295550415798936366, guid: 65aa5bbdc3175ee468c3bca072dfd1c8, type: 3}
@@ -182,8 +182,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
   OnHitEffects:
   - {fileID: 0}
-  enableParticles: 0
-  hitParticles: {fileID: 0}
+  enableParticles: 1
+  hitParticles: {fileID: 4017514965822915143, guid: 26285d15365026248aaef20bdbddc1e4, type: 3}
   _enemies: []
 --- !u!95 &-5616055982824946880
 Animator:
@@ -195,7 +195,7 @@ Animator:
   m_GameObject: {fileID: 5697604641964101251}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: 27ba5ce9635a2a447abefc2c5054591e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -41,6 +42,8 @@ public class Unit : MonoBehaviour, IDamageable
 
     public event EventHandler<KillContext> OnKill;
     public event EventHandler<KillContext> OnDeath;
+
+    protected bool isKnockedBack;
 
     //public Animator animator;
 
@@ -108,6 +111,33 @@ public class Unit : MonoBehaviour, IDamageable
                 sei.Effect.OnDealDamagePost(sei, context);
     }
 
+    public void ApplyKnockback(Vector2 direction, float force, float duration)
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            StartCoroutine(KnockbackRoutine(direction, force, duration));
+        }
+    } // ApplyKnockback
+
+    IEnumerator KnockbackRoutine(Vector2 direction, float force, float duration)
+    {
+
+        if (!gameObject.activeInHierarchy)
+            yield break;
+
+        if (TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            isKnockedBack = true;
+
+            rb.linearVelocity = direction.normalized * force;
+
+            yield return new WaitForSeconds(duration);
+
+            rb.linearVelocity = Vector2.zero;
+            isKnockedBack = false;
+        }
+    } // IEnumerator KnockbackRoutine
+
     public virtual void TakeDamage(DamageContext context)
     {
         var victimStatuses = GetOrderedStatuses();
@@ -142,7 +172,22 @@ public class Unit : MonoBehaviour, IDamageable
             // Raise events
             OnDeath?.Invoke(this, killContext);
             context.Source.OnKill?.Invoke(this, killContext);
+
+            return;
         }
+
+        if (context.UseStatusHooks && gameObject.activeInHierarchy)
+        {
+            var targetStatuses = GetOrderedStatuses();
+            foreach (var sei in targetStatuses)
+            {
+                // Jos jokin aiempi efekti tässä loopissa otti vihollisen pois käytöstä
+                if (!gameObject.activeInHierarchy) break;
+
+                sei.Effect.OnTakeDamagePost(sei, context);
+            }
+        }
+
     }
 
     public virtual void Heal(HealContext context)

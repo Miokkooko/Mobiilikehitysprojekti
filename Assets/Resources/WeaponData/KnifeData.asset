@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 7775072252728010430, guid: 6d502916840de1a4f990bf7a4b41b161, type: 3}
   weaponName: Knife
-  description: 
+  description: A small, sharp weapon for swift throwing, causes bleeding the more
+    you hit
   Icon: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
   poolType: 4
   baseDamage: 1
@@ -32,18 +33,14 @@ MonoBehaviour:
   - Stat: 3
     Value: 1
     Type: 0
-    source: {fileID: 0}
   - Stat: 5
     Value: 1
     Type: 0
-    source: {fileID: 0}
   - Stat: 0
     Value: 0.1
     Type: 1
-    source: {fileID: 0}
   - Stat: 4
     Value: 3
     Type: 0
-    source: {fileID: 0}
   effectList:
   - {fileID: 11400000, guid: 4950195e35408864987ecfb3c8a03677, type: 2}
