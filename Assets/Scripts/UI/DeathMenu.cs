@@ -17,6 +17,13 @@ public class DeathMenu : MonoBehaviour
 
         restartButton.onClick.AddListener(RestartGame);
         mainMenuButton.onClick.AddListener(GoToMainMenu);
+
+        GameManager.Instance.player.OnDeath += OnPlayerDeath;
+    }
+
+    private void OnPlayerDeath(object sender, KillContext e)
+    {
+        ShowDeathMenu();
     }
 
     public void ShowDeathMenu()
