@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour
     float lastEnemySpawnTime;
     float lastMiniBossSpawnTime;
 
+    [Header("UI References")]
+    [SerializeField] private DeathMenu deathMenu;
+
     [Header("Enemies")]
     
     //[SerializeField] private EnemySpawn[] enemyList;
@@ -86,9 +89,22 @@ public class GameManager : MonoBehaviour
         
     }
 
+    /* private void OnPlayerDeath(object sender, KillContext e)
+     {
+         SceneManager.LoadScene(0);
+     }
+    */
+
+
+
     private void OnPlayerDeath(object sender, KillContext e)
     {
-        SceneManager.LoadScene(0);
+        enabled = false;
+
+        if (deathMenu != null)
+            deathMenu.ShowDeathMenu();
+        else
+            Debug.LogError("DeathMenu not assigned in Inspector!");
     }
 
     // Update is called once per frame
