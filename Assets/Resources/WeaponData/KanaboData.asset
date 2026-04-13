@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5697604641964101251, guid: 3cf7fba35531de2409076de5971cffbc, type: 3}
   weaponName: "Kanab\u014D"
-  description: A blunt, spiked club that causes knockback and severe concussions
+  description: A blunt, studded club that causes knockback and severe concussions
   Icon: {fileID: -5295550415798936366, guid: 65aa5bbdc3175ee468c3bca072dfd1c8, type: 3}
   poolType: 10
   baseDamage: 2
@@ -24,7 +24,7 @@ MonoBehaviour:
   projectileSpread: 22.5
   projectileSpeed: 5
   projectileBurst: 1
-  projectileLifeTime: 0.75
+  projectileLifeTime: 0.4
   aoeDamage: 1
   aoeRadius: 1
   usesProjectileCount: 1

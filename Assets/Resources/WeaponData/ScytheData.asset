@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 7775072252728010430, guid: 12ae9ba9dacc8514b98b80e0f48be961, type: 3}
   weaponName: Scythe
-  description: 
+  description: A throwable scythe that returns to its thrower, creating a long window
+    for damage
   Icon: {fileID: 6953052965472001917, guid: 35e6fcbe6fa11c44ead00b1649d6aa92, type: 3}
   poolType: 6
   baseDamage: 1
