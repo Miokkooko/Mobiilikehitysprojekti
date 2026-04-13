@@ -49,6 +49,11 @@ public class WeaponInstance
 
     public WeaponInstance(Player owner, WeaponData data)
     {
+        if (data == null)
+        {
+            Debug.LogError("Wtf data is null");
+        }
+
         this.owner = owner;
         this.data = data;
 

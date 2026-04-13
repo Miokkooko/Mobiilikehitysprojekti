@@ -14,17 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 7775072252728010430, guid: 8874ffa405d0b8c4cb8fb7674f4ce22f, type: 3}
   weaponName: Mine
-  description: 
-  Icon: {fileID: 21300000, guid: d3eaac23bd74c724cb676b171a714f02, type: 3}
+  description: An explosive to lay on the ground, exploding upon contact and slowing
+    down enemies
+  Icon: {fileID: 21300000, guid: 84cd6b1b0fa320d4ebebb1ecf4b2409c, type: 3}
   poolType: 3
   baseDamage: 2
   firerate: 1
   piercing: 1
   projectileCount: 1
+  projectileSpread: 22.5
   projectileSpeed: 0
+  projectileBurst: 1
   projectileLifeTime: 5
   aoeDamage: 1
   aoeRadius: 2
   usesProjectileCount: 0
-  upgradeList: []
+  upgradeList:
+  - Stat: 7
+    Value: 15
+    Type: 1
   effectList: []

@@ -143,10 +143,10 @@ public class Projectile : MonoBehaviour
 
                     if (effect is KnockBack kb)
                     {
-                        Vector2 knockDir = (enemy.transform.position - owner.transform.position).normalized;
-                        Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
-                        rb.linearVelocity = knockDir * kb.force + Vector2.up * kb.upwardsForce;
-                    }
+                        Vector2 dir = (enemy.transform.position - owner.transform.position).normalized;
+                        enemy.ApplyKnockback(dir, kb.force, kb.duration);
+                    } // if effect is KnockBack
+
                     else
                     {
                         Unit.ApplyStatusEffect(effect, enemy);          

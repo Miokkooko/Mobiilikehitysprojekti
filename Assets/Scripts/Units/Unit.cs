@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -41,6 +42,9 @@ public class Unit : MonoBehaviour, IDamageable
 
     public event EventHandler<KillContext> OnKill;
     public event EventHandler<KillContext> OnDeath;
+
+    protected bool isKnockedBack;
+   // private bool canDamageOnCollision = false;
 
     //public Animator animator;
 
@@ -108,6 +112,58 @@ public class Unit : MonoBehaviour, IDamageable
                 sei.Effect.OnDealDamagePost(sei, context);
     }
 
+    public void ApplyKnockback(Vector2 direction, float force, float duration, bool canDamageOthers = false)
+    {
+        if (gameObject.activeInHierarchy)
+        {
+            // jos voi vahingoittaa törmäyksessä voi vahingoittaa muita
+            // canDamageOnCollision = canDamageOthers;
+            StartCoroutine(KnockbackRoutine(direction, force, duration));
+        }
+    } // ApplyKnockback
+
+    IEnumerator KnockbackRoutine(Vector2 direction, float force, float duration)
+    {
+
+        if (!gameObject.activeInHierarchy)
+            yield break;
+
+        if (TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            isKnockedBack = true;
+
+            rb.linearVelocity = direction.normalized * force;
+
+            yield return new WaitForSeconds(duration);
+
+            rb.linearVelocity = Vector2.zero;
+            isKnockedBack = false;
+        }
+    } // IEnumerator KnockbackRoutine
+
+    /*
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isKnockedBack && canDamageOnCollision)
+        {
+            // Tarkistaa osuiko knockback toiseen viholliseen
+            if (collision.gameObject.TryGetComponent<IDamageable>(out var otherUnit))
+            {
+                float impactSpeed = collision.relativeVelocity.magnitude;
+
+                DamageContext context = new DamageContext(this, otherUnit, impactSpeed * 2f, false);
+
+                otherUnit.TakeDamage(context);
+
+                Vector2 pushDir = (collision.transform.position - transform.position).normalized;
+
+                ApplyKnockback(pushDir, impactSpeed * 0.5f, 0.15f, false);
+            }
+        }
+    } // Void OnCollisionEnter2D
+
+    */
+
     public virtual void TakeDamage(DamageContext context)
     {
         var victimStatuses = GetOrderedStatuses();
@@ -142,7 +198,22 @@ public class Unit : MonoBehaviour, IDamageable
             // Raise events
             OnDeath?.Invoke(this, killContext);
             context.Source.OnKill?.Invoke(this, killContext);
+
+            return;
         }
+
+        if (context.UseStatusHooks && gameObject.activeInHierarchy)
+        {
+            var targetStatuses = GetOrderedStatuses();
+            foreach (var sei in targetStatuses)
+            {
+                // Jos jokin aiempi efekti tässä loopissa otti vihollisen pois käytöstä
+                if (!gameObject.activeInHierarchy) break;
+
+                sei.Effect.OnTakeDamagePost(sei, context);
+            }
+        }
+
     }
 
     public virtual void Heal(HealContext context)

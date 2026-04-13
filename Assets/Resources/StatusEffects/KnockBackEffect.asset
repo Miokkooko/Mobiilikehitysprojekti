@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 308431a827a75c249b0ee028f6bcfd14, type: 3}
-  m_Name: NewKnockBack
+  m_Name: KnockBackEffect
   m_EditorClassIdentifier: Assembly-CSharp::KnockBack
-  Name: 
+  Name: Knockback
   Description: 
-  Duration: 0.1
+  Duration: 0
   MaxStacks: 0
   TickRate: 1
-  StackType: 0
-  LifetimeType: 0
+  StatusHandling: 0
+  Permanent: 0
   ModifierType: 2
-  force: 8
+  force: 25
   upwardsForce: 0
-  affectMultipleTargets: 0
-  duration: 0.1
+  affectMultipleTargets: 1
+  duration: 0.15

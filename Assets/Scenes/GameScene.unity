@@ -5756,7 +5756,7 @@ PrefabInstance:
     - target: {fileID: 200428638717900182, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: 7a69191bdb7fcd54fbd10b12567d58e5, type: 2}
+      objectReference: {fileID: 11400000, guid: 9c7d8a55464b411488de34282b780089, type: 2}
     - target: {fileID: 240634015747286591, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -5812,7 +5812,7 @@ PrefabInstance:
     - target: {fileID: 4950957087417525058, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 5f371859a7928af41a2888b026440ffc, type: 2}
     - target: {fileID: 7750771398560166580, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_SortingLayer
       value: 8
@@ -6517,18 +6517,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.size
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.data[8].type
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.data[9].type
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.data[8].prefab
       value: 
       objectReference: {fileID: 5095381493187369754, guid: 3b4da201cd25c9f48afbda8050ad5df1, type: 3}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.data[9].prefab
+      value: 
+      objectReference: {fileID: 5697604641964101251, guid: 3cf7fba35531de2409076de5971cffbc, type: 3}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.data[8].poolAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
+      propertyPath: projectilePoolData.Array.data[9].poolAmount
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []

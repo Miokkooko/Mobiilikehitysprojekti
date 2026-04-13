@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1036020669250013940}
   - component: {fileID: 4046575971098526948}
   - component: {fileID: 6477014570465129872}
-  - component: {fileID: 1440230842123996373}
+  - component: {fileID: -9178533893393886352}
   - component: {fileID: -189162977310592540}
   m_Layer: 0
   m_Name: Sword
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1440230842123996373
+--- !u!114 &-9178533893393886352
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,13 +177,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4900790239310842979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0dcfe4416219e498f481d28e721b36, type: 3}
+  m_Script: {fileID: 11500000, guid: 13d787d83c82f9542bffd535f653e202, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::MeleeSwing
   OnHitEffects: []
   enableParticles: 0
   hitParticles: {fileID: 0}
   _enemies: []
+  swingArc: 360
+  weaponRange: 1
 --- !u!95 &-189162977310592540
 Animator:
   serializedVersion: 7
