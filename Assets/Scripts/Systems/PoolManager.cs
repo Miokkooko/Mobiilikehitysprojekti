@@ -166,6 +166,7 @@ public class PoolManager : MonoBehaviour
                 break;
         }
 
+        Debug.LogError("Prefab not found. Did you forget to add it to the poolmanager?");
         return null;
     }
 
