@@ -19,7 +19,7 @@ public class KnockBack : StatusEffect
             Vector2 dir = (sei.Owner.transform.position - context.Source.transform.position).normalized;
 
             // Käynnistetään knockback kohteen omassa skriptissä
-            sei.Owner.ApplyKnockback(dir, force, duration);
+            sei.Owner.ApplyKnockback(dir, force, duration, affectMultipleTargets);
         }
     } // OnTakeDamagePost
 

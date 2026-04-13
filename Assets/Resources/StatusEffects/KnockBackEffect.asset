@@ -20,7 +20,7 @@ MonoBehaviour:
   StatusHandling: 0
   Permanent: 0
   ModifierType: 2
-  force: 8
+  force: 20
   upwardsForce: 0
-  affectMultipleTargets: 0
+  affectMultipleTargets: 1
   duration: 0.15

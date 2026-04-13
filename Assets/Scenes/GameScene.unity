@@ -5756,7 +5756,7 @@ PrefabInstance:
     - target: {fileID: 200428638717900182, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: 172582b1c9751384bb9e8f48763a84d2, type: 2}
+      objectReference: {fileID: 11400000, guid: 9c7d8a55464b411488de34282b780089, type: 2}
     - target: {fileID: 240634015747286591, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -5812,7 +5812,7 @@ PrefabInstance:
     - target: {fileID: 4950957087417525058, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: 5f371859a7928af41a2888b026440ffc, type: 2}
     - target: {fileID: 7750771398560166580, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_SortingLayer
       value: 8

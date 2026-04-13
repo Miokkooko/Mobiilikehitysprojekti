@@ -44,6 +44,7 @@ public class Unit : MonoBehaviour, IDamageable
     public event EventHandler<KillContext> OnDeath;
 
     protected bool isKnockedBack;
+   // private bool canDamageOnCollision = false;
 
     //public Animator animator;
 
@@ -111,10 +112,12 @@ public class Unit : MonoBehaviour, IDamageable
                 sei.Effect.OnDealDamagePost(sei, context);
     }
 
-    public void ApplyKnockback(Vector2 direction, float force, float duration)
+    public void ApplyKnockback(Vector2 direction, float force, float duration, bool canDamageOthers = false)
     {
         if (gameObject.activeInHierarchy)
         {
+            // jos voi vahingoittaa törmäyksessä voi vahingoittaa muita
+            // canDamageOnCollision = canDamageOthers;
             StartCoroutine(KnockbackRoutine(direction, force, duration));
         }
     } // ApplyKnockback
@@ -137,6 +140,29 @@ public class Unit : MonoBehaviour, IDamageable
             isKnockedBack = false;
         }
     } // IEnumerator KnockbackRoutine
+
+    /*
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isKnockedBack && canDamageOnCollision)
+        {
+            // Tarkistaa osuiko knockback toiseen viholliseen
+            if (collision.gameObject.TryGetComponent<IDamageable>(out var otherUnit))
+            {
+                float impactSpeed = collision.relativeVelocity.magnitude;
+
+                DamageContext context = new DamageContext(this, otherUnit, impactSpeed * 2f, false);
+
+                otherUnit.TakeDamage(context);
+
+                Vector2 pushDir = (collision.transform.position - transform.position).normalized;
+
+                ApplyKnockback(pushDir, impactSpeed * 0.5f, 0.15f, false);
+            }
+        }
+    } // Void OnCollisionEnter2D
+
+    */
 
     public virtual void TakeDamage(DamageContext context)
     {
