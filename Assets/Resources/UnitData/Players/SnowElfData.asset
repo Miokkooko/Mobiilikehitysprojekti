@@ -9,16 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 115656d1e91813a4e8532966cd6e6486, type: 3}
-  m_Name: SnowElfArcherData
-  m_EditorClassIdentifier: Assembly-CSharp::UnitData
-  unitName: Snow Elf Archer
-  maxWeapons: 6
-  maxPassives: 6
-  maxHealth: 60
-  baseDamage: 8
-  moveSpeed: 4
-  xpValue: 0
+  m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
+  m_Name: SnowElfData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  unitName: Falariath, the Snow Elf Archer
+  maxHealth: 70
+  baseDamage: 7
+  moveSpeed: 3
   baseSprite: {fileID: -932235265741748483, guid: 4ad5b5a141ba3ca4bb3b9356daba6904, type: 3}
   animator: {fileID: 22100000, guid: fde1ac13ca999e7499f2dcd3d60ef08d, type: 2}
-  startingWeapon: {fileID: 11400000, guid: f35647ba8e1b38940bad66777fbc91c2, type: 2}
+  maxWeapons: 6
+  maxPassives: 6
+  startingWeapon: {fileID: 0}

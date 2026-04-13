@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
   m_Name: Rank1DarkWitch
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unitName: Dark Witch
+  unitName: Raven, the Dark Witch
   maxHealth: 60
   baseDamage: 1
   moveSpeed: 4

@@ -39,5 +39,8 @@ MonoBehaviour:
   - Stat: 5
     Value: 0.4
     Type: 1
+  - Stat: 4
+    Value: 1
+    Type: 0
   effectList:
   - {fileID: 11400000, guid: 8485e8e14981a434c97abf9dd627e7de, type: 2}

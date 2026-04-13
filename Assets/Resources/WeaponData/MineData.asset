@@ -29,5 +29,8 @@ MonoBehaviour:
   aoeDamage: 1
   aoeRadius: 2
   usesProjectileCount: 0
-  upgradeList: []
+  upgradeList:
+  - Stat: 7
+    Value: 15
+    Type: 1
   effectList: []

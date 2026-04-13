@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
   m_Name: OniData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unitName: Oni
+  unitName: Homura, the Oni
   maxHealth: 120
   baseDamage: 2
   moveSpeed: 2
