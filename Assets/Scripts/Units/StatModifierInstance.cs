@@ -5,10 +5,14 @@ public class StatModifierInstance
     int maxStacks = 1;
 
     public StatModifier data;
+    public float Value => modifier.Value;
+    public ModifierType Type => modifier.Type;
+    public StatType Stat => modifier.Stat;
+
 
     StatModifier modifier = new StatModifier();
-
     public StatModifier GetModifier => modifier;
+    public StatModifier GetBaseModifierData => data;
 
     public StatModifierInstance(StatModifier baseModifier, int stackLimit = 1)
     {
@@ -42,5 +46,10 @@ public class StatModifierInstance
         modifier.Stat = data.Stat;
         modifier.Value = data.Value * stacks;
         modifier.Type = data.Type;
+    }
+
+    public void SetValue(float value)
+    {
+        modifier.Value = value;
     }
 }

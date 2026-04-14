@@ -281,7 +281,6 @@ public class Unit : MonoBehaviour, IDamageable
 
     public virtual void AddModifiers(StatModifierInstance[] modifiers)
     {
-        Debug.Log("wtf");
         float prevMaxHealth = MaxHealth;
         statSystem.AddModifiers(modifiers);
         HandleMaxHealthChange(prevMaxHealth);
@@ -290,7 +289,9 @@ public class Unit : MonoBehaviour, IDamageable
     {
         float prevMaxHealth = MaxHealth;
         statSystem.AddModifier(modifier);
-        HandleMaxHealthChange(prevMaxHealth);
+
+        if(modifier.Stat == StatType.MaxHealth)
+            HandleMaxHealthChange(prevMaxHealth);
     }
 
     public virtual void RemoveModifiers(StatModifierInstance[] modifiers)

@@ -12,15 +12,19 @@ public class CharacterSelectMenu : MonoBehaviour
     public Image previousChar;
     public Image nextChar;
 
+    public PlayerData selectedData => characterData[selectedIndex];
+
     int selectedIndex = 0; 
 
 
     void SetCharacters()
     {
         selectedCharSprite.sprite = characterData[selectedIndex].baseSprite;
+
         string[] name = characterData[selectedIndex].unitName.Split(',');
         string unifiedName = name[0] + "\n" + name[1];
         selectedCharName.SetText(unifiedName);
+
         selectedCharRank.SetText("Rank 1"); // TODO
 
         int index = selectedIndex + 1;
@@ -37,7 +41,6 @@ public class CharacterSelectMenu : MonoBehaviour
 
         previousChar.sprite = characterData[index].baseSprite;
     }
-
 
     public void MoveRosterRight()
     {

@@ -50,18 +50,14 @@ public class Player : Unit
 
     void Start()
     {
-        //AddWeapon(new Axe());
-        
-
         Movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 
-        InitializeUnit(playerData);
+        InitializeUnit(PlayerDataManager.Instance.CharacterData);
         Debug.Log("Starting weapon: " + playerData.startingWeapon);
         AddWeapon(playerData.startingWeapon);
     }
     #region Passives
-
     public void AddPassive(PassiveData data)
     {
         if (Passives.Count >= playerData.maxPassives)
@@ -70,7 +66,7 @@ public class Player : Unit
             return;
         }
         Passives.Add(data, new PassiveInstance(data));
-        AddModifier(new StatModifierInstance(Passives[data].GetModifier));
+        AddModifier(Passives[data].GetInstance);
 
         OnPlayerGetPassive?.Invoke(Passives.Keys.ToArray());
         Debug.Log("Player got " + data.Name);
@@ -79,7 +75,9 @@ public class Player : Unit
     {
         float prevMaxHp = MaxHealth;
         Passives[data].UpgradePassive();
-        HandleMaxHealthChange(prevMaxHp);
+
+        if (Passives[data].GetInstance.Stat == StatType.MaxHealth)
+            HandleMaxHealthChange(prevMaxHp);
         
         Debug.Log("Player upgraded " + data.Name);
     }
@@ -175,6 +173,7 @@ public class Player : Unit
 
     public override void HandleMaxHealthChange(float previousMaxHealth)
     {
+        Debug.Log(previousMaxHealth + " vs current " + MaxHealth);
         if (previousMaxHealth >= MaxHealth)
             return; 
 

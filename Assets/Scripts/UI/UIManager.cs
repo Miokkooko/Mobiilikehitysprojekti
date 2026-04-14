@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
         if (MainMenu != null)
             OpenMenu(MainMenu);
         else
-            Debug.Log("Main Menu not set!");
+            Debug.LogWarning("Main Menu not set!");
     }
 
     #region Notifications
@@ -69,7 +69,7 @@ public class UIManager : MonoBehaviour
 
         if(t == null)
         {
-            Debug.Log("No prefab found for notification!");
+            Debug.LogError("No prefab found for notification!");
             return null;
         }
 
@@ -164,8 +164,6 @@ public class UIManager : MonoBehaviour
     {
         Menu menuToClose = CurrentMenu;
 
-        Debug.Log("Wtf");
-
         if (MenuStack.Count >= 1)
         {
             DisappearMenu(menuToClose);
@@ -174,10 +172,10 @@ public class UIManager : MonoBehaviour
             Debug.Log("Menu closed | " + MenuStack.Count + " - Menus total");
         }
 
-        // If the menu we are closing force disappeared a previous menu, "Appear" the previous one again
         if (MenuStack.Count == 0)
             return;
 
+        // If the menu we are closing force disappeared a previous menu, "Appear" the previous one again
         if (menuToClose.m_bDisappearPreviousMenu)
             AppearMenu(CurrentMenu);
         else

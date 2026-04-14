@@ -9,6 +9,7 @@ public class WeaponData : ScriptableObject
 
     //uusia juttuja
     public string weaponName;
+    [TextArea(2,5)]
     public string description;
     public Sprite Icon;
     public ProjectilePoolType poolType;
@@ -24,7 +25,7 @@ public class WeaponData : ScriptableObject
     public float projectileLifeTime = 2;
     public float aoeDamage = 1f;
     public float aoeRadius = 1f;
-    public bool usesProjectileCount = true;
+    public bool usesProjectileBurst = true;
 
     public StatModifier[] upgradeList;
     public StatusEffect[] effectList;

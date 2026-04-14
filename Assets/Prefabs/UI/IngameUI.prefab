@@ -65,7 +65,6 @@ GameObject:
   - component: {fileID: 3702860008731439185}
   - component: {fileID: 1693735582164290222}
   - component: {fileID: 7818854374425341465}
-  - component: {fileID: 2670963833577249699}
   - component: {fileID: 252467653718058922}
   - component: {fileID: 5261486025667221137}
   m_Layer: 5
@@ -176,20 +175,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1693735582164290222}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2670963833577249699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157567071450104697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc69129c02251648bff6b63cb0a8ed8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseButton
-  pauseMenu: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 6983311262441322777}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &252467653718058922
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,8 +777,8 @@ MonoBehaviour:
   currentValue: 0
   behindBar: {fileID: 3437900758901549520}
   behindBarAnimationMode: 0
-  barDisplayMode: 0
-  tweeningType: 9
+  behindBarDisplayMode: 0
+  behindBarTweenType: 1
   animationDelay: 1
   animationDuration: 1
 --- !u!1 &2180563119418309033
@@ -4026,8 +4024,8 @@ MonoBehaviour:
   currentValue: 0
   behindBar: {fileID: 0}
   behindBarAnimationMode: 0
-  barDisplayMode: 0
-  tweeningType: 1
+  behindBarDisplayMode: 0
+  behindBarTweenType: 1
   animationDelay: 1
   animationDuration: 1
 --- !u!1 &8834848591576903688
