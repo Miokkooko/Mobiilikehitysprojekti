@@ -140,11 +140,11 @@ public class UIManager : MonoBehaviour
                 CloseMenu();
             else
                 CurrentMenu.AllowInteraction(false);
-
-            previousMenu = CurrentMenu;
         }
-        if(!MenuStack.Contains(menu))
+
+        if (!MenuStack.Contains(menu))
             MenuStack.Push(menu);
+
         AppearMenu(menu);
 
         Debug.Log("Menu opened | " + MenuStack.Count + " - Menus total");
@@ -164,7 +164,9 @@ public class UIManager : MonoBehaviour
     {
         Menu menuToClose = CurrentMenu;
 
-        if (MenuStack.Count > 1)
+        Debug.Log("Wtf");
+
+        if (MenuStack.Count >= 1)
         {
             DisappearMenu(menuToClose);
 
@@ -172,7 +174,10 @@ public class UIManager : MonoBehaviour
             Debug.Log("Menu closed | " + MenuStack.Count + " - Menus total");
         }
 
-        // If the menu we are closing force disappeared a previous menu, open the previous one again
+        // If the menu we are closing force disappeared a previous menu, "Appear" the previous one again
+        if (MenuStack.Count == 0)
+            return;
+
         if (menuToClose.m_bDisappearPreviousMenu)
             AppearMenu(CurrentMenu);
         else

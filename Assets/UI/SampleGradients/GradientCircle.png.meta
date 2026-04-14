@@ -1,0 +1,598 @@
+fileFormatVersion: 2
+guid: 524fb60cd1e05084897b596769fe43d6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7837218530826356648
+    second: Cursed3_0
+  - first:
+      213: 427369090774228715
+    second: Cursed3_1
+  - first:
+      213: 6177374116081984083
+    second: Cursed3_2
+  - first:
+      213: 8987235526870731927
+    second: Cursed3_3
+  - first:
+      213: -6322857062673218307
+    second: Cursed3_4
+  - first:
+      213: 8781397272883887087
+    second: Cursed3_5
+  - first:
+      213: -6236240346953125295
+    second: Cursed3_6
+  - first:
+      213: 3928509449010368964
+    second: Cursed3_7
+  - first:
+      213: -3743240064690800738
+    second: Cursed3_8
+  - first:
+      213: -2106876521051044368
+    second: Cursed3_9
+  - first:
+      213: 6086301659890047196
+    second: Cursed3_10
+  - first:
+      213: 8990611821647343128
+    second: Cursed3_11
+  - first:
+      213: 1444451404215652541
+    second: Cursed3_12
+  - first:
+      213: 5048378618293273419
+    second: Cursed3_13
+  - first:
+      213: 1462121993346637015
+    second: Cursed3_14
+  - first:
+      213: 6512411558881277255
+    second: Cursed3_15
+  - first:
+      213: -4689371773528244971
+    second: Cursed3_16
+  - first:
+      213: 6337489883044471179
+    second: Cursed3_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 0
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 2
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 2
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Cursed3_0
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 3881
+        height: 3870
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8587cf2054b9c3390800000000000000
+      internalID: -7837218530826356648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_1
+      rect:
+        serializedVersion: 2
+        x: 1936
+        y: 3855
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bee549b7ce15ee500800000000000000
+      internalID: 427369090774228715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_2
+      rect:
+        serializedVersion: 2
+        x: 1969
+        y: 3851
+        width: 17
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35262c987017ab550800000000000000
+      internalID: 6177374116081984083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_3
+      rect:
+        serializedVersion: 2
+        x: 1978
+        y: 3856
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79c86e3681319bc70800000000000000
+      internalID: 8987235526870731927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_4
+      rect:
+        serializedVersion: 2
+        x: 1989
+        y: 3856
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df40bcd5003b048a0800000000000000
+      internalID: -6322857062673218307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_5
+      rect:
+        serializedVersion: 2
+        x: 2042
+        y: 3850
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: febf3d93b4acdd970800000000000000
+      internalID: 8781397272883887087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_6
+      rect:
+        serializedVersion: 2
+        x: 2082
+        y: 3857
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15276e9027c6479a0800000000000000
+      internalID: -6236240346953125295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_7
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 2018
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c1570d978ed48630800000000000000
+      internalID: 3928509449010368964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_8
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 2009
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9738136ef65d0cc0800000000000000
+      internalID: -3743240064690800738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_9
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1973
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f5442187fed2c2e0800000000000000
+      internalID: -2106876521051044368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_10
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1956
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd8dd91fc13e67450800000000000000
+      internalID: 6086301659890047196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_11
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1923
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81ea7b641d115cc70800000000000000
+      internalID: 8990611821647343128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_12
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1917
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db0969b26e8bb0410800000000000000
+      internalID: 1444451404215652541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_13
+      rect:
+        serializedVersion: 2
+        x: 3936
+        y: 1927
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b434c0b1b917f0640800000000000000
+      internalID: 5048378618293273419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_14
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 1894
+        width: 13
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc56bfc4308a4410800000000000000
+      internalID: 1462121993346637015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_15
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 1879
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745344efecbb06a50800000000000000
+      internalID: 6512411558881277255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_16
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 1853
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51dfa13a7310ceeb0800000000000000
+      internalID: -4689371773528244971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cursed3_17
+      rect:
+        serializedVersion: 2
+        x: 3934
+        y: 1847
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b816f7e987943f750800000000000000
+      internalID: 6337489883044471179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Cursed3_0: -7837218530826356648
+      Cursed3_1: 427369090774228715
+      Cursed3_10: 6086301659890047196
+      Cursed3_11: 8990611821647343128
+      Cursed3_12: 1444451404215652541
+      Cursed3_13: 5048378618293273419
+      Cursed3_14: 1462121993346637015
+      Cursed3_15: 6512411558881277255
+      Cursed3_16: -4689371773528244971
+      Cursed3_17: 6337489883044471179
+      Cursed3_2: 6177374116081984083
+      Cursed3_3: 8987235526870731927
+      Cursed3_4: -6322857062673218307
+      Cursed3_5: 8781397272883887087
+      Cursed3_6: -6236240346953125295
+      Cursed3_7: 3928509449010368964
+      Cursed3_8: -3743240064690800738
+      Cursed3_9: -2106876521051044368
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
