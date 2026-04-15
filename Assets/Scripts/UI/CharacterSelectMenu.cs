@@ -1,9 +1,10 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+
 public class CharacterSelectMenu : MonoBehaviour
 {
-    public PlayerData[] characterData;
+    PlayerData[] characterData;
 
     public Image selectedCharSprite;
     public TMP_Text selectedCharName;
@@ -14,8 +15,12 @@ public class CharacterSelectMenu : MonoBehaviour
 
     public PlayerData selectedData => characterData[selectedIndex];
 
-    int selectedIndex = 0; 
+    int selectedIndex = 0;
 
+    private void OnEnable()
+    {
+        characterData = Resources.LoadAll<PlayerData>("UnitData/Players");
+    }
 
     void SetCharacters()
     {
@@ -58,6 +63,23 @@ public class CharacterSelectMenu : MonoBehaviour
         if (selectedIndex < 0)
             selectedIndex = characterData.Length - 1;
     
+        SetCharacters();
+    }
+
+    public void SelectCharacter(PlayerData data)
+    {
+        if (data == null)
+            return;
+
+        for (int i = 0; i < characterData.Length; i++)
+        {
+            if (data == characterData[i])
+            {
+                selectedIndex = i;
+                break;
+            }
+        }
+
         SetCharacters();
     }
 }
