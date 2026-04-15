@@ -5,34 +5,32 @@ public class PassiveInstance
 
     public PassiveData data;
 
-    StatModifier modifier = new StatModifier();
-    public StatModifier GetModifier => modifier;
+    StatModifierInstance instance;
+    public StatModifierInstance GetInstance => instance;
     public bool CanUpgrade => upgradeRank < data.Upgrades.Length;
+
     public PassiveInstance(PassiveData passiveData)
     {
         data = passiveData;
-        modifier.Stat = data.BaseModifier.Stat;
-        modifier.Value = data.BaseModifier.Value;
-        modifier.Type = data.BaseModifier.Type;
+        instance = new StatModifierInstance(data.BaseModifier);
     }
 
     public void UpgradePassive()
     {
-        
         if (!CanUpgrade)
             return;
 
-        modifier.Value += data.Upgrades[upgradeRank];
+        instance.SetValue(instance.Value + data.Upgrades[upgradeRank]);
         upgradeRank++;
     }
 
     public string GetRankUpDescription()
     {
-        bool isPercent = modifier.Type == ModifierType.Percent;
-        string currentValue = isPercent ? $"{modifier.Value * 100}%" : modifier.Value.ToString();
-        string nextValue = isPercent ? $"{(modifier.Value + data.Upgrades[upgradeRank]) * 100}%" : (modifier.Value + data.Upgrades[upgradeRank]).ToString();
+        bool isPercent = instance.Type == ModifierType.Percent;
+        string currentValue = isPercent ? $"{instance.Value * 100}%" : instance.Value.ToString();
+        string nextValue = isPercent ? $"{(instance.Value + data.Upgrades[upgradeRank]) * 100}%" : (instance.Value + data.Upgrades[upgradeRank]).ToString();
 
-        return $"{modifier.Stat} {currentValue} -> {nextValue}";
+        return $"{instance.Stat} {currentValue} -> {nextValue}";
     }
 
     public string GetRankUpText()

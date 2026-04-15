@@ -18,7 +18,6 @@ public class ModifierStatusEffect : StatusEffect
         }
         
         instance.Owner.AddModifiers(instances);
-        Debug.Log("OnApplied " + instance.Owner.Speed);
     }
 
     public override void OnStackIncrement(StatusEffectInstance instance)
@@ -27,8 +26,6 @@ public class ModifierStatusEffect : StatusEffect
         {
             item.IncrementStack();
         }
-
-        Debug.Log("OnIncrement " + instance.Owner.Speed);
     }
     public override void OnStackDecrement(StatusEffectInstance instance)
     {
@@ -36,12 +33,10 @@ public class ModifierStatusEffect : StatusEffect
         {
             item.DecrementStack();
         }
-        Debug.Log("OnDecrement " + instance.Owner.Speed);
     }
 
     public override void OnExpired(StatusEffectInstance instance)
     {
         instance.Owner.RemoveModifiers(instances);
-        Debug.Log("OnExpired " + instance.Owner.Speed);
     }
 }

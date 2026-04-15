@@ -76,12 +76,12 @@ public class Projectile : MonoBehaviour
 
         OnHitEffects = w.OnHitEffects;
 
-        if(owner is Player player)
+        if (owner is Player player)
         {
             detRadius = player.GetComponentInChildren<DetectionRadius>();
             _enemies = detRadius._enemies;
         }
-            
+
         gameObject.SetActive(true);
     }
     public virtual void Initialize(WeaponData w, Unit p, Vector3 dir)
@@ -96,7 +96,7 @@ public class Projectile : MonoBehaviour
         aoeDamage = w.aoeDamage;
         aoeRadius = w.aoeRadius;
 
-        if(owner is Player player)
+        if (owner is Player player)
         {
             detRadius = player.GetComponentInChildren<DetectionRadius>();
             _enemies = detRadius._enemies;
@@ -140,7 +140,7 @@ public class Projectile : MonoBehaviour
             if (OnHitEffects != null)
             {
                 foreach (var effect in OnHitEffects)
-
+                {
                     if (effect is KnockBack kb)
                     {
                         Vector2 dir = (enemy.transform.position - owner.transform.position).normalized;
@@ -149,9 +149,9 @@ public class Projectile : MonoBehaviour
 
                     else
                     {
-                        Unit.ApplyStatusEffect(effect, enemy);          
+                        Unit.ApplyStatusEffect(effect, enemy);
                     }
-
+                }
             }
         }
 
@@ -166,7 +166,7 @@ public class Projectile : MonoBehaviour
             Instantiate(hitParticles, gameObject.transform.position, Quaternion.identity);
         }
 
-        
+
         if (projectilePiercing != 1)
         {
             projectilePiercing -= 1;

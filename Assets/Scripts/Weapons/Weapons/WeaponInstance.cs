@@ -84,7 +84,7 @@ public class WeaponInstance
     {
         if (Time.time >= lastFireTime + Firerate)
         {
-            if (data.usesProjectileCount)
+            if (data.usesProjectileBurst)
             {
                 if (fire != null)
                     owner.StopCoroutine(fire);

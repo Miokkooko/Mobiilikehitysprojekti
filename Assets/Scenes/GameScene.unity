@@ -5756,7 +5756,7 @@ PrefabInstance:
     - target: {fileID: 200428638717900182, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: bfb1970770e851342b18a7c17aef2f08, type: 2}
+      objectReference: {fileID: 11400000, guid: 9c7d8a55464b411488de34282b780089, type: 2}
     - target: {fileID: 240634015747286591, guid: 1fd98449680848a45a8ae86ea771b0e6, type: 3}
       propertyPath: m_BodyType
       value: 0
@@ -6020,6 +6020,10 @@ PrefabInstance:
     - target: {fileID: 1009872886116155320, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1778892947276744248, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
+      propertyPath: behindBar
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3761695916978970743, guid: 02219c9857238604db7bb72fb5b7cfe2, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6458,18 +6462,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 70966954}
-    - target: {fileID: 8906414872920602259, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
-      propertyPath: WeaponUpgrades.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8906414872920602259, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
-      propertyPath: 'WeaponUpgrades.Array.data[7]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 9de8ea1db81bd6944b4638c8590de8e0, type: 2}
-    - target: {fileID: 8906414872920602259, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
-      propertyPath: 'WeaponUpgrades.Array.data[8]'
-      value: 
-      objectReference: {fileID: 11400000, guid: a05f59896274241418292e29cdc64711, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6533,7 +6525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.size
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: enemyPoolData.Array.data[2].type
@@ -6556,10 +6548,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
-      propertyPath: projectilePoolData.Array.data[10].type
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.data[8].prefab
       value: 
       objectReference: {fileID: 5095381493187369754, guid: 3b4da201cd25c9f48afbda8050ad5df1, type: 3}
@@ -6568,20 +6556,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5697604641964101251, guid: 3cf7fba35531de2409076de5971cffbc, type: 3}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
-      propertyPath: projectilePoolData.Array.data[10].prefab
-      value: 
-      objectReference: {fileID: 6738408243837565008, guid: 95038c336d5565346a66293c1b0e40c8, type: 3}
-    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.data[8].poolAmount
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
       propertyPath: projectilePoolData.Array.data[9].poolAmount
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6117185995095167425, guid: 09c2c4ef30f71da44b0eaa5a967ff704, type: 3}
-      propertyPath: projectilePoolData.Array.data[10].poolAmount
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
