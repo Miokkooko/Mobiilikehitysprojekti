@@ -109,7 +109,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc21f997f322914fb9623081d4d721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  unitData: {fileID: 11400000, guid: 6621600a3d3f6e34ba690de1d4ab98f8, type: 2}
   isWalking: 0
+  enemyData: {fileID: 0}
   effects: []
 --- !u!95 &-7396667861422053823
 Animator:

@@ -44,7 +44,7 @@ public class Unit : MonoBehaviour, IDamageable
     public event EventHandler<KillContext> OnDeath;
 
     protected bool isKnockedBack;
-   // private bool canDamageOnCollision = false;
+    private bool canDamageOnCollision = false;
 
     //public Animator animator;
 
@@ -116,10 +116,14 @@ public class Unit : MonoBehaviour, IDamageable
     {
         if (gameObject.activeInHierarchy)
         {
+
             // jos voi vahingoittaa törmäyksessä voi vahingoittaa muita
-            // canDamageOnCollision = canDamageOthers;
+            StopAllCoroutines();
+            this.canDamageOnCollision = canDamageOthers;
             StartCoroutine(KnockbackRoutine(direction, force, duration));
+
         }
+        
     } // ApplyKnockback
 
     IEnumerator KnockbackRoutine(Vector2 direction, float force, float duration)
@@ -138,31 +142,42 @@ public class Unit : MonoBehaviour, IDamageable
 
             rb.linearVelocity = Vector2.zero;
             isKnockedBack = false;
+            canDamageOnCollision = false;
         }
     } // IEnumerator KnockbackRoutine
 
-    /*
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isKnockedBack && canDamageOnCollision)
         {
-            // Tarkistaa osuiko knockback toiseen viholliseen
-            if (collision.gameObject.TryGetComponent<IDamageable>(out var otherUnit))
+            // Tarkistaa osuiko knockbackatty toiseen viholliseen
+            if (collision.gameObject.TryGetComponent<IDamageable>(out var damageable))
             {
-                float impactSpeed = collision.relativeVelocity.magnitude;
+                float impactForce = GetComponent<Rigidbody2D>().linearVelocity.magnitude;
 
-                DamageContext context = new DamageContext(this, otherUnit, impactSpeed * 2f, false);
+                canDamageOnCollision = false;
 
-                otherUnit.TakeDamage(context);
+                DamageContext context = new DamageContext(this, damageable, impactForce * 1.5f, false);
+                damageable.TakeDamage(context);
 
-                Vector2 pushDir = (collision.transform.position - transform.position).normalized;
 
-                ApplyKnockback(pushDir, impactSpeed * 0.5f, 0.15f, false);
+                // ANNETAAN knockback kohteelle (vihollinen B)
+                if (damageable is Unit unitTarget)
+                {
+                    Vector2 pushDir = (collision.transform.position - transform.position).normalized;
+
+                    // jotta sen oma coroutine nollaa nopeuden 0.15 sekunnin päästä
+                    unitTarget.ApplyKnockback(pushDir, impactForce * 0.7f, 0.15f, false);
+
+                    // Valinnainen: Hidasta myös hyökkääjää (A) osuman jälkeen
+                    GetComponent<Rigidbody2D>().linearVelocity *= 0.5f;
+                }
             }
         }
     } // Void OnCollisionEnter2D
 
-    */
+
 
     public virtual void TakeDamage(DamageContext context)
     {

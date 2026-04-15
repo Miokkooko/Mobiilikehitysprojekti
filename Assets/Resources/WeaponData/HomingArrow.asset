@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
+  m_Name: HomingArrow
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectilePrefab: {fileID: 6738408243837565008, guid: 95038c336d5565346a66293c1b0e40c8, type: 3}
+  weaponName: Homing Arrow
+  description: A magic arrow that finds the nearest enemy and pierces them to find
+    the next enemy
+  Icon: {fileID: -7142435805586534932, guid: 137b36d49f0c1fb429d8e321ca97c453, type: 3}
+  poolType: 11
+  baseDamage: 2
+  firerate: 1
+  piercing: 3
+  projectileCount: 1
+  projectileSpread: 22.5
+  projectileSpeed: 10
+  projectileBurst: 1
+  projectileLifeTime: 2
+  aoeDamage: 1
+  aoeRadius: 1
+  usesProjectileCount: 1
+  upgradeList:
+  - Stat: 3
+    Value: 1
+    Type: 0
+  - Stat: 6
+    Value: 0.2
+    Type: 1
+  - Stat: 3
+    Value: 1
+    Type: 0
+  - Stat: 0
+    Value: 5
+    Type: 0
+  - Stat: 4
+    Value: 1
+    Type: 0
+  - Stat: 6
+    Value: 0.2
+    Type: 1
+  - Stat: 3
+    Value: 1
+    Type: 0
+  effectList: []
