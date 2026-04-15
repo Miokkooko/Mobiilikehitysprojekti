@@ -15,6 +15,6 @@ public class MainMenu : MonoBehaviour
     {
         DataManager.Instance.SelectPlayerData(charMenu.selectedData);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }
