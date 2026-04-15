@@ -53,7 +53,7 @@ public class Player : Unit
         Movement = GetComponent<PlayerMovement>();
         OnDeath += Player_OnDeath;
 
-        InitializeUnit(PlayerDataManager.Instance.CharacterData);
+        InitializeUnit(DataManager.Instance.CharacterData);
         Debug.Log("Starting weapon: " + playerData.startingWeapon);
         AddWeapon(playerData.startingWeapon);
     }
