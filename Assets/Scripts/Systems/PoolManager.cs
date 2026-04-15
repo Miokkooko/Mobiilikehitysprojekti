@@ -23,7 +23,8 @@ public enum ProjectilePoolType
     Projectile_Lightning,
     Projectile_Enemy,
     Projectile_Sun,
-    Projectile_Kanabo
+    Projectile_Kanabo,
+    Projectile_HomingArrow
 }
 public enum OtherPoolType
 {

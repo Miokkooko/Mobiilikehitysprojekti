@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7300212855613368040}
   - component: {fileID: 9216288745007165173}
   - component: {fileID: 19190836801765232}
-  - component: {fileID: 3135418474777628542}
+  - component: {fileID: -1225136861886376194}
   - component: {fileID: 4241241308759845675}
   m_Layer: 0
   m_Name: HomingArrow
@@ -110,7 +110,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -168,7 +168,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.5, y: 0.21875}
   m_EdgeRadius: 0
---- !u!114 &3135418474777628542
+--- !u!114 &-1225136861886376194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,9 +177,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6738408243837565008}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82bed73a0d953b9419759637d6beb9e3, type: 3}
+  m_Script: {fileID: 11500000, guid: cc0f16370e4516e4bb501f91bada3378, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Projectile
+  m_EditorClassIdentifier: Assembly-CSharp::HomingArrow
   OnHitEffects: []
   enableParticles: 0
   hitParticles: {fileID: 0}

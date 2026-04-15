@@ -17,15 +17,14 @@ MonoBehaviour:
   Duration: 0
   MaxStacks: 0
   TickRate: 1
-  StackType: 0
-  LifetimeType: 0
+  StatusHandling: 0
+  Permanent: 0
   ModifierType: 2
   Icon: {fileID: 8235732835111945792, guid: 5a04e9a69e5f7a64693edc086222f941, type: 3}
   BaseModifier:
     Stat: 0
     Value: 0.1
     Type: 1
-    source: {fileID: 11400000}
   Upgrades:
   - 0.1
   - 0.1

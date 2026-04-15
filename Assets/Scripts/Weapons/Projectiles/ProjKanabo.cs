@@ -35,7 +35,7 @@ public class MeleeSwing : Projectile
 
     public override void Move()
     {
-        // Emme kutsu base.Move(), koska emme halua projektilen lentävän eteenpäin
+
 
         elapsed += Time.deltaTime;
         float progress = elapsed / projectileLifetime;
@@ -58,16 +58,12 @@ public class MeleeSwing : Projectile
         // Päivitetään rotaatio
         transform.rotation = Quaternion.Euler(0, 0, currentAngle);
 
-        // Pidetään hitbox pelaajan kohdalla
         if (owner != null)
         {
 
             float offsetDistance = 0.5f;
             Vector3 offset = direction * offsetDistance;
 
-            // Jos haluat, että se osuu myös spriten sisälle, 
-            // pidetään projektilen transform samassa kohdassa kuin pelaaja,
-            // mutta säädetään itse Colliderin offsettia tai kokoa Unityn puolella.
             transform.position = owner.transform.position;
         }
     }

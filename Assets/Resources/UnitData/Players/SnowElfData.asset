@@ -20,4 +20,4 @@ MonoBehaviour:
   animator: {fileID: 22100000, guid: fde1ac13ca999e7499f2dcd3d60ef08d, type: 2}
   maxWeapons: 6
   maxPassives: 6
-  startingWeapon: {fileID: 0}
+  startingWeapon: {fileID: 11400000, guid: 9de8ea1db81bd6944b4638c8590de8e0, type: 2}
