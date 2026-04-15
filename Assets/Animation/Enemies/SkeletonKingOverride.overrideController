@@ -7,7 +7,7 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkeletonKingOverride
-  m_Controller: {fileID: 9100000, guid: 9adda34c18146184682fd1e4ed4727bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 15b01a36aa97cb2488fd0617fdc47d0e, type: 2}
   m_Clips:
-  - m_OriginalClip: {fileID: 7400000, guid: 88e846d4ad9b7d14d84abdfc84d65740, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: df31ef6219c1c53459a0deb90b01da5f, type: 2}
     m_OverrideClip: {fileID: 7400000, guid: 4b111fec0aa361e4c848d22b49b541ed, type: 2}

@@ -55,6 +55,7 @@ public class MiniBoss : Enemy
 
     public void Recover()
     {
+        animator.speed = 1f;
         recoverTimer += Time.deltaTime;
 
         if (recoverTimer >= recoverDuration)
@@ -89,6 +90,7 @@ public class MiniBoss : Enemy
 
     public void Attack()
     {
+        animator.speed = 2f;
         if (!lungeStarted)
         {
             lungeStarted = true;

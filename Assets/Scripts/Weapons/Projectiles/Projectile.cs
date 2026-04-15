@@ -187,7 +187,7 @@ public class Projectile : MonoBehaviour
 
     #endregion
 
-    public Enemy GetRandomEnemy()
+    public virtual Enemy GetRandomEnemy()
     {
         if (_enemies.Count == 0)
         {
