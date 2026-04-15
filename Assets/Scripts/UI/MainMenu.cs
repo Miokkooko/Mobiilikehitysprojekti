@@ -7,13 +7,13 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        if (PlayerDataManager.Instance != null)
-            charMenu.SelectCharacter(PlayerDataManager.Instance.CharacterData);
+        if (DataManager.Instance != null)
+            charMenu.SelectCharacter(DataManager.Instance.CharacterData);
     }
 
     public void StartGame()
     {
-        PlayerDataManager.Instance.SelectPlayerData(charMenu.selectedData);
+        DataManager.Instance.SelectPlayerData(charMenu.selectedData);
 
         SceneManager.LoadScene(1);
     }
