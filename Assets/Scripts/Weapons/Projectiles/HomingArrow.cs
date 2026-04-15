@@ -26,17 +26,29 @@ public class HomingArrow : Projectile
             FindNewTarget();
         }
 
-        base.Update(); // Kutsuu Projectilen Move() ja Rotate()
+        base.Update(); 
     } // Update
 
     private void FindNewTarget()
     {
         if (_enemies == null || _enemies.Count == 0) return;
 
-        target = _enemies
-            .Where(e => e != null && e.gameObject.activeInHierarchy)
+        var nextTarget = _enemies
+            .Where(e => e != null && e.gameObject.activeInHierarchy && !alreadyHit.Contains(e.GetComponent<IDamageable>()))
             .OrderBy(e => Vector3.Distance(transform.position, e.transform.position))
-            .FirstOrDefault()?.transform;
+            .FirstOrDefault();
+
+        if (nextTarget != null)
+        {
+            target = nextTarget.transform;
+            // Käännetään suunta heti, jotta nuoli "ponnahtaa" pois päin
+            direction = (target.position - transform.position).normalized;
+        }
+        else
+        {
+            // Jos ketään muuta EI ole jäljellä, nuoli lentää suoraan ulos vihollisesta
+            target = null;
+        }
 
     } // FindNewTarget
 
