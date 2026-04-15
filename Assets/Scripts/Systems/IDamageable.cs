@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using UnityEngine;
 
 public class DamageContext
 {
@@ -13,12 +14,15 @@ public class DamageContext
     /// </summary>
     public bool UseStatusHooks { get; set; }
 
-    public DamageContext(Unit source, IDamageable target, float amount, bool useStatusHooks = true)
+    public Vector2 HitDirection = Vector2.zero;
+
+    public DamageContext(Unit source, IDamageable target, float amount, bool useStatusHooks = true, Vector2 hitDir = default)
     {
         Source = source;
         Target = target;
         Amount = amount;
         UseStatusHooks = useStatusHooks;
+        HitDirection = hitDir;
     }
 }
 

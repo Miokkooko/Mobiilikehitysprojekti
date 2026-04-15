@@ -5737,6 +5737,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28a74f73cea034a4f9c4bc5dac307dbf, type: 3}
+--- !u!1839735485 &1623006908 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 8897713901324111269, guid: 28a74f73cea034a4f9c4bc5dac307dbf, type: 3}
+  m_PrefabInstance: {fileID: 1623006907}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1745972980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6350,6 +6355,10 @@ PrefabInstance:
       propertyPath: deathMenu
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
+      propertyPath: groundTilemap
+      value: 
+      objectReference: {fileID: 1623006908}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: miniBossInterval
       value: 30
