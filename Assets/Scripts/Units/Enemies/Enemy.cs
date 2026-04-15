@@ -57,8 +57,6 @@ public class Enemy : Unit
     {
         base.Update();
 
-        
-
         Move();
     }
 
@@ -120,6 +118,8 @@ public class Enemy : Unit
 
         manager.SpawnDrop(DropType.Exp, transform.position, XpValue);
 
+        DropCoin();
+
         manager.DisableEnemy(enemyData.poolType, gameObject);
     }
 
@@ -128,16 +128,14 @@ public class Enemy : Unit
         healthBar.fillAmount = Health / MaxHealth;    
     }
 
-    /*
+    
     public virtual void DropCoin()
     {
-        float rand = Random.Range(1, coinDropChance);
+        float rand = Random.Range(1, enemyData.coinDropChance);
         if (rand == 1)
         {
-            GameObject coinDrop = Instantiate(Resources.Load<GameObject>("Drops/coinDrop"), transform.position, Quaternion.identity);
-            CoinDrop coinScript = coinDrop.GetComponent<CoinDrop>();
-            coinScript.InitializeCoins(coinValue);
+            PoolManager.Instance.SpawnDrop(DropType.Coin, transform.position, enemyData.coinValue);
         }
     }
-    */
+    
 }

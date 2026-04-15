@@ -3,6 +3,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,12 @@ public class GameManager : MonoBehaviour
     float gameTimer;
     public float GameTime => gameTimer;
 
+    protected float lastIntervalChange;
+    protected float lastIntervalChangeBoss;
+    protected float lastListChange;
+
     int coins;
-    public float Coins => coins;
+    public int Coins => coins;
     public event Action<int> OnCoinChanged;
 
     float lastEnemySpawnTime;
@@ -36,16 +41,23 @@ public class GameManager : MonoBehaviour
 
     public LevelUpManager levelUpManager;
     public Player player;
+    public Tilemap groundTilemap;
 
     [Header("Spawn intervals")]
     public float interval = 2;
+    public float spawnDecreaseTime;
+    public float spawnDecreaseAmount;
     public float miniBossInterval = 60;
+    public float spawnDecreaseTimeBoss;
+    public float spawnDecreaseAmountBoss;
 
     [Header("Spawn distances")]
     public float enemySpawnDistance = 5;
 
-    public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
-    public float[] intervalChangeTimes = { 1.5f, 1.0f, 0.5f, 0.2f };
+    //public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
+    //public float[] intervalChangeTimes = { 1.5f, 1.0f, 0.5f, 0.2f };
+   
+    
 
     void OnDestroy()
     {
@@ -101,6 +113,14 @@ public class GameManager : MonoBehaviour
     {
         enabled = false;
 
+        if (DataManager.Instance != null)
+        {
+            DataManager.Instance.AddCoins(GameManager.Instance.Coins);
+            DataManager.Instance.AddKills(GameManager.Instance.Kills);
+        }
+
+        ResetCoinCount();
+
         if (deathMenu != null)
             deathMenu.ShowDeathMenu();
         else
@@ -124,27 +144,43 @@ public class GameManager : MonoBehaviour
             lastMiniBossSpawnTime = gameTimer;
         }
 
+        UpdateSpawnInterval();
+
         ChangeLists();
     }
 
 
     Vector2 GetSpawnCoordinates()
     {
-        float xCordinate = 0;
-        float yCordinate = 0;
-        while (xCordinate == 0 && yCordinate == 0)
+        while (true)
         {
-            xCordinate = UnityEngine.Random.Range(-27, 23);
-            yCordinate = UnityEngine.Random.Range(-17, 20);
-            if (Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance && Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance)
+            float xCordinate = player.transform.position.x + UnityEngine.Random.Range(-20, 20);
+            float yCordinate = player.transform.position.y + UnityEngine.Random.Range(-20, 20);
+
+            Vector2 pos = new Vector2(xCordinate, yCordinate);
+
+            bool invalidGround = !IsValidGround(pos);
+            bool tooCloseToPlayer = TooCloseToPlayer(xCordinate, yCordinate);
+
+            if (!tooCloseToPlayer && !invalidGround)
             {
-                xCordinate = 0;
-                yCordinate = 0;
+                return pos;
             }
         }
-
-        return new Vector2(xCordinate, yCordinate);
     }
+
+    #region spawnChecks
+    bool TooCloseToPlayer(float xCordinate, float yCordinate)
+    {
+        return Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance &&
+                Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance;
+    }
+    bool IsValidGround(Vector2 position)
+    {
+        Vector3Int cell = groundTilemap.WorldToCell(position);
+        return groundTilemap.HasTile(cell);
+    }
+    #endregion
 
     void SpawnEnemy(EnemyData data)
     {
@@ -180,8 +216,9 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerKill(object sender, KillContext e)
     {
+        
         kills += 1;
-
+        /*
         if (Kills == intervalChangeKillCounts[0])
         {
             interval = intervalChangeTimes[0];
@@ -198,15 +235,38 @@ public class GameManager : MonoBehaviour
         {
             interval = intervalChangeTimes[3];
         }
+        */
+    }
+
+    public void UpdateSpawnInterval()
+    {
+        if(gameTimer > lastIntervalChange + spawnDecreaseTime)
+        {
+            interval -= spawnDecreaseAmount;
+            interval = Mathf.Max(0.2f, interval);
+            lastIntervalChange = gameTimer;
+        }
+        if (gameTimer > lastIntervalChangeBoss + spawnDecreaseTimeBoss)
+        {
+            miniBossInterval -= spawnDecreaseAmountBoss;
+            miniBossInterval = Mathf.Max(1f, miniBossInterval);
+            lastIntervalChangeBoss = gameTimer;
+        }
     }
 
     public void ResetKillCount()
     {
         kills = 0;
     }
+    public void ResetCoinCount()
+    {
+        coins = 0;
+    }
 
     private void ChangeLists()
     {
+
+        /*
         if(gameTimer > 60)
         {
             currentEnemyList = enemyGroups[2].enemies;
@@ -218,6 +278,7 @@ public class GameManager : MonoBehaviour
         {
             currentEnemyList = enemyGroups[0].enemies;
         }
+        */
     }
 
     public void AddCoins(int amount)

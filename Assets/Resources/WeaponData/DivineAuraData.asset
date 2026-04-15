@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
+  m_Name: DivineAuraData
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectilePrefab: {fileID: 0}
+  weaponName: Divine Aura
+  description: 
+  Icon: {fileID: 0}
+  poolType: 0
+  baseDamage: 0
+  firerate: 1
+  piercing: 1
+  projectileCount: 1
+  projectileSpread: 22.5
+  projectileSpeed: 5
+  projectileBurst: 1
+  projectileLifeTime: 2
+  aoeDamage: 1
+  aoeRadius: 1
+  usesProjectileCount: 1
+  upgradeList: []
+  effectList: []

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50162a4268f2d4c47af8e92e5406ac74, type: 3}
+  m_Name: BloodyTearsData
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponData
+  projectilePrefab: {fileID: 7775072252728010430, guid: 4c2a0707562560e43afecdd12e732e2c, type: 3}
+  weaponName: Bloody Tears
+  description: Fire bloody tears in multiple directions that apply bleed
+  Icon: {fileID: -1185401933369553465, guid: 4701a1c6f3d75794d850dfc4f3383d17, type: 3}
+  poolType: 10
+  baseDamage: 0.5
+  firerate: 2.5
+  piercing: 1
+  projectileCount: 4
+  projectileSpread: 90
+  projectileSpeed: 5
+  projectileBurst: 1
+  projectileLifeTime: 2
+  aoeDamage: 1
+  aoeRadius: 1
+  usesProjectileCount: 1
+  upgradeList:
+  - Stat: 3
+    Value: 1
+    Type: 0
+  - Stat: 0
+    Value: 0.4
+    Type: 1
+  - Stat: 3
+    Value: 1
+    Type: 0
+  - Stat: 6
+    Value: 0.5
+    Type: 1
+  effectList:
+  - {fileID: 11400000, guid: b9aa80e2bb2a3144b9ada791cac47a3f, type: 2}
