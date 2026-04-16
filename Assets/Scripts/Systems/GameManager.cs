@@ -4,6 +4,7 @@ using UnityEditor.Analytics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -57,7 +58,15 @@ public class GameManager : MonoBehaviour
     //public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
     //public float[] intervalChangeTimes = { 1.5f, 1.0f, 0.5f, 0.2f };
    
-    
+    [System.Serializable]
+    private class SingleGameData
+    {
+        public string playerName;
+        public int kills;
+        public float time;
+    }
+
+    private string savePath;
 
     void OnDestroy()
     {
@@ -69,6 +78,7 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        savePath = Path.Combine(Application.persistentDataPath, "singleGameSave.json");
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -111,6 +121,18 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerDeath(object sender, KillContext e)
     {
+        SingleGameData data = new SingleGameData()
+        {
+            playerName = player.playerData.name,
+            kills = kills,
+            time = gameTimer
+        };
+
+        string json = JsonUtility.ToJson(data, true);
+        File.AppendAllText(savePath, json);
+        Debug.Log("Game saved to: " + savePath);
+        
+
         enabled = false;
 
         if (DataManager.Instance != null)
