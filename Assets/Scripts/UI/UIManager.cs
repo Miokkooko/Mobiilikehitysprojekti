@@ -142,12 +142,18 @@ public class UIManager : MonoBehaviour
                 CurrentMenu.AllowInteraction(false);
         }
 
-        if (!MenuStack.Contains(menu))
-            MenuStack.Push(menu);
-
+        if (MenuStack.Contains(menu))
+        {
+            Debug.Log("Menu already in MenuStack!");
+            return;
+        }
+            
+        
+        MenuStack.Push(menu);
         AppearMenu(menu);
+        CurrentMenu.AllowInteraction(true);
 
-        Debug.Log("Menu opened | " + MenuStack.Count + " - Menus total");
+        Debug.Log($"{CurrentMenu.name} opened | {MenuStack.Count} - Menus total");
     }
 
     void AppearMenu(Menu menu)
@@ -169,7 +175,7 @@ public class UIManager : MonoBehaviour
             DisappearMenu(menuToClose);
 
             MenuStack.Pop();
-            Debug.Log("Menu closed | " + MenuStack.Count + " - Menus total");
+            Debug.Log($"{menuToClose.name} closed | {MenuStack.Count} - Menus total");
         }
 
         if (MenuStack.Count == 0)

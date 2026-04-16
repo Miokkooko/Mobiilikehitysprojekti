@@ -20,6 +20,7 @@ public class CharacterSelectMenu : MonoBehaviour
     private void OnEnable()
     {
         characterData = Resources.LoadAll<PlayerData>("UnitData/Players");
+        SetCharacters();
     }
 
     void SetCharacters()
