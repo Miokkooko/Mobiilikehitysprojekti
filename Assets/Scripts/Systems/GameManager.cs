@@ -1,8 +1,5 @@
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Analytics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
@@ -101,14 +98,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    /* private void OnPlayerDeath(object sender, KillContext e)
-     {
-         SceneManager.LoadScene(0);
-     }
-    */
-
-
-
     private void OnPlayerDeath(object sender, KillContext e)
     {
         enabled = false;
@@ -145,8 +134,6 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateSpawnInterval();
-
-        ChangeLists();
     }
 
 
@@ -216,26 +203,7 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerKill(object sender, KillContext e)
     {
-        
         kills += 1;
-        /*
-        if (Kills == intervalChangeKillCounts[0])
-        {
-            interval = intervalChangeTimes[0];
-        }
-        if (Kills == intervalChangeKillCounts[1])
-        {
-            interval = intervalChangeTimes[1];
-        }
-        if (Kills == intervalChangeKillCounts[2])
-        {
-            interval = intervalChangeTimes[2];
-        }
-        if (Kills == intervalChangeKillCounts[3])
-        {
-            interval = intervalChangeTimes[3];
-        }
-        */
     }
 
     public void UpdateSpawnInterval()
@@ -261,24 +229,6 @@ public class GameManager : MonoBehaviour
     public void ResetCoinCount()
     {
         coins = 0;
-    }
-
-    private void ChangeLists()
-    {
-
-        /*
-        if(gameTimer > 60)
-        {
-            currentEnemyList = enemyGroups[2].enemies;
-        }else if(gameTimer > 30)
-        {
-            currentEnemyList = enemyGroups[1].enemies;
-        }
-        else
-        {
-            currentEnemyList = enemyGroups[0].enemies;
-        }
-        */
     }
 
     public void AddCoins(int amount)

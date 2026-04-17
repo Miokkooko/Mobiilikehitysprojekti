@@ -1,10 +1,10 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterSelectMenu : MonoBehaviour
 {
-    PlayerData[] characterData;
+    CarouselArray<PlayerData> characterData;
 
     public Image selectedCharSprite;
     public TMP_Text selectedCharName;
@@ -13,57 +13,37 @@ public class CharacterSelectMenu : MonoBehaviour
     public Image previousChar;
     public Image nextChar;
 
-    public PlayerData selectedData => characterData[selectedIndex];
+    public PlayerData selectedData => characterData.Current;
 
     int selectedIndex = 0;
 
     private void OnEnable()
     {
-        characterData = Resources.LoadAll<PlayerData>("UnitData/Players");
+        characterData = CarouselArray<PlayerData>.FromArray(Resources.LoadAll<PlayerData>("UnitData/Players"));
         SetCharacters();
     }
 
     void SetCharacters()
     {
-        selectedCharSprite.sprite = characterData[selectedIndex].baseSprite;
+        selectedCharSprite.sprite = characterData.Current.baseSprite;
 
         string[] name = characterData[selectedIndex].unitName.Split(',');
         string unifiedName = name[0] + "\n" + name[1];
         selectedCharName.SetText(unifiedName);
-
         selectedCharRank.SetText("Rank 1"); // TODO
-
-        int index = selectedIndex + 1;
-
-        if (index >= characterData.Length)
-            index = 0;
         
-        nextChar.sprite = characterData[index].baseSprite;
-
-        index = selectedIndex - 1;
-
-        if (index < 0)
-            index = characterData.Length - 1;
-
-        previousChar.sprite = characterData[index].baseSprite;
+        nextChar.sprite = characterData.PeekNext().baseSprite;
+        previousChar.sprite = characterData.PeekPrevious().baseSprite;
     }
 
     public void MoveRosterRight()
     {
-        selectedIndex++;
-
-        if (selectedIndex >= characterData.Length)
-            selectedIndex = 0;
-    
+        characterData.Next();
         SetCharacters();
     }
     public void MoveRosterLeft()
     {
-        selectedIndex--;
-
-        if (selectedIndex < 0)
-            selectedIndex = characterData.Length - 1;
-    
+        characterData.Previous();
         SetCharacters();
     }
 
@@ -72,14 +52,7 @@ public class CharacterSelectMenu : MonoBehaviour
         if (data == null)
             return;
 
-        for (int i = 0; i < characterData.Length; i++)
-        {
-            if (data == characterData[i])
-            {
-                selectedIndex = i;
-                break;
-            }
-        }
+        characterData.TrySetCurrent(data);
 
         SetCharacters();
     }
