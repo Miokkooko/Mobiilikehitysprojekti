@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6463abdf25706bc409e0f4ac799c1f23, type: 3}
   m_Name: ExampleNotification
   m_EditorClassIdentifier: 
-  m_sDescription: This is a notification
-  m_type: 0
-  m_sAdditionalText: []
+  id: 0
+  Title: Attention!
+  Description: This is a notification
+  Type: 1

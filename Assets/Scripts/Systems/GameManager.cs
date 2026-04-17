@@ -51,10 +51,6 @@ public class GameManager : MonoBehaviour
     [Header("Spawn distances")]
     public float enemySpawnDistance = 5;
 
-    //public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
-    //public float[] intervalChangeTimes = { 1.5f, 1.0f, 0.5f, 0.2f };
-   
-    
 
     void OnDestroy()
     {

@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     Canvas canvas;
+    [SerializeField]
+    Canvas notificationCanvas;
+    public Canvas GetCanvas => canvas;
 
     [SerializeField]
     Transform NotificationYesNoPrefab;
@@ -56,12 +59,12 @@ public class UIManager : MonoBehaviour
             case NotificationType.Confirm:
                 break;
             case NotificationType.ConfirmCancel:
-                t = Instantiate(NotificationYesNoPrefab, canvas.transform);
+                t = Instantiate(NotificationYesNoPrefab, notificationCanvas.transform);
                 break;
             case NotificationType.PopUp:
                 break;
             case NotificationType.LevelUp:
-                t = Instantiate(NotificationLevelUpPrefab, canvas.transform);
+                t = Instantiate(NotificationLevelUpPrefab, notificationCanvas.transform);
                 break;
             default:
                 break;

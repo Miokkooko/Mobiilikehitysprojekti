@@ -8,6 +8,10 @@ public class MainMenu : MonoBehaviour
     public PerkMenu perkMenu;
 
     public List<PerkItemUI> selectedPerks = new List<PerkItemUI>();
+    private void Awake()
+    {
+        QualitySettings.vSyncCount = 1;
+    }
 
     private void OnEnable()
     {

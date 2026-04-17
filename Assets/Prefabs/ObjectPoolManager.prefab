@@ -83,10 +83,10 @@ MonoBehaviour:
   OtherParent: {fileID: 1962869535193824846}
   otherPoolData:
   - prefab: {fileID: 2413233913195433517, guid: 3ef9db122109c694a93f4e8342cd07ae, type: 3}
-    poolAmount: 50
+    poolAmount: 75
     type: 2
   - prefab: {fileID: 7671177631582458988, guid: 50553a6458208db429ea33444480ecef, type: 3}
-    poolAmount: 50
+    poolAmount: 75
     type: 1
   projectilePoolData:
   - prefab: {fileID: 8125054451507894081, guid: 8208327c9212a5d419d604963b7a6f0d, type: 3}
@@ -111,8 +111,23 @@ MonoBehaviour:
     poolAmount: 3
     type: 7
   - prefab: {fileID: 7775072252728010430, guid: be6167b6b2b31404099a89cfda022633, type: 3}
-    poolAmount: 10
+    poolAmount: 20
     type: 8
+  - prefab: {fileID: 5697604641964101251, guid: 3cf7fba35531de2409076de5971cffbc, type: 3}
+    poolAmount: 5
+    type: 10
+  - prefab: {fileID: 6738408243837565008, guid: 95038c336d5565346a66293c1b0e40c8, type: 3}
+    poolAmount: 5
+    type: 11
+  - prefab: {fileID: 7775072252728010430, guid: 4c2a0707562560e43afecdd12e732e2c, type: 3}
+    poolAmount: 10
+    type: 12
+  - prefab: {fileID: 5095381493187369754, guid: 698c50973eb81fe4caf80eb99d930222, type: 3}
+    poolAmount: 2
+    type: 13
+  - prefab: {fileID: 5095381493187369754, guid: 3b4da201cd25c9f48afbda8050ad5df1, type: 3}
+    poolAmount: 3
+    type: 9
   enemyPoolData:
   - prefab: {fileID: 8834559635428772267, guid: 8cd26eeb25ae15e49a6775b2f5f7ef7e, type: 3}
     poolAmount: 50

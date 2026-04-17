@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelUpArgs : NotificationBase.NotificationArgs
 {
@@ -21,7 +22,7 @@ public class LevelUpNotification : NotificationBase
     TMP_Text description;
 
     [SerializeField]
-    Transform content;
+    RectTransform content;
 
     [SerializeField]
     Transform buttonPrefab;
@@ -36,16 +37,24 @@ public class LevelUpNotification : NotificationBase
     float m_flTransitionTimer = 0.35f;
     float m_flDestroyBaseTime = 0.45f;
 
-    public override void Initialize(NotificationData data)
-     {
-         base.Initialize(data);
+    Vector2 hiddenPos;
+    Vector2 shownPos;
 
-         if(data is LevelUpData lud)
-         {
+    void Awake()
+    {
+        shownPos = content.localPosition;
+        hiddenPos = shownPos + new Vector2(0, -Screen.height);
+    }
+    public override void Initialize(NotificationData data)
+    {
+        base.Initialize(data);
+
+        if (data is LevelUpData lud)
+        {
             SetUpgradeOptions(lud.upgradeList);
-         }   
-     }
-    
+        }
+    }
+
     public void SetUpgradeOptions(List<object> upgrades)
     {
         if (content != null && buttonPrefab != null)
@@ -71,13 +80,13 @@ public class LevelUpNotification : NotificationBase
                 string prefix = instance != null ? "[LVL UP]" : "[NEW]";
                 string rankText = "";
                 string rankUpDesc = "";
-                
-                if(instance != null)
+
+                if (instance != null)
                 {
                     rankText = prefix + "\n" + instance.GetRankUpText();
                     rankUpDesc = instance.GetRankUpDescription();
                 }
-                
+
                 lub.Initialize(passive.Name, passive.Description, passive.Icon, data, rankText, rankUpDesc);
             }
             else if (data is WeaponData weapon)
@@ -111,7 +120,7 @@ public class LevelUpNotification : NotificationBase
         RaiseNotificationEvent(new LevelUpArgs(e.upgradeData));
         DisappearAnim();
     }
-    
+
     private void OnEnable()
     {
         AppearAnim();
@@ -119,20 +128,27 @@ public class LevelUpNotification : NotificationBase
 
     void AppearAnim()
     {
-        // Appear animation: Move Up and remove dim
-        bgDimmerGroup.alpha = 0;
-        bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer).setIgnoreTimeScale(true);
+        //bgDimmerGroup.alpha = 0;
+        //bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer).setIgnoreTimeScale(true);
 
-        content.localPosition = new Vector2(0, -Screen.height);
-        content.LeanMoveLocalY(0, m_flTransitionTimer).setEaseOutExpo().setIgnoreTimeScale(true).delay = 0.1f;
+        content.anchoredPosition = hiddenPos;
+        content.LeanMoveY(shownPos.y, m_flTransitionTimer)
+            .setEaseOutExpo()
+            .setIgnoreTimeScale(true)
+            .setDelay(0.1f);
 
     }
 
     public void DisappearAnim()
     {
-        Disappear(m_flDestroyBaseTime);
-        // Disappear animation: Move down and remove dim
-        content.LeanMoveLocalY(-Screen.height, m_flTransitionTimer).setEaseInExpo().setIgnoreTimeScale(true).delay = 0.05f;
-        bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer).setIgnoreTimeScale(true);
+        content.anchoredPosition = shownPos;
+
+        //bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer).setIgnoreTimeScale(true);
+        content.LeanMoveY(hiddenPos.y, m_flTransitionTimer)
+           .setEaseInExpo()
+           .setIgnoreTimeScale(true)
+           .setDelay(0.1f)
+           .setOnComplete(() => Destroy(gameObject));
+
     }
 }

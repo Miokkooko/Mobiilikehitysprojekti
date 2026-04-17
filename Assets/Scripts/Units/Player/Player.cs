@@ -173,7 +173,6 @@ public class Player : Unit
 
     public override void HandleMaxHealthChange(float previousMaxHealth)
     {
-        Debug.Log(previousMaxHealth + " vs current " + MaxHealth);
         if (previousMaxHealth >= MaxHealth)
             return; 
 
