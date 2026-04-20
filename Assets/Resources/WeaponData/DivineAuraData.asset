@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: Divine Aura
   description: 
   Icon: {fileID: 0}
-  poolType: 0
+  poolType: 13
   baseDamage: 0
   firerate: 1
   piercing: 1
@@ -27,6 +27,6 @@ MonoBehaviour:
   projectileLifeTime: 2
   aoeDamage: 1
   aoeRadius: 1
-  usesProjectileCount: 1
+  usesProjectileBurst: 1
   upgradeList: []
   effectList: []

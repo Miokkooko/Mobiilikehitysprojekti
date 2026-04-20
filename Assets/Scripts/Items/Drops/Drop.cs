@@ -1,11 +1,13 @@
 using System.Runtime.InteropServices;
 using System.Xml.XPath;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 
 public enum DropType { Coin, Exp, Heart, Reward }
 public class Drop : MonoBehaviour
 {
+    private Light2D dropLight;
 
     public float dropMoveSpeed = 2f;
 
@@ -23,11 +25,15 @@ public class Drop : MonoBehaviour
 
     public DropType type;
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         box = GetComponent<BoxCollider2D>();
         circle = GetComponent<CircleCollider2D>();
+
+        
     }
 
     private void OnEnable()
@@ -90,6 +96,9 @@ public class Drop : MonoBehaviour
 
     public virtual void Initialize(DropType t, float value)
     {
+
+        
+
         type = t;
 
         dropValue = value;
@@ -99,15 +108,19 @@ public class Drop : MonoBehaviour
         {
             case DropType.Coin:
                 sr.sprite = coinSprite;
+                sr.color = new Color(2f, 2f, 2f, 1f);
                 break;
             case DropType.Exp:
                 sr.sprite = xpSprite;
+                sr.color = new Color(0.5f, 1f, 3f, 1f);
                 break;
             case DropType.Heart:
                 sr.sprite = heartSprite;
+                sr.color = new Color(2f, 2f, 2f, 1f);
                 break;
             case DropType.Reward:
                 sr.sprite = rewardSprite;
+                sr.color = new Color(2f, 2f, 2f, 1f);
                 break;
             default:
                 sr.sprite = heartSprite;
