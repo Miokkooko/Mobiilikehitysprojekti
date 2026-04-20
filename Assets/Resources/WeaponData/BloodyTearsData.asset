@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: Bloody Tears
   description: Fire bloody tears in multiple directions that apply bleed
   Icon: {fileID: -1185401933369553465, guid: 4701a1c6f3d75794d850dfc4f3383d17, type: 3}
-  poolType: 10
+  poolType: 12
   baseDamage: 0.5
   firerate: 2.5
   piercing: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
   projectileLifeTime: 2
   aoeDamage: 1
   aoeRadius: 1
-  usesProjectileCount: 1
+  usesProjectileBurst: 1
   upgradeList:
   - Stat: 3
     Value: 1

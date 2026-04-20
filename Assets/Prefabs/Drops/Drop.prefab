@@ -218,7 +218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Drop
   dropMoveSpeed: 2.5
   sr: {fileID: 9057670965363143278}
-  coinSprite: {fileID: -7842303050106072554, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}
+  coinSprite: {fileID: -8905177735940258179, guid: f248c3ed5abb3834ba7aeb7acc573773, type: 3}
   rewardSprite: {fileID: 21300000, guid: 1138f23a6edc2e5449e758cc562720bc, type: 3}
   xpSprite: {fileID: -7657372864669792561, guid: 643fb54c7bb6db545b5440f82da7f6d4, type: 3}
   heartSprite: {fileID: 21300000, guid: 54baac894c3a1484db6b6a876e65cfb4, type: 3}

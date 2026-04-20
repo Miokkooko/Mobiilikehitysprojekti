@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class ProjBloodyTear : Projectile
 {
+    
     ParticleSystem particles;
     public override void Start()
     {
         particles = gameObject.GetComponent<ParticleSystem>();
+        
+        
     }
 
     

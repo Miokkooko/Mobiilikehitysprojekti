@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     protected float lastIntervalChange;
     protected float lastIntervalChangeBoss;
-    protected float lastListChange;
+    protected float lastListChange = 0;
+    public int listNumber = 0;
 
     int coins;
     public int Coins => coins;
@@ -266,19 +267,17 @@ public class GameManager : MonoBehaviour
     private void ChangeLists()
     {
 
-        /*
-        if(gameTimer > 60)
+        
+        if(gameTimer > lastListChange + 30)
         {
-            currentEnemyList = enemyGroups[2].enemies;
-        }else if(gameTimer > 30)
-        {
-            currentEnemyList = enemyGroups[1].enemies;
+            listNumber += 1;
+            if (enemyGroups[listNumber] != null)
+            {
+                currentEnemyList = enemyGroups[listNumber].enemies;
+            }
+            lastListChange = gameTimer;
         }
-        else
-        {
-            currentEnemyList = enemyGroups[0].enemies;
-        }
-        */
+        
     }
 
     public void AddCoins(int amount)

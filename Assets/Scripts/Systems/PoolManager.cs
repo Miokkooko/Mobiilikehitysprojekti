@@ -9,7 +9,8 @@ public enum EnemyPoolType
     None,
     GenericEnemy,
     BulletMiniBoss,
-    SkeletonMiniBoss
+    SkeletonMiniBoss,
+    HandMiniBoss
 }
 public enum ProjectilePoolType
 {

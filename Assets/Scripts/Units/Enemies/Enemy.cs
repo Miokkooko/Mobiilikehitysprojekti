@@ -4,9 +4,17 @@ using UnityEngine.UI;
 
 public class Enemy : Unit
 {
+    protected ParticleSystem particles;
+    protected string unitName;
+    protected SpriteRenderer spriteRenderer;
     protected GameObject playerToFollow;
     protected Player player;
     protected Image healthBar;
+    protected Canvas fullHealthBar;
+
+    protected bool canAttack = true;
+    protected CircleCollider2D hitBox;
+    protected BoxCollider2D hitBox2;
 
     protected Animator animator;
     public bool isWalking = false;
@@ -23,6 +31,10 @@ public class Enemy : Unit
     {
         playerToFollow = GameObject.FindGameObjectWithTag("Player");
         player = playerToFollow.GetComponent<Player>();
+        hitBox = GetComponent<CircleCollider2D>();
+        hitBox2 = GetComponent<BoxCollider2D>();
+        
+        particles = gameObject?.GetComponentInChildren<ParticleSystem>();
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), player.GetComponent<Collider2D>());
 
@@ -33,9 +45,13 @@ public class Enemy : Unit
     {
         if(enemyData != null)
             InitializeUnit(enemyData);
+
+        
     }
     public virtual void OnEnable()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         RemoveAllStatusEffects(this);
 
         if (playerToFollow == null || player == null)
@@ -49,7 +65,11 @@ public class Enemy : Unit
         if(animator == null)
             animator = GetComponent<Animator>();
 
-       
+        //vaihtaa vihun värin nimen mukaan
+        ChangeColor();
+
+        fullHealthBar = transform.Find("HealthBar")?.GetComponent<Canvas>();
+
         healthBar = transform.Find("HealthBar/Health")?.GetComponent<Image>();
     }
 
@@ -58,6 +78,11 @@ public class Enemy : Unit
         base.Update();
 
         Move();
+
+        if(enemyData.unitName == "Spider")
+        {
+            Rotate();
+        }
     }
 
     private void OnDisable()
@@ -90,9 +115,9 @@ public class Enemy : Unit
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() is Player p)
+        if (collision.gameObject.GetComponent<Player>() is Player p && canAttack)
         {
             if (Time.time >= lastAttackTime + attackRate)
             {
@@ -103,7 +128,7 @@ public class Enemy : Unit
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() is Player p)
+        if (collision.gameObject.GetComponent<Player>() is Player p && canAttack)
         {
             if (Time.time >= lastAttackTime + attackRate)
             {
@@ -137,5 +162,20 @@ public class Enemy : Unit
             PoolManager.Instance.SpawnDrop(DropType.Coin, transform.position, enemyData.coinValue);
         }
     }
-    
+
+    public void Rotate()
+    {
+        Vector2 direction = player.transform.position - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle + 90f);
+    }
+
+    public void ChangeColor()
+    {
+        if (enemyData.name.Contains("Red"))
+        {
+            spriteRenderer.color = Color.red;
+        }
+    }
+
 }
