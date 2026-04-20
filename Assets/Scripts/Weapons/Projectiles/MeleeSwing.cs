@@ -25,6 +25,10 @@ public class MeleeSwing : Projectile
     {
         base.Initialize(w, p, dir);
 
+
+        float finalScale = weaponRange * aoeRadius;
+        transform.localScale = new Vector3(finalScale, finalScale, 1f);
+
         // Lasketaan keskikulma suunnasta
         float centerAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         // Asetetaan alkuperäinen kulma kaaren alkupäähän
@@ -54,18 +58,18 @@ public class MeleeSwing : Projectile
 
     private void UpdateSwing(float progress)
     {
-        // Lasketaan kulma lerpillä kaaren läpi
-        float currentAngle = Mathf.Lerp(startAngle, startAngle + swingArc, progress);
-
-        // Päivitetään rotaatio
-        transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+        if (swingArc < 360f)
+        {
+            float currentAngle = Mathf.Lerp(startAngle, startAngle + swingArc, progress);
+            transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, startAngle + (swingArc / 2f));
+        }
 
         if (owner != null)
         {
-
-            float offsetDistance = 0.5f;
-            Vector3 offset = direction * offsetDistance;
-
             transform.position = owner.transform.position;
         }
     } // UpdateSwing
