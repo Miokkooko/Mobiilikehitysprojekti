@@ -4,14 +4,14 @@ using UnityEngine.SceneManagement;
 public class ShitTesting : MonoBehaviour
 {
     NotificationBase n;
-    public LevelUpData test;
+    public NotificationData test;
     public StatusEffect effect;
     public void AddEffectToUnit(Unit target)
     {
         Unit.ApplyStatusEffect(effect, target);
     }
-
-    public void TestLevelUp()
+   
+    public void TestNotification()
     {
         n = UIManager.Instance.CreateNotification(test);
 

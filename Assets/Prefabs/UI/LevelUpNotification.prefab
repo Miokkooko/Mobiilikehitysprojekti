@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4579144987791505870}
   - component: {fileID: 2120874132679809618}
   - component: {fileID: 4624980459923927102}
-  - component: {fileID: 408871601048411743}
+  - component: {fileID: 3344872907030446215}
   m_Layer: 5
   m_Name: BGDimmer
   m_TagString: Untagged
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!225 &408871601048411743
+--- !u!225 &3344872907030446215
 CanvasGroup:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,7 +176,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0.5
   m_Interactable: 0
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &9051562964334912752
 GameObject:
@@ -233,5 +233,5 @@ MonoBehaviour:
   description: {fileID: 0}
   content: {fileID: 2823642366567445797}
   buttonPrefab: {fileID: 6731662528314273518, guid: 2db4dd4fc24225549b101175f7668642, type: 3}
-  bgDimmerGroup: {fileID: 408871601048411743}
+  bgDimmerGroup: {fileID: 3344872907030446215}
   buttonGroup: {fileID: 7921008228218708775}

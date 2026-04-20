@@ -45,18 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7846e8fb90817c438c00c09ef4995bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  deathMenu: {fileID: 0}
+  enemyGroups: []
+  miniBossGroups: []
   levelUpManager: {fileID: 8906414872920602259}
-  enemy: {fileID: 8834559635428772267, guid: 8cd26eeb25ae15e49a6775b2f5f7ef7e, type: 3}
-  miniBoss: {fileID: 195258904440770667, guid: c64ad8b0fa008cf4ab5ef415d8129ec6, type: 3}
+  player: {fileID: 0}
+  groundTilemap: {fileID: 0}
   interval: 2
+  spawnDecreaseTime: 30
+  spawnDecreaseAmount: 0.1
   miniBossInterval: 60
+  spawnDecreaseTimeBoss: 60
+  spawnDecreaseAmountBoss: 10
   enemySpawnDistance: 5
-  intervalChangeKillCounts: 140000003200000064000000c8000000
-  intervalChangeTimes:
-  - 1.5
-  - 1
-  - 0.5
-  - 0.2
 --- !u!114 &8906414872920602259
 MonoBehaviour:
   m_ObjectHideFlags: 0

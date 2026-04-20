@@ -6,6 +6,12 @@ public class Menu : MonoBehaviour
     public CanvasGroup m_canvasGroup;
     public bool m_bDisappearPreviousMenu = true;
 
+    private void Start()
+    {
+        if(m_canvasGroup == null)
+            m_canvasGroup = GetComponent<CanvasGroup>();
+    }
+
     public void AllowInteraction(bool b)
     {
         m_canvasGroup.interactable = b;

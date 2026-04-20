@@ -54,24 +54,24 @@ public class HomingArrow : Projectile
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.tag == "Player")
+            return;
+
+        if (collision.TryGetComponent<IDamageable>(out var d))
         {
-            if (collision.TryGetComponent<IDamageable>(out var d))
+            if (!alreadyHit.Contains(d))
             {
-                if (!alreadyHit.Contains(d))
+                Unit.DealDamage(new DamageContext(owner, d, damage));
+                alreadyHit.Add(d);
+
+                OnHitParticles();
+
+                if (gameObject.activeInHierarchy)
                 {
-                    Unit.DealDamage(new DamageContext(owner, d, damage));
-                    alreadyHit.Add(d);
+                    FindNewTarget();
+                }
 
-                    OnHitParticles();
-
-                    if (gameObject.activeInHierarchy)
-                    {
-                        FindNewTarget();
-                    }
-
-                } // If alreadyHit
-            } // If IDamageable
-        } // If Enemy
-    } // OnTriggerEnter2D
-} // Class HomingArrow
+            }
+        }
+    }
+} 

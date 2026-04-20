@@ -12,6 +12,7 @@ public enum StatusHandling
 public class StatusEffect : ScriptableObject
 {
     public string Name;
+    public Sprite Icon;
     [TextArea(3, 5)]
     public string Description;
     public float Duration;

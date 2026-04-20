@@ -1,8 +1,5 @@
 using System;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.Analytics;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using System.IO;
 
@@ -55,9 +52,6 @@ public class GameManager : MonoBehaviour
     [Header("Spawn distances")]
     public float enemySpawnDistance = 5;
 
-    //public int[] intervalChangeKillCounts = { 20, 50, 100, 200 };
-    //public float[] intervalChangeTimes = { 1.5f, 1.0f, 0.5f, 0.2f };
-   
     [System.Serializable]
     private class SingleGameData
     {
@@ -67,6 +61,7 @@ public class GameManager : MonoBehaviour
     }
 
     private string savePath;
+
 
     void OnDestroy()
     {
@@ -110,14 +105,6 @@ public class GameManager : MonoBehaviour
         levelUpManager.TriggerReward();
         
     }
-
-    /* private void OnPlayerDeath(object sender, KillContext e)
-     {
-         SceneManager.LoadScene(0);
-     }
-    */
-
-
 
     private void OnPlayerDeath(object sender, KillContext e)
     {
@@ -167,8 +154,6 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateSpawnInterval();
-
-        ChangeLists();
     }
 
 
@@ -238,26 +223,7 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerKill(object sender, KillContext e)
     {
-        
         kills += 1;
-        /*
-        if (Kills == intervalChangeKillCounts[0])
-        {
-            interval = intervalChangeTimes[0];
-        }
-        if (Kills == intervalChangeKillCounts[1])
-        {
-            interval = intervalChangeTimes[1];
-        }
-        if (Kills == intervalChangeKillCounts[2])
-        {
-            interval = intervalChangeTimes[2];
-        }
-        if (Kills == intervalChangeKillCounts[3])
-        {
-            interval = intervalChangeTimes[3];
-        }
-        */
     }
 
     public void UpdateSpawnInterval()
@@ -283,24 +249,6 @@ public class GameManager : MonoBehaviour
     public void ResetCoinCount()
     {
         coins = 0;
-    }
-
-    private void ChangeLists()
-    {
-
-        /*
-        if(gameTimer > 60)
-        {
-            currentEnemyList = enemyGroups[2].enemies;
-        }else if(gameTimer > 30)
-        {
-            currentEnemyList = enemyGroups[1].enemies;
-        }
-        else
-        {
-            currentEnemyList = enemyGroups[0].enemies;
-        }
-        */
     }
 
     public void AddCoins(int amount)
