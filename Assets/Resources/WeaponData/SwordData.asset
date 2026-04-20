@@ -27,7 +27,7 @@ MonoBehaviour:
   projectileLifeTime: 0.75
   aoeDamage: 1
   aoeRadius: 1
-  usesProjectileCount: 1
+  usesProjectileBurst: 1
   upgradeList:
   - Stat: 7
     Value: 0.2
@@ -44,4 +44,5 @@ MonoBehaviour:
   - Stat: 7
     Value: 0.2
     Type: 1
-  effectList: []
+  effectList:
+  - {fileID: 11400000, guid: bccd77112f3fc5c4da6f2e1d05902b82, type: 2}
