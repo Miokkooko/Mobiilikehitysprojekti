@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     private class SingleGameData
     {
         public string playerName;
+        public string datetime;
         public int kills;
         public float time;
     }
@@ -112,6 +113,7 @@ public class GameManager : MonoBehaviour
         SingleGameData data = new SingleGameData()
         {
             playerName = player.playerData.name,
+            datetime = DateTime.Now.ToString(),
             kills = kills,
             time = gameTimer
         };
