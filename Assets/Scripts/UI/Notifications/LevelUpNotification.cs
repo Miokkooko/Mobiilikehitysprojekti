@@ -128,8 +128,8 @@ public class LevelUpNotification : NotificationBase
 
     void AppearAnim()
     {
-        //bgDimmerGroup.alpha = 0;
-        //bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer).setIgnoreTimeScale(true);
+        bgDimmerGroup.alpha = 0;
+        bgDimmerGroup.LeanAlpha(0.5f, m_flTransitionTimer).setIgnoreTimeScale(true);
 
         content.anchoredPosition = hiddenPos;
         content.LeanMoveY(shownPos.y, m_flTransitionTimer)
@@ -143,7 +143,7 @@ public class LevelUpNotification : NotificationBase
     {
         content.anchoredPosition = shownPos;
 
-        //bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer).setIgnoreTimeScale(true);
+        bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer).setIgnoreTimeScale(true);
         content.LeanMoveY(hiddenPos.y, m_flTransitionTimer)
            .setEaseInExpo()
            .setIgnoreTimeScale(true)

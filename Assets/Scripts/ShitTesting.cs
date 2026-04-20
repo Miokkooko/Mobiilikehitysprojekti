@@ -10,11 +10,7 @@ public class ShitTesting : MonoBehaviour
     {
         Unit.ApplyStatusEffect(effect, target);
     }
-    private void Awake()
-    {
-        Application.targetFrameRate = 60;
-        QualitySettings.vSyncCount = 1;
-    }
+   
     public void TestNotification()
     {
         n = UIManager.Instance.CreateNotification(test);
