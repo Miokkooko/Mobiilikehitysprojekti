@@ -15,8 +15,14 @@ public class KnockBack : StatusEffect
         // Tarkistetaan, onko kohde olemassa ja aktiivinen (ei poolissa)
         if (sei.Owner != null && sei.Owner.gameObject.activeInHierarchy)
         {
-            // Lasketaan suunta
-            Vector2 dir = (sei.Owner.transform.position - context.Source.transform.position).normalized;
+            // Lasketaan suunta osuman kautta
+            Vector2 dir = context.HitDirection;
+
+            // FAILSAFE: Jos ollaan päällekkäin (pituus on lähes nolla)
+            if (dir.sqrMagnitude <= 0.0001f)
+            {
+                dir = (sei.Owner.transform.position - context.Source.transform.position).normalized;
+            }
 
             // Käynnistetään knockback kohteen omassa skriptissä
             sei.Owner.ApplyKnockback(dir, force, duration, affectMultipleTargets);

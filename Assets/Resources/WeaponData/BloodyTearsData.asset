@@ -42,4 +42,5 @@ MonoBehaviour:
     Value: 0.5
     Type: 1
   effectList:
+  - {fileID: 11400000, guid: bccd77112f3fc5c4da6f2e1d05902b82, type: 2}
   - {fileID: 11400000, guid: b9aa80e2bb2a3144b9ada791cac47a3f, type: 2}

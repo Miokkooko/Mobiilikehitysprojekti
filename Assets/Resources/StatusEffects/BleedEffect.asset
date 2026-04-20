@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: BleedEffect
   m_EditorClassIdentifier: Assembly-CSharp::BleedEffect
   Name: Bleed Effect
-  Description: 
+  Icon: {fileID: 4200973762551321474, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}
+  Description: Dealing damage causes a bleeding effect that deals damage every second.
+    Stacks up to 3 times.
   Duration: 5
   MaxStacks: 3
   TickRate: 1

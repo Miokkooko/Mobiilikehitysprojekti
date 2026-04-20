@@ -7,7 +7,6 @@ using UnityEditor;
 [CreateAssetMenu(fileName = "PassiveData", menuName = "Passives/PassiveData", order = 1)]
 public class PassiveData : StatusEffect
 {
-    public Sprite Icon;
     public StatModifier BaseModifier;
     public float[] Upgrades;
 

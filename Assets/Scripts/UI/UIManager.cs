@@ -18,6 +18,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     Canvas canvas;
+    [SerializeField]
+    Canvas notificationCanvas;
+    public Canvas GetCanvas => canvas;
 
     [SerializeField]
     Transform NotificationYesNoPrefab;
@@ -56,12 +59,12 @@ public class UIManager : MonoBehaviour
             case NotificationType.Confirm:
                 break;
             case NotificationType.ConfirmCancel:
-                t = Instantiate(NotificationYesNoPrefab, canvas.transform);
+                t = Instantiate(NotificationYesNoPrefab, notificationCanvas.transform);
                 break;
             case NotificationType.PopUp:
                 break;
             case NotificationType.LevelUp:
-                t = Instantiate(NotificationLevelUpPrefab, canvas.transform);
+                t = Instantiate(NotificationLevelUpPrefab, notificationCanvas.transform);
                 break;
             default:
                 break;
@@ -142,12 +145,18 @@ public class UIManager : MonoBehaviour
                 CurrentMenu.AllowInteraction(false);
         }
 
-        if (!MenuStack.Contains(menu))
-            MenuStack.Push(menu);
-
+        if (MenuStack.Contains(menu))
+        {
+            Debug.Log("Menu already in MenuStack!");
+            return;
+        }
+            
+        
+        MenuStack.Push(menu);
         AppearMenu(menu);
+        CurrentMenu.AllowInteraction(true);
 
-        Debug.Log("Menu opened | " + MenuStack.Count + " - Menus total");
+        Debug.Log($"{CurrentMenu.name} opened | {MenuStack.Count} - Menus total");
     }
 
     void AppearMenu(Menu menu)
@@ -169,7 +178,7 @@ public class UIManager : MonoBehaviour
             DisappearMenu(menuToClose);
 
             MenuStack.Pop();
-            Debug.Log("Menu closed | " + MenuStack.Count + " - Menus total");
+            Debug.Log($"{menuToClose.name} closed | {MenuStack.Count} - Menus total");
         }
 
         if (MenuStack.Count == 0)

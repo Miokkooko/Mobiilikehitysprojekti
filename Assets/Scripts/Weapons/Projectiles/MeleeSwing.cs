@@ -18,11 +18,16 @@ public class MeleeSwing : Projectile
         base.OnEnable();
         elapsed = 0;
         alreadyHit.Clear(); // Tyhjennä lista uutta lyöntiä varten
-    }
+
+    } // OnEnable
 
     public override void Initialize(WeaponInstance w, Unit p, Vector3 dir)
     {
         base.Initialize(w, p, dir);
+
+
+        float finalScale = weaponRange * aoeRadius;
+        transform.localScale = new Vector3(finalScale, finalScale, 1f);
 
         // Lasketaan keskikulma suunnasta
         float centerAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -31,7 +36,8 @@ public class MeleeSwing : Projectile
 
         elapsed = 0;
         UpdateSwing(0); // Asetetaan ase heti alkupaikalleen
-    }
+
+    } // Intitialize
 
     public override void Move()
     {
@@ -48,25 +54,25 @@ public class MeleeSwing : Projectile
         {
             Disable();
         }
-    }
+    } // Move
 
     private void UpdateSwing(float progress)
     {
-        // Lasketaan kulma lerpillä kaaren läpi
-        float currentAngle = Mathf.Lerp(startAngle, startAngle + swingArc, progress);
-
-        // Päivitetään rotaatio
-        transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+        if (swingArc < 360f)
+        {
+            float currentAngle = Mathf.Lerp(startAngle, startAngle + swingArc, progress);
+            transform.rotation = Quaternion.Euler(0, 0, currentAngle);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, startAngle + (swingArc / 2f));
+        }
 
         if (owner != null)
         {
-
-            float offsetDistance = 0.5f;
-            Vector3 offset = direction * offsetDistance;
-
             transform.position = owner.transform.position;
         }
-    }
+    } // UpdateSwing
 
     // Ylikirjoitetaan osumislogiikka, jotta ei osu samaan viholliseen monta kertaa
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -78,7 +84,7 @@ public class MeleeSwing : Projectile
             // Jos tähän viholliseen ei ole vielä osuttu tämän lyönnin aikana
             if (!alreadyHit.Contains(d))
             {
-                Unit.DealDamage(new DamageContext(owner, d, damage));
+                Unit.DealDamage(new DamageContext(owner, d, damage, true, (Vector2)direction));
                 alreadyHit.Add(d); // Lisätään listalle
 
                 OnHitParticles();
@@ -100,10 +106,10 @@ public class MeleeSwing : Projectile
                             {
                                 Unit.ApplyStatusEffect(effect, enemy);
                             }
-                        }
-                    }
-                }
-            }
+                        } 
+                    } 
+                } 
+            } 
         }
-    }
-}
+    } // OnCollisionEnter
+} // Class MeleeSwing
