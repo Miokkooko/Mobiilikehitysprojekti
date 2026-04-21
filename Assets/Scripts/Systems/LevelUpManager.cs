@@ -15,7 +15,7 @@ public class LevelUpManager : MonoBehaviour
 
     NotificationBase n;
 
-    private void Notification_OnNotificationResult(object sender, NotificationBase.NotificationArgs e)
+    private void Notification_OnNotificationResult(object sender, NotificationArgs e)
     {
         n = (NotificationBase)sender;
         n.OnNotificationRaised -= Notification_OnNotificationResult;
@@ -43,7 +43,7 @@ public class LevelUpManager : MonoBehaviour
         queuedNotifications++;
     }
 
-    private void N_OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
+    private void N_OnNotificationDestroyed(object sender, NotificationArgs e)
     {
         n = (NotificationBase)sender;
         queuedNotifications--;

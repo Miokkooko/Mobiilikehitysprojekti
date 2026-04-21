@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: "Kanab\u014D"
   description: A blunt, studded club that causes knockback and severe brain damage
   Icon: {fileID: -5295550415798936366, guid: 65aa5bbdc3175ee468c3bca072dfd1c8, type: 3}
+  weaponType: 6
   poolType: 10
   baseDamage: 2
   firerate: 1.5

@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-
+public enum WeaponType { Axe, Bible, BloodyTears, DivineAura, Fireball, HomingArrow, Kanabo, Knives, Lightning, Mine, Scythe, Sword }
 [CreateAssetMenu(fileName = "WeaponData", menuName = "Weapons/WeaponData", order = 1)]
 public class WeaponData : ScriptableObject
 {
@@ -12,6 +12,7 @@ public class WeaponData : ScriptableObject
     [TextArea(2,5)]
     public string description;
     public Sprite Icon;
+    public WeaponType weaponType;
     public ProjectilePoolType poolType;
 
     [Header("Stats")]

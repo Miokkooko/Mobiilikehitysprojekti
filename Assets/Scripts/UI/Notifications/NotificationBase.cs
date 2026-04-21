@@ -1,7 +1,22 @@
 using UnityEngine;
 using System;
 using System.Collections;
+public class NotificationArgs : EventArgs
+{
+    public NotificationData Data;
 
+    public bool Confirmed;
+    public NotificationArgs() { }
+    public NotificationArgs(NotificationData _data)
+    {
+        Data = _data;
+    }
+    public NotificationArgs(NotificationData _data, bool confirmed)
+    {
+        Data = _data;
+        Confirmed = confirmed;
+    }
+}
 public enum NotificationType { Confirm, ConfirmCancel, PopUp, LevelUp }
 public class NotificationBase : MonoBehaviour
 {
@@ -9,22 +24,7 @@ public class NotificationBase : MonoBehaviour
 
     public event EventHandler<NotificationArgs> OnNotificationRaised;
     public event EventHandler<NotificationArgs> OnNotificationDestroyed;
-    public class NotificationArgs : EventArgs
-    {
-        public NotificationData Data;
-
-        public bool Confirmed;
-        public NotificationArgs() { }
-        public NotificationArgs(NotificationData _data)
-        {
-            Data = _data;
-        }
-        public NotificationArgs(NotificationData _data, bool confirmed)
-        {
-            Data = _data;
-            Confirmed = confirmed;
-        }
-    }
+    
 
     public virtual void Initialize(NotificationData data) { Data = data; }
     public virtual void Initialize() { }
@@ -39,20 +39,10 @@ public class NotificationBase : MonoBehaviour
         OnNotificationDestroyed?.Invoke(this, args);
     }
 
-    public void Disappear(float destroyDelay)
-    {
-        StartCoroutine(DestroyAfterDelay(destroyDelay));
-    }
-
     private void OnDestroy()
     {
         RaiseNotificationDestroyedEvent(new NotificationArgs(Data));
         Debug.Log("Notification destroyed");
 
-    }
-    public IEnumerator DestroyAfterDelay(float delay)
-    {
-        yield return new WaitForSecondsRealtime(delay);
-        Destroy(gameObject);
     }
 }

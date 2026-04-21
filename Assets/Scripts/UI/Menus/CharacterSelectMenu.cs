@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,32 +10,60 @@ public class CharacterSelectMenu : MonoBehaviour
 
     public Image selectedCharSprite;
     public TMP_Text selectedCharName;
-    public TMP_Text selectedCharRank;
+    public RankBar selectedCharRank;
 
     public Image previousChar;
     public Image nextChar;
 
-    public PlayerData selectedData => characterData.Current;
+    public Color disabledColor;
+    public Color enabledColor;
+    public GameObject selectedCharLock;
 
-    int selectedIndex = 0;
+    PlayerData selection;
+    public PlayerData selectedData => selection;
+
+    List<CharacterEntry> characterEntries;
 
     private void OnEnable()
     {
         characterData = CarouselArray<PlayerData>.FromArray(Resources.LoadAll<PlayerData>("UnitData/Players"));
+        characterData.Next();
+        characterEntries = SaveManager.GetCharacterEntries();
         SetCharacters();
     }
 
+    int GetCopiesFor(CharacterType character)
+    {
+        foreach (CharacterEntry entry in characterEntries)
+        {
+            if (entry.type == character)
+                return entry.value;
+        }
+
+        return 0;
+    }
     void SetCharacters()
     {
         selectedCharSprite.sprite = characterData.Current.baseSprite;
 
-        string[] name = characterData[selectedIndex].unitName.Split(',');
-        string unifiedName = name[0] + "\n" + name[1];
-        selectedCharName.SetText(unifiedName);
-        selectedCharRank.SetText("Rank 1"); // TODO
+        int copies = GetCopiesFor(characterData.Current.characterType);
+
+        selectedCharName.SetText(copies > 0 ? characterData.Current.GetName() : "???");
+        selectedCharRank.gameObject.SetActive(copies > 0);
+        selectedCharSprite.color = copies > 0 ? enabledColor : disabledColor;
+        selectedCharRank.Initialize(0, RankManager.GetRankProgress(copies), RankManager.CopiesPerRank, copies);
+        selectedCharLock.SetActive(copies <= 0);
+        selection = copies > 0 ? characterData.Current : null;
         
+        copies = GetCopiesFor(characterData.PeekNext().characterType);
+
         nextChar.sprite = characterData.PeekNext().baseSprite;
+        nextChar.color = copies > 0 ? enabledColor : disabledColor;
+
+        copies = GetCopiesFor(characterData.PeekPrevious().characterType);
+
         previousChar.sprite = characterData.PeekPrevious().baseSprite;
+        previousChar.color = copies > 0 ? enabledColor : disabledColor;
     }
 
     public void MoveRosterRight()

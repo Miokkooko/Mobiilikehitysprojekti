@@ -10,7 +10,7 @@ public class ShitTesting : MonoBehaviour
     {
         Unit.ApplyStatusEffect(effect, target);
     }
-   
+
     public void TestNotification()
     {
         n = UIManager.Instance.CreateNotification(test);
@@ -18,15 +18,14 @@ public class ShitTesting : MonoBehaviour
         n.OnNotificationRaised += N_OnNotificationRaised;
     }
 
-    private void N_OnNotificationRaised(object sender, NotificationBase.NotificationArgs e)
+    private void N_OnNotificationRaised(object sender, NotificationArgs e)
     {
         n.OnNotificationRaised -= N_OnNotificationRaised;
 
-        if(e is LevelUpArgs args)
+        if (e.Confirmed)
         {
-            Debug.Log("Wow");
+            SaveManager.DeleteSave();
         }
-        
     }
 
     public void ChangeScene()

@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
-  m_Name: DarkKnightData
+  m_Name: 5SnowElfData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unitName: Gloria, the Dark Knight
-  maxHealth: 100
-  baseDamage: 10
-  moveSpeed: 2.5
-  baseSprite: {fileID: 8467896835540862106, guid: c3653515d6ef8054e9d259295ea1236d, type: 3}
-  animator: {fileID: 22100000, guid: b7a95be542dbed3408ae8cbe456aa57d, type: 2}
+  unitName: Falariath, the Snow Elf Archer
+  maxHealth: 70
+  baseDamage: 7
+  moveSpeed: 3
+  baseSprite: {fileID: -932235265741748483, guid: 4ad5b5a141ba3ca4bb3b9356daba6904, type: 3}
+  animator: {fileID: 22100000, guid: fde1ac13ca999e7499f2dcd3d60ef08d, type: 2}
   maxWeapons: 6
   maxPassives: 6
-  startingWeapon: {fileID: 11400000, guid: e114691d2a1dfcd468bb9be109ce7cc3, type: 2}
+  startingWeapon: {fileID: 11400000, guid: 9de8ea1db81bd6944b4638c8590de8e0, type: 2}
+  rarity: 1
+  characterType: 4

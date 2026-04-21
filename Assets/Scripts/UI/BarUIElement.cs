@@ -1,50 +1,56 @@
 using UnityEngine;
-using UnityEngine.UI;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 public enum BehindBarAnimationMode { FadeOut, Lerp }
+public enum BarAnimationMode { Instant, Lerp }
 public enum DifferenceDisplayMode { Cumulative, Latest }
 
 public class BarUIElement : MonoBehaviour
 {
     public SlicedFilledImage mainBar;
+    public BarAnimationMode animationMode = BarAnimationMode.Instant;
+    public LeanTweenType tweenType = LeanTweenType.linear;
 
     [SerializeField] float maxValue;
     [SerializeField] float minValue = 0;
     [SerializeField] float currentValue;
     float GetBarFillAmount => Bastor.Helpers.GetPercentageBetweenValues(currentValue, minValue, maxValue);
-    float GetBehindBarFillAmount => Bastor.Helpers.GetPercentageBetweenValues(previousValue, minValue, maxValue);
+    float GetBehindBarFillAmount => Bastor.Helpers.GetPercentageBetweenValues(behindBarPreviousValue, minValue, maxValue);
 
     float ConvertFillAmountToValue(float value) => value * maxValue;
-    float previousValue;
+    float behindBarPreviousValue;
 
     [Header("Decrease Animations")]
     public SlicedFilledImage behindBar;
 
     public BehindBarAnimationMode behindBarAnimationMode;
     public DifferenceDisplayMode behindBarDisplayMode;
-    public LeanTweenType behindBarTweenType = LeanTweenType.linear;
 
     public float animationDelay = 1;
     public float animationDuration = 1;
 
     int behindBarTweenId = -1;
-    int delayTweenId = -1;
+    int barTweenId = -1;
+    int behindBarDelayTweenId = -1;
+
+    public Action BarFilled;
+    public Action BarDepleted;
 
     private void Start()
     {
         if (mainBar == null)
             Debug.LogError("Main Bar SlicedFilledImage missing from BarUIElement!");
         if (behindBar == null)
-            Debug.LogWarning("BehindBar is not assigned to BarUIElement. If this is intentional, decrease animations are disabled.");
+            //Debug.LogWarning("BehindBar is not assigned to BarUIElement. If this is intentional, decrease animations are disabled.");
 
         if (mainBar != null)
             CalculateBarFillAmount();
     }
 
-    public void SetMaxValue(float value) 
+    public void SetMaxValue(float value)
     {
         maxValue = value;
         CalculateBarFillAmount();
@@ -56,21 +62,49 @@ public class BarUIElement : MonoBehaviour
         CalculateBarFillAmount();
     }
 
-    public void SetCurrentValue(float value)   
+    public void SetCurrentValue(float value)
     {
         switch (behindBarDisplayMode)
         {
             case DifferenceDisplayMode.Cumulative:
-                if (previousValue <= currentValue)
-                    previousValue = currentValue;
+                if (behindBarPreviousValue <= currentValue)
+                    behindBarPreviousValue = currentValue;
                 break;
             case DifferenceDisplayMode.Latest:
-                previousValue = currentValue;
+                behindBarPreviousValue = currentValue;
                 break;
         }
-        
+
         currentValue = value;
         CalculateBarFillAmount();
+    }
+    public void SetCurrentValueInstant(float value)
+    {
+        switch (behindBarDisplayMode)
+        {
+            case DifferenceDisplayMode.Cumulative:
+                if (behindBarPreviousValue <= currentValue)
+                    behindBarPreviousValue = currentValue;
+                break;
+            case DifferenceDisplayMode.Latest:
+                behindBarPreviousValue = currentValue;
+                break;
+        }
+
+        currentValue = value;
+
+        BarAnimationMode oldMode = animationMode;
+        animationMode = BarAnimationMode.Instant;
+        CalculateBarFillAmount();
+        animationMode = oldMode;
+    }
+
+    void CheckEvents()
+    {
+        if (mainBar.fillAmount == 1)
+            BarFilled?.Invoke();
+        else if (mainBar.fillAmount == 0)
+            BarDepleted?.Invoke();
     }
 
     public void CalculateBarFillAmount()
@@ -78,7 +112,18 @@ public class BarUIElement : MonoBehaviour
         if (mainBar == null)
             return;
 
-        mainBar.fillAmount = GetBarFillAmount;
+        switch (animationMode)
+        {
+            case BarAnimationMode.Instant:
+                if (LeanTween.isTweening(barTweenId))
+                    LeanTween.cancel(barTweenId);
+                mainBar.fillAmount = GetBarFillAmount;
+                CheckEvents();
+                break;
+            case BarAnimationMode.Lerp:
+                TweenBar(mainBar.fillAmount, GetBarFillAmount);
+                break;
+        }
 
         if (behindBar == null)
             return;
@@ -98,57 +143,72 @@ public class BarUIElement : MonoBehaviour
                 FadeBehindBar();
                 break;
             case BehindBarAnimationMode.Lerp:
-                TweenBehindBar();
+                TweenBehindBar(GetBehindBarFillAmount, GetBarFillAmount, animationDelay);
                 break;
             default:
                 break;
         }
     }
-
-    void TweenBehindBar()
+    void TweenBar(float from, float to)
     {
-        if (LeanTween.isTweening(delayTweenId))
-            LeanTween.cancel(delayTweenId);
+        if (LeanTween.isTweening(barTweenId))
+            LeanTween.cancel(barTweenId);
+
+        barTweenId = LeanTween.value(gameObject, from, to, animationDuration)
+            .setEase(tweenType)
+            .setOnUpdate((val) =>
+            {
+                mainBar.fillAmount = val;
+                CheckEvents();
+            })
+            .id;
+    }
+
+    void TweenBehindBar(float from, float to, float delay)
+    {
+        if (LeanTween.isTweening(behindBarDelayTweenId))
+            LeanTween.cancel(behindBarDelayTweenId);
 
         if (LeanTween.isTweening(behindBarTweenId))
             LeanTween.cancel(behindBarTweenId);
-        
-        delayTweenId = LeanTween.delayedCall(gameObject, animationDelay, () =>
+
+        behindBarDelayTweenId = LeanTween.delayedCall(gameObject, delay, () =>
         {
-            behindBarTweenId = LeanTween.value(gameObject, GetBehindBarFillAmount, GetBarFillAmount, animationDuration)
-                .setEase(behindBarTweenType)
+            behindBarTweenId = LeanTween.value(gameObject, from, to, animationDuration)
+                .setEase(tweenType)
                 .setOnUpdate((val) =>
                 {
                     behindBar.fillAmount = val;
-                    previousValue = ConvertFillAmountToValue(val);
+                    behindBarPreviousValue = ConvertFillAmountToValue(val);
                 })
                 .setOnComplete(() =>
                 {
-                    previousValue = currentValue;
+                    behindBarPreviousValue = currentValue;
                 })
                 .id;
         }).id;
     }
 
+
+
     void FadeBehindBar()
     {
-        if (LeanTween.isTweening(delayTweenId))
-            LeanTween.cancel(delayTweenId);
+        if (LeanTween.isTweening(behindBarDelayTweenId))
+            LeanTween.cancel(behindBarDelayTweenId);
 
         if (LeanTween.isTweening(behindBarTweenId))
             LeanTween.cancel(behindBarTweenId);
 
-        float alpha = 1f;
-        behindBar.color = new Color(behindBar.color.r, behindBar.color.g, behindBar.color.b, alpha);
-       
-        delayTweenId = LeanTween.delayedCall(gameObject, animationDelay, () =>
+        behindBar.color = new Color(behindBar.color.r, behindBar.color.g, behindBar.color.b, 1);
+
+        behindBarDelayTweenId = LeanTween.delayedCall(gameObject, animationDelay, () =>
         {
-            behindBarTweenId = LeanTween.value(gameObject, alpha, 0, animationDuration)
-               .setEase(behindBarTweenType)
+            behindBarTweenId = LeanTween.value(gameObject, 1, 0, animationDuration)
+               .setEase(tweenType)
                .setOnUpdate(val => behindBar.color = new Color(behindBar.color.r, behindBar.color.g, behindBar.color.b, val))
                .setOnComplete(() =>
                {
-                    previousValue = currentValue;
+                   behindBarPreviousValue = currentValue;
                })
                .id;
         }).id;
@@ -161,7 +221,9 @@ public class BarUIElement : MonoBehaviour
 public class BarUIElementEditor : Editor
 {
     SerializedProperty mainBar;
+    SerializedProperty animationMode;
 
+    SerializedProperty tweenType;
     SerializedProperty maxValue;
     SerializedProperty minValue;
     SerializedProperty currentValue;
@@ -170,13 +232,14 @@ public class BarUIElementEditor : Editor
 
     SerializedProperty behindBarAnimationMode;
     SerializedProperty barDisplayMode;
-    SerializedProperty tweeningType;
+
     SerializedProperty animationDelay;
     SerializedProperty animationDuration;
 
     void OnEnable()
     {
         mainBar = serializedObject.FindProperty("mainBar");
+        animationMode = serializedObject.FindProperty("animationMode");
 
         maxValue = serializedObject.FindProperty("maxValue");
         minValue = serializedObject.FindProperty("minValue");
@@ -186,7 +249,7 @@ public class BarUIElementEditor : Editor
 
         behindBarAnimationMode = serializedObject.FindProperty("behindBarAnimationMode");
         barDisplayMode = serializedObject.FindProperty("behindBarDisplayMode");
-        tweeningType = serializedObject.FindProperty("behindBarTweenType");
+        tweenType = serializedObject.FindProperty("tweenType");
         animationDelay = serializedObject.FindProperty("animationDelay");
         animationDuration = serializedObject.FindProperty("animationDuration");
     }
@@ -196,7 +259,8 @@ public class BarUIElementEditor : Editor
         serializedObject.Update();
 
         EditorGUILayout.PropertyField(mainBar);
-
+        EditorGUILayout.PropertyField(animationMode);
+        EditorGUILayout.PropertyField(tweenType);
         EditorGUILayout.Space();
         EditorGUILayout.PropertyField(maxValue);
         EditorGUILayout.PropertyField(minValue);
@@ -211,7 +275,7 @@ public class BarUIElementEditor : Editor
 
             EditorGUILayout.PropertyField(behindBarAnimationMode);
             EditorGUILayout.PropertyField(barDisplayMode);
-            EditorGUILayout.PropertyField(tweeningType);
+
 
             EditorGUILayout.Space();
             EditorGUILayout.PropertyField(animationDelay);

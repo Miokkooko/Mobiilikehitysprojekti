@@ -4,7 +4,7 @@ public class NotificationTestScript : MonoBehaviour
 {
     NotificationBase n;
 
-    private void Notification_OnNotificationResult(object sender, NotificationYesNo.NotificationArgs e)
+    private void Notification_OnNotificationResult(object sender, NotificationArgs e)
     {
         n = (NotificationBase)sender;
         n.OnNotificationRaised -= Notification_OnNotificationResult;

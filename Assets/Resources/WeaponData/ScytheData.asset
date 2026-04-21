@@ -17,6 +17,7 @@ MonoBehaviour:
   description: A throwable scythe that returns to its thrower, creating a long window
     for damage
   Icon: {fileID: 6953052965472001917, guid: 35e6fcbe6fa11c44ead00b1649d6aa92, type: 3}
+  weaponType: 10
   poolType: 6
   baseDamage: 1
   firerate: 1.5
@@ -45,5 +46,4 @@ MonoBehaviour:
   - Stat: 5
     Value: 0.1
     Type: 0
-  effectList:
-  - {fileID: 0}
+  effectList: []

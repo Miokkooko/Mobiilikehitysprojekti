@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -90,7 +85,7 @@ public class UIManager : MonoBehaviour
     }
   
     /// <summary>
-    /// Handles the queueing, allowing only 1 of each type of popup to be active at the same time
+    /// Handles the queueing, allowing only 1 of each type of notification to be active at the same time
     /// </summary>
     void HandleQueue()
     {
@@ -116,7 +111,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    void OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
+    void OnNotificationDestroyed(object sender, NotificationArgs e)
     {
         if (sender is NotificationBase n)
             n.OnNotificationDestroyed -= OnNotificationDestroyed;

@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelUpArgs : NotificationBase.NotificationArgs
+public class LevelUpArgs : NotificationArgs
 {
     public object upgradeChosen;
 

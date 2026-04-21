@@ -53,18 +53,6 @@ public class GameManager : MonoBehaviour
     [Header("Spawn distances")]
     public float enemySpawnDistance = 5;
 
-    [System.Serializable]
-    private class SingleGameData
-    {
-        public string playerName;
-        public string datetime;
-        public int kills;
-        public float time;
-    }
-
-    private string savePath;
-
-
     void OnDestroy()
     {
         player.OnKill -= OnPlayerKill;
@@ -75,8 +63,8 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        savePath = Path.Combine(Application.persistentDataPath, "singleGameSave.json");
     }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -110,25 +98,14 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerDeath(object sender, KillContext e)
     {
-        SingleGameData data = new SingleGameData()
-        {
-            playerName = player.playerData.name,
-            datetime = DateTime.Now.ToString(),
-            kills = kills,
-            time = gameTimer
-        };
-
-        string json = JsonUtility.ToJson(data, true);
-        File.AppendAllText(savePath, json);
-        Debug.Log("Game saved to: " + savePath);
-        
-
         enabled = false;
+
+        SaveManager.SaveRun((Player)e.Target, Kills, GameTime, Coins);
 
         if (DataManager.Instance != null)
         {
-            DataManager.Instance.AddCoins(GameManager.Instance.Coins);
-            DataManager.Instance.AddKills(GameManager.Instance.Kills);
+            DataManager.Instance.AddCoins(Instance.Coins);
+            DataManager.Instance.AddKills(Instance.Kills);
         }
 
         ResetCoinCount();

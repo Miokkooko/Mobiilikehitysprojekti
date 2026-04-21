@@ -25,6 +25,12 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        if(charMenu.selectedData == null)
+        {
+            Debug.Log("Invalid Character Selected!");
+            return;
+        }
+
         DataManager.Instance.SelectPlayerData(charMenu.selectedData);
 
         SceneManager.LoadScene(2);
