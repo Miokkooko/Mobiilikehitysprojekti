@@ -78,13 +78,33 @@ public class SaveManager
 
             if (snapshot.Exists)
             {
+                SaveData cloudSaveData = new SaveData();
                 string json = snapshot.GetRawJsonValue();
-                saveData = JsonUtility.FromJson<SaveData>(json);
+                cloudSaveData = JsonUtility.FromJson<SaveData>(json);
+
+                string localJson = "";
+                SaveData localSaveData = new SaveData();
+               
+                if (File.Exists(savePath))
+                {
+                    localJson = File.ReadAllText(savePath);
+                    localSaveData = JsonUtility.FromJson<SaveData>(localJson);
+                }
+
+                if (localSaveData.lastUpdated > cloudSaveData.lastUpdated)
+                {
+                    saveData = localSaveData;
+                    Debug.Log("Local SaveData is newer than firebase, updating firebase SaveData");
+                    SaveToFirebase();
+                }
+                else
+                {
+                    saveData = cloudSaveData;
+                    Debug.Log("Loaded save from Firebase.");
+                }
 
                 if (saveData.charactersOwned == null)
                     saveData.charactersOwned = new List<CharacterEntry>();
-
-                Debug.Log("Loaded save from Firebase.");
             }
             else
             {
@@ -258,11 +278,10 @@ public class SaveManager
 
         string newJson = JsonUtility.ToJson(saveData, true);
         File.WriteAllText(savePath, newJson);
+        Debug.Log("Game saved to: " + savePath);
 
         SaveToFirebase(); 
-
         OnSaved?.Invoke();
-        Debug.Log("Game saved to: " + savePath + " and firebase.");
     }
 
     static void LoadSave()
