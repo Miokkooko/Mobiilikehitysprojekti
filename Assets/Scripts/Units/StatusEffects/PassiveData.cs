@@ -4,12 +4,13 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
+public enum PassiveType { Damage, Firerate, Speed, MaxHealth }
 [CreateAssetMenu(fileName = "PassiveData", menuName = "Passives/PassiveData", order = 1)]
 public class PassiveData : StatusEffect
 {
     public StatModifier BaseModifier;
     public float[] Upgrades;
-
+    public PassiveType passiveType;
 }
 
 #if UNITY_EDITOR

@@ -8,6 +8,7 @@ public class Player : Unit
     Dictionary<WeaponData, WeaponInstance> Weapons = new Dictionary<WeaponData, WeaponInstance>();
     public List<WeaponData> GetWeapons => Weapons.Keys.ToList();
     Dictionary<PassiveData, PassiveInstance> Passives = new Dictionary<PassiveData, PassiveInstance>();
+    public List<PassiveData> GetPassives => Passives.Keys.ToList();
 
     public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
 

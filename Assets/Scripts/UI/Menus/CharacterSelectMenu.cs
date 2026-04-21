@@ -32,6 +32,12 @@ public class CharacterSelectMenu : MonoBehaviour
         SetCharacters();
     }
 
+    public void Reload()
+    {
+        characterEntries = SaveManager.GetCharacterEntries();
+        SetCharacters();
+    }
+
     int GetCopiesFor(CharacterType character)
     {
         foreach (CharacterEntry entry in characterEntries)

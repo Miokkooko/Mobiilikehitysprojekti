@@ -12,7 +12,6 @@ public class BleedEffect : StatusEffect
         Unit target = instance.Owner;
 
         float totalDamage = tickDamage * instance.stacks;
-        Debug.Log("Bleed Tick: " + tickDamage + " * " + instance.stacks + " = " + totalDamage);
 
         DamageContext context = new DamageContext(
             target,      
