@@ -34694,7 +34694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: sceneHandSpawnTime
-      value: 10
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6381353482164660208, guid: 27d9001f396ec1843a115cb81425895e, type: 3}
       propertyPath: spawnDecreaseAmount
