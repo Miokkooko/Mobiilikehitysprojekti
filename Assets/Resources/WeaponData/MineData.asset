@@ -26,7 +26,7 @@ MonoBehaviour:
   projectileSpread: 22.5
   projectileSpeed: 0
   projectileBurst: 1
-  projectileBurstDelay: 0.2
+  projectileBurstDelay: 0.75
   projectileLifeTime: 5
   aoeDamage: 1
   aoeRadius: 2

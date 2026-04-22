@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedBatData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: RabidBat
-  maxHealth: 22
+  maxHealth: 30
   baseDamage: 6
   moveSpeed: 2
   baseSprite: {fileID: 5723687508711501353, guid: c9c633ae7dcb9414aa8251a359ef8c61, type: 3}

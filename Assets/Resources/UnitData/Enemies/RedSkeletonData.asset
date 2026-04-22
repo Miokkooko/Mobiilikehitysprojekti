@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedSkeletonData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: Skeleton
-  maxHealth: 18
+  maxHealth: 25
   baseDamage: 6
   moveSpeed: 4
   baseSprite: {fileID: 6551992787387985758, guid: d5bb3013b94f19546a224dde572545e4, type: 3}

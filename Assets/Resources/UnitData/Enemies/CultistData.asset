@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CultistData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: Cultist
-  maxHealth: 35
+  maxHealth: 55
   baseDamage: 9
   moveSpeed: 2
   baseSprite: {fileID: 21300000, guid: f21eba86d0c1da540b785d242a868746, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpiderData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: Spider
-  maxHealth: 15
+  maxHealth: 20
   baseDamage: 6
   moveSpeed: 2.2
   baseSprite: {fileID: 8891462688767063018, guid: 4de6d2375676bdc46b4df08b1822fd5f, type: 3}

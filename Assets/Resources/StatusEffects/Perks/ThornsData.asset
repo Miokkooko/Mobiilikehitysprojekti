@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Thorns Perk
   Description: 'Damage enemies that attack you!
 
-    50% Redirect Per Rank!'
+    100% Redirect Per Rank!'
   statusEffect: {fileID: 11400000, guid: 4e8bc5937caa1894fb36f1734e91bbd3, type: 2}
   type: 7
   Icon: {fileID: -1018691840, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}

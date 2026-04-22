@@ -15,7 +15,7 @@ MonoBehaviour:
   unitName: Gloria, the Dark Knight
   maxHealth: 100
   baseDamage: 6
-  moveSpeed: 3
+  moveSpeed: 3.5
   baseSprite: {fileID: 8467896835540862106, guid: c3653515d6ef8054e9d259295ea1236d, type: 3}
   animator: {fileID: 22100000, guid: b7a95be542dbed3408ae8cbe456aa57d, type: 2}
   maxWeapons: 6
