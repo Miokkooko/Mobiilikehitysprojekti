@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
-  m_Name: 7SeraphData
+  m_Name: 4OniTier3
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unitName: Droriel, the Seraph
-  maxHealth: 100
-  baseDamage: 7
-  moveSpeed: 3
-  baseSprite: {fileID: 2919660906985105573, guid: 89963ff1d579c4c4a831e9bbc7f55c4a, type: 3}
-  animator: {fileID: 22100000, guid: 5df6a0cd668c5ea48899728ec6505268, type: 2}
+  unitName: Homura, the Oni
+  maxHealth: 110
+  baseDamage: 10
+  moveSpeed: 2.5
+  baseSprite: {fileID: 21300000, guid: d7ac0e0ae849fb5478347ca250188230, type: 3}
+  animator: {fileID: 22100000, guid: bcad1df6300d2dd4e90ea95b1ea2740a, type: 2}
   maxWeapons: 6
   maxPassives: 6
-  startingWeapon: {fileID: 11400000, guid: a71d59c8072ff7642b34221efd4af4fd, type: 2}
-  rarity: 2
-  characterType: 5
+  startingWeapon: {fileID: 11400000, guid: a05f59896274241418292e29cdc64711, type: 2}
+  rarity: 1
+  characterType: 3

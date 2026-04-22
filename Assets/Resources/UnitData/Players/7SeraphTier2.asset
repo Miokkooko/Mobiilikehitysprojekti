@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
-  m_Name: 7SeraphData
+  m_Name: 7SeraphTier2
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   unitName: Droriel, the Seraph
-  maxHealth: 100
-  baseDamage: 7
-  moveSpeed: 3
+  maxHealth: 110
+  baseDamage: 8
+  moveSpeed: 4
   baseSprite: {fileID: 2919660906985105573, guid: 89963ff1d579c4c4a831e9bbc7f55c4a, type: 3}
   animator: {fileID: 22100000, guid: 5df6a0cd668c5ea48899728ec6505268, type: 2}
   maxWeapons: 6
