@@ -1,4 +1,5 @@
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,12 @@ public class Enemy : Unit
 
     public StatusEffect[] effects;
 
-    float XpValue => enemyData.xpValue;
+    protected float XpValue => enemyData.xpValue;
+
+    public bool canShoot = false;
+
+    private float lastShootTime;
+    public float shootInterval = 5f;
 
     public override void InitializeUnit(UnitData data)
     {
@@ -59,7 +65,9 @@ public class Enemy : Unit
             playerToFollow = GameObject.FindGameObjectWithTag("Player");
             player = playerToFollow.GetComponent<Player>();
         }
-            
+
+
+
         OnDeath += Enemy_OnDeath;
 
         if(animator == null)
@@ -79,12 +87,12 @@ public class Enemy : Unit
 
         Move();
 
-        if(enemyData.unitName == "Spider")
+        if(enemyData.unitName.Contains("Spider"))
         {
             Rotate();
         }
-    }
 
+    }
     private void OnDisable()
     {
         //DropCoin();
@@ -117,27 +125,39 @@ public class Enemy : Unit
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() is Player p && canAttack)
-        {
-            if (Time.time >= lastAttackTime + attackRate)
-            {
-                Attack(p);
-            }
-        }
+        if (!canAttack) return;
+
+        if (Time.time < lastAttackTime + attackRate)
+            return;
+
+        if (collision.GetComponent<Player>() is not Player p)
+            return;
+
+        // ONLY allow main hitbox
+        if (hitBox == null || !hitBox.IsTouching(collision))
+            return;
+
+        Attack(p);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponent<Player>() is Player p && canAttack)
-        {
-            if (Time.time >= lastAttackTime + attackRate)
-            {
-                Attack(p);
-            }
-        }
+        if (!canAttack) return;
+
+        if (Time.time < lastAttackTime + attackRate)
+            return;
+
+        if (collision.GetComponent<Player>() is not Player p)
+            return;
+
+        // ONLY allow main hitbox
+        if (hitBox == null || !hitBox.IsTouching(collision))
+            return;
+
+        Attack(p);
     }
 
-    private void Enemy_OnDeath(object sender, KillContext e)
+    public virtual void Enemy_OnDeath(object sender, KillContext e)
     {
         PoolManager manager = PoolManager.Instance;
 
@@ -178,4 +198,19 @@ public class Enemy : Unit
         }
     }
 
+    private void ShootProjectile()
+    {
+        int chooseAtk = UnityEngine.Random.Range(0, 2);
+        if (chooseAtk == 1)
+            return;
+        PoolManager manager = PoolManager.Instance;
+        GameObject proj = manager.SpawnProjectile(ProjectilePoolType.Projectile_Enemy, transform.position);
+
+        Vector2 dir = (player.transform.position - transform.position).normalized;
+
+        if (proj.GetComponent<EnemyProjectile>() is EnemyProjectile ep)
+        {
+            ep.Initialize(Resources.Load<WeaponData>("WeaponData/EnemyWeaponData"), this, dir);
+        }
+    }
 }

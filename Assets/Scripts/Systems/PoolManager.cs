@@ -10,7 +10,10 @@ public enum EnemyPoolType
     GenericEnemy,
     BulletMiniBoss,
     SkeletonMiniBoss,
-    HandMiniBoss
+    HandMiniBoss,
+    LichBoss,
+    Cultist,
+    SceneHand
 }
 public enum ProjectilePoolType
 {
@@ -34,6 +37,8 @@ public enum OtherPoolType
     None,
     Drop,
     DmgPopUp,
+    Container,
+    Portal
 }
 
 [Serializable]
@@ -256,6 +261,30 @@ public class PoolManager : MonoBehaviour
         return g;
     }
 
+    public GameObject SpawnOther(OtherPoolType type, Vector2 position)
+    {
+        GameObject g;
+        try
+        {
+            g = DisabledPools[type].Dequeue();
+            EnabledPools[type].Add(g);
+        }
+        catch (Exception)
+        {
+            g = GetPrefabFromType(PoolType.Other, type);
+
+            if (g == null)
+                return null;
+
+            g = InstantiateEnabledPool(g, OtherParent, EnabledPools, type);
+        }
+
+        g.transform.position = position;
+        g.SetActive(true);
+
+        return g;
+    }
+
     public GameObject SpawnPopUp(Vector2 position)
     {
         GameObject g;
@@ -292,6 +321,25 @@ public class PoolManager : MonoBehaviour
         g.SetActive(false);
         EnabledEnemyPools[type].Remove(g);
         DisabledEnemyPools[type].Enqueue(g);
+    }
+
+    public void DisableAllEnemies(EnemyPoolType type)
+    {
+        if (!EnabledEnemyPools.ContainsKey(type))
+            return;
+
+        var list = EnabledEnemyPools[type];
+
+        for (int i = list.Count - 1; i >= 0; i--)
+        {
+            GameObject g = list[i];
+
+            g.SetActive(false);
+
+            DisabledEnemyPools[type].Enqueue(g);
+        }
+
+        list.Clear();
     }
 
     public void DisableOther(OtherPoolType type, GameObject g)

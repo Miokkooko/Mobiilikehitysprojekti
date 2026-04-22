@@ -1,10 +1,14 @@
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.SceneManagement;
+using static UnityEditor.PlayerSettings;
 
 public class SceneHand : Enemy
 {
+    public GameObject playerBossSpawn;
+    public Camera mainCamera;
 
+    private bool hasTeleported = false;
 
     [Header("Recovery")]
     public float recoverTimer = 0f;
@@ -77,6 +81,7 @@ public class SceneHand : Enemy
         {
             recoverTimer = 0f;
             _currentState = EnemyState.ChargeAttack;
+            mainCamera.GetComponent<CameraFollowObject>().TriggerShake();
         }
     }
 
@@ -88,6 +93,8 @@ public class SceneHand : Enemy
 
     public void ChargeAttack()
     {
+        
+
         isWalking = false;
         spriteRenderer.enabled = true;
 
@@ -128,13 +135,26 @@ public class SceneHand : Enemy
         {
             animState = 2;
             particles.Play();
-            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0) ;
 
-            if (state.IsName("Retreat") && state.normalizedTime >= 1f)
+            if (state.IsName("Retreat") && state.normalizedTime >= 1f && !hasTeleported)
             {
-                SceneManager.LoadScene(3);
-                grabStarted = false;
-                _currentState = EnemyState.Recover;
+                hasTeleported = true;
+
+                Vector3 pos = playerBossSpawn.transform.position;
+
+                mainCamera.enabled = false;
+             
+                GameManager.Instance.SetBossSettings();
+
+                player.transform.position = playerBossSpawn.transform.position;
+                player.GetComponent<SpriteRenderer>().enabled = true;
+                player.enabled = true;
+                mainCamera.transform.position = new Vector3(pos.x, pos.y, -10f);
+                mainCamera.enabled = true;
+                this.enabled = false;
+                //grabStarted = false;
+                //_currentState = EnemyState.Recover;
             }
 
         }
@@ -144,7 +164,9 @@ public class SceneHand : Enemy
     {
         if (collision.gameObject.GetComponent<Player>() is Player p && canAttack)
         {
+            player.enabled = false;
             player.GetComponent<SpriteRenderer>().enabled = false;
+            GameManager.Instance._currentState = GameManager.GameState.SceneChange;
         }
     }
 }
