@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PerkItemUI : MonoBehaviour
 {
-    StatusEffect data;
-    public StatusEffect GetData => data;
+    PerkData data;
+    public PerkData GetData => data;
 
     public Image bg;
     public Image perkIcon;
@@ -28,10 +28,10 @@ public class PerkItemUI : MonoBehaviour
             originalColor = bg.color;
     }
 
-    public void Initialize(StatusEffect effect, bool initialState = false)
+    public void Initialize(PerkData effect, bool initialState = false)
     {
         selectionBG.color = selectedColor;
-        SetSelectionNumberText("");
+        if (!initialState) SetSelectionNumberText("");
 
         data = effect;
         isSelected = initialState;
@@ -40,12 +40,12 @@ public class PerkItemUI : MonoBehaviour
 
         if (data == null)
         {
-            Debug.Log("No StatusEffectData found!");
+            Debug.Log("No PerkData found!");
             perkIcon.gameObject.SetActive(false);
             return;
         }
 
-        perkIcon.sprite = data.Icon;
+        perkIcon.sprite = data.icon;
         perkIcon.gameObject.SetActive(true);
 
         

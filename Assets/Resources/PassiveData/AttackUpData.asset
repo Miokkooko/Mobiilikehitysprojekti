@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f8af0e4a1038b4e860cb564b12c10a, type: 3}
   m_Name: AttackUpData
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
-  Name: Attack Up
-  Description: Increases Attack by a flat amount
+  Name: Strength
+  Icon: {fileID: 8235732835111945792, guid: 5a04e9a69e5f7a64693edc086222f941, type: 3}
+  Description: More strength allows for more devastating blows, increasing damage
+    dealt
   Duration: 0
   MaxStacks: 0
   TickRate: 1
   StatusHandling: 0
   Permanent: 0
   ModifierType: 2
-  Icon: {fileID: 8235732835111945792, guid: 5a04e9a69e5f7a64693edc086222f941, type: 3}
   BaseModifier:
     Stat: 0
     Value: 0.1
