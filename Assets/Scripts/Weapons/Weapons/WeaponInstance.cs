@@ -32,7 +32,7 @@ public class WeaponInstance
     float baseProjectileSpread = 1f;
 
     public float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, owner.FireratePercent);
-    public float Firerate => (1 - (FireratePercent - 1)) * data.firerate;
+    public float Firerate => Mathf.Max(1 - (FireratePercent - 1) * data.firerate, 0.2f);
 
     float baseProjectileSpeed = 1;
     public float ProjectileSpeed => statSystem.Calculate(StatType.Speed, baseProjectileSpeed);
