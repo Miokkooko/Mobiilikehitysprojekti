@@ -46,6 +46,8 @@ public class Unit : MonoBehaviour, IDamageable
     protected bool isKnockedBack;
     private bool canDamageOnCollision = false;
 
+    [SerializeField] protected bool canBeKnockedBack = true;
+
     //public Animator animator;
 
     void Awake()
@@ -114,6 +116,9 @@ public class Unit : MonoBehaviour, IDamageable
 
     public void ApplyKnockback(Vector2 direction, float force, float duration, bool canDamageOthers = false)
     {
+        if (!canBeKnockedBack)
+            return;
+
         if (gameObject.activeInHierarchy)
         {
 

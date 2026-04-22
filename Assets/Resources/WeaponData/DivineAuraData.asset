@@ -16,6 +16,7 @@ MonoBehaviour:
   weaponName: Divine Aura
   description: A field of divine presence that corrodes enemies
   Icon: {fileID: 0}
+  weaponType: 3
   poolType: 13
   baseDamage: 0
   firerate: 1

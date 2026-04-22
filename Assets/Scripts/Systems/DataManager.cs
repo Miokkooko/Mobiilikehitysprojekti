@@ -75,6 +75,4 @@ public class DataManager : MonoBehaviour
     {
         kills += amount;
     }
-
-
 }

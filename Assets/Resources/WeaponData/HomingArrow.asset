@@ -17,6 +17,7 @@ MonoBehaviour:
   description: A magic arrow that finds the nearest enemy and pierces them to find
     the next enemy
   Icon: {fileID: -7142435805586534932, guid: 137b36d49f0c1fb429d8e321ca97c453, type: 3}
+  weaponType: 5
   poolType: 11
   baseDamage: 2
   firerate: 1

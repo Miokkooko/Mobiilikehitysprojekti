@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   Title: Attention!
-  Description: This is a notification
+  Description: Are you SURE you want to DELETE your Save data?
   Type: 1

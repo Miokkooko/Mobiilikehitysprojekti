@@ -17,11 +17,9 @@ public class StatSystem
     {
         if (modifiers.Contains(mod))
         {
-            Debug.Log("ModiferStacked!");
             mod.IncrementStack();
             return;
         }
-        Debug.Log("ModifierApplied!");
         modifiers.Add(mod);
     }
 

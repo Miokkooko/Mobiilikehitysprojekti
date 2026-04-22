@@ -171,10 +171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc21f997f322914fb9623081d4d721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  canBeKnockedBack: 1
   isWalking: 0
   enemyData: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 75a5f1531c760fe48910e854db02b768, type: 2}
+  canShoot: 0
+  shootInterval: 0
 --- !u!61 &-1473212820917141647
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -219,7 +222,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.36, y: 0.31}
   m_EdgeRadius: 0
 --- !u!95 &-932178609416711920
 Animator:
