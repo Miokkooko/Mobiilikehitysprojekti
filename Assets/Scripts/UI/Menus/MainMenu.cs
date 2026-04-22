@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public List<PerkItemUI> selectedPerks = new List<PerkItemUI>();
     private void Awake()
     {
+        Application.targetFrameRate = 120;
         QualitySettings.vSyncCount = 1;
         SaveManager.OnSaveLoaded += ReloadMainMenu;
     }
