@@ -20,7 +20,7 @@ MonoBehaviour:
   weaponType: 8
   poolType: 7
   baseDamage: 1
-  firerate: 3
+  firerate: 4
   piercing: 1
   projectileCount: 1
   projectileSpread: 22.5

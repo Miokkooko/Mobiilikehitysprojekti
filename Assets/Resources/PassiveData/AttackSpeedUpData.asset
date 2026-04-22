@@ -24,7 +24,8 @@ MonoBehaviour:
   BaseModifier:
     Stat: 6
     Value: 0.1
-    Type: 1
+    Type: 0
   Upgrades:
   - 0.1
   - 0.1
+  passiveType: 0

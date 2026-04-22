@@ -16,9 +16,10 @@ MonoBehaviour:
   weaponName: Axe
   description: A hefty axe that cleaves through enemies when thrown
   Icon: {fileID: 245248123180487230, guid: 4a99aa1ec78be754dafd88dd174576e7, type: 3}
+  weaponType: 0
   poolType: 1
   baseDamage: 5
-  firerate: 2
+  firerate: 2.5
   piercing: 3
   projectileCount: 1
   projectileSpread: 22.5
