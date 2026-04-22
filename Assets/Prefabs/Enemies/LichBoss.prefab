@@ -259,6 +259,8 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 30c9a767206f4734099948f2d298e269, type: 2}
   handActive: 0
   lichHand: {fileID: 0}
+  continuePortal: {fileID: 0}
+  menuPortal: {fileID: 0}
   _currentState: 0
 --- !u!1 &7568762012504399084
 GameObject:
