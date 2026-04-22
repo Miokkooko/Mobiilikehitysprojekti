@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using static UnityEditor.PlayerSettings;
 using static UnityEngine.Rendering.DebugUI;
 
 public class lichBoss : Enemy
@@ -326,6 +327,9 @@ public class lichBoss : Enemy
         lichHand.SetActive(false);
         Debug.Log("Lich dead");
 
+        PoolManager.Instance.DisableAllEnemies(EnemyPoolType.GenericEnemy);
+        
+
         for (int i = 0; i < 5; i++)
         {
             Instantiate(Resources.Load<ParticleSystem>("Particles/HitParticles"), gameObject.transform.position, Quaternion.identity);
@@ -343,12 +347,35 @@ public class lichBoss : Enemy
             DropCoin();
         }
 
-        continuePortal.transform.position = new Vector2(player.transform.position.x -5, player.transform.position.y + 5);
-        menuPortal.transform.position = new Vector2(player.transform.position.x + 5, player.transform.position.y + 5);
+        Vector2 upperLeft = new Vector2(player.transform.position.x - 5, player.transform.position.y + 5);
+        Vector2 upperRight = new Vector2(player.transform.position.x + 5, player.transform.position.y + 5);
+
+        Vector2 lowerLeft = new Vector2(player.transform.position.x - 5, player.transform.position.y - 5);
+        Vector2 lowerRight = new Vector2(player.transform.position.x + 5, player.transform.position.y - 5);
+
+        if (GameManager.Instance.IsValidGround(upperLeft) &&
+            GameManager.Instance.IsValidGround(upperRight))
+        {
+            continuePortal.transform.position = upperLeft;
+            menuPortal.transform.position = upperRight;
+        }
+        else if (GameManager.Instance.IsValidGround(lowerLeft) &&
+                 GameManager.Instance.IsValidGround(lowerRight))
+        {
+            continuePortal.transform.position = lowerLeft;
+            menuPortal.transform.position = lowerRight;
+        }else
+        {
+            continuePortal.transform.position = new Vector2(115, -8);
+            menuPortal.transform.position = new Vector2(125, -8);
+        }
+        //continuePortal.transform.position = new Vector2(player.transform.position.x -5, player.transform.position.y + 5);
+        //menuPortal.transform.position = new Vector2(player.transform.position.x + 5, player.transform.position.y + 5);
+
         continuePortal.SetActive(true);
         menuPortal.SetActive(true);
+
         gameObject.SetActive(false);
-        
     }
 }
 

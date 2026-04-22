@@ -152,7 +152,7 @@ public class SceneHand : Enemy
                 player.enabled = true;
                 mainCamera.transform.position = new Vector3(pos.x, pos.y, -10f);
                 mainCamera.enabled = true;
-                this.enabled = false;
+                gameObject.SetActive(false);
                 //grabStarted = false;
                 //_currentState = EnemyState.Recover;
             }
