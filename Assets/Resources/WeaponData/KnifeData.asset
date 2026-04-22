@@ -17,6 +17,7 @@ MonoBehaviour:
   description: A small, sharp weapon for swift throwing, causes bleeding the more
     you hit
   Icon: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
+  weaponType: 7
   poolType: 4
   baseDamage: 50
   firerate: 1

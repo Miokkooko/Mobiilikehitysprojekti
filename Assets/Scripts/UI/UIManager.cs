@@ -1,9 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -18,6 +13,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     Canvas canvas;
+    [SerializeField]
+    Canvas notificationCanvas;
     public Canvas GetCanvas => canvas;
 
     [SerializeField]
@@ -57,12 +54,12 @@ public class UIManager : MonoBehaviour
             case NotificationType.Confirm:
                 break;
             case NotificationType.ConfirmCancel:
-                t = Instantiate(NotificationYesNoPrefab, canvas.transform);
+                t = Instantiate(NotificationYesNoPrefab, notificationCanvas.transform);
                 break;
             case NotificationType.PopUp:
                 break;
             case NotificationType.LevelUp:
-                t = Instantiate(NotificationLevelUpPrefab, canvas.transform);
+                t = Instantiate(NotificationLevelUpPrefab, notificationCanvas.transform);
                 break;
             default:
                 break;
@@ -90,7 +87,7 @@ public class UIManager : MonoBehaviour
     }
   
     /// <summary>
-    /// Handles the queueing, allowing only 1 of each type of popup to be active at the same time
+    /// Handles the queueing, allowing only 1 of each type of notification to be active at the same time
     /// </summary>
     void HandleQueue()
     {
@@ -116,7 +113,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    void OnNotificationDestroyed(object sender, NotificationBase.NotificationArgs e)
+    void OnNotificationDestroyed(object sender, NotificationArgs e)
     {
         if (sender is NotificationBase n)
             n.OnNotificationDestroyed -= OnNotificationDestroyed;

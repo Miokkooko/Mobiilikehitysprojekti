@@ -17,6 +17,7 @@ MonoBehaviour:
   description: A heavenly contraption that rotates around the player, burning enemies
     rapidly
   Icon: {fileID: -4920520170397818850, guid: 77781384633922e499513bd3d9173081, type: 3}
+  weaponType: 1
   poolType: 9
   baseDamage: 6
   firerate: 10

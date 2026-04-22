@@ -1,15 +1,43 @@
-﻿using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public enum Rarity { Common, Rare, Legendary }
+
+
+[Serializable]
+public class BannerItem 
+{
+    [HideInInspector]
+    public Rarity rarity; 
+}
+
+[Serializable]
+public class CharacterBannerItem : BannerItem
+{
+    public PlayerData charData;
+    public void SetRarity()
+    {
+        rarity = charData.rarity;
+    }
+}
+
+[Serializable]
+public class UpgradeBannerItem : BannerItem
+{
+    public StatusEffect upgradeData;
+    public void SetRarity()
+    {
+        //rarity = charData.rarity;
+    }
+}
+
 public class Banner : MonoBehaviour
 {
     public TMP_Text LegendaryChanceText;
 
     int currentPity = 0;
-
     float commonBaseChance = 1f;
     float currentCommonChance;
 
@@ -18,7 +46,7 @@ public class Banner : MonoBehaviour
     public int rareMaxPity = 5;
     float baseRareChance = 0.15f;
     float currentRareChance;
-
+    
     [Header("Legendary")]
     public int legendarySoftPity = 10;
     public int legendaryMaxPity = 15;
@@ -31,10 +59,14 @@ public class Banner : MonoBehaviour
     public float RareChance => currentRareChance * 100;
     public float CommonChance => currentCommonChance * 100;
 
+    public Action<BannerItem> CommonPulled;
+    public Action<BannerItem> RarePulled;
+    public Action<BannerItem> LegendaryPulled;
+
     float GetLegendaryWeight(int pity)
     {
         if (pity >= legendaryMaxPity)
-            return 999f; // jos et tällä rollaa legeä niin kanttee mennä lottoamaan
+            return 99999f; // jos et tällä rollaa legeä niin kanttee mennä lottoamaan
 
         float w = baseLegendaryChance;
 
@@ -61,47 +93,40 @@ public class Banner : MonoBehaviour
         currentRareChance = rareWeight / total;
         currentCommonChance = commonWeight / total;
 
-        LegendaryChanceText.SetText($"Legendary Chance: {Math.Round(LegendaryChance,2).ToString()}%");
+        //LegendaryChanceText.SetText($"Legendary Chance: {Math.Round(LegendaryChance,2).ToString()}%");
     }
-    public Rarity Pull()
+
+    public BannerItem Pull()
     {
         currentPity++;
         pullsSinceRare++;
-
         CalculateChances();
 
         float roll = UnityEngine.Random.value;
-        Rarity get;
+        BannerItem item = null;
 
         if (roll <= currentLegendaryChance)
         {
-            get = Rarity.Legendary;
             currentPity = 0;
-            Debug.Log("Legendary Get!");
-            Debug.Log(DebugChances());
+            item = LegendaryPull();
         }
-        else if (roll <= currentRareChance + currentLegendaryChance || pullsSinceRare >= rareMaxPity)
+        else if (roll <= (currentRareChance + currentLegendaryChance) || pullsSinceRare >= rareMaxPity)
         {
-            get = Rarity.Rare;
-
             pullsSinceRare = 0;
-            Debug.Log("Rare Get!");
-            Debug.Log(DebugChances());
+            item = RarePull();
         }
         else
-        {
-            get = Rarity.Common;
-            Debug.Log("Common Get!");
-            Debug.Log(DebugChances());
-        }
-        CalculateChances();
+            item = CommonPull();
 
-        return get;
+        return item;
     }
+
+    public virtual BannerItem LegendaryPull() { return null; }
+    public virtual BannerItem RarePull() { return null; }
+    public virtual BannerItem CommonPull() { return null; }
+
     string DebugChances()
     {
         return $"LegendaryChance: {LegendaryChance}% | Pity: {currentPity}/{legendaryMaxPity}\nRareChance: {RareChance}% | Pity: {pullsSinceRare}/{rareMaxPity}\nCommonChance: {CommonChance}%";
     }
 }
-
-public class BannerData { }

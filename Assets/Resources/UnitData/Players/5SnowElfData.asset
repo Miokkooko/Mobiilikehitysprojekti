@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
+  m_Name: 5SnowElfData
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerData
+  unitName: Falariath, the Snow Elf Archer
+  maxHealth: 70
+  baseDamage: 7
+  moveSpeed: 3
+  baseSprite: {fileID: -932235265741748483, guid: 4ad5b5a141ba3ca4bb3b9356daba6904, type: 3}
+  animator: {fileID: 22100000, guid: fde1ac13ca999e7499f2dcd3d60ef08d, type: 2}
+  maxWeapons: 6
+  maxPassives: 6
+  startingWeapon: {fileID: 11400000, guid: 9de8ea1db81bd6944b4638c8590de8e0, type: 2}
+  rarity: 1
+  characterType: 4

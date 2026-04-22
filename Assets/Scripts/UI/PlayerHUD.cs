@@ -28,6 +28,8 @@ public class PlayerHUD : MonoBehaviour
             return;
         }
 
+        KillsText.SetText("0");
+        CoinText.SetText("0");
         SetPlayerLevelUI();
 
         Player.OnPlayerHealthChanged += OnPlayerHealthChanged;

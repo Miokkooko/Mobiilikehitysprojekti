@@ -1,7 +1,5 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.UI;
-
 public class NotificationYesNo : NotificationBase
 {
     [SerializeField]
@@ -23,8 +21,6 @@ public class NotificationYesNo : NotificationBase
     CanvasGroup buttonGroup;
 
     float m_flTransitionTimer = 0.35f;
-    float m_flDestroyBaseTime = 0.45f;
-
     public override void Initialize(NotificationData data)
     {
         base.Initialize(data);
@@ -54,9 +50,8 @@ public class NotificationYesNo : NotificationBase
 
     void DisappearAnim()
     {
-        Disappear(m_flDestroyBaseTime);
         // Disappear animation: Move down and remove dim
-        content.LeanMoveLocalY(-Screen.height, m_flTransitionTimer).setEaseInExpo().delay = 0.05f;
+        content.LeanMoveLocalY(-Screen.height, m_flTransitionTimer).setEaseInExpo().setOnComplete(() => Destroy(gameObject));
         bgDimmerGroup.LeanAlpha(0f, m_flTransitionTimer);
     }
 
@@ -78,6 +73,7 @@ public class NotificationYesNo : NotificationBase
         DisappearAnim();
         CancelAnimation();
     }
+
     void ConfirmAnimation()
     {
         // Pop
