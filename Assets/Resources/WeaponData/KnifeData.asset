@@ -19,7 +19,7 @@ MonoBehaviour:
   Icon: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}
   weaponType: 7
   poolType: 4
-  baseDamage: 2
+  baseDamage: 50
   firerate: 1
   piercing: 1
   projectileCount: 3

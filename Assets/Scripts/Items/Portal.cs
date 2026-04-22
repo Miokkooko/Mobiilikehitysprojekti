@@ -18,7 +18,7 @@ public class Portal : MonoBehaviour
 
         if (other.GetComponent<Player>() is Player p)
         {
-
+            PoolManager.Instance.DisableAllEnemies(EnemyPoolType.GenericEnemy);
             player.enabled = false;
             player.GetComponent<SpriteRenderer>().enabled = false;
             GameManager.Instance._currentState = GameManager.GameState.AfterBoss;

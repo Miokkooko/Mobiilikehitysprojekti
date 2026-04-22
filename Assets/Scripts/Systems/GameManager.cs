@@ -256,9 +256,9 @@ public class GameManager : MonoBehaviour
     {
         bossStateTimer += Time.deltaTime;
 
-        if (bossStateTimer > 6)
+        if (bossStateTimer > 2)
         {
-            finalBoss.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 10);
+            finalBoss.transform.position = new Vector2(player.transform.position.x, player.transform.position.y + 5);
             finalBoss.SetActive(true);
 
             _currentState = GameState.BossFight;
@@ -291,7 +291,7 @@ public class GameManager : MonoBehaviour
         return Math.Abs(player.transform.position.x - xCordinate) < enemySpawnDistance &&
                 Math.Abs(player.transform.position.y - yCordinate) < enemySpawnDistance;
     }
-    bool IsValidGround(Vector2 position)
+    public bool IsValidGround(Vector2 position)
     {
         Vector3Int cell;
         if (mainMap.activeInHierarchy == true)
