@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     protected float lastIntervalChangeBoss;
     protected float lastListChange = 0;
     public int listNumber = 0;
+    public int endgameListNumber = 4;
 
     int coins;
     public int Coins => coins;
@@ -75,7 +76,8 @@ public class GameManager : MonoBehaviour
         Normal,
         SceneChange,
         SpawnBoss,
-        BossFight
+        BossFight,
+        AfterBoss
     }
 
     public GameState _currentState = GameState.Normal;
@@ -163,7 +165,9 @@ public class GameManager : MonoBehaviour
             case GameState.BossFight:
                 BossFightState();
                 break;
-
+            case GameState.AfterBoss:
+                AfterBossState();
+                break;
 
         }
     }
@@ -221,6 +225,31 @@ public class GameManager : MonoBehaviour
             CalculateEnemy(currentEnemyList);
             lastEnemySpawnTime = gameTimer;
         }
+    }
+
+    public void AfterBossState()
+    {
+        currentEnemyList = enemyGroups[endgameListNumber].enemies;
+
+        if (gameTimer > lastEnemySpawnTime + interval)
+        {
+            CalculateEnemy(currentEnemyList);
+            lastEnemySpawnTime = gameTimer;
+        }
+
+        if (gameTimer > lastMiniBossSpawnTime + miniBossInterval)
+        {
+            CalculateEnemy(currentMiniBossList);
+            lastMiniBossSpawnTime = gameTimer;
+        }
+
+        if (gameTimer > lastContainerSpawnTime + containerInterval)
+        {
+            SpawnContainer();
+            lastContainerSpawnTime = gameTimer;
+        }
+        UpdateSpawnInterval();
+        ChangeLists();
     }
 
     public void SpawnBoss()
