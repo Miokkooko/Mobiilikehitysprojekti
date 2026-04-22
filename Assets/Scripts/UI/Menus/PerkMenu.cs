@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
@@ -14,9 +14,9 @@ public class PerkMenu : MonoBehaviour
     [Header("Perk LayOutGroup")]
     public Transform perkPrefab;
     public Transform perkListParent;
-    public StatusEffect placeholderData;
+    public PerkData placeholderData;
 
-    StatusEffect lastPressedPerk;
+    PerkData lastPressedPerk;
 
     public List<PerkItemUI> selectedTabPerks = new List<PerkItemUI>();
     List<PerkItemUI> selectedPerks = new List<PerkItemUI>();
@@ -39,16 +39,19 @@ public class PerkMenu : MonoBehaviour
 
     void SpawnPerkButtons()
     {
-        Transform t;
-        for (int i = 0; i < 12; i++)
+        Bastor.Helpers.KillChildren(perkListParent);
+        perkButtons.Clear();
+
+        // Haetaan kaikki perkit DataManagerista tai suoraan listasta
+        var allAvailablePerks = DataManager.Instance.AllAvailablePerks;
+
+        foreach (var pData in allAvailablePerks)
         {
-            t = Instantiate(perkPrefab, perkListParent);
-
-            if(t.TryGetComponent(out PerkItemUI ui))
+            Transform t = Instantiate(perkPrefab, perkListParent);
+            if (t.TryGetComponent(out PerkItemUI ui))
             {
-                ui.Initialize(placeholderData);
+                ui.Initialize(pData); // Varmista, että PerkItemUI.Initialize hyväksyy PerkDatan!
                 perkButtons.Add(ui);
-
                 ui.OnPerkClicked += OnPerkButtonClicked;
             }
         }
@@ -104,9 +107,10 @@ public class PerkMenu : MonoBehaviour
 
     void HandleLastPressedPerkUI()
     {
-        lastPressedPerkDescription.SetText(lastPressedPerk.Description);
-        lastPressedPerkName.SetText(lastPressedPerk.Name);
-        lastPressedPerkIcon.sprite = lastPressedPerk.Icon;
+        // Jos PerkDatassa ei ole Description-kenttää, käytä nimeä tai lisää Description PerkDataan
+        lastPressedPerkDescription.SetText(lastPressedPerk.perkName);
+        lastPressedPerkName.SetText(lastPressedPerk.perkName);
+        lastPressedPerkIcon.sprite = lastPressedPerk.icon;
         lastPressedPerkIcon.gameObject.SetActive(true);
     }
 }

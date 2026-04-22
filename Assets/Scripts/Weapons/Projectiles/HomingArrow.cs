@@ -33,21 +33,29 @@ public class HomingArrow : Projectile
     {
         if (_enemies == null || _enemies.Count == 0) return;
 
+        // 1. Etsi ensisijaisesti uusi kohde, johon EI ole vielä osuttu
         var nextTarget = _enemies
             .Where(e => e != null && e.gameObject.activeInHierarchy && !alreadyHit.Contains(e.GetComponent<IDamageable>()))
             .OrderBy(e => Vector3.Distance(transform.position, e.transform.position))
             .FirstOrDefault();
 
+        // 2. Jos sellaista ei löydy (esim. vain yksi bossi jäljellä), salli vanha kohde
+        if (nextTarget == null)
+        {
+            nextTarget = _enemies
+                .Where(e => e != null && e.gameObject.activeInHierarchy)
+                .OrderBy(e => Vector3.Distance(transform.position, e.transform.position))
+                .FirstOrDefault();
+
+            // Jos sallitaan uusi osuma samaan kohteeseen, tyhjennetään jo osutut, 
+            // jotta OnTriggerEnter2D päästää nuolen taas läpi
+            alreadyHit.Clear();
+        }
+
         if (nextTarget != null)
         {
             target = nextTarget.transform;
-            // Käännetään suunta heti, jotta nuoli "ponnahtaa" pois päin
             direction = (target.position - transform.position).normalized;
-        }
-        else
-        {
-            // Jos ketään muuta EI ole jäljellä, nuoli lentää suoraan ulos vihollisesta
-            target = null;
         }
 
     } // FindNewTarget

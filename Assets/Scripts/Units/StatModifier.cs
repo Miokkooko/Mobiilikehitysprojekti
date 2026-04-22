@@ -8,7 +8,9 @@
     ProjectileBurst,
     FirerateBonus,
     AoERadius,
-    AoEDamage
+    AoEDamage,
+    HpRegen,
+    Thorns
 }
 
 [System.Serializable]

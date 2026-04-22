@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f8af0e4a1038b4e860cb564b12c10a, type: 3}
-  m_Name: MaxHealthPassive
+  m_Name: DexterityPassive
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
-  Name: Max Health
-  Icon: {fileID: 21300000, guid: 14c8c7a52f8092f47b2613d84e1bc091, type: 3}
-  Description: Increases Max Health by a percentage
+  Name: Dexterity
+  Icon: {fileID: 0}
+  Description: More dexterity allows for more skillful throws, piercing an additional
+    enemy
   Duration: 0
   MaxStacks: 0
   TickRate: 1
@@ -22,11 +23,7 @@ MonoBehaviour:
   Permanent: 0
   ModifierType: 2
   BaseModifier:
-    Stat: 2
-    Value: 0.2
-    Type: 1
-  Upgrades:
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.2
+    Stat: 3
+    Value: 1
+    Type: 0
+  Upgrades: []
