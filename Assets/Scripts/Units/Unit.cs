@@ -36,6 +36,9 @@ public class Unit : MonoBehaviour, IDamageable
     float baseBonusXpGain = 1;
     public virtual float XpGainPercent => statSystem.Calculate(StatType.XpGainPercent, baseBonusXpGain);
 
+    float baseAoERadius = 1;
+    public virtual float AoERadius => statSystem.Calculate(StatType.AoERadius, baseAoERadius);
+
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
     Dictionary<ModifierType, List<StatusEffectInstance>> statusBuckets;

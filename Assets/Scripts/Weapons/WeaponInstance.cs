@@ -40,7 +40,7 @@ public class WeaponInstance
 
 
     float baseAoeRadius = 1f;
-    public float AoERadius => statSystem.Calculate(StatType.AoERadius, baseAoeRadius);
+    public float AoERadius => statSystem.Calculate(StatType.AoERadius, baseAoeRadius + owner.AoERadius);
     #endregion
 
     Coroutine fire;
