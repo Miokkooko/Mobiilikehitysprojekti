@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: CultistData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: Cultist
-  maxHealth: 15
-  baseDamage: 5
-  moveSpeed: 1
+  maxHealth: 35
+  baseDamage: 9
+  moveSpeed: 2
   baseSprite: {fileID: 21300000, guid: f21eba86d0c1da540b785d242a868746, type: 3}
-  animator: {fileID: 0}
-  xpValue: 0
+  animator: {fileID: 22100000, guid: 4600e8afd01821b4f9ffb47ad47a08f5, type: 2}
+  xpValue: 5
   poolType: 1
-  coinValue: 0
-  coinDropChance: 0
+  coinValue: 5
+  coinDropChance: 20

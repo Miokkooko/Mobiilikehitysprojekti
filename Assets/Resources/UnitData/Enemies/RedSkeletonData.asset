@@ -20,5 +20,5 @@ MonoBehaviour:
   animator: {fileID: 22100000, guid: b045eb50c6ea65d4689e56d20d594d2b, type: 2}
   xpValue: 3
   poolType: 1
-  coinValue: 1
-  coinDropChance: 8
+  coinValue: 3
+  coinDropChance: 25

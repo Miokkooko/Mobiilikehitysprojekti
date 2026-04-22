@@ -21,4 +21,4 @@ MonoBehaviour:
   xpValue: 3
   poolType: 1
   coinValue: 1
-  coinDropChance: 10
+  coinDropChance: 15
