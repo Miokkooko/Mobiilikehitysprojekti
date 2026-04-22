@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     private float lastContainerSpawnTime;
     private float containerInterval = 15f;
 
+    public float sceneHandSpawnTime = 300f;
+
 
     public enum GameState
     {
@@ -188,7 +190,7 @@ public class GameManager : MonoBehaviour
         UpdateSpawnInterval();
         ChangeLists();
 
-        if(gameTimer > 60)
+        if(gameTimer > sceneHandSpawnTime)
         {
             sceneHand.SetActive(true);
         }
