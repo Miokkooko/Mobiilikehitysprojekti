@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
   m_Name: 2DarkKnightTier2
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unitName: 
-  maxHealth: 0
-  baseDamage: 0
-  moveSpeed: 0
-  baseSprite: {fileID: 0}
-  animator: {fileID: 0}
+  unitName: Gloria, the Dark Knight
+  maxHealth: 90
+  baseDamage: 6
+  moveSpeed: 2.5
+  baseSprite: {fileID: 8467896835540862106, guid: c3653515d6ef8054e9d259295ea1236d, type: 3}
+  animator: {fileID: 22100000, guid: b7a95be542dbed3408ae8cbe456aa57d, type: 2}
   maxWeapons: 6
   maxPassives: 6
-  startingWeapon: {fileID: 0}
+  startingWeapon: {fileID: 11400000, guid: e114691d2a1dfcd468bb9be109ce7cc3, type: 2}
   rarity: 0
   characterType: 0

@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c8e43279b860c4bb3e4075a573c8bd, type: 3}
   m_Name: 3NobleTier2
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  unitName: 
-  maxHealth: 0
-  baseDamage: 0
-  moveSpeed: 0
-  baseSprite: {fileID: 0}
-  animator: {fileID: 0}
+  unitName: Victoria, the Noble
+  maxHealth: 80
+  baseDamage: 6
+  moveSpeed: 3
+  baseSprite: {fileID: -3862247730972854534, guid: 27b4924f89aa2744e9a13d201f697d04, type: 3}
+  animator: {fileID: 22100000, guid: 3148efd6579e87442af534cdf9550176, type: 2}
   maxWeapons: 6
   maxPassives: 6
-  startingWeapon: {fileID: 0}
+  startingWeapon: {fileID: 11400000, guid: edee366ce4eb8db4cb876373fb55832a, type: 2}
   rarity: 0
-  characterType: 0
+  characterType: 1

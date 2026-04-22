@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 6ReapersData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   unitName: Nita, the Grim Reaper
-  maxHealth: 70
-  baseDamage: 12
+  maxHealth: 80
+  baseDamage: 8
   moveSpeed: 3
   baseSprite: {fileID: 7785568700726733240, guid: ab899dfb230f46e47bd43d00a76ebaff, type: 3}
   animator: {fileID: 22100000, guid: 28e25a8d42e8d44478596f2190ba61a2, type: 2}

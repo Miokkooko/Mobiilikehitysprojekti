@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: 3NobleData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   unitName: Victoria, the Noble
-  maxHealth: 80
-  baseDamage: 8
+  maxHealth: 75
+  baseDamage: 5
   moveSpeed: 3
   baseSprite: {fileID: -3862247730972854534, guid: 27b4924f89aa2744e9a13d201f697d04, type: 3}
   animator: {fileID: 22100000, guid: 3148efd6579e87442af534cdf9550176, type: 2}
