@@ -182,4 +182,5 @@ MonoBehaviour:
   OnHitEffects: []
   enableParticles: 1
   hitParticles: {fileID: 4017514965822915143, guid: 26285d15365026248aaef20bdbddc1e4, type: 3}
+  AoEFallBack: 0
   _enemies: []

@@ -32,6 +32,10 @@ public class Unit : MonoBehaviour, IDamageable
 
     float baseFireratePercent = 1;
     public virtual float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, baseFireratePercent);
+  
+    float baseBonusXpGain = 1;
+    public virtual float XpGainPercent => statSystem.Calculate(StatType.XpGainPercent, baseBonusXpGain);
+
 
     Dictionary<StatusEffect, StatusEffectInstance> StatusDict;
     Dictionary<ModifierType, List<StatusEffectInstance>> statusBuckets;
@@ -112,6 +116,8 @@ public class Unit : MonoBehaviour, IDamageable
         if (context.UseStatusHooks)
             foreach (var sei in statuses)
                 sei.Effect.OnDealDamagePost(sei, context);
+
+        SpawnDmgPopUp(context);
     }
 
     public void ApplyKnockback(Vector2 direction, float force, float duration, bool canDamageOthers = false)
@@ -194,7 +200,7 @@ public class Unit : MonoBehaviour, IDamageable
 
         health = Mathf.Clamp(health - context.Amount, 0, MaxHealth);
 
-        SpawnDmgPopUp(context);
+        
 
         if (context.UseStatusHooks)
             foreach (var sei in victimStatuses)
@@ -236,7 +242,7 @@ public class Unit : MonoBehaviour, IDamageable
 
     }
 
-    public virtual void Heal(HealContext context)
+    public virtual void Heal(HealContext context, bool showPopUp = true)
     {
         var statuses = GetOrderedStatuses();
 
@@ -246,7 +252,8 @@ public class Unit : MonoBehaviour, IDamageable
 
         context.Target.health = Mathf.Clamp(context.Target.health + context.Amount, 0, context.Target.MaxHealth);
 
-        SpawnHealthPopUp(context);
+        if(showPopUp)
+            SpawnHealthPopUp(context);
 
         if (context.useHooks)
             foreach (var sei in statuses)
@@ -257,7 +264,9 @@ public class Unit : MonoBehaviour, IDamageable
     {
         if (target.StatusDict.TryGetValue(effect, out var existing))
         {
+            float prevMaxHP = target.MaxHealth;
             existing.Apply();
+            target.HandleMaxHealthChange(prevMaxHP);
             return;
         }
 
@@ -355,9 +364,9 @@ public class Unit : MonoBehaviour, IDamageable
         return StatusDict.ContainsKey(effect);
     }
 
-    void SpawnDmgPopUp(DamageContext context)
+    static void SpawnDmgPopUp(DamageContext context)
     {
-        Vector3 spawnPos = transform.position + Vector3.up * 1f;
+        Vector3 spawnPos = ((MonoBehaviour)context.Target).transform.position + Vector3.up * 1f;
         GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos);
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
         tmp.text = context.Amount.ToString();
@@ -368,9 +377,9 @@ public class Unit : MonoBehaviour, IDamageable
         }
     }
 
-    void SpawnHealthPopUp(HealContext context)
+    static void SpawnHealthPopUp(HealContext context)
     {
-        Vector3 spawnPos = transform.position + Vector3.up * 1f;
+        Vector3 spawnPos = (context.Target).transform.position + Vector3.up * 1f;
         GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos);
 
 

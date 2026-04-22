@@ -8,22 +8,8 @@ public class DataManager : MonoBehaviour
     PerkData[] perks;
     PlayerData selectedData;
 
-    public PerkData[] selectedPerks => perks;
+    public PerkData[] SelectedPerks => perks;
     public PlayerData CharacterData => selectedData;
-
-    int kills;
-    public int Kills => kills;
-
-    int coins;
-    public int Coins => coins;
-
-    // Apuluokka, jotta saadaan data ja rankki samaan pakettiin
-    [System.Serializable]
-    public class PurchasedPerk
-    {
-        public PerkData data;
-        public int currentRank;
-    }
 
     private void Awake()
     {
@@ -42,34 +28,8 @@ public class DataManager : MonoBehaviour
         selectedData = data;
     }
 
-    public void LoadSave()
+    public void SelectPerkDatas(PerkData[] datas)
     {
-
-    }
-
-    public void SaveData()
-    {
-
-    }
-
-
-    public void AddCoins(int amount)
-    {
-        coins += amount;
-    }
-
-    public bool SpendCoins(int amount)
-    {
-        if (coins >= amount)
-        {
-            coins -= amount;
-            return true;
-        }
-        return false;
-    }
-
-    public void AddKills(int amount)
-    {
-        kills += amount;
+        perks = datas;
     }
 }

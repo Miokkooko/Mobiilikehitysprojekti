@@ -12,7 +12,6 @@ public class Projectile : MonoBehaviour
     protected float damage = 1f;
     protected float projectileLifetime = 2f;
 
-    protected float aoeDamage = 1f;
     protected float aoeRadius = 1f;
 
     [Header("Projectiles")]
@@ -23,6 +22,8 @@ public class Projectile : MonoBehaviour
     protected Vector3 direction;
     protected Unit owner;
     protected WeaponData weaponData;
+    protected WeaponInstance weaponInstance;
+    public ProjectilePoolType AoEFallBack = ProjectilePoolType.None;
     public ProjectilePoolType PoolType => weaponData.poolType;
 
     protected Transform ownerPos => owner.transform;
@@ -48,7 +49,6 @@ public class Projectile : MonoBehaviour
     #region Movement and direction
     public virtual void Move()
     {
-
         transform.position += direction * projectileSpeed * Time.deltaTime;
     }
 
@@ -59,11 +59,12 @@ public class Projectile : MonoBehaviour
     }
     public virtual void Disable()
     {
-        PoolManager.Instance.DisableProjectile(PoolType, gameObject);
+        PoolManager.Instance.DisableProjectile(AoEFallBack != ProjectilePoolType.None ? AoEFallBack : PoolType, gameObject);
     }
-
+   
     public virtual void Initialize(WeaponInstance w, Unit p, Vector3 dir)
     {
+        weaponInstance = w;
         weaponData = w.data;
         damage = w.Damage;
         projectilePiercing = w.Piercing;
@@ -71,8 +72,7 @@ public class Projectile : MonoBehaviour
         direction = dir.normalized;
         owner = p;
         projectileLifetime = w.data.projectileLifeTime;
-        aoeDamage = w.data.aoeDamage;
-        aoeRadius = w.data.aoeRadius;
+        aoeRadius = w.AoERadius;
 
         OnHitEffects = w.OnHitEffects;
 
@@ -84,6 +84,7 @@ public class Projectile : MonoBehaviour
 
         gameObject.SetActive(true);
     }
+
     public virtual void Initialize(WeaponData w, Unit p, Vector3 dir)
     {
         weaponData = w;
@@ -93,7 +94,6 @@ public class Projectile : MonoBehaviour
         direction = dir.normalized;
         owner = p;
         projectileLifetime = w.projectileLifeTime;
-        aoeDamage = w.aoeDamage;
         aoeRadius = w.aoeRadius;
 
         if (owner is Player player)
@@ -101,15 +101,8 @@ public class Projectile : MonoBehaviour
             detRadius = player.GetComponentInChildren<DetectionRadius>();
             _enemies = detRadius._enemies;
         }
+
         gameObject.SetActive(true);
-
-    }
-
-    public virtual void InitializeAoE(Unit p, float d, float r)
-    {
-        owner = p;
-        aoeDamage = d;
-        aoeRadius = r;
     }
 
     public virtual void Rotate()
@@ -124,16 +117,16 @@ public class Projectile : MonoBehaviour
     #region Collision
     public virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
             return;
 
         if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
             Unit.DealDamage(new DamageContext(owner, d, damage));
-            OnHitParticles();
+            OnHit();    
         }
 
-        if (collision.tag == "Enemy")
+        if (collision.CompareTag("Enemy"))
         {
             Enemy enemy = collision.GetComponent<Enemy>();
 
@@ -159,7 +152,7 @@ public class Projectile : MonoBehaviour
 
 
 
-    public virtual void OnHitParticles()
+    public virtual void OnHit()
     {
         if (hitParticles != null)
         {
@@ -180,9 +173,12 @@ public class Projectile : MonoBehaviour
 
     public virtual void SpawnAoE()
     {
-        GameObject proj = Instantiate(Resources.Load<GameObject>("Particles/FireballAoE"), gameObject.transform.position, Quaternion.identity);
+        GameObject proj = PoolManager.Instance.SpawnProjectile(ProjectilePoolType.Projectile_AoE, transform.position);
+   
         Projectile aoe = proj.GetComponent<AoE>();
-        aoe.InitializeAoE(owner, aoeDamage, aoeRadius);
+
+        aoe.Initialize(weaponInstance, owner, Vector3.zero);
+        proj.SetActive(true);
     }
 
     #endregion
@@ -195,6 +191,14 @@ public class Projectile : MonoBehaviour
         }
         int random = Random.Range(0, _enemies.Count);
         return _enemies[random];
+    }
+
+    public Enemy GetRandomEnemiesCheck(Player player)
+    {
+        detRadius = player.GetComponentInChildren<DetectionRadius>();
+        _enemies = detRadius._enemies;
+
+        return GetRandomEnemy();
     }
 
     public IEnumerator DestroyAfterdelay(float delay)

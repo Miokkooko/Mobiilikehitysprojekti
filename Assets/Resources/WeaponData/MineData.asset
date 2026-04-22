@@ -19,19 +19,39 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 84cd6b1b0fa320d4ebebb1ecf4b2409c, type: 3}
   weaponType: 9
   poolType: 3
-  baseDamage: 2
-  firerate: 1
+  baseDamage: 4
+  firerate: 2.5
   piercing: 1
   projectileCount: 1
   projectileSpread: 22.5
   projectileSpeed: 0
   projectileBurst: 1
+  projectileBurstDelay: 0.2
   projectileLifeTime: 5
   aoeDamage: 1
   aoeRadius: 2
   usesProjectileBurst: 1
+  usesProjectileSpread: 0
   upgradeList:
+  - Stat: 0
+    Value: 0.25
+    Type: 1
+  - Stat: 5
+    Value: 1
+    Type: 0
+  - Stat: 6
+    Value: 0.25
+    Type: 0
   - Stat: 7
-    Value: 15
+    Value: 0.25
+    Type: 0
+  - Stat: 0
+    Value: 0.25
+    Type: 1
+  - Stat: 6
+    Value: 0.25
+    Type: 0
+  - Stat: 7
+    Value: 0.25
     Type: 1
   effectList: []

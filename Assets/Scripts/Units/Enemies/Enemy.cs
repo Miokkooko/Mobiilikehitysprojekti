@@ -8,7 +8,7 @@ public class Enemy : Unit
     protected ParticleSystem particles;
     protected string unitName;
     protected SpriteRenderer spriteRenderer;
-    protected GameObject playerToFollow;
+    protected GameObject playerToFollow => player.gameObject;
     protected Player player;
     protected Image healthBar;
     protected Canvas fullHealthBar;
@@ -35,12 +35,17 @@ public class Enemy : Unit
 
     public override void InitializeUnit(UnitData data)
     {
-        playerToFollow = GameObject.FindGameObjectWithTag("Player");
-        player = playerToFollow.GetComponent<Player>();
-        hitBox = GetComponent<CircleCollider2D>();
-        hitBox2 = GetComponent<BoxCollider2D>();
-        
-        particles = gameObject?.GetComponentInChildren<ParticleSystem>();
+        if(player == null)
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+
+        if(hitBox == null)
+            hitBox = GetComponent<CircleCollider2D>();
+
+        if (hitBox2 == null)
+            hitBox2 = GetComponent<BoxCollider2D>();
+
+        if (particles == null)
+            particles = gameObject.GetComponentInChildren<ParticleSystem>();
 
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), player.GetComponent<Collider2D>());
 
@@ -59,14 +64,6 @@ public class Enemy : Unit
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         RemoveAllStatusEffects(this);
-
-        if (playerToFollow == null || player == null)
-        {
-            playerToFollow = GameObject.FindGameObjectWithTag("Player");
-            player = playerToFollow.GetComponent<Player>();
-        }
-
-
 
         OnDeath += Enemy_OnDeath;
 
@@ -176,8 +173,8 @@ public class Enemy : Unit
     
     public virtual void DropCoin()
     {
-        float rand = Random.Range(1, enemyData.coinDropChance);
-        if (rand == 1)
+        float rand = Random.Range(0, 101);
+        if (rand <= enemyData.coinDropChance)
         {
             PoolManager.Instance.SpawnDrop(DropType.Coin, transform.position, enemyData.coinValue);
         }

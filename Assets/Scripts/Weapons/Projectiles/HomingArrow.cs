@@ -72,7 +72,7 @@ public class HomingArrow : Projectile
                 Unit.DealDamage(new DamageContext(owner, d, damage));
                 alreadyHit.Add(d);
 
-                OnHitParticles();
+                OnHit();
 
                 if (gameObject.activeInHierarchy)
                 {

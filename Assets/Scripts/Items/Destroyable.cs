@@ -56,7 +56,7 @@ public class Destroyable : MonoBehaviour, IDamageable
         }
     }
 
-    public void Heal(HealContext context)
+    public void Heal(HealContext context, bool showPopUp)
     {
         throw new System.NotImplementedException();
     }

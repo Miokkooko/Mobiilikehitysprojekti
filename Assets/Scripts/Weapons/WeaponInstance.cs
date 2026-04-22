@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 public class WeaponInstance
 {
@@ -31,14 +30,14 @@ public class WeaponInstance
 
     float baseProjectileSpread = 1f;
 
+    float baseFirerate = 1f;
     public float FireratePercent => statSystem.Calculate(StatType.FirerateBonus, owner.FireratePercent);
-    public float Firerate => Mathf.Max(1 - (FireratePercent - 1) * data.firerate, 0.2f);
+    public float Firerate => Mathf.Max((1 - (FireratePercent - 1)) * baseFirerate, 0.2f);
+
 
     float baseProjectileSpeed = 1;
     public float ProjectileSpeed => statSystem.Calculate(StatType.Speed, baseProjectileSpeed);
 
-    float baseAoeDamage = 1f;
-    public float AoEDamage => statSystem.Calculate(StatType.AoEDamage, baseAoeDamage);
 
     float baseAoeRadius = 1f;
     public float AoERadius => statSystem.Calculate(StatType.AoERadius, baseAoeRadius);
@@ -63,8 +62,8 @@ public class WeaponInstance
         baseDamage = data.baseDamage;
         baseProjectileSpeed = data.projectileSpeed;
         basePiercing = data.piercing;
-        baseAoeDamage = data.aoeDamage;
         baseAoeRadius = data.aoeRadius;
+        baseFirerate = data.firerate;
 
         OnHitEffects = new List<StatusEffect>();
         OnHitEffects.AddRange(owner.OnHitEffects);
@@ -78,6 +77,7 @@ public class WeaponInstance
 
         statSystem.AddModifier(new StatModifierInstance(data.upgradeList[upgradeRank]));
         upgradeRank++;
+        Debug.Log(AoERadius);
     }
 
     public void TryFire()
@@ -106,13 +106,30 @@ public class WeaponInstance
         //hae viimeisimmän inputin suunta + luo projectile + anna projectilelle viimeisimmän inputin suunta
         Vector3 dir = owner.GetComponent<PlayerMovement>().GetMoveDirection();
         Transform playerPos = owner.GetComponent<Transform>();
+        PoolManager manager = PoolManager.Instance;
 
-        //spread händlays spagetti
+        if (!data.usesProjectileSpread)
+        {
+            GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
+            if (proj.GetComponent<Projectile>() is Projectile projectile)
+            {
+                if (data.poolType == ProjectilePoolType.Projectile_Fireball)
+                {
+                    if (projectile.GetRandomEnemiesCheck(owner) == null)
+                    {
+                        manager.DisableProjectile(data.poolType, proj);
+                        return;
+                    }
+                }
+                projectile.Initialize(this, owner, dir);
+            }
+            proj.SetActive(true);
+            return;
+        }
+
         float spreadAngle = baseProjectileSpread;
-
         for (int i = 0; i < ProjectileCount; i++)
         {
-            PoolManager manager = PoolManager.Instance;
             GameObject proj = manager.SpawnProjectile(data.poolType, owner.transform.position);
 
             if (proj.GetComponent<Projectile>() is Projectile p)
@@ -143,15 +160,20 @@ public class WeaponInstance
                 }
 
                 Vector3 rotatedDir = Quaternion.Euler(0, 0, angle) * dir;
-                
-                if (proj.GetComponent<Projectile>() is Projectile projectile)
+
+
+                if (data.poolType == ProjectilePoolType.Projectile_Fireball)
                 {
-                    projectile.Initialize(this, owner, rotatedDir);
+                    if (p.GetRandomEnemiesCheck(owner) == null)
+                    {
+                        manager.DisableProjectile(data.poolType, proj);
+                        return;
+                    }
                 }
+                p.Initialize(this, owner, rotatedDir);
 
+                proj.SetActive(true);
             }
-
-            proj.SetActive(true);
         }
     }
 
@@ -161,7 +183,7 @@ public class WeaponInstance
         {
             Fire();
             lastFireTime = Time.time;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(data.projectileBurstDelay);
         }
 
     }
@@ -193,9 +215,6 @@ public class WeaponInstance
                 break;
             case StatType.AoERadius:
                 currentValue = AoERadius;
-                break;
-            case StatType.AoEDamage:
-                currentValue = AoEDamage;
                 break;
             default:
                 break;

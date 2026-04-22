@@ -183,6 +183,7 @@ MonoBehaviour:
   OnHitEffects: []
   enableParticles: 1
   hitParticles: {fileID: 0}
+  AoEFallBack: 0
   _enemies: []
 --- !u!95 &8193877183774839826
 Animator:

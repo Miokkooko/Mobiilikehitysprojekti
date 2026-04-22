@@ -24,12 +24,12 @@ public class CharacterBannerItem : BannerItem
 }
 
 [Serializable]
-public class UpgradeBannerItem : BannerItem
+public class PerkBannerItem : BannerItem
 {
-    public StatusEffect upgradeData;
+    public PerkData upgradeData;
     public void SetRarity()
     {
-        //rarity = charData.rarity;
+        rarity = upgradeData.rarity;
     }
 }
 

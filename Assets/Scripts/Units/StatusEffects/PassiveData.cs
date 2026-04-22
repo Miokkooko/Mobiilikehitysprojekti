@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-public enum PassiveType { Damage, Firerate, Speed, MaxHealth }
+public enum PassiveType { Damage, Firerate, Speed, MaxHealth, Piercing, HealthRegen, XpGain, Radius}
 [CreateAssetMenu(fileName = "PassiveData", menuName = "Passives/PassiveData", order = 1)]
 public class PassiveData : StatusEffect
 {

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b505b48eba5eb6428ddbbeef3a0739f, type: 3}
   m_Name: MaxHpModifier
   m_EditorClassIdentifier: Assembly-CSharp::ModifierStatusEffect
-  Name: HPRegenModifier
+  Name: MaxHPModifier
   Icon: {fileID: 21300000, guid: 1b9504d5cf7aeef48a3de52222d4dbf6, type: 3}
   Description: 
   Duration: 1
   MaxStacks: 3
   TickRate: 1
-  StatusHandling: 2
+  StatusHandling: 3
   Permanent: 1
   ModifierType: 2
   Modifiers:

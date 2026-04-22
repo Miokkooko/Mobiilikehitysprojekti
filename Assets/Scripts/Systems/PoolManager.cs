@@ -30,7 +30,8 @@ public enum ProjectilePoolType
     Projectile_Kanabo,
     Projectile_HomingArrow,
     Projectile_Tear,
-    Projectile_Aura
+    Projectile_Aura,
+    Projectile_AoE
 }
 public enum OtherPoolType
 {
@@ -57,6 +58,9 @@ public class EnemyPoolData : PoolData { public EnemyPoolType type; }
 public class PoolManager : MonoBehaviour
 {
     public static PoolManager Instance;
+
+    Vector2 disabledObjectHell = new Vector2(9999,9999);
+    Vector2 disabledProjectileHell = new Vector2(-9999,-9999);
 
     public Transform ProjectileParent;
     public Transform EnemyParent;
@@ -200,6 +204,7 @@ public class PoolManager : MonoBehaviour
         if (g.GetComponent<Enemy>() is Enemy enemy)
         {
             g.transform.position = position;
+            g.transform.rotation = new Quaternion(0, 0, 0, 0);
             enemy.InitializeUnit(data);
             g.SetActive(true);
             return g;
@@ -226,6 +231,9 @@ public class PoolManager : MonoBehaviour
             g = InstantiateEnabledPool(g, ProjectileParent, EnabledProjectilePools, projectileType);
         }
 
+       
+        if(projectileType == ProjectilePoolType.Projectile_AoE)
+            Debug.Log("why");
         g.transform.position = position;
 
         return g;
@@ -311,6 +319,7 @@ public class PoolManager : MonoBehaviour
 
     public void DisableProjectile(ProjectilePoolType type, GameObject g)
     {
+        g.transform.position = disabledProjectileHell;
         g.SetActive(false);
         EnabledProjectilePools[type].Remove(g);
         DisabledProjectilePools[type].Enqueue(g);
@@ -318,6 +327,7 @@ public class PoolManager : MonoBehaviour
 
     public void DisableEnemy(EnemyPoolType type, GameObject g)
     {
+        g.transform.position = disabledObjectHell;
         g.SetActive(false);
         EnabledEnemyPools[type].Remove(g);
         DisabledEnemyPools[type].Enqueue(g);
@@ -333,7 +343,7 @@ public class PoolManager : MonoBehaviour
         for (int i = list.Count - 1; i >= 0; i--)
         {
             GameObject g = list[i];
-
+            g.transform.position = disabledObjectHell;
             g.SetActive(false);
 
             DisabledEnemyPools[type].Enqueue(g);
@@ -344,6 +354,7 @@ public class PoolManager : MonoBehaviour
 
     public void DisableOther(OtherPoolType type, GameObject g)
     {
+        g.transform.position = disabledObjectHell;
         g.SetActive(false);
         EnabledPools[type].Remove(g);
         DisabledPools[type].Enqueue(g);

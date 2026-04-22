@@ -1,15 +1,15 @@
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class AoE : Projectile
 {
-    CircleCollider2D collider2d;
-    public override void Start()
+    public override void OnEnable()
     {
-        Destroy(gameObject, 0.5f);
+        StopAllCoroutines();
+        AoEFallBack = ProjectilePoolType.Projectile_AoE;
+        StartCoroutine(DestroyAfterdelay(0.5f));
         projectilePiercing = 99f;
-        collider2d = GetComponent<CircleCollider2D>();
-        collider2d.radius = aoeRadius;
+        transform.localScale = new Vector2(aoeRadius, aoeRadius);
     }
 
     public override void OnTriggerEnter2D(Collider2D collision)
@@ -19,7 +19,7 @@ public class AoE : Projectile
 
         if (collision.GetComponent<IDamageable>() is IDamageable d)
         {
-            Unit.DealDamage(new DamageContext(owner, d, aoeDamage));
+            Unit.DealDamage(new DamageContext(owner, d, damage));
         }
 
         if (collision.tag == "Enemy")
@@ -28,8 +28,13 @@ public class AoE : Projectile
 
             if (dummy != null)
             {
-                OnHitParticles();
+                OnHit();
             }
         }
+    }
+
+    public override void Move()
+    {
+        
     }
 }

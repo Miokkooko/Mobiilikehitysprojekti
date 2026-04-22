@@ -1,9 +1,21 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
+public class CharacterSelection
+{
+    public CharacterType CharacterType;
+    public PlayerData[] tiers;
+
+    public PlayerData GetData => tiers[0];
+    public PlayerData GetDataByTier(int copies)
+    {
+        return tiers[RankManager.GetRank(copies) - 1];
+    }
+}
 public class CharacterSelectMenu : MonoBehaviour
 {
     CarouselArray<PlayerData> characterData;
@@ -23,10 +35,17 @@ public class CharacterSelectMenu : MonoBehaviour
     public PlayerData selectedData => selection;
 
     List<CharacterEntry> characterEntries;
+    public CharacterSelection[] characters;
 
     private void OnEnable()
     {
-        characterData = CarouselArray<PlayerData>.FromArray(Resources.LoadAll<PlayerData>("UnitData/Players"));
+        PlayerData[] temp = new PlayerData[characters.Length];
+        for (int i = 0; i < characters.Length; i++) 
+        {
+            temp[i] = characters[i].GetData;
+        }
+
+        characterData = CarouselArray<PlayerData>.FromArray(temp);
         characterData.Next();
         characterEntries = SaveManager.GetCharacterEntries();
         SetCharacters();
@@ -59,7 +78,19 @@ public class CharacterSelectMenu : MonoBehaviour
         selectedCharSprite.color = copies > 0 ? enabledColor : disabledColor;
         selectedCharRank.Initialize(0, RankManager.GetRankProgress(copies), RankManager.CopiesPerRank, copies);
         selectedCharLock.SetActive(copies <= 0);
-        selection = copies > 0 ? characterData.Current : null;
+
+        if(copies > 0)
+        {
+            foreach(CharacterSelection entry in characters)
+            {
+                if(entry.CharacterType == characterData.Current.characterType)
+                {
+                    selection = entry.GetDataByTier(copies);
+                }    
+            }
+        }
+        else
+            selection = null;
         
         copies = GetCopiesFor(characterData.PeekNext().characterType);
 

@@ -10,6 +10,9 @@ public class PerkItemUI : MonoBehaviour
     public PerkData GetData => data;
 
     public Image bg;
+    public Sprite lockSprite;
+    public Button perkButton;
+
     public Image perkIcon;
 
     Color originalColor;
@@ -75,6 +78,12 @@ public class PerkItemUI : MonoBehaviour
     {
         isSelected = selected;
         HandleUIState();
+    }
+
+    public void SetOwned(bool owned)
+    {
+        perkButton.interactable = owned;
+        perkIcon.sprite = owned ? GetData.Icon : lockSprite;
     }
 
     public void OnSelected()

@@ -20,28 +20,36 @@ MonoBehaviour:
   weaponType: 7
   poolType: 4
   baseDamage: 2
-  firerate: 1
+  firerate: 1.25
   piercing: 1
   projectileCount: 3
   projectileSpread: 10
   projectileSpeed: 10
   projectileBurst: 1
+  projectileBurstDelay: 0.2
   projectileLifeTime: 1
   aoeDamage: 1
   aoeRadius: 1
   usesProjectileBurst: 1
+  usesProjectileSpread: 1
   upgradeList:
   - Stat: 3
-    Value: 1
+    Value: 2
+    Type: 0
+  - Stat: 6
+    Value: 0.2
+    Type: 1
+  - Stat: 0
+    Value: 2
+    Type: 0
+  - Stat: 4
+    Value: 2
     Type: 0
   - Stat: 5
     Value: 1
     Type: 0
-  - Stat: 0
-    Value: 0.1
-    Type: 1
   - Stat: 4
-    Value: 3
+    Value: 2
     Type: 0
   effectList:
   - {fileID: 11400000, guid: bccd77112f3fc5c4da6f2e1d05902b82, type: 2}

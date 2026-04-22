@@ -41,8 +41,6 @@ public class MeleeSwing : Projectile
 
     public override void Move()
     {
-
-
         elapsed += Time.deltaTime;
         float progress = elapsed / projectileLifetime;
 
@@ -87,7 +85,7 @@ public class MeleeSwing : Projectile
                 Unit.DealDamage(new DamageContext(owner, d, damage, true, (Vector2)direction));
                 alreadyHit.Add(d); // Lisätään listalle
 
-                OnHitParticles();
+                OnHit();
 
                 // Knockback-logiikka (kopioitu KnockBackistä)
                 if (collision.CompareTag("Enemy"))

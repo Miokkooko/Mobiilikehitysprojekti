@@ -23,10 +23,12 @@ public class WeaponData : ScriptableObject
     public float projectileSpread = 22.5f;
     public float projectileSpeed = 5;
     public float projectileBurst = 1;
+    public float projectileBurstDelay = 0.2f;
     public float projectileLifeTime = 2;
     public float aoeDamage = 1f;
     public float aoeRadius = 1f;
-    public bool usesProjectileBurst = true;
+    public bool usesProjectileBurst = false;
+    public bool usesProjectileSpread = false;
 
     public StatModifier[] upgradeList;
     public StatusEffect[] effectList;

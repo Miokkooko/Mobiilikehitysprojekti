@@ -25,7 +25,7 @@ public class EnemyProjectile : Projectile
 
             if (dummy != null)
             {
-                OnHitParticles();
+                OnHit();
             }
         }
     }

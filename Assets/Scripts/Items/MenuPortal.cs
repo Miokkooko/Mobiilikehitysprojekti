@@ -1,9 +1,5 @@
-using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Splines.ExtrusionShapes;
-using UnityEngine.UIElements;
 
 public class MenuPortal : MonoBehaviour
 {

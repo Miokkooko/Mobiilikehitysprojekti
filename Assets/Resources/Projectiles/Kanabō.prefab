@@ -183,6 +183,7 @@ MonoBehaviour:
   OnHitEffects: []
   enableParticles: 0
   hitParticles: {fileID: 0}
+  AoEFallBack: 0
   _enemies: []
   swingArc: 180
   weaponRange: 1.5

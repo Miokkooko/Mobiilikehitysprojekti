@@ -5,10 +5,10 @@ public class Proj_axe : Projectile
     Vector3 velocity;
     float dir;
 
-    public void OnEnable()
+    public override void OnEnable()
     {
 
-        base.Start();
+        base.OnEnable();
 
         dir = Random.Range(0, 2);
 

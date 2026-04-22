@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f8af0e4a1038b4e860cb564b12c10a, type: 3}
-  m_Name: DexterityPassive
+  m_Name: XpPassive
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
-  Name: Dexterity
-  Icon: {fileID: 0}
-  Description: More dexterity allows for more skillful throws, piercing an additional
-    enemy
+  Name: Xp Boost
+  Icon: {fileID: -7657372864669792561, guid: 643fb54c7bb6db545b5440f82da7f6d4, type: 3}
+  Description: Gain increased experience from souls!
   Duration: 0
   MaxStacks: 0
   TickRate: 1
   StatusHandling: 0
-  Permanent: 0
+  Permanent: 1
   ModifierType: 2
   BaseModifier:
-    Stat: 3
-    Value: 1
-    Type: 0
-  Upgrades: []
+    Stat: 8
+    Value: 0.2
+    Type: 1
+  Upgrades:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  passiveType: 6

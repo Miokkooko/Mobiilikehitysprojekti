@@ -121,7 +121,8 @@ public class PlayerHUD : MonoBehaviour
     {
         if (HealthBar == null)
             return;
-        
+
+        obj = (float)System.Math.Round(obj, 1);
         HealthBar.SetCurrentValue(obj);
         HealthBar.SetMaxValue(Player.MaxHealth);
         HealthText.text = obj.ToString() + " / " + Player.MaxHealth;

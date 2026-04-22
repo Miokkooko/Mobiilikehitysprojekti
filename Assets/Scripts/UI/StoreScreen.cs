@@ -5,6 +5,8 @@ using UnityEngine;
 public class StoreScreen : MonoBehaviour
 {
     public TMP_Text CoinsText;
+    public TMP_Text onePullText;
+    public TMP_Text fivePullText;
 
     public PullAnimator pullAnimator;
 
@@ -18,14 +20,17 @@ public class StoreScreen : MonoBehaviour
     Queue<ResultCard> cards = new Queue<ResultCard>();
     List<BannerItem> bannerData = new List<BannerItem>();
 
+    public int pullCost = 100;
+
     public Transform content;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CoinsText.text = DataManager.Instance.Coins.ToString() + " G";
+        CoinsText.text = SaveManager.GetCoins().ToString() + " G";
         banners = CarouselArray<Banner>.FromArray(bannerObjects);
-
+        onePullText.SetText(pullCost.ToString());
+        fivePullText.SetText((pullCost * 5).ToString());
         pullAnimator.OnAnimationFinished += HandleQueue;
     }
 
@@ -52,6 +57,16 @@ public class StoreScreen : MonoBehaviour
                 name = cbi.charData.GetName();
 
                 SaveManager.AddCharacter(cbi.charData.characterType, 1);
+            }
+
+            if(item is PerkBannerItem pbi)
+            {
+                icon = pbi.upgradeData.GetIcon();
+                currentCopies = SaveManager.GetPerkEntry(pbi.upgradeData.type).value;
+                rarity = pbi.upgradeData.rarity;
+                name = pbi.upgradeData.GetName();
+
+                SaveManager.AddPerk(pbi.upgradeData.type, 1);
             }
 
             t = Instantiate(resultCardPrefab, resultContent);
@@ -98,16 +113,23 @@ public class StoreScreen : MonoBehaviour
 
     public void TryPull()
     {
+        if (!SaveManager.TrySpendCoins(100))
+            return;
+
         bannerData.Clear();
         BannerItem item = banners.Current.Pull();
         bannerData.Add(item);
         pullAnimator.StartAnimation(item.rarity);
 
         SpawnResults();
+        UpdateUI();
     }
 
     public void TryPullFive()
     {
+        if (!SaveManager.TrySpendCoins(pullCost*5))
+            return;
+
         bannerData.Clear();
         Rarity highest = Rarity.Common;
         BannerItem latest;
@@ -124,37 +146,24 @@ public class StoreScreen : MonoBehaviour
         pullAnimator.StartAnimation(highest);
 
         SpawnResults();
+        UpdateUI();
     }
 
-
-    public void OnPurchaseCharacter(int cost)
+    public void MoveRosterRight()
     {
-        if (DataManager.Instance.SpendCoins(cost))
-        {
-            Debug.Log("Character bought!");
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log("Not enough money!");
-        }
+        banners.Current.gameObject.SetActive(false);
+        banners.Next();
+        banners.Current.gameObject.SetActive(true);
     }
-
-    public void OnPurchasePerk(int cost)
+    public void MoveRosterLeft()
     {
-        if (DataManager.Instance.SpendCoins(cost))
-        {
-            Debug.Log("Perk bought!");
-            UpdateUI();
-        }
-        else
-        {
-            Debug.Log("Not enough money!");
-        }
+        banners.Current.gameObject.SetActive(false);
+        banners.Previous();
+        banners.Current.gameObject.SetActive(true);
     }
 
     public void UpdateUI()
     {
-        CoinsText.text = DataManager.Instance.Coins.ToString() + " G";
+        CoinsText.text = SaveManager.GetCoins().ToString() + " G";
     }
 }

@@ -8,7 +8,7 @@
     ProjectileBurst,
     FirerateBonus,
     AoERadius,
-    AoEDamage,
+    XpGainPercent,
     HpRegen,
     Thorns
 }

@@ -51,6 +51,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   bg: {fileID: 1937029595826307726}
+  lockSprite: {fileID: 21300000, guid: ca59bdd21be14b544936ac3408e9355a, type: 3}
+  perkButton: {fileID: 4446677369498382651}
   perkIcon: {fileID: 7910309862056188540}
   selectedColor: {r: 0, g: 0.55938846, b: 0.9528302, a: 1}
   selectionBG: {fileID: 586800550795644423}

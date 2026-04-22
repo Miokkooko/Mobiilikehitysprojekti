@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
             return;
         }
         charMenu.Reload();
-        //perkMenu.Reload();
+        perkMenu.Reload();
     }
 
     private void Start()
@@ -55,6 +55,7 @@ public class MainMenu : MonoBehaviour
         }
 
         DataManager.Instance.SelectPlayerData(charMenu.selectedData);
+        DataManager.Instance.SelectPerkDatas(perkMenu.GetSelectedPerkDatas());
 
         SceneManager.LoadScene(2);
     }

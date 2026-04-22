@@ -111,6 +111,7 @@ MonoBehaviour:
   OnHitEffects: []
   enableParticles: 0
   hitParticles: {fileID: 0}
+  AoEFallBack: 0
   _enemies: []
 --- !u!58 &5246628240485953728
 CircleCollider2D:

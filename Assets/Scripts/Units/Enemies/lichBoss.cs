@@ -1,10 +1,6 @@
-using System;
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.DebugUI;
 
 public class lichBoss : Enemy
 {
@@ -82,10 +78,12 @@ public class lichBoss : Enemy
                     if (chooseAtk == 0)
                     {
                         StartCoroutine(TpAttack());
-                    }else if(chooseAtk == 1)
+                    }
+                    else if (chooseAtk == 1)
                     {
                         SpawnSkeletons();
-                    }else if(chooseAtk == 2)
+                    }
+                    else if (chooseAtk == 2)
                     {
                         ShootProjectiles();
                     }
@@ -126,16 +124,20 @@ public class lichBoss : Enemy
 
     public override void Move()
     {
+        if (playerToFollow == null)
+            return;
 
         if (!isPlayerNear)
         {
-                transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerToFollow.transform.position.x, playerToFollow.transform.position.y, 0), Speed * Time.deltaTime);
-        }else
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(playerToFollow.transform.position.x, playerToFollow.transform.position.y, 0), Speed * Time.deltaTime);
+        }
+        else
         {
+
             Vector3 directionAway = (transform.position - playerToFollow.transform.position).normalized;
             Vector3 targetPos = transform.position + directionAway;
 
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, (Speed*0.70f) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, (Speed * 0.70f) * Time.deltaTime);
         }
     }
 
@@ -183,7 +185,7 @@ public class lichBoss : Enemy
             new Vector3(1, -1, 0).normalized,
             new Vector3(-1, -1, 0).normalized
         };
-        float radius = 3f; 
+        float radius = 3f;
 
         foreach (Vector3 dir in directions)
         {
@@ -237,26 +239,26 @@ public class lichBoss : Enemy
             {
                 float angle = 0;
 
-                
-                    float even = i % 2;
 
-                    if (i == 0)
+                float even = i % 2;
+
+                if (i == 0)
+                {
+                    angle = 0;
+                }
+                else
+                {
+                    int side;
+                    if (i % 2 == 0)
                     {
-                        angle = 0;
+                        side = 1;
                     }
-                    else
-                    {
-                        int side;
-                        if (i % 2 == 0)
-                        {
-                            side = 1;
-                        }
-                        else side = -1;
+                    else side = -1;
 
-                        int step = (i + 1) / 2;
+                    int step = (i + 1) / 2;
 
-                        angle = side * step * spreadAngle;
-                    
+                    angle = side * step * spreadAngle;
+
                 }
 
                 Vector2 dir = (player.transform.position - transform.position).normalized;
@@ -316,7 +318,7 @@ public class lichBoss : Enemy
             handActive = true;
         }
 
-        if(Health <= MaxHealth / 2f)
+        if (Health <= MaxHealth / 2f)
         {
             chargeDuration = chargeDuration * 0.6f;
         }
@@ -372,10 +374,13 @@ public class lichBoss : Enemy
         //continuePortal.transform.position = new Vector2(player.transform.position.x -5, player.transform.position.y + 5);
         //menuPortal.transform.position = new Vector2(player.transform.position.x + 5, player.transform.position.y + 5);
 
+        continuePortal.transform.position = new Vector2(player.transform.position.x - 5, player.transform.position.y + 5);
+        menuPortal.transform.position = new Vector2(player.transform.position.x + 5, player.transform.position.y + 5);
         continuePortal.SetActive(true);
         menuPortal.SetActive(true);
 
         gameObject.SetActive(false);
+
     }
 }
 

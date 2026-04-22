@@ -584,20 +584,44 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 563890607}
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 718014960}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Reload
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PerkMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -606,6 +630,10 @@ PrefabInstance:
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Menu, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6077968146954886339, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1659,6 +1687,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7823338561192243144, guid: da3e72d4e462fd846957a23fddffce1f, type: 3}
+      propertyPath: pullCost
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7823338561192243144, guid: da3e72d4e462fd846957a23fddffce1f, type: 3}
+      propertyPath: 'bannerObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 184557272}
     - target: {fileID: 8034643931975199908, guid: da3e72d4e462fd846957a23fddffce1f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1863,6 +1899,17 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!114 &184557272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3162303539091000638, guid: da3e72d4e462fd846957a23fddffce1f, type: 3}
+  m_PrefabInstance: {fileID: 98928177}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b13e3c42c7c86ef4a931a18e189a107b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PerkBanner
 --- !u!1 &292618770
 GameObject:
   m_ObjectHideFlags: 0

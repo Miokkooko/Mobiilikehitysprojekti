@@ -45,19 +45,91 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7846e8fb90817c438c00c09ef4995bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  listNumber: 0
+  endgameListNumber: 4
+  bossState: 0
   deathMenu: {fileID: 0}
-  enemyGroups: []
-  miniBossGroups: []
+  enemyGroups:
+  - groupName: Group 1
+    enemies:
+    - EventName: 
+      data: {fileID: 11400000, guid: 5b884b80bd3406f40b8ba05025dc25b0, type: 2}
+      SpawnChance: 1
+  - groupName: Group 2
+    enemies:
+    - EventName: 
+      data: {fileID: 11400000, guid: 5b884b80bd3406f40b8ba05025dc25b0, type: 2}
+      SpawnChance: 0.33
+    - EventName: 
+      data: {fileID: 11400000, guid: 7f379164229fda847a58b99ab8cacc17, type: 2}
+      SpawnChance: 0.33
+    - EventName: Spider
+      data: {fileID: 11400000, guid: 57810e9c1aa397844ad662a7ed976e6f, type: 2}
+      SpawnChance: 0.33
+  - groupName: Group 3
+    enemies:
+    - EventName: 
+      data: {fileID: 11400000, guid: 3bd7e317e5f73b54485c46b3c6db2ee8, type: 2}
+      SpawnChance: 0.33
+    - EventName: 
+      data: {fileID: 11400000, guid: 7f379164229fda847a58b99ab8cacc17, type: 2}
+      SpawnChance: 0.33
+    - EventName: 
+      data: {fileID: 11400000, guid: 57810e9c1aa397844ad662a7ed976e6f, type: 2}
+      SpawnChance: 0.33
+  - groupName: Group 4
+    enemies:
+    - EventName: 
+      data: {fileID: 11400000, guid: 3bd7e317e5f73b54485c46b3c6db2ee8, type: 2}
+      SpawnChance: 0.5
+    - EventName: 
+      data: {fileID: 11400000, guid: 4d0f9b0f15b9b1a42aa479b90a499dd4, type: 2}
+      SpawnChance: 0.5
+    - EventName: 
+      data: {fileID: 11400000, guid: 57810e9c1aa397844ad662a7ed976e6f, type: 2}
+      SpawnChance: 0.5
+  - groupName: Group 5
+    enemies:
+    - EventName: 
+      data: {fileID: 11400000, guid: 4d0f9b0f15b9b1a42aa479b90a499dd4, type: 2}
+      SpawnChance: 0.8
+    - EventName: 
+      data: {fileID: 11400000, guid: 993920414d032344b8ad6aee345ad3f1, type: 2}
+      SpawnChance: 0.2
+  - groupName: Group 6
+    enemies:
+    - EventName: Cultist
+      data: {fileID: 11400000, guid: 993920414d032344b8ad6aee345ad3f1, type: 2}
+      SpawnChance: 1
+  miniBossGroups:
+  - groupName: MiniBosses 1
+    enemies:
+    - EventName: 
+      data: {fileID: 11400000, guid: 2d6ad95f0d66b564a95be5e65e84daa5, type: 2}
+      SpawnChance: 1
+    - EventName: 
+      data: {fileID: 11400000, guid: 35ece9e48e340f44c95e6207a7c48f53, type: 2}
+      SpawnChance: 1
+    - EventName: 
+      data: {fileID: 11400000, guid: 318c12d925efa0c43b24943a2043c7e4, type: 2}
+      SpawnChance: 1
   levelUpManager: {fileID: 8906414872920602259}
   player: {fileID: 0}
   groundTilemap: {fileID: 0}
-  interval: 2
+  mainMap: {fileID: 0}
+  bossMap: {fileID: 0}
+  globalLight: {fileID: 0}
+  finalBoss: {fileID: 0}
+  sceneHand: {fileID: 0}
+  interval: 1.5
   spawnDecreaseTime: 30
-  spawnDecreaseAmount: 0.1
+  spawnDecreaseAmount: 0.075
   miniBossInterval: 60
   spawnDecreaseTimeBoss: 60
-  spawnDecreaseAmountBoss: 10
+  spawnDecreaseAmountBoss: 5
   enemySpawnDistance: 5
+  sceneHandSpawnTime: 300
+  _currentState: 0
 --- !u!114 &8906414872920602259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,10 +144,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelUpManager
   data: {fileID: 11400000, guid: 6dc5927fc3e6d8043aba97d8b91eeae4, type: 2}
   PassiveUpgrades:
-  - {fileID: 11400000, guid: bf99335b00c2ee54fa6dbddf803e9fd0, type: 2}
-  - {fileID: 11400000, guid: 17da11df1bc1df44c864d8c9e7b6e18f, type: 2}
   - {fileID: 11400000, guid: d2a6b45a00d6aaa47aa3443f96eeb26d, type: 2}
   - {fileID: 11400000, guid: e440d92097af2a3438ca3ca6ba191b56, type: 2}
+  - {fileID: 11400000, guid: c82bdc588830fb14181958df4add1467, type: 2}
+  - {fileID: 11400000, guid: 17da11df1bc1df44c864d8c9e7b6e18f, type: 2}
+  - {fileID: 11400000, guid: 707aa543f5cb54542a9a0e61febae1d8, type: 2}
+  - {fileID: 11400000, guid: cffd8bcba34c4004b86b130688c12c39, type: 2}
+  - {fileID: 11400000, guid: bf99335b00c2ee54fa6dbddf803e9fd0, type: 2}
+  - {fileID: 11400000, guid: 0f03126d1855953499ec180f3ca7afb4, type: 2}
   WeaponUpgrades:
   - {fileID: 11400000, guid: 41a37d1ec3eb7f5439e283fa0755571e, type: 2}
   - {fileID: 11400000, guid: 5f87a1e7cfbcab541bc3d27eceb591b7, type: 2}
@@ -84,4 +160,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 930bf999a9aaec04486107fe6692e277, type: 2}
   - {fileID: 11400000, guid: f35647ba8e1b38940bad66777fbc91c2, type: 2}
   - {fileID: 11400000, guid: 81922a80660cc0141aa234f01dda8fd5, type: 2}
+  - {fileID: 11400000, guid: 9de8ea1db81bd6944b4638c8590de8e0, type: 2}
+  - {fileID: 11400000, guid: a71d59c8072ff7642b34221efd4af4fd, type: 2}
+  - {fileID: 11400000, guid: a05f59896274241418292e29cdc64711, type: 2}
   player: {fileID: 0}

@@ -18,7 +18,7 @@ MonoBehaviour:
   Duration: 1
   MaxStacks: 3
   TickRate: 1
-  StatusHandling: 0
+  StatusHandling: 3
   Permanent: 1
   ModifierType: 2
-  ThornsPercentage: 0.5
+  ThornsPercentage: 1

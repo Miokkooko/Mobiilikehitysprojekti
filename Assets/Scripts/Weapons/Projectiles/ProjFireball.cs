@@ -13,13 +13,6 @@ public class ProjFireball : Projectile
         particles = gameObject.GetComponent<ParticleSystem>();
         target = GetRandomEnemy();
 
-        if (target == null)
-        {
-            Disable();
-            //Destroy(gameObject);
-            return;
-        }
-
         dir = (target.transform.position - transform.position).normalized;
 
     }
@@ -37,9 +30,9 @@ public class ProjFireball : Projectile
         particles.transform.rotation = Quaternion.Euler(0, 0, angle-180); 
     }
 
-    public override void OnHitParticles()
+    public override void OnHit()
     {
-        base.OnHitParticles();
         SpawnAoE();
+        base.OnHit();
     }
 }

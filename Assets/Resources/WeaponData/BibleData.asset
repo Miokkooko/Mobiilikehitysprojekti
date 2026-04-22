@@ -26,21 +26,32 @@ MonoBehaviour:
   projectileSpread: 0
   projectileSpeed: 3
   projectileBurst: 1
+  projectileBurstDelay: 0.5
   projectileLifeTime: 6
   aoeDamage: 0
   aoeRadius: 0
   usesProjectileBurst: 1
+  usesProjectileSpread: 0
   upgradeList:
+  - Stat: 5
+    Value: 1
+    Type: 0
+  - Stat: 6
+    Value: 0.15
+    Type: 0
+  - Stat: 5
+    Value: 1
+    Type: 0
+  - Stat: 6
+    Value: 0.25
+    Type: 0
+  - Stat: 5
+    Value: 1
+    Type: 0
   - Stat: 0
-    Value: 0.3
-    Type: 1
-  - Stat: 1
-    Value: 0.5
+    Value: 0.25
     Type: 1
   - Stat: 5
-    Value: 0.4
-    Type: 1
-  - Stat: 4
     Value: 1
     Type: 0
   effectList:

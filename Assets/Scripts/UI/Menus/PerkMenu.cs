@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using Mono.Cecil;
 
 
 public class PerkMenu : MonoBehaviour
@@ -23,12 +24,31 @@ public class PerkMenu : MonoBehaviour
     List<PerkItemUI> selectedPerks = new List<PerkItemUI>();
     List<PerkItemUI> perkButtons = new List<PerkItemUI>();
 
+    public PerkData[] GetSelectedPerkDatas()
+    {
+        PerkData[] array = new PerkData[selectedPerks.Count];
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i] = selectedPerks[i].GetData;
+        }
+
+        return array;
+    }
+
     private void Start()
     {
         Bastor.Helpers.KillChildren(perkListParent);
         perkDatas = Resources.LoadAll<PerkData>("StatusEffects/Perks");
         SpawnPerkButtons();
+        Reload();
     }
+
+    public void Reload()
+    {
+        SetPerkOwnershipStatus();
+    }
+
     void OnDestroy()
     {
         foreach (var ui in perkButtons)
@@ -51,6 +71,23 @@ public class PerkMenu : MonoBehaviour
                 ui.Initialize(pData); // Varmista, että PerkItemUI.Initialize hyväksyy PerkDatan!
                 perkButtons.Add(ui);
                 ui.OnPerkClicked += OnPerkButtonClicked;
+            }
+        }
+    }
+
+    void SetPerkOwnershipStatus()
+    {
+        PerkEntry perk;
+        for (int i = 0; i < perkButtons.Count; i++)
+        {
+            perk = SaveManager.GetPerkEntry(perkButtons[i].GetData.type);
+            if(perk.value > 0)
+            {
+                perkButtons[i].SetOwned(true);
+            }
+            else
+            {
+                perkButtons[i].SetOwned(false);
             }
         }
     }
@@ -107,7 +144,7 @@ public class PerkMenu : MonoBehaviour
     {
         // Jos PerkDatassa ei ole Description-kenttää, käytä nimeä tai lisää Description PerkDataan
         lastPressedPerkDescription.SetText(lastPressedPerk.GetDescription());
-        lastPressedPerkName.SetText(lastPressedPerk.GetName());
+        lastPressedPerkName.SetText(lastPressedPerk.GetName() + " - " + RankManager.GetRank(SaveManager.GetPerkEntry(lastPressedPerk.type).value));
         lastPressedPerkIcon.sprite = lastPressedPerk.GetIcon();
         lastPressedPerkIcon.gameObject.SetActive(true);
     }

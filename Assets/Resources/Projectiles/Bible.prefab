@@ -167,6 +167,7 @@ MonoBehaviour:
   OnHitEffects: []
   enableParticles: 0
   hitParticles: {fileID: 0}
+  AoEFallBack: 0
   _enemies: []
   radius: 2
   _angle: 0

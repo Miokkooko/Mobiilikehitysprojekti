@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 public class StatModifierInstance
 {
     int stacks = 1;
@@ -29,6 +31,8 @@ public class StatModifierInstance
         stacks++;
 
         modifier.Value = data.Value * stacks;
+
+        Debug.WriteLine(modifier.Value);
     }
 
     public void DecrementStack()

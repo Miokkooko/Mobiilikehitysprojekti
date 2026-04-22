@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 4OniTier3
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   unitName: Homura, the Oni
-  maxHealth: 110
+  maxHealth: 115
   baseDamage: 10
   moveSpeed: 2.5
   baseSprite: {fileID: 21300000, guid: d7ac0e0ae849fb5478347ca250188230, type: 3}

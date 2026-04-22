@@ -1,5 +1,4 @@
-﻿using Firebase;
-using Firebase.Database;
+﻿using Firebase.Database;
 using Firebase.Extensions;
 using System;
 using System.Collections.Generic;
@@ -173,6 +172,31 @@ public class SaveManager
             .SetRawJsonValueAsync(JsonUtility.ToJson(run));
     }
     #endregion
+
+    public static int GetCoins()
+    {
+        if (saveData == null)
+            LoadSave();
+
+        return saveData.coins;
+    }
+
+    public static bool TrySpendCoins(int amount)
+    {
+        if (saveData == null)
+            LoadSave();
+
+        if(saveData.coins - amount < 0)
+        {
+            Debug.Log("Can't spend more coins than you own!");
+            return false;
+        }
+        saveData.coins -= amount;
+
+        Save();
+
+        return true;
+    }
 
     public static SaveData GetSaveData()
     {

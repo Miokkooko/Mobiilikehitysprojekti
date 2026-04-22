@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-public class CharacterBanner : Banner
+public class PerkBanner : Banner
 {
-    public CharacterBannerItem[] CommonItems;
-    public CharacterBannerItem[] RareItems;
-    public CharacterBannerItem[] LegendaryItems;
+    public PerkBannerItem[] CommonItems;
+    public PerkBannerItem[] RareItems;
+    public PerkBannerItem[] LegendaryItems;
 
     private void Start()
     {

@@ -53,7 +53,7 @@ public class Player : Unit
             regenTimer += Time.deltaTime;
             if (regenTimer >= 1f)
             {
-                Heal(new HealContext(this, HpRegen, true));
+                Heal(new HealContext(this, HpRegen, true), false);
                 regenTimer = 0;
             }
         }
@@ -74,8 +74,20 @@ public class Player : Unit
         InitializeUnit(DataManager.Instance.CharacterData);
         Debug.Log("Starting weapon: " + playerData.startingWeapon);
         AddWeapon(playerData.startingWeapon);
-
+        AddPerks();
     }
+    void AddPerks()
+    {
+        foreach (var item in DataManager.Instance.SelectedPerks)
+        {
+            int x = RankManager.GetRank(SaveManager.GetPerkEntry(item.type).value);
+            for (int i = 0; i < x; i++)
+            {
+                ApplyStatusEffect(item.statusEffect, this);
+            }
+        }
+    }
+
     #region Passives
     public void AddPassive(PassiveData data)
     {
@@ -185,9 +197,9 @@ public class Player : Unit
 
         OnPlayerHealthChanged?.Invoke(Health);
     }
-    public override void Heal(HealContext context)
+    public override void Heal(HealContext context, bool showPopUp = true)
     {
-        base.Heal(context);
+        base.Heal(context, showPopUp);
 
         OnPlayerHealthChanged?.Invoke(Health);
     }
@@ -205,6 +217,8 @@ public class Player : Unit
     #region LevelingSystem
     public void IncreaseExp(float amount)
     {
+        amount = amount * XpGainPercent;
+
         totalExp += amount;
 
         OnPlayerExpChanged?.Invoke(totalExp);

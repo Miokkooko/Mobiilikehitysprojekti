@@ -53,5 +53,5 @@ public class KillContext
 public interface IDamageable
 {
     void TakeDamage(DamageContext context);
-    void Heal(HealContext context);
+    void Heal(HealContext context, bool showPopUp);
 }

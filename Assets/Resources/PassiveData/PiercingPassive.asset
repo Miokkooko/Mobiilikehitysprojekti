@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85f8af0e4a1038b4e860cb564b12c10a, type: 3}
-  m_Name: ThornsPassive
+  m_Name: PiercingPassive
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
-  Name: 
-  Icon: {fileID: 0}
-  Description: 
+  Name: Piercing
+  Icon: {fileID: -215982266777626535, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}
+  Description: More dexterity allows for more skillful throws, piercing an additional
+    enemy
   Duration: 0
   MaxStacks: 0
   TickRate: 1
   StatusHandling: 0
-  Permanent: 1
+  Permanent: 0
   ModifierType: 2
   BaseModifier:
-    Stat: 10
+    Stat: 3
     Value: 1
     Type: 0
   Upgrades:
@@ -30,3 +31,4 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  passiveType: 4

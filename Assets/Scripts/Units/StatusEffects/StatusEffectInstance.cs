@@ -60,7 +60,7 @@ public class StatusEffectInstance
         stacks++;
         stacks = math.clamp(stacks, 0, Effect.MaxStacks);
         duration = Effect.Duration;
-
+        Debug.Log("Stacks incremented");
         Effect.OnStackIncrement(this);
     }
 
@@ -96,6 +96,9 @@ public class StatusEffectInstance
                     Effect.OnApplied(this);
                 break;
             case StatusHandling.StackIncrementDecrement:
+                IncrementStacks();
+                break;
+            case StatusHandling.StackIncrementExpire:
                 IncrementStacks();
                 break;
             case StatusHandling.MaxStackDecrement:

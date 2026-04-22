@@ -132,12 +132,6 @@ public class GameManager : MonoBehaviour
 
         SaveManager.SaveRun((Player)e.Target, Kills, GameTime, Coins);
 
-        if (DataManager.Instance != null)
-        {
-            DataManager.Instance.AddCoins(Instance.Coins);
-            DataManager.Instance.AddKills(Instance.Kills);
-        }
-
         ResetCoinCount();
 
         if (deathMenu != null)
@@ -427,6 +421,7 @@ public class GameManager : MonoBehaviour
 
     public void AddCoins(int amount)
     {
+        Debug.Log(amount);
         coins += amount;
         OnCoinChanged?.Invoke(coins);
     }

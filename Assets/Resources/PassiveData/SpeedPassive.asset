@@ -13,17 +13,21 @@ MonoBehaviour:
   m_Name: SpeedPassive
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
   Name: Speed
-  Description: Increases Speed by a flat amount
+  Icon: {fileID: 21300000, guid: 522dde356410f7e4c9d941b6073bf1cb, type: 3}
+  Description: Increases your movement speed!
   Duration: 0
   MaxStacks: 0
-  StackType: 0
-  LifetimeType: 0
+  TickRate: 1
+  StatusHandling: 0
+  Permanent: 0
   ModifierType: 2
-  Icon: {fileID: 21300000, guid: 522dde356410f7e4c9d941b6073bf1cb, type: 3}
   BaseModifier:
     Stat: 1
-    Value: 1
-    Type: 0
-    source: {fileID: 11400000}
+    Value: 0.1
+    Type: 1
   Upgrades:
-  - 0.5
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  passiveType: 2
