@@ -34,11 +34,11 @@ MonoBehaviour:
     Value: 0.1
     Type: 1
   - Stat: 6
-    Value: 0.8
+    Value: 0.1
     Type: 1
   - Stat: 5
-    Value: 0.2
-    Type: 1
+    Value: 1
+    Type: 0
   effectList:
   - {fileID: 11400000, guid: bccd77112f3fc5c4da6f2e1d05902b82, type: 2}
   - {fileID: 11400000, guid: 8485e8e14981a434c97abf9dd627e7de, type: 2}
