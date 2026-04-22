@@ -12,9 +12,9 @@ public class RankManager
     {
         int rank = 1;
 
-        while(copies >= 5)
+        while(copies >= CopiesPerRank)
         {
-            copies -= 5;
+            copies -= CopiesPerRank;
             rank++;
         }
 
@@ -29,7 +29,7 @@ public class RankManager
     public static int GetRankProgress(int copies)
     {
         if(copies != 0 && copies % CopiesPerRank == 0)
-            return 5;
+            return CopiesPerRank;
         
         return copies % CopiesPerRank;
     }
