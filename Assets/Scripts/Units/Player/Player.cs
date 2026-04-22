@@ -14,7 +14,6 @@ public class Player : Unit
     public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
 
     public virtual float HpRegen => statSystem.Calculate(StatType.HpRegen, 0); // Oletus 0
-    public virtual float ThornsPercent => statSystem.Calculate(StatType.Thorns, 0);
 
     PlayerMovement Movement;
     public PlayerData playerData;
@@ -58,8 +57,8 @@ public class Player : Unit
                 regenTimer = 0;
             }
         }
-
     }
+
     public override void InitializeUnit(UnitData data)
     {
         base.InitializeUnit(data);
@@ -75,8 +74,6 @@ public class Player : Unit
         InitializeUnit(DataManager.Instance.CharacterData);
         Debug.Log("Starting weapon: " + playerData.startingWeapon);
         AddWeapon(playerData.startingWeapon);
-
-        ApplyMenuPerks();
 
     }
     #region Passives
@@ -94,27 +91,7 @@ public class Player : Unit
         Debug.Log("Player got " + data.Name);
     }
 
-    void ApplyMenuPerks()
-    {
-        // Oletetaan, että DataManager tietää mitä perkkejä on ostettu ja mikä niiden rank on
-        foreach (var perk in DataManager.Instance.PurchasedPerks)
-        {
-            float bonusValue = perk.data.GetTotalValue(perk.currentRank);
-
-            // Luodaan modifioija-data
-            StatModifier modData = new StatModifier
-            {
-                Stat = perk.data.statToBoost,
-                Value = bonusValue,
-                Type = ModifierType.Flat // Kokeillaa flat bonuksia
-            };
-
-            // Lisätään se systeemiin instanssina
-            statSystem.AddModifier(new StatModifierInstance(modData));
-        }
-    
-    } // ApplyMenuPerks
-
+  
     public void UpgradePassive(PassiveData data)
     {
         float prevMaxHp = MaxHealth;
@@ -207,14 +184,6 @@ public class Player : Unit
         base.TakeDamage(context);
 
         OnPlayerHealthChanged?.Invoke(Health);
-
-        if (context.Source != null && ThornsPercent > 0)
-        {
-            float reflectAmount = context.Amount * ThornsPercent;
-            // Huom: käytä DealDamagea, jotta se ei aiheuta ikuista looppia
-            context.Source.TakeDamage(new DamageContext(this, context.Source, reflectAmount, false));
-        }
-
     }
     public override void Heal(HealContext context)
     {
@@ -240,7 +209,7 @@ public class Player : Unit
 
         OnPlayerExpChanged?.Invoke(totalExp);
 
-        if (totalExp >= RequiredExp)
+        while (totalExp >= RequiredExp)
         {
             previousXPReq = RequiredExp;
             expMultiplier += 10*level;

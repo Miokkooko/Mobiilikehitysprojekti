@@ -30,6 +30,18 @@ public class CharacterEntry
     }
 }
 [Serializable]
+public class PerkEntry
+{
+    public PerkType type;
+    public int value;
+
+    public PerkEntry(PerkType _type, int _value)
+    {
+        type = _type;
+        value = _value;
+    }
+}
+[Serializable]
 public class SaveData
 {
     public long lastUpdated;
@@ -39,6 +51,7 @@ public class SaveData
     public float totalPlayTime;
 
     public List<CharacterEntry> charactersOwned;
+    public List<PerkEntry> perksOwned;
 }
 
 public class SaveManager
@@ -115,7 +128,7 @@ public class SaveManager
         });
     }
 
-    public static void SaveToFirebase()
+    static void SaveToFirebase()
     {
         if (saveData == null || userRef == null)
             return;
@@ -134,7 +147,7 @@ public class SaveManager
             });
     }
 
-    public static void DeleteFromFirebase()
+    static void DeleteFromFirebase()
     {
         if (userRef == null)
             return;
@@ -193,23 +206,31 @@ public class SaveManager
 
         return saveData.charactersOwned;
     }
+   
 
-    public static void DeleteSave()
+    public static PerkEntry GetPerkEntry(PerkType type)
     {
-        saveData = null;
+        if (saveData == null)
+            LoadSave();
 
-        if (File.Exists(savePath))
+        foreach (var item in saveData.perksOwned)
         {
-            File.Delete(savePath);
-            Debug.Log("Save file deleted.");
-        }
-        else
-        {
-            Debug.Log("No save file to delete.");
+            if (item.type == type)
+                return item;
         }
 
-        DeleteFromFirebase();
-        LoadSave();
+        PerkEntry newPerk = new PerkEntry(type, 0);
+
+        saveData.perksOwned.Add(newPerk);
+
+        return newPerk;
+    }
+    public static List<PerkEntry> GetPerkEntries()
+    {
+        if (saveData == null)
+            LoadSave();
+
+        return saveData.perksOwned;
     }
 
     public static void AddCharacter(CharacterType character, int amount = 1)
@@ -232,6 +253,29 @@ public class SaveManager
         if (!owned)
         {
             saveData.charactersOwned.Add(new CharacterEntry(character, amount));
+        }
+    }
+
+    public static void AddPerk(PerkType perk, int amount = 1)
+    {
+        if (saveData == null)
+            LoadSave();
+
+        bool owned = false;
+
+        foreach (var item in saveData.perksOwned)
+        {
+            if (item.type == perk)
+            {
+                owned = true;
+                item.value = Math.Clamp(item.value + amount, 0, RankManager.MaxCopies);
+                break;
+            }   
+        }
+
+        if (!owned)
+        {
+            saveData.perksOwned.Add(new PerkEntry(perk, amount));
         }
     }
 
@@ -270,7 +314,6 @@ public class SaveManager
 
         Save();
     }
- 
 
     public static void Save()
     {
@@ -305,5 +348,23 @@ public class SaveManager
         }
 
         OnSaveLoaded?.Invoke();
+    }
+
+    public static void DeleteSave()
+    {
+        saveData = null;
+
+        if (File.Exists(savePath))
+        {
+            File.Delete(savePath);
+            Debug.Log("Save file deleted.");
+        }
+        else
+        {
+            Debug.Log("No save file to delete.");
+        }
+
+        DeleteFromFirebase();
+        LoadSave();
     }
 }

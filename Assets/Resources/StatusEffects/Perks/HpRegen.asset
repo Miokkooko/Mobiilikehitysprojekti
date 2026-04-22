@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd5dbe976bc5654d962eec0ca4c3cf9, type: 3}
   m_Name: HpRegen
   m_EditorClassIdentifier: Assembly-CSharp::PerkData
-  perkName: Rejuvenation
-  statToBoost: 9
-  baseValue: 1
-  valuePerRank: 1
-  icon: {fileID: 21300000, guid: 54baac894c3a1484db6b6a876e65cfb4, type: 3}
+  rarity: 0
+  Name: Health Regen Perk
+  Description: 'Increases Health Regeneration!
+
+    1hp/s Per Rank.'
+  statusEffect: {fileID: 11400000, guid: f1539d785af631a42859ccb0ecfbc238, type: 2}
+  type: 3
+  Icon: {fileID: 21300000, guid: 54baac894c3a1484db6b6a876e65cfb4, type: 3}

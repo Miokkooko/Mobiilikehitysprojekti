@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd5dbe976bc5654d962eec0ca4c3cf9, type: 3}
+  m_Name: ProjectileData
+  m_EditorClassIdentifier: Assembly-CSharp::PerkData
+  rarity: 2
+  Name: Projectile Perk
+  Description: 'Spreading weapons shoot extra projectiles!
+
+    1 Per Rank.'
+  statusEffect: {fileID: 11400000, guid: c85bedb25a270e54ca16e70fc2ee22f2, type: 2}
+  type: 6
+  Icon: {fileID: -5873187562530451246, guid: 12649ef717e98c64a9b395806c973db6, type: 3}

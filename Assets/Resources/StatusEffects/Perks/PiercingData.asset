@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd5dbe976bc5654d962eec0ca4c3cf9, type: 3}
   m_Name: PiercingData
   m_EditorClassIdentifier: Assembly-CSharp::PerkData
-  perkName: Penetration
-  statToBoost: 3
-  baseValue: 1
-  valuePerRank: 1
-  icon: {fileID: -652008767, guid: d04e8ba993034bc479b284f2a65f6b2d, type: 3}
+  rarity: 0
+  Name: Piercing Perk
+  Description: 'Increases Piercing!
+
+    1 Per Rank.'
+  statusEffect: {fileID: 11400000, guid: 678fe8cd00f7b514883a237adddfe5b0, type: 2}
+  type: 5
+  Icon: {fileID: -6849507270066945240, guid: 19c26a5e4bc2f9948be5189fa596ebc6, type: 3}

@@ -37,6 +37,12 @@ public class lichBoss : Enemy
     public bool handActive = false;
     public GameObject lichHand;
 
+    public GameObject continuePortal;
+    public GameObject menuPortal;
+
+    private float endTimer;
+    private float endDuration = 3f;
+
     public enum EnemyState
     {
         Recover,
@@ -320,6 +326,11 @@ public class lichBoss : Enemy
         lichHand.SetActive(false);
         Debug.Log("Lich dead");
 
+        for (int i = 0; i < 5; i++)
+        {
+            Instantiate(Resources.Load<ParticleSystem>("Particles/HitParticles"), gameObject.transform.position, Quaternion.identity);
+        }
+
         PoolManager manager = PoolManager.Instance;
 
         for (int i = 0; i < 10; i++)
@@ -332,6 +343,11 @@ public class lichBoss : Enemy
             DropCoin();
         }
 
+        continuePortal.transform.position = new Vector2(player.transform.position.x -5, player.transform.position.y + 5);
+        menuPortal.transform.position = new Vector2(player.transform.position.x + 5, player.transform.position.y + 5);
+        continuePortal.SetActive(true);
+        menuPortal.SetActive(true);
+        gameObject.SetActive(false);
         
     }
 }
