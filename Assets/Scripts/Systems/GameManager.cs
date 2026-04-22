@@ -188,7 +188,7 @@ public class GameManager : MonoBehaviour
         UpdateSpawnInterval();
         ChangeLists();
 
-        if(gameTimer > 60)
+        if(gameTimer > 240)
         {
             sceneHand.SetActive(true);
         }
