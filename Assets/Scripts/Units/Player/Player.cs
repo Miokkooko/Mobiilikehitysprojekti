@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class Player : Unit
@@ -9,6 +10,9 @@ public class Player : Unit
     Dictionary<PassiveData, PassiveInstance> Passives = new Dictionary<PassiveData, PassiveInstance>();
 
     public List<StatusEffect> OnHitEffects = new List<StatusEffect>();
+
+    public virtual float HpRegen => statSystem.Calculate(StatType.HpRegen, 0); // Oletus 0
+    public virtual float ThornsPercent => statSystem.Calculate(StatType.Thorns, 0);
 
     PlayerMovement Movement;
     public PlayerData playerData;
@@ -35,11 +39,24 @@ public class Player : Unit
     public event Action<PassiveData[]> OnPlayerGetPassive;
     public event Action<WeaponData[]> OnPlayerGetWeapon;
 
+    private float regenTimer;
+
     public override void Update()
     {
         base.Update();
         FireWeapons();
         Movement.MovePlayer(Speed);
+
+        if (HpRegen > 0 && Health < MaxHealth)
+        {
+            regenTimer += Time.deltaTime;
+            if (regenTimer >= 1f)
+            {
+                Heal(new HealContext(this, HpRegen, true));
+                regenTimer = 0;
+            }
+        }
+
     }
     public override void InitializeUnit(UnitData data)
     {
@@ -56,6 +73,9 @@ public class Player : Unit
         InitializeUnit(DataManager.Instance.CharacterData);
         Debug.Log("Starting weapon: " + playerData.startingWeapon);
         AddWeapon(playerData.startingWeapon);
+
+        ApplyMenuPerks();
+
     }
     #region Passives
     public void AddPassive(PassiveData data)
@@ -71,6 +91,28 @@ public class Player : Unit
         OnPlayerGetPassive?.Invoke(Passives.Keys.ToArray());
         Debug.Log("Player got " + data.Name);
     }
+
+    void ApplyMenuPerks()
+    {
+        // Oletetaan, että DataManager tietää mitä perkkejä on ostettu ja mikä niiden rank on
+        foreach (var perk in DataManager.Instance.PurchasedPerks)
+        {
+            float bonusValue = perk.data.GetTotalValue(perk.currentRank);
+
+            // Luodaan modifioija-data
+            StatModifier modData = new StatModifier
+            {
+                Stat = perk.data.statToBoost,
+                Value = bonusValue,
+                Type = ModifierType.Flat // Kokeillaa flat bonuksia
+            };
+
+            // Lisätään se systeemiin instanssina
+            statSystem.AddModifier(new StatModifierInstance(modData));
+        }
+    
+    } // ApplyMenuPerks
+
     public void UpgradePassive(PassiveData data)
     {
         float prevMaxHp = MaxHealth;
@@ -163,6 +205,14 @@ public class Player : Unit
         base.TakeDamage(context);
 
         OnPlayerHealthChanged?.Invoke(Health);
+
+        if (context.Source != null && ThornsPercent > 0)
+        {
+            float reflectAmount = context.Amount * ThornsPercent;
+            // Huom: käytä DealDamagea, jotta se ei aiheuta ikuista looppia
+            context.Source.TakeDamage(new DamageContext(this, context.Source, reflectAmount, false));
+        }
+
     }
     public override void Heal(HealContext context)
     {

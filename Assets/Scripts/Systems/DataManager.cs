@@ -1,3 +1,4 @@
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class DataManager : MonoBehaviour
@@ -13,6 +14,19 @@ public class DataManager : MonoBehaviour
 
     int coins;
     public int Coins => coins;
+
+    // Luo lista, joka pitää kirjaa ostetuista perkeistä ja niiden tasoista
+    public List<PurchasedPerk> PurchasedPerks = new List<PurchasedPerk>();
+    public List<PerkData> AllAvailablePerks = new List<PerkData>();
+    public List<PerkData> SelectedPerks = new List<PerkData>();
+
+    // Apuluokka, jotta saadaan data ja rankki samaan pakettiin
+    [System.Serializable]
+    public class PurchasedPerk
+    {
+        public PerkData data;
+        public int currentRank;
+    }
 
     private void Awake()
     {

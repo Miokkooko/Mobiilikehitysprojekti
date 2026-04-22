@@ -1909,6 +1909,122 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: SelectedPerks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: AllAvailablePerks.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 476902e206392ef47a4d9fdb029e4d64, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 24b4ce8af91fdb2439c028db65cf4073, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 4eefc2f32962a18438472a397584fba1, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: df693f5ccb5179d49a6de08e3686d97e, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 6846fd53d4068ea4894d38a8b1f17eab, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3342e24feaf7aec46a74f4a761b5bdef, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a8c1bd36d8f9f194995d8d511383e661, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: 'AllAvailablePerks.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f27d5997eb7d7e340abeb10e3be78414, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[0].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 476902e206392ef47a4d9fdb029e4d64, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[1].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 24b4ce8af91fdb2439c028db65cf4073, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[2].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 4eefc2f32962a18438472a397584fba1, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[3].data
+      value: 
+      objectReference: {fileID: 11400000, guid: df693f5ccb5179d49a6de08e3686d97e, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[4].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 3342e24feaf7aec46a74f4a761b5bdef, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[5].data
+      value: 
+      objectReference: {fileID: 11400000, guid: 6846fd53d4068ea4894d38a8b1f17eab, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[6].data
+      value: 
+      objectReference: {fileID: 11400000, guid: a8c1bd36d8f9f194995d8d511383e661, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[7].data
+      value: 
+      objectReference: {fileID: 11400000, guid: f27d5997eb7d7e340abeb10e3be78414, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[8].data
+      value: 
+      objectReference: {fileID: 11400000, guid: df693f5ccb5179d49a6de08e3686d97e, type: 2}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[0].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[1].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[2].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[3].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[4].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[5].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[6].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[7].currentRank
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8870380969612067936, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
+      propertyPath: PurchasedPerks.Array.data[8].currentRank
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9012050027845977528, guid: ef6f3594032c3c64c9317c8de10b210c, type: 3}
       propertyPath: m_Name
       value: GameDataManager
