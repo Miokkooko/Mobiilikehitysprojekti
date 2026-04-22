@@ -17,6 +17,7 @@ public class PerkMenu : MonoBehaviour
     public PerkData placeholderData;
 
     PerkData lastPressedPerk;
+    PerkData[] perkDatas;
 
     public List<PerkItemUI> selectedTabPerks = new List<PerkItemUI>();
     List<PerkItemUI> selectedPerks = new List<PerkItemUI>();
@@ -25,7 +26,7 @@ public class PerkMenu : MonoBehaviour
     private void Start()
     {
         Bastor.Helpers.KillChildren(perkListParent);
-
+        perkDatas = Resources.LoadAll<PerkData>("StatusEffects/Perks");
         SpawnPerkButtons();
     }
     void OnDestroy()
@@ -42,10 +43,7 @@ public class PerkMenu : MonoBehaviour
         Bastor.Helpers.KillChildren(perkListParent);
         perkButtons.Clear();
 
-        // Haetaan kaikki perkit DataManagerista tai suoraan listasta
-        var allAvailablePerks = DataManager.Instance.AllAvailablePerks;
-
-        foreach (var pData in allAvailablePerks)
+        foreach (var pData in perkDatas)
         {
             Transform t = Instantiate(perkPrefab, perkListParent);
             if (t.TryGetComponent(out PerkItemUI ui))
@@ -108,9 +106,9 @@ public class PerkMenu : MonoBehaviour
     void HandleLastPressedPerkUI()
     {
         // Jos PerkDatassa ei ole Description-kenttää, käytä nimeä tai lisää Description PerkDataan
-        lastPressedPerkDescription.SetText(lastPressedPerk.perkName);
-        lastPressedPerkName.SetText(lastPressedPerk.perkName);
-        lastPressedPerkIcon.sprite = lastPressedPerk.icon;
+        lastPressedPerkDescription.SetText(lastPressedPerk.GetDescription());
+        lastPressedPerkName.SetText(lastPressedPerk.GetName());
+        lastPressedPerkIcon.sprite = lastPressedPerk.GetIcon();
         lastPressedPerkIcon.gameObject.SetActive(true);
     }
 }

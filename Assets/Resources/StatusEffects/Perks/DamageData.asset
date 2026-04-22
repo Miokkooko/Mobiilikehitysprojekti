@@ -10,10 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd5dbe976bc5654d962eec0ca4c3cf9, type: 3}
-  m_Name: AoEData
+  m_Name: DamageData
   m_EditorClassIdentifier: Assembly-CSharp::PerkData
-  perkName: Crowd Control
-  statToBoost: 7
-  baseValue: 0.5
-  valuePerRank: 0.5
-  icon: {fileID: 3712225034695526689, guid: e5ea50898fb05c64a85a95a9416659d1, type: 3}
+  rarity: 1
+  Name: Damage Perk
+  Description: 'Increases Damage dealt!
+
+    10% Per Rank.'
+  statusEffect: {fileID: 11400000, guid: b1e2a15b6456e9a47a7c10e315cb8c77, type: 2}
+  type: 0
+  Icon: {fileID: -992482325, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}

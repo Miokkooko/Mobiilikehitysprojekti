@@ -8,6 +8,9 @@ public class MainMenu : MonoBehaviour
     public PerkMenu perkMenu;
 
     public List<PerkItemUI> selectedPerks = new List<PerkItemUI>();
+
+    bool skipFirstReload = true;
+
     private void Awake()
     {
         Application.targetFrameRate = 120;
@@ -29,7 +32,13 @@ public class MainMenu : MonoBehaviour
 
     void ReloadMainMenu()
     {
+        if(skipFirstReload)
+        {
+            skipFirstReload = false;
+            return;
+        }
         charMenu.Reload();
+        //perkMenu.Reload();
     }
 
     private void Start()

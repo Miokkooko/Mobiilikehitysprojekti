@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd5dbe976bc5654d962eec0ca4c3cf9, type: 3}
   m_Name: ThornsData
   m_EditorClassIdentifier: Assembly-CSharp::PerkData
-  perkName: Retaliation
-  statToBoost: 10
-  baseValue: 1
-  valuePerRank: 2
-  icon: {fileID: 596004605, guid: d04e8ba993034bc479b284f2a65f6b2d, type: 3}
+  rarity: 2
+  Name: Thorns Perk
+  Description: 'Damage enemies that attack you!
+
+    50% Redirect Per Rank!'
+  statusEffect: {fileID: 11400000, guid: 4e8bc5937caa1894fb36f1734e91bbd3, type: 2}
+  type: 7
+  Icon: {fileID: -1018691840, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}

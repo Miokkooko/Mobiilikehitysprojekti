@@ -45,10 +45,8 @@ public class PerkItemUI : MonoBehaviour
             return;
         }
 
-        perkIcon.sprite = data.icon;
+        perkIcon.sprite = data.GetIcon();
         perkIcon.gameObject.SetActive(true);
-
-        
     }
 
     public void ClearData()
