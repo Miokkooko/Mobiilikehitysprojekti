@@ -17,14 +17,16 @@ MonoBehaviour:
   description: 
   Icon: {fileID: 0}
   poolType: 8
-  baseDamage: 2
+  baseDamage: 15
   firerate: 1
   piercing: 1
   projectileCount: 1
+  projectileSpread: 22.5
   projectileSpeed: 5
+  projectileBurst: 1
   projectileLifeTime: 2
   aoeDamage: 1
   aoeRadius: 1
-  usesProjectileCount: 1
+  usesProjectileBurst: 1
   upgradeList: []
   effectList: []

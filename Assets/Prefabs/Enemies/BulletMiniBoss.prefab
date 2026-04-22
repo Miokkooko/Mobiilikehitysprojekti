@@ -174,9 +174,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3785a3b87b2a8408583ec5322d3405, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  canBeKnockedBack: 1
   isWalking: 0
   enemyData: {fileID: 11400000, guid: 2d6ad95f0d66b564a95be5e65e84daa5, type: 2}
   effects: []
+  canShoot: 0
+  shootInterval: 0
   recoverDuration: 1.5
   chargeDuration: 3
   fireDistance: 3

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638dc3cbd47526a43ac694376cb7311a, type: 3}
+  m_Name: LichData
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyData
+  unitName: Lich
+  maxHealth: 500
+  baseDamage: 15
+  moveSpeed: 1
+  baseSprite: {fileID: 6529432276043444841, guid: 5783cc9282ff03a42b9bb1b0130c8643, type: 3}
+  animator: {fileID: 22100000, guid: cb1a8dfc63e9b3b4b8d1ffd7b200a5e5, type: 2}
+  xpValue: 20
+  poolType: 5
+  coinValue: 25
+  coinDropChance: 2
