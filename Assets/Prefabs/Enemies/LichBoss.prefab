@@ -241,7 +241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89c371d95159ba45abadadfebb2e519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  canBeKnockedBack: 1
+  canBeKnockedBack: 0
   isWalking: 0
   enemyData: {fileID: 11400000, guid: 5fffdc75e893e7b46bc986bfcee534b3, type: 2}
   effects: []

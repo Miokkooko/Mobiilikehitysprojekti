@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LichData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: Lich
-  maxHealth: 500
+  maxHealth: 650
   baseDamage: 15
   moveSpeed: 1
   baseSprite: {fileID: 6529432276043444841, guid: 5783cc9282ff03a42b9bb1b0130c8643, type: 3}
