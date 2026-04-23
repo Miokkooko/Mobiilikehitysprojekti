@@ -18,7 +18,7 @@ MonoBehaviour:
   Icon: {fileID: -5295550415798936366, guid: 65aa5bbdc3175ee468c3bca072dfd1c8, type: 3}
   weaponType: 6
   poolType: 10
-  baseDamage: 2
+  baseDamage: 5
   firerate: 1.5
   piercing: 1000
   projectileCount: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   projectileBurstDelay: 0.2
   projectileLifeTime: 0.4
   aoeDamage: 1
-  aoeRadius: 1
+  aoeRadius: 0.1
   usesProjectileBurst: 0
   usesProjectileSpread: 0
   upgradeList:
