@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -21,6 +22,8 @@ public class UIManager : MonoBehaviour
     Transform NotificationYesNoPrefab;
     [SerializeField]
     Transform NotificationLevelUpPrefab;
+    [SerializeField]
+    Transform NotificationPopUpPrefab;
 
     Stack<Menu> MenuStack = new Stack<Menu>();
 
@@ -54,12 +57,19 @@ public class UIManager : MonoBehaviour
             case NotificationType.Confirm:
                 break;
             case NotificationType.ConfirmCancel:
+                NotificationYesNoPrefab.gameObject.SetActive(false);
                 t = Instantiate(NotificationYesNoPrefab, notificationCanvas.transform);
+                NotificationYesNoPrefab.gameObject.SetActive(true);
                 break;
             case NotificationType.PopUp:
+                NotificationPopUpPrefab.gameObject.SetActive(false);
+                t = Instantiate(NotificationPopUpPrefab, notificationCanvas.transform);
+                NotificationPopUpPrefab.gameObject.SetActive(false);
                 break;
             case NotificationType.LevelUp:
+                NotificationLevelUpPrefab.gameObject.SetActive(false);
                 t = Instantiate(NotificationLevelUpPrefab, notificationCanvas.transform);
+                NotificationLevelUpPrefab.gameObject.SetActive(false);
                 break;
             default:
                 break;
@@ -83,6 +93,45 @@ public class UIManager : MonoBehaviour
             return n;
         }
 
+        if (t.GetComponent<NotificationPopUp>() is NotificationPopUp np)
+        {
+            np.Initialize(data);
+
+            PopUpNotificationQueue.Enqueue(np);
+
+            np.OnNotificationDestroyed += OnNotificationDestroyed;
+
+            HandleQueue();
+            return np;
+        }
+
+        return null;
+    }
+
+    public NotificationBase CreateNotificationPopUp(string title, string description)
+    {
+        NotificationPopUpPrefab.gameObject.SetActive(false);
+        Transform t = Instantiate(NotificationPopUpPrefab, notificationCanvas.transform);
+        NotificationPopUpPrefab.gameObject.SetActive(false);
+
+        if(t == null)
+        {
+            Debug.LogError("No prefab found for notification!");
+            return null;
+        }
+
+        if (t.GetComponent<NotificationPopUp>() is NotificationPopUp n)
+        {
+            n.Initialize(title, description);
+
+            PopUpNotificationQueue.Enqueue(n);
+
+            n.OnNotificationDestroyed += OnNotificationDestroyed;
+
+            HandleQueue();
+            return n;
+        }
+
         return null;
     }
   
@@ -93,7 +142,7 @@ public class UIManager : MonoBehaviour
     {
         if (NotificationQueue.Count > 0)
         {
-            if (!NotificationQueue.Peek().gameObject.activeInHierarchy)
+            if (NotificationQueue.Peek() != null && !NotificationQueue.Peek().gameObject.activeInHierarchy)
             {
                 NotificationQueue.Peek().gameObject.SetActive(true);
             }
@@ -101,7 +150,7 @@ public class UIManager : MonoBehaviour
 
         if (PopUpNotificationQueue.Count > 0)
         {
-            if (!PopUpNotificationQueue.Peek().gameObject.activeInHierarchy)
+            if (PopUpNotificationQueue.Peek() != null && !PopUpNotificationQueue.Peek().gameObject.activeInHierarchy)
             {
                 PopUpNotificationQueue.Peek().gameObject.SetActive(true);
             }

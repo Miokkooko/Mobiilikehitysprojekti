@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
   MainMenu: {fileID: 0}
   canvas: {fileID: 0}
+  notificationCanvas: {fileID: 0}
   NotificationYesNoPrefab: {fileID: 195943914806281603, guid: 8f28e27327a3bed4bb76266f0f947cba, type: 3}
   NotificationLevelUpPrefab: {fileID: 195943914806281603, guid: 28aa24319c322c443989a798391f34ab, type: 3}
+  NotificationPopUpPrefab: {fileID: 3058645451971651744, guid: 7e42048879882b640afcd45fcdd86d68, type: 3}

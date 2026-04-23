@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
         Application.targetFrameRate = 120;
         QualitySettings.vSyncCount = 1;
         SaveManager.OnSaveLoaded += ReloadMainMenu;
+        
     }
     private void OnDestroy()
     {
@@ -50,7 +51,7 @@ public class MainMenu : MonoBehaviour
     {
         if(charMenu.selectedData == null)
         {
-            Debug.Log("Invalid Character Selected!");
+            UIManager.Instance.CreateNotificationPopUp("Error!", "Character not unlocked!");
             return;
         }
 

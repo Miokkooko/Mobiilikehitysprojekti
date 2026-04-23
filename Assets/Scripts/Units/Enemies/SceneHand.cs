@@ -1,7 +1,4 @@
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using UnityEngine.SceneManagement;
-using static UnityEditor.PlayerSettings;
 
 public class SceneHand : Enemy
 {

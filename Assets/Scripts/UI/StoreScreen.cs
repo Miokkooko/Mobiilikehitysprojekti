@@ -113,8 +113,12 @@ public class StoreScreen : MonoBehaviour
 
     public void TryPull()
     {
-        if (!SaveManager.TrySpendCoins(100))
+        if (!SaveManager.TrySpendCoins(pullCost))
+        {
+            UIManager.Instance.CreateNotificationPopUp("Error!", "Not enough gold!");
             return;
+        }
+           
 
         bannerData.Clear();
         BannerItem item = banners.Current.Pull();
@@ -128,7 +132,10 @@ public class StoreScreen : MonoBehaviour
     public void TryPullFive()
     {
         if (!SaveManager.TrySpendCoins(pullCost*5))
+        {
+            UIManager.Instance.CreateNotificationPopUp("Error!", "Not enough gold!");
             return;
+        }
 
         bannerData.Clear();
         Rarity highest = Rarity.Common;

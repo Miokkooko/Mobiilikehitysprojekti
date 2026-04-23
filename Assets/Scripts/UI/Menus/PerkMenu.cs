@@ -2,8 +2,6 @@
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using Mono.Cecil;
-
 
 public class PerkMenu : MonoBehaviour
 {
@@ -106,7 +104,7 @@ public class PerkMenu : MonoBehaviour
 
         if (selectedPerks.Count >= 3)
         {
-            Debug.Log("Perk slots are full!");
+            UIManager.Instance.CreateNotificationPopUp("Error", "Your perk slots are full!");
             return;
         }
 

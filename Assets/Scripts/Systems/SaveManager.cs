@@ -187,10 +187,8 @@ public class SaveManager
             LoadSave();
 
         if(saveData.coins - amount < 0)
-        {
-            Debug.Log("Can't spend more coins than you own!");
             return false;
-        }
+        
         saveData.coins -= amount;
 
         Save();
@@ -364,6 +362,7 @@ public class SaveManager
             {
                 coins = 0,
                 charactersOwned = new List<CharacterEntry>(),
+                perksOwned = new List<PerkEntry>(),
             };
 
             saveData.charactersOwned.Add(new CharacterEntry(CharacterType.Knight, 1));

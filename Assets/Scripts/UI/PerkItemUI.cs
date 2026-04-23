@@ -43,7 +43,6 @@ public class PerkItemUI : MonoBehaviour
 
         if (data == null)
         {
-            Debug.Log("No PerkData found!");
             perkIcon.gameObject.SetActive(false);
             return;
         }
