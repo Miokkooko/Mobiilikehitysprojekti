@@ -28,7 +28,7 @@ MonoBehaviour:
   projectileBurstDelay: 0.2
   projectileLifeTime: 0.75
   aoeDamage: 1
-  aoeRadius: 2
+  aoeRadius: 1
   usesProjectileBurst: 0
   usesProjectileSpread: 0
   upgradeList:
