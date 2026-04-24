@@ -176,8 +176,6 @@ MonoBehaviour:
   isWalking: 0
   enemyData: {fileID: 11400000, guid: 2d6ad95f0d66b564a95be5e65e84daa5, type: 2}
   effects: []
-  canShoot: 0
-  shootInterval: 0
   recoverDuration: 1.5
   chargeDuration: 3
   fireDistance: 3

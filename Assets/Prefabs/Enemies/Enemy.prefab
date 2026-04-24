@@ -176,8 +176,6 @@ MonoBehaviour:
   enemyData: {fileID: 0}
   effects:
   - {fileID: 11400000, guid: 75a5f1531c760fe48910e854db02b768, type: 2}
-  canShoot: 0
-  shootInterval: 0
 --- !u!61 &-1473212820917141647
 BoxCollider2D:
   m_ObjectHideFlags: 0

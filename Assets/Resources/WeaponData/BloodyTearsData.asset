@@ -15,7 +15,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 7775072252728010430, guid: 4c2a0707562560e43afecdd12e732e2c, type: 3}
   weaponName: Bloody Tears
   description: Fire bloody tears in multiple directions that apply bleed
-  Icon: {fileID: -1185401933369553465, guid: 4701a1c6f3d75794d850dfc4f3383d17, type: 3}
+  Icon: {fileID: -7038570389608707246, guid: f57f25c30f4de214d97cd82ef973c4d2, type: 3}
   weaponType: 2
   poolType: 12
   baseDamage: 0.5
@@ -36,7 +36,7 @@ MonoBehaviour:
     Value: 1
     Type: 0
   - Stat: 0
-    Value: 0.4
+    Value: 0.5
     Type: 1
   - Stat: 3
     Value: 1

@@ -14,21 +14,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5095381493187369754, guid: 698c50973eb81fe4caf80eb99d930222, type: 3}
   weaponName: Divine Aura
-  description: A field of divine presence that corrodes enemies
+  description: 'A field of divine presence that burns enemies around you
+
+'
   Icon: {fileID: 0}
   weaponType: 3
   poolType: 13
-  baseDamage: 0
-  firerate: 1
-  piercing: 1
+  baseDamage: 1
+  firerate: 6
+  piercing: 100
   projectileCount: 1
   projectileSpread: 22.5
   projectileSpeed: 5
   projectileBurst: 1
+  projectileBurstDelay: 0.2
   projectileLifeTime: 2
   aoeDamage: 1
   aoeRadius: 1
   usesProjectileBurst: 1
-  upgradeList: []
+  usesProjectileSpread: 0
+  upgradeList:
+  - Stat: 0
+    Value: 0.3
+    Type: 1
+  - Stat: 6
+    Value: 0.2
+    Type: 1
+  - Stat: 6
+    Value: 0.3
+    Type: 1
+  - Stat: 0
+    Value: 0.3
+    Type: 1
   effectList:
-  - {fileID: 11400000, guid: bccd77112f3fc5c4da6f2e1d05902b82, type: 2}
+  - {fileID: 11400000, guid: 8485e8e14981a434c97abf9dd627e7de, type: 2}

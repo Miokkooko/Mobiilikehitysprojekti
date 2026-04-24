@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: BossSkeletonData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: SkeletonMiniBoss
-  maxHealth: 180
+  maxHealth: 350
   baseDamage: 12
   moveSpeed: 1
   baseSprite: {fileID: -582548278662217299, guid: 7b4a3236a7ce105468b3ee879b295657, type: 3}
   animator: {fileID: 22100000, guid: ce88ab0c106ce44449d6c93515221e59, type: 2}
-  xpValue: 30
+  xpValue: 60
   poolType: 3
   coinValue: 25
   coinDropChance: 100
