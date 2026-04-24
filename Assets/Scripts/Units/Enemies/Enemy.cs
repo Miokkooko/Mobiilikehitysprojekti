@@ -28,10 +28,8 @@ public class Enemy : Unit
 
     protected float XpValue => enemyData.xpValue;
 
-    public bool canShoot = false;
 
-    private float lastShootTime;
-    public float shootInterval = 5f;
+
 
     public override void InitializeUnit(UnitData data)
     {

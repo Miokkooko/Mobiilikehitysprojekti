@@ -320,7 +320,15 @@ public class lichBoss : Enemy
 
         if (Health <= MaxHealth / 2f)
         {
-            chargeDuration = chargeDuration * 0.6f;
+            chargeDuration = chargeDuration /2;
+            chaseDuration = 2.5f;
+            
+        }
+
+        if (Health <= MaxHealth * 0.2)
+        {
+            chargeDuration = chargeDuration / 2;
+            chaseDuration = 2f;
         }
     }
 
@@ -330,6 +338,7 @@ public class lichBoss : Enemy
         Debug.Log("Lich dead");
 
         PoolManager.Instance.DisableAllEnemies(EnemyPoolType.GenericEnemy);
+        GameManager.Instance.canSpawn = false;
         
 
         for (int i = 0; i < 5; i++)

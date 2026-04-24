@@ -32,7 +32,7 @@ public class MiniBoss : Enemy
 
     public override void Update()
     {
-        base.Update();
+        //base.Update();
 
         if (player == null)
             return;
@@ -59,6 +59,7 @@ public class MiniBoss : Enemy
 
     public void Recover()
     {
+        canBeKnockedBack = true;
         animator.speed = 1f;
         recoverTimer += Time.deltaTime;
 
@@ -94,6 +95,7 @@ public class MiniBoss : Enemy
 
     public void Attack()
     {
+        canBeKnockedBack = false;
         animator.speed = 2f;
         if (!lungeStarted)
         {
