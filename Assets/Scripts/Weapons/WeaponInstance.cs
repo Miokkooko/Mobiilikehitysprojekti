@@ -222,7 +222,7 @@ public class WeaponInstance
 
         float nextValue = nextUpgrade.Type == ModifierType.Percent ? currentValue + (currentValue * nextUpgrade.Value) : currentValue + (percentStuff ? nextUpgrade.Value * 100 : nextUpgrade.Value);
 
-        return $"{statName} {currentValue} -> {nextValue}";
+        return $"{statName} {Mathf.RoundToInt(currentValue)} -> {Mathf.RoundToInt(nextValue)}";
     }
 
     public string GetRankUpText()

@@ -372,7 +372,7 @@ public class Unit : MonoBehaviour, IDamageable
         Vector3 spawnPos = ((MonoBehaviour)context.Target).transform.position + Vector3.up * 1f;
         GameObject dmgPop = PoolManager.Instance.SpawnPopUp(spawnPos);
         TMP_Text tmp = dmgPop.GetComponent<TextMeshPro>();
-        tmp.text = context.Amount.ToString();
+        tmp.text = Mathf.RoundToInt(context.Amount).ToString();
 
         if (context.Amount > 3)
         {

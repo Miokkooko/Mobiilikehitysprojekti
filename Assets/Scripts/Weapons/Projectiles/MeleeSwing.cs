@@ -9,6 +9,7 @@ public class MeleeSwing : Projectile
 
     private float startAngle;
     private float elapsed = 0;
+    private bool hasCleared = false;
 
     // Lista, jolla pidetään kirjaa kehen on jo osuttu tämän heilautuksen aikana
     private List<IDamageable> alreadyHit = new List<IDamageable>();
@@ -39,10 +40,26 @@ public class MeleeSwing : Projectile
 
     } // Intitialize
 
+    public override void Rotate()
+    {
+        // Jätä tämä tyhjäksi! 
+        // Emme halua Projectile-luokan kääntävän asetta, 
+        // koska meillä on oma UpdateSwing-logiikka.
+    }
+
     public override void Move()
     {
+
+
         elapsed += Time.deltaTime;
         float progress = elapsed / projectileLifetime;
+
+        if (progress >= 0.5f && !hasCleared)
+        {
+            alreadyHit.Clear(); // Nollataan osumat, jotta voi osua uudestaan
+            hasCleared = true;
+            Debug.Log("Melee re-hit enabled!");
+        }
 
         if (progress <= 1f)
         {
