@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: RegularProjKnockback
   m_EditorClassIdentifier: Assembly-CSharp::KnockBack
   Name: Regular Projectile Knockback
+  Icon: {fileID: 0}
   Description: 
   Duration: 0
   MaxStacks: 0
@@ -20,7 +21,7 @@ MonoBehaviour:
   StatusHandling: 0
   Permanent: 0
   ModifierType: 2
-  force: 8
+  force: 16
   upwardsForce: 0
   affectMultipleTargets: 0
   duration: 0.1

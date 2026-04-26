@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: KanaboKnockBackEffect
   m_EditorClassIdentifier: Assembly-CSharp::KnockBack
   Name: Knockback
+  Icon: {fileID: 0}
   Description: 
   Duration: 0
   MaxStacks: 0
@@ -20,7 +21,7 @@ MonoBehaviour:
   StatusHandling: 0
   Permanent: 0
   ModifierType: 2
-  force: 25
+  force: 33
   upwardsForce: 0
   affectMultipleTargets: 1
   duration: 0.15
