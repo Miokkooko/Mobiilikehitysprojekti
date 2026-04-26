@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LichHandData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: HandBossData
-  maxHealth: 1000
+  maxHealth: 3000
   baseDamage: 20
   moveSpeed: 0
   baseSprite: {fileID: -5123751124927117663, guid: 85c359c88203d5c44b0e43c62b272af0, type: 3}

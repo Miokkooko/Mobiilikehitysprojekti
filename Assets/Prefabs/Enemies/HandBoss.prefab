@@ -245,14 +245,12 @@ MonoBehaviour:
   isWalking: 0
   enemyData: {fileID: 11400000, guid: 318c12d925efa0c43b24943a2043c7e4, type: 2}
   effects: []
-  canShoot: 0
-  shootInterval: 0
   recoverTimer: 0
   recoverDuration: 4
   chargeTimer: 0
   chargeDuration: 3
   stopFollowingWhen: 0.8
-  grabDuration: 1
+  grabDuration: 2
   _currentState: 0
 --- !u!1 &2341148688645848007
 GameObject:

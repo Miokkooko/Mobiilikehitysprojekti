@@ -70,6 +70,8 @@ public class GameManager : MonoBehaviour
 
     public float sceneHandSpawnTime = 300f;
 
+    public bool canSpawn = true;
+
 
     public enum GameState
     {
@@ -213,8 +215,8 @@ public class GameManager : MonoBehaviour
 
     public void BossFightState()
     {
-        currentEnemyList = enemyGroups[5].enemies;
-        if (gameTimer > lastEnemySpawnTime + interval)
+        currentEnemyList = enemyGroups[9].enemies;
+        if (gameTimer > lastEnemySpawnTime + interval && canSpawn)
         {
             CalculateEnemy(currentEnemyList);
             lastEnemySpawnTime = gameTimer;
@@ -378,15 +380,16 @@ public class GameManager : MonoBehaviour
         if(gameTimer > lastIntervalChange + spawnDecreaseTime)
         {
             interval -= spawnDecreaseAmount;
-            interval = Mathf.Max(0.2f, interval);
+            interval = Mathf.Max(0.1f, interval);
             lastIntervalChange = gameTimer;
         }
         if (gameTimer > lastIntervalChangeBoss + spawnDecreaseTimeBoss)
         {
             miniBossInterval -= spawnDecreaseAmountBoss;
-            miniBossInterval = Mathf.Max(1f, miniBossInterval);
+            miniBossInterval = Mathf.Max(5f, miniBossInterval);
             lastIntervalChangeBoss = gameTimer;
         }
+
     }
 
     public void ResetKillCount()

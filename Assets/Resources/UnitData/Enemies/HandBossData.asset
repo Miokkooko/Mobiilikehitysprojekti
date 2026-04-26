@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: HandBossData
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   unitName: HandBossData
-  maxHealth: 100
+  maxHealth: 400
   baseDamage: 20
   moveSpeed: 0
   baseSprite: {fileID: -5123751124927117663, guid: 85c359c88203d5c44b0e43c62b272af0, type: 3}
   animator: {fileID: 22100000, guid: 131df819b29a4d248b282a9cff6d7b8a, type: 2}
-  xpValue: 30
+  xpValue: 60
   poolType: 4
   coinValue: 15
   coinDropChance: 100

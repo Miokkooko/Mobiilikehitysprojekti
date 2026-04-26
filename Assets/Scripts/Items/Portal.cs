@@ -22,6 +22,7 @@ public class Portal : MonoBehaviour
             player.enabled = false;
             player.GetComponent<SpriteRenderer>().enabled = false;
             GameManager.Instance._currentState = GameManager.GameState.AfterBoss;
+            GameManager.Instance.miniBossInterval = GameManager.Instance.miniBossInterval *0.6f;
 
             Vector3 pos = playerMainSpawn.transform.position;
 
