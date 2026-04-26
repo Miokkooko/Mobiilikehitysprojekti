@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5095381493187369754, guid: 698c50973eb81fe4caf80eb99d930222, type: 3}
   weaponName: Divine Aura
-  description: 'A field of divine presence that burns enemies around you
+  description: 'Burns enemies around you
 
 '
   Icon: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5697604641964101251, guid: 3cf7fba35531de2409076de5971cffbc, type: 3}
   weaponName: "Kanab\u014D"
-  description: A blunt, studded club that causes knockback and severe brain damage
+  description: Causes knockback and a severe concussion
   Icon: {fileID: -5295550415798936366, guid: 65aa5bbdc3175ee468c3bca072dfd1c8, type: 3}
   weaponType: 6
   poolType: 10

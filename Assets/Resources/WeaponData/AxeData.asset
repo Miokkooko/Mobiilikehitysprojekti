@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 8125054451507894081, guid: 8208327c9212a5d419d604963b7a6f0d, type: 3}
   weaponName: Axe
-  description: A hefty axe that cleaves through enemies when thrown
+  description: Cleaves through enemies when thrown
   Icon: {fileID: 245248123180487230, guid: 4a99aa1ec78be754dafd88dd174576e7, type: 3}
   weaponType: 0
   poolType: 1

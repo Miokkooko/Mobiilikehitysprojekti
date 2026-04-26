@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 7775072252728010430, guid: 8874ffa405d0b8c4cb8fb7674f4ce22f, type: 3}
   weaponName: Mine
-  description: An explosive to lay on the ground, exploding upon contact and slowing
-    down enemies
+  description: Explodes upon contact and slows down enemies
   Icon: {fileID: 21300000, guid: 84cd6b1b0fa320d4ebebb1ecf4b2409c, type: 3}
   weaponType: 9
   poolType: 3

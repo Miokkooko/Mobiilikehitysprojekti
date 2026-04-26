@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 4900790239310842979, guid: 5c1148c425159694ca76527385e1818a, type: 3}
   weaponName: Sword
-  description: A sword made of silver, swings around the player
+  description: Slashes a full circle around the player
   Icon: {fileID: -6849507270066945240, guid: 19c26a5e4bc2f9948be5189fa596ebc6, type: 3}
   weaponType: 11
   poolType: 5
