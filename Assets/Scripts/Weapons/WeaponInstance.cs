@@ -221,8 +221,24 @@ public class WeaponInstance
         }
 
         float nextValue = nextUpgrade.Type == ModifierType.Percent ? currentValue + (currentValue * nextUpgrade.Value) : currentValue + (percentStuff ? nextUpgrade.Value * 100 : nextUpgrade.Value);
+        float displayCurrent = currentValue;
+        float displayNext = nextValue;
 
-        return $"{statName} {Mathf.RoundToInt(currentValue)} -> {Mathf.RoundToInt(nextValue)}";
+        if (nextUpgrade.Stat == StatType.FirerateBonus && nextUpgrade.Type == ModifierType.Flat)
+        {
+            // Jos haluat, että 0.2 -> 20, niin:
+            displayNext = nextUpgrade.Value * 100;
+            return $"{statName} +{Mathf.RoundToInt(displayNext)}%";
+        }
+
+        // Käytetään samaa pyöristyskikkaa tässäkin
+        float curRounded = Mathf.Round(currentValue * 10f) / 10f;
+        float nxtRounded = Mathf.Round(nextValue * 10f) / 10f;
+        string suffix = percentStuff ? "%" : "";
+        string curText = currentValue >= 1 ? Mathf.RoundToInt(currentValue).ToString() : currentValue.ToString("0.#");
+        string nxtText = nextValue >= 1 ? Mathf.RoundToInt(nextValue).ToString() : nextValue.ToString("0.#");
+
+        return $"{statName} {curText}{suffix} -> {nxtText}{suffix}";
     }
 
     public string GetRankUpText()

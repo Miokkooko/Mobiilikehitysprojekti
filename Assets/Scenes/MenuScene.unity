@@ -583,6 +583,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 5855486124738010728, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
+      propertyPath: m_text
+      value: Midnight Vigil
+      objectReference: {fileID: 0}
     - target: {fileID: 5941366527232682109, guid: f5f16601278e1784dab684212a74d6f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
