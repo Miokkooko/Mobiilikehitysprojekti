@@ -22,7 +22,7 @@ MonoBehaviour:
   firerate: 2.5
   piercing: 1
   projectileCount: 4
-  projectileSpread: 90
+  projectileSpread: 45
   projectileSpeed: 5
   projectileBurst: 1
   projectileBurstDelay: 0.2

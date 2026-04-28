@@ -30,7 +30,7 @@ MonoBehaviour:
   aoeDamage: 1
   aoeRadius: 1
   usesProjectileBurst: 1
-  usesProjectileSpread: 0
+  usesProjectileSpread: 1
   upgradeList:
   - Stat: 3
     Value: 2

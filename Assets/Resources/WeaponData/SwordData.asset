@@ -22,7 +22,7 @@ MonoBehaviour:
   firerate: 2.75
   piercing: 1000
   projectileCount: 1
-  projectileSpread: 22.5
+  projectileSpread: 90
   projectileSpeed: 5
   projectileBurst: 1
   projectileBurstDelay: 0.2
@@ -30,7 +30,7 @@ MonoBehaviour:
   aoeDamage: 1
   aoeRadius: 1
   usesProjectileBurst: 0
-  usesProjectileSpread: 0
+  usesProjectileSpread: 1
   upgradeList:
   - Stat: 7
     Value: 0.25
