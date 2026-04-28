@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: AttackUpData
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
   Name: Strength
-  Icon: {fileID: 8235732835111945792, guid: 5a04e9a69e5f7a64693edc086222f941, type: 3}
-  Description: More strength allows for more devastating blows, increasing damage
-    dealt
+  Icon: {fileID: -7210609166785905172, guid: bc484907cbcf9be4a9d16281049ec32a, type: 3}
+  Description: Increases damage dealt
   Duration: 0
   MaxStacks: 0
   TickRate: 1

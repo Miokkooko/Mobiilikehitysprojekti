@@ -19,4 +19,4 @@ MonoBehaviour:
     10% Per Rank.'
   statusEffect: {fileID: 11400000, guid: b1e2a15b6456e9a47a7c10e315cb8c77, type: 2}
   type: 0
-  Icon: {fileID: -992482325, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}
+  Icon: {fileID: -7210609166785905172, guid: bc484907cbcf9be4a9d16281049ec32a, type: 3}

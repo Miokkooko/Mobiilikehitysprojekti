@@ -36,15 +36,13 @@ public class MeleeSwing : Projectile
         startAngle = centerAngle - (swingArc / 2f);
 
         elapsed = 0;
-        UpdateSwing(0); // Asetetaan ase heti alkupaikalleen
+        UpdateSwing(0); 
 
     } // Intitialize
 
     public override void Rotate()
     {
-        // Jätä tämä tyhjäksi! 
-        // Emme halua Projectile-luokan kääntävän asetta, 
-        // koska meillä on oma UpdateSwing-logiikka.
+        // Jätä tämä tyhjäksi 
     }
 
     public override void Move()
@@ -54,7 +52,7 @@ public class MeleeSwing : Projectile
         elapsed += Time.deltaTime;
         float progress = elapsed / projectileLifetime;
 
-        if (progress >= 0.5f && !hasCleared)
+        if (progress >= 0.3f && !hasCleared)
         {
             alreadyHit.Clear(); // Nollataan osumat, jotta voi osua uudestaan
             hasCleared = true;
@@ -89,7 +87,7 @@ public class MeleeSwing : Projectile
         }
     } // UpdateSwing
 
-    // Ylikirjoitetaan osumislogiikka, jotta ei osu samaan viholliseen monta kertaa
+    // Ylikirjoitetaan osumislogiikka, jotta ei osu samaan viholliseen liian monta kertaa
     public override void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player")) return;

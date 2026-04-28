@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassiveData
   Name: Piercing
   Icon: {fileID: -215982266777626535, guid: 0b9a0267890d5dd46a15990adb86553a, type: 3}
-  Description: More dexterity allows for more skillful throws, piercing an additional
-    enemy
+  Description: Pierces an additional enemy
   Duration: 0
   MaxStacks: 0
   TickRate: 1

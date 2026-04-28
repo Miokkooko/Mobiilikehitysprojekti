@@ -190,39 +190,29 @@ public class WeaponInstance
 
     public string GetRankUpDescription()
     {
-        if ((upgradeRank) >= data.upgradeList.Length)
-            return "";
+        if ((upgradeRank) >= data.upgradeList.Length) return "";
 
         StatModifier nextUpgrade = data.upgradeList[upgradeRank];
-        string statName = nextUpgrade.Stat.ToString();
+        bool isPercentStat = (nextUpgrade.Stat == StatType.FirerateBonus || nextUpgrade.Stat == StatType.AoERadius);
 
-        float currentValue = 0;
-        bool percentStuff = false;
-        switch (nextUpgrade.Stat)
+        string statName = nextUpgrade.Stat.ToString();
+        string changeText = "";
+        string suffix = isPercentStat ? "%" : "";
+
+        // Handle how the "Change" is displayed based on the MODIFIER type
+        if (nextUpgrade.Type == ModifierType.Percent)
         {
-            case StatType.Damage:
-                currentValue = Damage;
-                break;
-            case StatType.Piercing:
-                currentValue = Piercing;
-                break;
-            case StatType.ProjectileCount:
-                currentValue = ProjectileCount;
-                break;
-            case StatType.FirerateBonus:
-                currentValue = (FireratePercent - 1) * 100;
-                percentStuff = true;
-                break;
-            case StatType.AoERadius:
-                currentValue = AoERadius;
-                break;
-            default:
-                break;
+            // If the upgrade itself is a percentage (0.25 -> 25%)
+            changeText = Mathf.RoundToInt(nextUpgrade.Value * 100) + "%";
+        }
+        else
+        {
+            // If it's a flat value, we check if the STAT is normally a percent
+            float displayVal = isPercentStat ? nextUpgrade.Value * 100 : nextUpgrade.Value;
+            changeText = Mathf.RoundToInt(displayVal).ToString() + suffix;
         }
 
-        float nextValue = nextUpgrade.Type == ModifierType.Percent ? currentValue + (currentValue * nextUpgrade.Value) : currentValue + (percentStuff ? nextUpgrade.Value * 100 : nextUpgrade.Value);
-
-        return $"{statName} {Mathf.RoundToInt(currentValue)} -> {Mathf.RoundToInt(nextValue)}";
+        return $"{statName} +{changeText}";
     }
 
     public string GetRankUpText()

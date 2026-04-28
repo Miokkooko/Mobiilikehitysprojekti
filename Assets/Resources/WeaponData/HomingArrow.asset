@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 6738408243837565008, guid: 95038c336d5565346a66293c1b0e40c8, type: 3}
   weaponName: Homing Arrow
-  description: A magic arrow that finds the nearest enemy and pierces them to find
-    the next enemy
+  description: A magic arrow that locates and pierces nearby enemies
   Icon: {fileID: -7142435805586534932, guid: 137b36d49f0c1fb429d8e321ca97c453, type: 3}
   weaponType: 5
   poolType: 11
@@ -31,14 +30,14 @@ MonoBehaviour:
   aoeDamage: 1
   aoeRadius: 1
   usesProjectileBurst: 1
-  usesProjectileSpread: 0
+  usesProjectileSpread: 1
   upgradeList:
   - Stat: 3
     Value: 2
     Type: 0
   - Stat: 6
     Value: 0.2
-    Type: 0
+    Type: 1
   - Stat: 3
     Value: 2
     Type: 0
@@ -50,7 +49,7 @@ MonoBehaviour:
     Type: 0
   - Stat: 6
     Value: 0.2
-    Type: 0
+    Type: 1
   - Stat: 3
     Value: 2
     Type: 0

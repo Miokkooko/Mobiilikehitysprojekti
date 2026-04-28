@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponData
   projectilePrefab: {fileID: 5095381493187369754, guid: 3b4da201cd25c9f48afbda8050ad5df1, type: 3}
   weaponName: Bible
-  description: A heavenly contraption that rotates around the player, burning enemies
-    rapidly
+  description: Rotates around the player, burning enemies that touch it
   Icon: {fileID: -4920520170397818850, guid: 77781384633922e499513bd3d9173081, type: 3}
   weaponType: 1
   poolType: 9
